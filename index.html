@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sipán Inmobiliaria</title>
+    <link rel="icon" type="image/png" href="img/logo_medialuna.png">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Header y menú principal -->
+    <header class="header">
+        <div class="header-container">
+            <a href="index.html">
+                <img src="img/logosipan.png" alt="Logo Sipán" class="logo">
+            </a>
+            <!-- Botón para menú móvil -->
+            <button class="menu-toggle" aria-label="Abrir menú">
+                <i class="fas fa-bars"></i>
+            </button>
+            <!-- Ejemplo de menú -->
+            <nav class="menu-superior">
+                <ul>
+                    <li><a href="index.html"><i class="fas fa-home"></i> Inicio</a></li>
+                    <li><a href="proyecto.html"><i class="fas fa-building"></i> Proyecto</a></li>
+                    <li><a href="#servicios"><i class="fas fa-cogs"></i> Servicios</a></li>
+                    <li><a href="#ubicacion"><i class="fas fa-map-marker-alt"></i> Ubicación</a></li>
+                    <li><a href="html/contacto.html"><i class="fas fa-envelope"></i> Contacto</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero principal -->
+    <section class="hero" id="inicio">
+        <video class="hero-video" id="heroVideo" autoplay loop muted playsinline>
+            <source src="video/gruas_construccion.mp4" type="video/mp4">
+        </video>
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <h1 class="hero-title">Tu nuevo hogar, tu mejor inversión</h1>
+            <p class="hero-subtitle">Expertos en bienes raíces, desarrollos y asesoría inmobiliaria</p>
+            <a href="#proyecto" class="btn-principal">Conoce el proyecto</a>
+        </div>
+    </section>
+    <script src="js/hero-reverse.js"></script>
+
+    <!-- Sección Proyecto -->
+    <section class="proyecto-section" id="proyecto">
+        <div class="proyecto-container">
+            <div class="proyecto-info">
+                <h2>¿Por qué elegir a Corporación Sipán?</h2>
+                <p>
+                    En Sipán Inmobiliaria te acompañamos en cada paso para que encuentres el espacio ideal para ti. Nuestro proyecto combina diseño, ubicación estratégica y tecnología para ofrecerte una experiencia única.
+                </p>
+                <ul>
+                    <li>Departamentos y oficinas con acabados premium</li>
+                    <li>Áreas verdes, gimnasio y espacios de coworking</li>
+                    <li>Seguridad 24/7 y acceso controlado</li>
+                </ul>
+                <a href="html/contacto.html" class="btn-secundario">Solicita información</a>
+            </div>
+            <div class="proyecto-video">
+                <video controls poster="img/img1.jpg">
+                    <source src="video/video1.mp4" type="video/mp4">
+                    Tu navegador no soporta video HTML5.
+                </video>
+            </div>
+        </div>
+    </section>
+
+    <!-- Servicios -->
+    <section class="servicios-section" id="servicios">
+        <h2>Nuestros Servicios</h2>
+        <div class="servicios-cards">
+            <div class="servicio-card">
+                <img src="img/img3.jpg" alt="Venta de propiedades">
+                <h3>Venta de Propiedades</h3>
+                <p>Te ayudamos a encontrar y adquirir la propiedad ideal, con asesoría personalizada y acompañamiento legal.</p>
+            </div>
+            <div class="servicio-card">
+                <img src="img/img4.jpg" alt="Renta de inmuebles">
+                <h3>Renta de Inmuebles</h3>
+                <p>Opciones de renta residencial y comercial en las mejores zonas, con contratos claros y seguros.</p>
+            </div>
+            <div class="servicio-card">
+                <img src="img/img5.jpg" alt="Desarrollos inmobiliarios">
+                <h3>Desarrollos Inmobiliarios</h3>
+                <p>Proyectos innovadores y sustentables, desde la planeación hasta la entrega final.</p>
+            </div>
+            <div class="servicio-card">
+                <img src="img/img6.jpg" alt="Asesoría integral">
+                <h3>Asesoría Integral</h3>
+                <p>Consultoría legal, financiera y de inversión para que tomes la mejor decisión inmobiliaria.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Ubicación -->
+    <section class="ubicacion-section" id="ubicacion">
+        <div class="ubicacion-container">
+            <div class="ubicacion-info">
+                <h2>Ubicación Estratégica</h2>
+                <p>
+                    Nos encontramos en el corazón de la ciudad, cerca de centros comerciales, escuelas y vías principales. ¡Visítanos y descubre por qué Sipán es tu mejor opción!
+                </p>
+                <ul>
+                    <li>Av. Faya Al Ataria 10, Guadalajara, Jal., México</li>
+                    <li>Tel: +52-1-33-12345678</li>
+                    <li>Email: info@sipaninmobiliaria.com</li>
+                </ul>
+            </div>
+            <div class="ubicacion-mapa">
+                <iframe 
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d784.0371774205454!2d-79.83037712657676!3d-6.775011237891499!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x904cef2b49eac405%3A0x73fd1693d93e2115!2sCentro%20Comercial%20Boulevard%2C%20Mariscal%20Nieto%20480%2C%20Chiclayo%2014001!5e1!3m2!1ses-419!2spe!4v1752460977058!5m2!1ses-419!2spe" 
+                    width="100%" height="320" style="border:0; border-radius:10px; box-shadow:0 2px 16px rgba(0,0,0,0.08);" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+                </iframe>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-col">
+                <img src="img/logosipan.png" alt="Logo Sipán" style="height:40px; background:#fff; border-radius:8px; padding:4px 10px;">
+                <p>C.C Boulevar - Oficina j3 (2d piso - Patio principal)</p>
+                <p>Tel: +52-1-33-12345678</p>
+                <p>Email: info@sipaninmobiliaria.com</p>
+            </div>
+            <div class="footer-col">
+                <h4>Enlaces</h4>
+                <ul>
+                    <li><a href="#inicio">Inicio</a></li>
+                    <li><a href="#proyecto">Proyecto</a></li>
+                    <li><a href="#servicios">Servicios</a></li>
+                    <li><a href="#contacto">Contacto</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Síguenos</h4>
+                <div class="redes">
+                    <a href="https://www.facebook.com/corporacioninmobiliariasipan" aria-label="Facebook" target="_blank">
+                        <i class="fab fa-facebook-f"></i>
+                    </a>
+                    <a href="https://instagram.com/" aria-label="Instagram" target="_blank">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    <a href="https://twitter.com/" aria-label="Twitter" target="_blank">
+                        <i class="fab fa-twitter"></i>
+                    </a>
+                </div>
+                <p style="margin-top:1em;font-size:0.9em;">© 2025 Sipán Inmobiliaria. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+    <script src="js/script.js"></script>
+</body>
+</html>

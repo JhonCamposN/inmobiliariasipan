@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contacto | Sipán Inmobiliaria</title>
+    <link rel="icon" type="image/png" href="../img/logo_medialuna.png">
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Paleta y efectos consistentes con index */
+        .contacto-section {
+            background: linear-gradient(120deg, #f5f8fa 60%, #b2d4ee 100%);
+            position: relative;
+            overflow: hidden;
+            padding: 3em 0 2em 0;
+        }
+        .contacto-section::before {
+            content: "";
+            position: absolute;
+            top: -80px; left: 50%;
+            transform: translateX(-50%);
+            width: 120vw; height: 180px;
+            background: radial-gradient(circle, #1e7bbf 0%, transparent 80%);
+            opacity: 0.10;
+            pointer-events: none;
+            z-index: 0;
+        }
+        .contacto-formulario {
+            flex: 1 1 340px;
+            min-width: 260px;
+            animation: fadeInUp 1.2s cubic-bezier(.4,0,.2,1);
+            background: #fff;
+            border-radius: 18px;
+            box-shadow: 0 4px 24px 0 #b2d4ee;
+            padding: 2em 2em 1.5em 2em;
+            z-index: 1;
+        }
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(60px);}
+            to   { opacity: 1; transform: translateY(0);}
+        }
+        .contacto-formulario h2 {
+            font-size: 1.3em;
+            margin-bottom: 1.5em;
+            color: #1e7bbf;
+            text-align: center;
+        }
+        .form-contacto input,
+        .form-contacto textarea {
+            background: #fff;
+            color: #0c3c61;
+            box-shadow: 0 2px 8px #b2d4ee;
+            border: 1px solid #b2d4ee;
+            transition: border 0.2s, box-shadow 0.2s;
+        }
+        .form-contacto input:focus, .form-contacto textarea:focus {
+            border: 1.5px solid #1e7bbf;
+            box-shadow: 0 4px 16px #1e7bbf;
+            outline: none;
+        }
+        .form-contacto button {
+            background: linear-gradient(90deg, #1e7bbf 0%, #b2d4ee 100%);
+            color: rgb(12, 60, 97);
+            box-shadow: 0 2px 12px 0 #b2d4ee;
+            font-weight: 600;
+        }
+        .form-contacto button:hover {
+            background: linear-gradient(90deg, #b2d4ee 0%, #1e7bbf 100%);
+            color: rgb(12, 60, 97);
+            box-shadow: 0 4px 24px 0 #1e7bbf;
+        }
+        .mensaje-exito {
+            display: none;
+            background: linear-gradient(90deg, #1e7bbf 0%, #b2d4ee 100%);
+            color: #fff;
+            padding: 1em 2em;
+            border-radius: 8px;
+            margin-bottom: 1em;
+            text-align: center;
+            font-weight: 600;
+            box-shadow: 0 2px 16px #b2d4ee;
+            animation: fadeInSection 1s;
+        }
+        @keyframes fadeInSection {
+            from { opacity: 0; transform: translateY(40px);}
+            to   { opacity: 1; transform: translateY(0);}
+        }
+        .redes-contacto a {
+            transition: color 0.2s, transform 0.2s, text-shadow 0.2s;
+            color: #1e7bbf;
+            font-size: 2em;
+            margin: 0 0.5em;
+            text-shadow: 0 2px 8px #b2d4ee;
+        }
+        .redes-contacto a:hover {
+            color: #0c3c61;
+            transform: scale(1.15) rotate(-8deg);
+            text-shadow: 0 4px 16px #1e7bbf;
+        }
+        .contacto-imagen img {
+            box-shadow: 0 8px 32px #b2d4ee;
+            border-radius: 18px;
+            background: #fff;
+        }
+        /* WhatsApp flotante */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            z-index: 999;
+            background: linear-gradient(135deg, #1e7bbf 60%, #b2d4ee 100%);
+            color: #fff;
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 24px #b2d4ee;
+            font-size: 2.2em;
+            transition: box-shadow 0.2s, transform 0.2s;
+            animation: bounceIn 1.2s;
+        }
+        .whatsapp-float:hover {
+            box-shadow: 0 8px 32px #1e7bbf;
+            transform: scale(1.08);
+            color: #fff;
+        }
+        @keyframes bounceIn {
+            0% { transform: scale(0.2);}
+            60% { transform: scale(1.1);}
+            80% { transform: scale(0.95);}
+            100% { transform: scale(1);}
+        }
+        /* Responsive */
+        @media (max-width: 900px) {
+            .contacto-container {
+                flex-direction: column;
+                gap: 1.5em;
+            }
+            .contacto-formulario {
+                padding: 1.2em 0.7em;
+            }
+            .contacto-imagen img {
+                max-width: 90vw;
+            }
+        }
+    </style>
+    <script>
+        // Simulación de envío de formulario
+        document.addEventListener('DOMContentLoaded', function() {
+            const form = document.querySelector('.form-contacto');
+            const mensaje = document.getElementById('mensaje-exito');
+            if(form) {
+                form.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    mensaje.style.display = 'block';
+                    setTimeout(() => mensaje.style.display = 'none', 4000);
+                    form.reset();
+                });
+            }
+        });
+    </script>
+</head>
+<body>
+    <!-- Header y menú principal -->
+    <header class="header">
+        <div class="header-container">
+            <a href="../index.html">
+                <img src="../img/logosipan.png" alt="Logo Sipán" class="logo">
+            </a>
+            <!-- Botón para menú móvil -->
+            <button class="menu-toggle" aria-label="Abrir menú">
+                <i class="fas fa-bars"></i>
+            </button>
+            <nav class="menu-superior">
+                <ul>
+                    <li><a href="../index.html"><i class="fas fa-home"></i> Inicio</a></li>
+                    <li><a href="proyecto.html"><i class="fas fa-building"></i> Proyecto</a></li>
+                    <li><a href="../index.html#servicios"><i class="fas fa-cogs"></i> Servicios</a></li>
+                    <li><a href="ubicacion.html"><i class="fas fa-map-marker-alt"></i> Ubicación</a></li>
+                    <li><a href="contacto.html" class="active"><i class="fas fa-envelope"></i> Contacto</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    <script src="../js/script.js"></script>
+
+    <!-- Contacto -->
+    <section class="contacto-section" id="contacto">
+        <div class="contacto-container">
+            <div class="contacto-formulario">
+                <h2><i class="fas fa-envelope-open-text" style="color:#1e7bbf"></i> Contáctanos</h2>
+                <div id="mensaje-exito" class="mensaje-exito">
+                    <i class="fas fa-check-circle"></i> ¡Mensaje enviado exitosamente! Nos pondremos en contacto pronto.
+                </div>
+                <form class="form-contacto">
+                    <div class="form-row">
+                        <div style="position:relative; width:100%;">
+                            <i class="fas fa-user" style="position:absolute;left:10px;top:50%;transform:translateY(-50%);color:#1e7bbf;"></i>
+                            <input type="text" placeholder="Nombre" required style="padding-left:2em;">
+                        </div>
+                        <div style="position:relative; width:100%;">
+                            <i class="fas fa-user-tag" style="position:absolute;left:10px;top:50%;transform:translateY(-50%);color:#1e7bbf;"></i>
+                            <input type="text" placeholder="Apellido" required style="padding-left:2em;">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div style="position:relative; width:100%;">
+                            <i class="fas fa-envelope" style="position:absolute;left:10px;top:50%;transform:translateY(-50%);color:#1e7bbf;"></i>
+                            <input type="email" placeholder="Email *" required style="padding-left:2em;">
+                        </div>
+                        <div style="position:relative; width:100%;">
+                            <i class="fas fa-phone" style="position:absolute;left:10px;top:50%;transform:translateY(-50%);color:#1e7bbf;"></i>
+                            <input type="text" placeholder="Teléfono" style="padding-left:2em;">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div style="position:relative; width:100%;">
+                            <i class="fas fa-comment-dots" style="position:absolute;left:10px;top:18px;color:#1e7bbf;"></i>
+                            <textarea 
+                                placeholder="Mensaje *" 
+                                required 
+                                style="padding-left:2em; min-height:120px; resize:vertical; width:100%; box-sizing:border-box; font-size:1em;"
+                            ></textarea>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div style="width:100%; margin-top:0.7em;">
+                            <label style="color:#1e7bbf; font-weight:500; display:block; margin-bottom:0.3em;">
+                                <i class="fas fa-paperclip"></i> Adjuntar archivos (imágenes, videos o documentos)
+                            </label>
+                            <input 
+                                type="file" 
+                                name="adjuntos[]" 
+                                multiple 
+                                accept="image/*,video/*,.pdf,.doc,.docx,.xls,.xlsx,.ppt,.pptx,.txt"
+                                style="width:100%; background:#fff; border:1px solid #b2d4ee; border-radius:4px; padding:0.5em;"
+                            >
+                            <small style="color:#0c3c61;">Puedes adjuntar imágenes, videos o archivos (máx. 10MB por archivo).</small>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn-principal"><i class="fas fa-paper-plane"></i> Enviar</button>
+                </form>
+                <div class="redes-contacto" style="margin-top:2em;">
+                    <a href="https://www.facebook.com/corporacioninmobiliariasipan" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-square"></i></a>
+                    <a href="https://instagram.com/" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="https://twitter.com/" target="_blank" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                    <a href="mailto:info@sipaninmobiliaria.com" aria-label="Email"><i class="fas fa-envelope"></i></a>
+                </div>
+            </div>
+            <div class="contacto-imagen">
+                <img src="../img/img7.jpg" alt="Atención personalizada">
+            </div>
+        </div>
+        <div style="margin:2em auto 0 auto; max-width:600px; border-radius:12px; overflow:hidden; box-shadow:0 4px 24px #b2d4ee;">
+            <iframe 
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d784.0371774205454!2d-79.83037712657676!3d-6.775011237891499!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x904cef2b49eac405%3A0x73fd1693d93e2115!2sCentro%20Comercial%20Boulevard%2C%20Mariscal%20Nieto%20480%2C%20Chiclayo%2014001!5e1!3m2!1ses-419!2spe!4v1752460977058!5m2!1ses-419!2spe" 
+                width="100%" height="320" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+            </iframe>
+        </div>
+        <div style="margin:2em auto 0 auto; max-width:700px; text-align:center;">
+            <h3 style="color:#1e7bbf; margin-bottom:0.5em;"><i class="fas fa-clock"></i> Horarios de Atención</h3>
+            <p style="color:#0c3c61; font-weight:500;">
+                Lunes a Viernes: 9:00 am - 6:00 pm<br>
+                Sábados: 10:00 am - 2:00 pm<br>
+                <span style="color:#1e7bbf;"><i class="fas fa-calendar-check"></i> ¡Agenda tu cita previa!</span>
+            </p>
+        </div>
+    </section>
+
+    <!-- Botón flotante de WhatsApp -->
+    <a href="https://wa.me/5213312345678" class="whatsapp-float" target="_blank" aria-label="WhatsApp">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-col">
+                <img src="../img/logosipan.png" alt="Logo Sipán" style="height:40px; background:#fff; border-radius:8px; padding:4px 10px;">
+                <p>C.C Boulevar - Oficina j3 (2d piso - Patio principal)</p>
+                <p>Tel: +52-1-33-12345678</p>
+                <p>Email: info@sipaninmobiliaria.com</p>
+            </div>
+            <div class="footer-col">
+                <h4>Enlaces</h4>
+                <ul>
+                    <li><a href="../index.html">Inicio</a></li>
+                    <li><a href="proyecto.html">Proyecto</a></li>
+                    <li><a href="../index.html#servicios">Servicios</a></li>
+                    <li><a href="ubicacion.html">Ubicación</a></li>
+                    <li><a href="contacto.html" class="active">Contacto</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Síguenos</h4>
+                <div class="redes">
+                    <a href="https://www.facebook.com/corporacioninmobiliariasipan" aria-label="Facebook" target="_blank">
+                        <i class="fab fa-facebook-f"></i>
+                    </a>
+                    <a href="https://instagram.com/" aria-label="Instagram" target="_blank">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    <a href="https://twitter.com/" aria-label="Twitter" target="_blank">
+                        <i class="fab fa-twitter"></i>
+                    </a>
+                </div>
+                <p style="margin-top:1em;font-size:0.9em;">© 2025 Sipán Inmobiliaria. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
