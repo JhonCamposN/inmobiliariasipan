@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test WhatsApp Directo - Sipán Inmobiliaria</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background: #f5f8fa;
+        }
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #1e7bbf;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            color: #1e7bbf;
+            font-weight: bold;
+        }
+        input, textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #b2d4ee;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        textarea {
+            height: 100px;
+            resize: vertical;
+        }
+        button {
+            background: linear-gradient(90deg, #1e7bbf 0%, #b2d4ee 100%);
+            color: white;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: bold;
+        }
+        button:hover {
+            background: linear-gradient(90deg, #b2d4ee 0%, #1e7bbf 100%);
+        }
+        .result {
+            margin-top: 20px;
+            padding: 15px;
+            border-radius: 5px;
+            display: none;
+        }
+        .success {
+            background: #d4edda;
+            border: 1px solid #c3e6cb;
+            color: #155724;
+        }
+        .error {
+            background: #f8d7da;
+            border: 1px solid #f5c6cb;
+            color: #721c24;
+        }
+        .info {
+            background: #d1ecf1;
+            border: 1px solid #bee5eb;
+            color: #0c5460;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🧪 Test WhatsApp Directo</h1>
+        
+        <div class="info">
+            <h3>📋 ¿Cómo funciona?</h3>
+            <p>Este sistema envía el formulario por email y luego abre WhatsApp con el mensaje pre-llenado para que confirmes el envío.</p>
+            <ul>
+                <li>✅ <strong>WhatsApp se abre</strong> con el mensaje listo</li>
+                <li>✅ <strong>Sin configuración compleja</strong> requerida</li>
+                <li>⚠️ <strong>Email deshabilitado</strong> temporalmente</li>
+            </ul>
+        </div>
+        
+        <form id="testForm">
+            <div class="form-group">
+                <label for="nombre">Nombre *</label>
+                <input type="text" id="nombre" name="nombre" required value="Juan">
+            </div>
+            
+            <div class="form-group">
+                <label for="apellido">Apellido *</label>
+                <input type="text" id="apellido" name="apellido" required value="Pérez">
+            </div>
+            
+            <div class="form-group">
+                <label for="email">Email *</label>
+                <input type="email" id="email" name="email" required value="test@ejemplo.com">
+            </div>
+            
+            <div class="form-group">
+                <label for="telefono">Teléfono</label>
+                <input type="text" id="telefono" name="telefono" value="+51 999 888 777">
+            </div>
+            
+                         <div class="form-group">
+                 <label for="mensaje">Mensaje *</label>
+                 <textarea id="mensaje" name="mensaje" required>Hola, estoy interesado en sus servicios inmobiliarios. Me gustaría obtener más información sobre las propiedades disponibles.</textarea>
+             </div>
+             
+             <div class="form-group">
+                 <label for="adjuntos">Archivos adjuntos (opcional)</label>
+                 <input type="file" id="adjuntos" name="adjuntos[]" multiple accept="image/*,video/*,.pdf,.doc,.docx,.xls,.xlsx,.ppt,.pptx,.txt">
+                 <small style="color:#666;">Puedes adjuntar imágenes, videos o documentos (máx. 10MB por archivo)</small>
+             </div>
+            
+            <button type="submit">📱 Enviar y Abrir WhatsApp</button>
+        </form>
+        
+        <div id="result" class="result"></div>
+    </div>
+
+    <script>
+        document.getElementById('testForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const form = this;
+            const result = document.getElementById('result');
+            const submitBtn = form.querySelector('button[type="submit"]');
+            const originalText = submitBtn.innerHTML;
+            
+            // Mostrar loading
+            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Enviando...';
+            submitBtn.disabled = true;
+            
+            // Recoger datos del formulario
+            const formData = new FormData();
+            formData.append('nombre', form.querySelector('#nombre').value);
+            formData.append('apellido', form.querySelector('#apellido').value);
+                         formData.append('email', form.querySelector('#email').value);
+             formData.append('telefono', form.querySelector('#telefono').value);
+             formData.append('mensaje', form.querySelector('#mensaje').value);
+             
+             // Agregar archivos adjuntos si existen
+             const archivosInput = form.querySelector('#adjuntos');
+             if (archivosInput && archivosInput.files.length > 0) {
+                 for (let i = 0; i < archivosInput.files.length; i++) {
+                     formData.append('adjuntos[]', archivosInput.files[i]);
+                 }
+             }
+            
+            // Enviar datos
+            fetch('php/contacto-whatsapp-directo.php', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.json())
+            .then(data => {
+                if(data.success) {
+                    result.innerHTML = `
+                        <h3>✅ ¡Éxito!</h3>
+                        <p><strong>Mensaje:</strong> ${data.message}</p>
+                                                 <p><strong>Método:</strong> ${data.method}</p>
+                         <p><strong>Email:</strong> Deshabilitado temporalmente</p>
+                         <p><strong>Archivos adjuntos:</strong> ${data.archivos_count || 0} archivo(s)</p>
+                         <p><strong>URL de WhatsApp:</strong> <a href="${data.whatsapp_url}" target="_blank">Abrir WhatsApp</a></p>
+                         <p><em>WhatsApp se abrirá automáticamente en 2 segundos...</em></p>
+                    `;
+                    result.className = 'result success';
+                    result.style.display = 'block';
+                    
+                    // Abrir WhatsApp después de 2 segundos
+                    if(data.whatsapp_url) {
+                        setTimeout(() => {
+                            window.open(data.whatsapp_url, '_blank');
+                        }, 2000);
+                    }
+                } else {
+                    result.innerHTML = `
+                        <h3>❌ Error</h3>
+                        <p><strong>Mensaje:</strong> ${data.message}</p>
+                    `;
+                    result.className = 'result error';
+                    result.style.display = 'block';
+                }
+            })
+            .catch(error => {
+                result.innerHTML = `
+                    <h3>❌ Error de Conexión</h3>
+                    <p><strong>Error:</strong> ${error.message}</p>
+                    <p>Asegúrate de que el servidor esté funcionando correctamente.</p>
+                `;
+                result.className = 'result error';
+                result.style.display = 'block';
+            })
+            .finally(() => {
+                // Restaurar botón
+                submitBtn.innerHTML = originalText;
+                submitBtn.disabled = false;
+            });
+        });
+    </script>
+</body>
+</html> 

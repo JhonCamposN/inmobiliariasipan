@@ -8,14 +8,14 @@
     <link rel="stylesheet" href="../css/styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        /* Paleta y efectos consistentes con index */
-        .contacto-section {
+        /* Estilos para la nueva estructura de contacto */
+        .contacto-elegante-section {
             background: linear-gradient(120deg, #f5f8fa 60%, #b2d4ee 100%);
             position: relative;
             overflow: hidden;
             padding: 3em 0 2em 0;
         }
-        .contacto-section::before {
+        .contacto-elegante-section::before {
             content: "";
             position: absolute;
             top: -80px; left: 50%;
@@ -26,51 +26,31 @@
             pointer-events: none;
             z-index: 0;
         }
-        .contacto-formulario {
-            flex: 1 1 340px;
-            min-width: 260px;
-            animation: fadeInUp 1.2s cubic-bezier(.4,0,.2,1);
+        .formulario-elegante-section {
             background: #fff;
             border-radius: 18px;
-            box-shadow: 0 4px 24px 0 #b2d4ee;
-            padding: 2em 2em 1.5em 2em;
-            z-index: 1;
+            box-shadow: 0 4px 24px #b2d4ee;
+            padding: 2em;
+            margin-bottom: 2em;
         }
-        @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(60px);}
-            to   { opacity: 1; transform: translateY(0);}
+        .formulario-elegante-container {
+            max-width: 800px;
+            margin: 0 auto;
         }
-        .contacto-formulario h2 {
-            font-size: 1.3em;
-            margin-bottom: 1.5em;
+        .formulario-header {
+            margin-bottom: 1em;
+        }
+        .formulario-elegante h2 {
+            font-size: 1.8em;
+            margin-bottom: 0.5em;
             color: #1e7bbf;
-            text-align: center;
         }
-        .form-contacto input,
-        .form-contacto textarea {
-            background: #fff;
+        .formulario-elegante p {
+            font-size: 1em;
+            margin-bottom: 1em;
             color: #0c3c61;
-            box-shadow: 0 2px 8px #b2d4ee;
-            border: 1px solid #b2d4ee;
-            transition: border 0.2s, box-shadow 0.2s;
         }
-        .form-contacto input:focus, .form-contacto textarea:focus {
-            border: 1.5px solid #1e7bbf;
-            box-shadow: 0 4px 16px #1e7bbf;
-            outline: none;
-        }
-        .form-contacto button {
-            background: linear-gradient(90deg, #1e7bbf 0%, #b2d4ee 100%);
-            color: rgb(12, 60, 97);
-            box-shadow: 0 2px 12px 0 #b2d4ee;
-            font-weight: 600;
-        }
-        .form-contacto button:hover {
-            background: linear-gradient(90deg, #b2d4ee 0%, #1e7bbf 100%);
-            color: rgb(12, 60, 97);
-            box-shadow: 0 4px 24px 0 #1e7bbf;
-        }
-        .mensaje-exito {
+        .mensaje-resultado {
             display: none;
             background: linear-gradient(90deg, #1e7bbf 0%, #b2d4ee 100%);
             color: #fff;
@@ -86,25 +66,186 @@
             from { opacity: 0; transform: translateY(40px);}
             to   { opacity: 1; transform: translateY(0);}
         }
-        .redes-contacto a {
-            transition: color 0.2s, transform 0.2s, text-shadow 0.2s;
+        .form-elegante {
+            display: flex;
+            flex-direction: column;
+        }
+        .form-section {
+            margin-bottom: 2em;
+        }
+        .form-section-title {
+            font-size: 1.2em;
+            margin-bottom: 0.5em;
             color: #1e7bbf;
-            font-size: 2em;
-            margin: 0 0.5em;
-            text-shadow: 0 2px 8px #b2d4ee;
         }
-        .redes-contacto a:hover {
+        .form-grid-2 {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1em;
+        }
+        .form-field {
+            margin-bottom: 1em;
+        }
+        .form-field label {
+            font-size: 1em;
+            margin-bottom: 0.5em;
             color: #0c3c61;
-            transform: scale(1.15) rotate(-8deg);
-            text-shadow: 0 4px 16px #1e7bbf;
         }
-        .contacto-imagen img {
-            box-shadow: 0 8px 32px #b2d4ee;
-            border-radius: 18px;
+        .form-field input, .form-field textarea {
             background: #fff;
+            color: #0c3c61;
+            box-shadow: 0 2px 8px #b2d4ee;
+            border: 1px solid #b2d4ee;
+            transition: border 0.2s, box-shadow 0.2s;
+            padding: 0.5em;
+            border-radius: 4px;
         }
-        /* WhatsApp flotante */
-        .whatsapp-float {
+        .form-field input:focus, .form-field textarea:focus {
+            border: 1.5px solid #1e7bbf;
+            box-shadow: 0 4px 16px #1e7bbf;
+            outline: none;
+        }
+        .form-actions {
+            margin-top: 1em;
+        }
+        .btn-enviar-elegante {
+            background: linear-gradient(90deg, #1e7bbf 0%, #b2d4ee 100%);
+            color: rgb(12, 60, 97);
+            box-shadow: 0 2px 12px 0 #b2d4ee;
+            font-weight: 600;
+            padding: 0.5em 1em;
+            border-radius: 4px;
+            border: none;
+            cursor: pointer;
+        }
+        .btn-enviar-elegante:hover {
+            background: linear-gradient(90deg, #b2d4ee 0%, #1e7bbf 100%);
+            color: rgb(12, 60, 97);
+            box-shadow: 0 4px 24px 0 #1e7bbf;
+        }
+        .form-privacy {
+            font-size: 0.9em;
+            margin-top: 0.5em;
+            color: #0c3c61;
+        }
+        .info-ubicacion-section {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+        }
+        .contacto-info-card {
+            background: #fff;
+            border-radius: 18px;
+            box-shadow: 0 4px 24px #b2d4ee;
+            padding: 2em;
+            margin: 1em;
+        }
+        .contacto-info-card h3 {
+            font-size: 1.2em;
+            margin-bottom: 0.5em;
+            color: #1e7bbf;
+        }
+        .info-items {
+            display: flex;
+            flex-direction: column;
+        }
+        .info-item {
+            margin-bottom: 1em;
+        }
+        .info-item i {
+            font-size: 1.5em;
+            margin-right: 0.5em;
+            color: #1e7bbf;
+        }
+        .info-item div {
+            font-size: 1em;
+            color: #0c3c61;
+        }
+        .mapa-card {
+            background: #fff;
+            border-radius: 18px;
+            box-shadow: 0 4px 24px #b2d4ee;
+            padding: 2em;
+            margin: 1em;
+        }
+        .mapa-card h3 {
+            font-size: 1.2em;
+            margin-bottom: 0.5em;
+            color: #1e7bbf;
+        }
+        .mapa-wrapper {
+            border-radius: 18px;
+            overflow: hidden;
+        }
+        .redes-sociales-card {
+            background: #fff;
+            border-radius: 18px;
+            box-shadow: 0 4px 24px #b2d4ee;
+            padding: 2em;
+            margin: 1em;
+        }
+        .redes-sociales-card h3 {
+            font-size: 1.2em;
+            margin-bottom: 0.5em;
+            color: #1e7bbf;
+        }
+        .redes-links {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+        }
+        .red-link {
+            background: #1e7bbf;
+            color: #fff;
+            padding: 0.5em 1em;
+            border-radius: 4px;
+            margin: 0.5em;
+            display: flex;
+            align-items: center;
+        }
+        .red-link i {
+            font-size: 1.5em;
+            margin-right: 0.5em;
+        }
+        .whatsapp-cta-section {
+            background: linear-gradient(90deg, #1e7bbf 0%, #b2d4ee 100%);
+            padding: 2em;
+            color: #fff;
+            border-radius: 18px;
+            box-shadow: 0 4px 24px #b2d4ee;
+            margin-bottom: 2em;
+        }
+        .whatsapp-cta-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .whatsapp-cta-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .whatsapp-icon {
+            font-size: 2.5em;
+            margin-bottom: 1em;
+        }
+        .whatsapp-text {
+            font-size: 1.2em;
+            margin-bottom: 1em;
+        }
+        .btn-whatsapp-cta {
+            background: #25d366;
+            color: #fff;
+            padding: 0.5em 1em;
+            border-radius: 4px;
+            border: none;
+            cursor: pointer;
+            font-weight: 600;
+            margin-top: 1em;
+        }
+        .btn-whatsapp-cta:hover {
+            background: #2ecc71;
+        }
+        .whatsapp-float-mejorado {
             position: fixed;
             bottom: 30px;
             right: 30px;
@@ -122,7 +263,7 @@
             transition: box-shadow 0.2s, transform 0.2s;
             animation: bounceIn 1.2s;
         }
-        .whatsapp-float:hover {
+        .whatsapp-float-mejorado:hover {
             box-shadow: 0 8px 32px #1e7bbf;
             transform: scale(1.08);
             color: #fff;
@@ -133,31 +274,117 @@
             80% { transform: scale(0.95);}
             100% { transform: scale(1);}
         }
-        /* Responsive */
-        @media (max-width: 900px) {
-            .contacto-container {
-                flex-direction: column;
-                gap: 1.5em;
-            }
-            .contacto-formulario {
-                padding: 1.2em 0.7em;
-            }
-            .contacto-imagen img {
-                max-width: 90vw;
-            }
+        .whatsapp-pulse {
+            position: absolute;
+            bottom: 70px;
+            right: 30px;
+            background: #1e7bbf;
+            color: #fff;
+            padding: 0.5em 1em;
+            border-radius: 4px;
+            font-size: 1em;
+            animation: fadeIn 1s;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0;}
+            to   { opacity: 1;}
         }
     </style>
+    
     <script>
-        // Simulación de envío de formulario
+        // Manejo del formulario premium de contacto
         document.addEventListener('DOMContentLoaded', function() {
-            const form = document.querySelector('.form-contacto');
-            const mensaje = document.getElementById('mensaje-exito');
+            const form = document.getElementById('formContactoElegante');
+            const mensaje = document.getElementById('mensaje-resultado');
+            
             if(form) {
                 form.addEventListener('submit', function(e) {
                     e.preventDefault();
-                    mensaje.style.display = 'block';
-                    setTimeout(() => mensaje.style.display = 'none', 4000);
-                    form.reset();
+                    
+                    // Validar campos requeridos
+                    const nombre = document.getElementById('nombre').value.trim();
+                    const apellidos = document.getElementById('apellidos').value.trim();
+                    const email = document.getElementById('email').value.trim();
+                    const telefono = document.getElementById('telefono').value.trim();
+                    const mensajeTexto = document.getElementById('mensaje').value.trim();
+                    
+                    if (!nombre || !apellidos || !email || !telefono || !mensajeTexto) {
+                        alert('Por favor, completa todos los campos obligatorios marcados con *');
+                        return;
+                    }
+                    
+                    // Validar formato de email
+                    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                    if (!emailRegex.test(email)) {
+                        alert('Por favor, ingresa un email válido');
+                        return;
+                    }
+                    
+                    // Mostrar loading
+                    const submitBtn = form.querySelector('.btn-enviar-elegante');
+                    const originalText = submitBtn.innerHTML;
+                    submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> <span>Enviando...</span>';
+                    submitBtn.disabled = true;
+                    
+                    // Recoger datos del formulario
+                    const formData = new FormData();
+                    formData.append('nombre', nombre);
+                    formData.append('apellidos', apellidos);
+                    formData.append('email', email);
+                    formData.append('telefono', telefono);
+                    formData.append('tipo_consulta', document.getElementById('tipoConsulta').value);
+                    formData.append('mensaje', mensajeTexto);
+                    
+                    // Agregar archivos adjuntos si existen
+                    const archivosInput = document.getElementById('adjuntos');
+                    if (archivosInput && archivosInput.files.length > 0) {
+                        for (let i = 0; i < archivosInput.files.length; i++) {
+                            formData.append('adjuntos[]', archivosInput.files[i]);
+                        }
+                    }
+                    
+                    // Enviar datos al servidor
+                    fetch('../php/contacto-whatsapp-directo.php', {
+                        method: 'POST',
+                        body: formData
+                    })
+                    .then(response => response.json())
+                    .then(data => {
+                        if(data.success) {
+                            const archivosInfo = data.archivos_count > 0 ? ` (${data.archivos_count} archivo(s) adjunto(s))` : '';
+                            mensaje.innerHTML = '<i class="fas fa-check-circle"></i> ' + data.message + archivosInfo;
+                            mensaje.style.display = 'block';
+                            mensaje.style.background = 'linear-gradient(90deg, #28a745 0%, #20c997 100%)';
+                            form.reset();
+                            
+                            // Si es método directo, abrir WhatsApp después de 2 segundos
+                            if(data.method === 'direct' && data.whatsapp_url) {
+                                setTimeout(() => {
+                                    window.open(data.whatsapp_url, '_blank');
+                                }, 2000);
+                            }
+                        } else {
+                            mensaje.innerHTML = '<i class="fas fa-exclamation-triangle"></i> ' + data.message;
+                            mensaje.style.display = 'block';
+                            mensaje.style.background = 'linear-gradient(90deg, #dc3545 0%, #fd7e14 100%)';
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Error:', error);
+                        mensaje.innerHTML = '<i class="fas fa-exclamation-triangle"></i> Error de conexión. Por favor, inténtelo nuevamente.';
+                        mensaje.style.display = 'block';
+                        mensaje.style.background = 'linear-gradient(90deg, #dc3545 0%, #fd7e14 100%)';
+                    })
+                    .finally(() => {
+                        // Restaurar botón
+                        submitBtn.innerHTML = originalText;
+                        submitBtn.disabled = false;
+                        
+                        // Ocultar mensaje después de 5 segundos
+                        setTimeout(() => {
+                            mensaje.style.display = 'none';
+                        }, 5000);
+                    });
                 });
             }
         });
@@ -179,101 +406,242 @@
                     <li><a href="../index.html"><i class="fas fa-home"></i> Inicio</a></li>
                     <li><a href="proyecto.html"><i class="fas fa-building"></i> Proyecto</a></li>
                     <li><a href="../index.html#servicios"><i class="fas fa-cogs"></i> Servicios</a></li>
-                    <li><a href="ubicacion.html"><i class="fas fa-map-marker-alt"></i> Ubicación</a></li>
+                    <li><a href="../index.html#oportunidades"><i class="fas fa-briefcase"></i> Trabaja con Nosotros</a></li>
+                    <li><a href="../index.html#ubicacion"><i class="fas fa-map-marker-alt"></i> Ubicación</a></li>
                     <li><a href="contacto.html" class="active"><i class="fas fa-envelope"></i> Contacto</a></li>
                 </ul>
             </nav>
         </div>
     </header>
+
+    <!-- Overlay para menú móvil -->
+    <div class="menu-overlay" id="menuOverlay"></div>
+
     <script src="../js/script.js"></script>
 
-    <!-- Contacto -->
-    <section class="contacto-section" id="contacto">
-        <div class="contacto-container">
-            <div class="contacto-formulario">
-                <h2><i class="fas fa-envelope-open-text" style="color:#1e7bbf"></i> Contáctanos</h2>
-                <div id="mensaje-exito" class="mensaje-exito">
-                    <i class="fas fa-check-circle"></i> ¡Mensaje enviado exitosamente! Nos pondremos en contacto pronto.
-                </div>
-                <form class="form-contacto">
-                    <div class="form-row">
-                        <div style="position:relative; width:100%;">
-                            <i class="fas fa-user" style="position:absolute;left:10px;top:50%;transform:translateY(-50%);color:#1e7bbf;"></i>
-                            <input type="text" placeholder="Nombre" required style="padding-left:2em;">
-                        </div>
-                        <div style="position:relative; width:100%;">
-                            <i class="fas fa-user-tag" style="position:absolute;left:10px;top:50%;transform:translateY(-50%);color:#1e7bbf;"></i>
-                            <input type="text" placeholder="Apellido" required style="padding-left:2em;">
-                        </div>
+    <!-- Contacto Profesional Elegante -->
+    <section class="contacto-elegante-section" id="contacto">
+        <!-- Sección Principal de Contacto -->
+        <div class="contacto-main-container">
+            <!-- Formulario de Contacto Elegante -->
+            <div class="formulario-elegante-section">
+                <div class="formulario-elegante-container">
+                    <div class="formulario-header">
+                        <h2>Solicita tu Asesoría Gratuita</h2>
+                        <p>Completa el formulario y te contactaremos en menos de 2 horas para brindarte asesoría personalizada sobre tu proyecto habitacional.</p>
                     </div>
-                    <div class="form-row">
-                        <div style="position:relative; width:100%;">
-                            <i class="fas fa-envelope" style="position:absolute;left:10px;top:50%;transform:translateY(-50%);color:#1e7bbf;"></i>
-                            <input type="email" placeholder="Email *" required style="padding-left:2em;">
-                        </div>
-                        <div style="position:relative; width:100%;">
-                            <i class="fas fa-phone" style="position:absolute;left:10px;top:50%;transform:translateY(-50%);color:#1e7bbf;"></i>
-                            <input type="text" placeholder="Teléfono" style="padding-left:2em;">
-                        </div>
+
+                    <div id="mensaje-resultado" class="mensaje-resultado">
+                        <i class="fas fa-check-circle"></i>
+                        <span>¡Mensaje enviado exitosamente! Nos pondremos en contacto contigo pronto.</span>
                     </div>
-                    <div class="form-row">
-                        <div style="position:relative; width:100%;">
-                            <i class="fas fa-comment-dots" style="position:absolute;left:10px;top:18px;color:#1e7bbf;"></i>
-                            <textarea 
-                                placeholder="Mensaje *" 
-                                required 
-                                style="padding-left:2em; min-height:120px; resize:vertical; width:100%; box-sizing:border-box; font-size:1em;"
-                            ></textarea>
+
+                    <form class="form-elegante" id="formContactoElegante">
+                        <!-- Información Personal -->
+                        <div class="form-section">
+                            <h3 class="form-section-title">
+                                <i class="fas fa-user"></i>
+                                Información Personal
+                            </h3>
+                            <div class="form-grid-2">
+                                <div class="form-field">
+                                    <label for="nombre">Nombre Completo *</label>
+                                    <input type="text" id="nombre" name="nombre" required placeholder="Ingresa tu nombre completo">
+                                </div>
+                                <div class="form-field">
+                                    <label for="apellidos">Apellidos *</label>
+                                    <input type="text" id="apellidos" name="apellidos" required placeholder="Ingresa tus apellidos">
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                    <div class="form-row">
-                        <div style="width:100%; margin-top:0.7em;">
-                            <label style="color:#1e7bbf; font-weight:500; display:block; margin-bottom:0.3em;">
-                                <i class="fas fa-paperclip"></i> Adjuntar archivos (imágenes, videos o documentos)
-                            </label>
-                            <input 
-                                type="file" 
-                                name="adjuntos[]" 
-                                multiple 
-                                accept="image/*,video/*,.pdf,.doc,.docx,.xls,.xlsx,.ppt,.pptx,.txt"
-                                style="width:100%; background:#fff; border:1px solid #b2d4ee; border-radius:4px; padding:0.5em;"
-                            >
-                            <small style="color:#0c3c61;">Puedes adjuntar imágenes, videos o archivos (máx. 10MB por archivo).</small>
+
+                        <!-- Información de Contacto -->
+                        <div class="form-section">
+                            <h3 class="form-section-title">
+                                <i class="fas fa-phone"></i>
+                                Información de Contacto
+                            </h3>
+                            <div class="form-grid-2">
+                                <div class="form-field">
+                                    <label for="email">Correo Electrónico *</label>
+                                    <input type="email" id="email" name="email" required placeholder="tu@email.com">
+                                </div>
+                                <div class="form-field">
+                                    <label for="telefono">Teléfono *</label>
+                                    <input type="tel" id="telefono" name="telefono" required placeholder="+51 999 999 999">
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                    <button type="submit" class="btn-principal"><i class="fas fa-paper-plane"></i> Enviar</button>
-                </form>
-                <div class="redes-contacto" style="margin-top:2em;">
-                    <a href="https://www.facebook.com/corporacioninmobiliariasipan" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-square"></i></a>
-                    <a href="https://instagram.com/" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-                    <a href="https://twitter.com/" target="_blank" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
-                    <a href="mailto:info@sipaninmobiliaria.com" aria-label="Email"><i class="fas fa-envelope"></i></a>
+
+                        <!-- Detalles de la Consulta -->
+                        <div class="form-section">
+                            <h3 class="form-section-title">
+                                <i class="fas fa-home"></i>
+                                Detalles de tu Consulta
+                            </h3>
+                            <div class="form-field">
+                                <label for="tipoConsulta">¿En qué podemos ayudarte?</label>
+                                <select id="tipoConsulta" name="tipo_consulta">
+                                    <option value="">Selecciona el tipo de consulta</option>
+                                    <option value="dominio-media-luna">Proyecto Dominio Media Luna</option>
+                                    <option value="mi-vivienda">Programa Mi Vivienda - Asesoría</option>
+                                    <option value="requisitos-mi-vivienda">Requisitos para Mi Vivienda</option>
+                                    <option value="tramites-legales">Trámites y Documentación Legal</option>
+                                    <option value="financiamiento">Opciones de Financiamiento</option>
+                                    <option value="visita-proyecto">Agendar Visita al Proyecto</option>
+                                    <option value="asesoria-general">Asesoría General Inmobiliaria</option>
+                                    <option value="otro">Otra Consulta</option>
+                                </select>
+                            </div>
+                            <div class="form-field">
+                                <label for="mensaje">Cuéntanos más sobre tu consulta *</label>
+                                <textarea id="mensaje" name="mensaje" required rows="5" 
+                                    placeholder="Describe tu situación actual, qué tipo de vivienda buscas, tu presupuesto aproximado, o cualquier pregunta específica que tengas sobre el proceso habitacional..."></textarea>
+                            </div>
+                        </div>
+
+                        <!-- Archivos Adjuntos -->
+                        <div class="form-section">
+                            <h3 class="form-section-title">
+                                <i class="fas fa-paperclip"></i>
+                                Documentos de Apoyo (Opcional)
+                            </h3>
+                            <div class="form-field">
+                                <label for="adjuntos">Adjuntar archivos</label>
+                                <input type="file" id="adjuntos" name="adjuntos[]" multiple 
+                                    accept="image/*,video/*,.pdf,.doc,.docx,.xls,.xlsx,.ppt,.pptx,.txt">
+                                <small class="field-help">
+                                    Puedes adjuntar documentos, imágenes o videos relacionados con tu consulta (máx. 10MB por archivo)
+                                </small>
+                            </div>
+                        </div>
+
+                        <!-- Botón de Envío -->
+                        <div class="form-actions">
+                            <button type="submit" class="btn-enviar-elegante">
+                                <i class="fas fa-paper-plane"></i>
+                                <span>Enviar Consulta</span>
+                            </button>
+                            <p class="form-privacy">
+                                <i class="fas fa-shield-alt"></i>
+                                Tu información está completamente protegida y será tratada con total confidencialidad
+                            </p>
+                        </div>
+                    </form>
                 </div>
             </div>
-            <div class="contacto-imagen">
-                <img src="../img/img7.jpg" alt="Atención personalizada">
+
+            <!-- Información y Ubicación -->
+            <div class="info-ubicacion-section">
+                <!-- Datos de Contacto -->
+                <div class="contacto-info-card">
+                    <h3>
+                        <i class="fas fa-building"></i>
+                        Nuestra Oficina
+                    </h3>
+                    <div class="info-items">
+                        <div class="info-item">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <div>
+                                <strong>Dirección</strong>
+                                <p>Centro Comercial Boulevard<br>Mariscal Nieto 480, Chiclayo</p>
+                            </div>
+                        </div>
+                        <div class="info-item">
+                            <i class="fas fa-phone"></i>
+                            <div>
+                                <strong>Teléfono</strong>
+                                <p>+51 932 359 551</p>
+                            </div>
+                        </div>
+                        <div class="info-item">
+                            <i class="fas fa-envelope"></i>
+                            <div>
+                                <strong>Email</strong>
+                                <p>info@sipaninmobiliaria.com</p>
+                            </div>
+                        </div>
+                        <div class="info-item">
+                            <i class="fas fa-clock"></i>
+                            <div>
+                                <strong>Horarios de Atención</strong>
+                                <p>Lunes a Viernes: 9:00 AM - 6:00 PM<br>Sábados: 10:00 AM - 2:00 PM</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Mapa -->
+                <div class="mapa-card">
+                    <h3>
+                        <i class="fas fa-map"></i>
+                        Encuéntranos
+                    </h3>
+                    <div class="mapa-wrapper">
+                        <iframe 
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d784.0371774205454!2d-79.83037712657676!3d-6.775011237891499!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x904cef2b49eac405%3A0x73fd1693d93e2115!2sCentro%20Comercial%20Boulevard%2C%20Mariscal%20Nieto%20480%2C%20Chiclayo%2014001!5e1!3m2!1ses-419!2spe!4v1752460977058!5m2!1ses-419!2spe" 
+                            width="100%" height="350" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+                        </iframe>
+                    </div>
+                </div>
+
+                <!-- Redes Sociales -->
+                <div class="redes-sociales-card">
+                    <h3>
+                        <i class="fas fa-share-alt"></i>
+                        Síguenos
+                    </h3>
+                    <div class="redes-links">
+                        <a href="https://www.facebook.com/corporacioninmobiliariasipan" target="_blank" class="red-link facebook">
+                            <i class="fab fa-facebook-f"></i>
+                            <span>Facebook</span>
+                        </a>
+                        <a href="https://instagram.com/" target="_blank" class="red-link instagram">
+                            <i class="fab fa-instagram"></i>
+                            <span>Instagram</span>
+                        </a>
+                        <a href="https://twitter.com/" target="_blank" class="red-link twitter">
+                            <i class="fab fa-twitter"></i>
+                            <span>Twitter</span>
+                        </a>
+                        <a href="mailto:info@sipaninmobiliaria.com" class="red-link email">
+                            <i class="fas fa-envelope"></i>
+                            <span>Email</span>
+                        </a>
+                    </div>
+                </div>
             </div>
         </div>
-        <div style="margin:2em auto 0 auto; max-width:600px; border-radius:12px; overflow:hidden; box-shadow:0 4px 24px #b2d4ee;">
-            <iframe 
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d784.0371774205454!2d-79.83037712657676!3d-6.775011237891499!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x904cef2b49eac405%3A0x73fd1693d93e2115!2sCentro%20Comercial%20Boulevard%2C%20Mariscal%20Nieto%20480%2C%20Chiclayo%2014001!5e1!3m2!1ses-419!2spe!4v1752460977058!5m2!1ses-419!2spe" 
-                width="100%" height="320" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
-            </iframe>
-        </div>
-        <div style="margin:2em auto 0 auto; max-width:700px; text-align:center;">
-            <h3 style="color:#1e7bbf; margin-bottom:0.5em;"><i class="fas fa-clock"></i> Horarios de Atención</h3>
-            <p style="color:#0c3c61; font-weight:500;">
-                Lunes a Viernes: 9:00 am - 6:00 pm<br>
-                Sábados: 10:00 am - 2:00 pm<br>
-                <span style="color:#1e7bbf;"><i class="fas fa-calendar-check"></i> ¡Agenda tu cita previa!</span>
-            </p>
+
+        <!-- CTA WhatsApp -->
+        <div class="whatsapp-cta-section">
+            <div class="whatsapp-cta-container">
+                <div class="whatsapp-cta-content">
+                    <div class="whatsapp-icon">
+                        <i class="fab fa-whatsapp"></i>
+                    </div>
+                    <div class="whatsapp-text">
+                        <h3>¿Necesitas Respuesta Inmediata?</h3>
+                        <p>Chatea con nosotros por WhatsApp y recibe asesoría instantánea sobre tu proyecto habitacional</p>
+                    </div>
+                    <a href="https://wa.me/51932359551?text=Hola,%20necesito%20asesoría%20inmobiliaria%20sobre%20el%20programa%20Mi%20Vivienda" 
+                       target="_blank" class="btn-whatsapp-cta">
+                        <i class="fab fa-whatsapp"></i>
+                        <span>Chatear Ahora</span>
+                    </a>
+                </div>
+            </div>
         </div>
     </section>
 
-    <!-- Botón flotante de WhatsApp -->
-    <a href="https://wa.me/5213312345678" class="whatsapp-float" target="_blank" aria-label="WhatsApp">
-        <i class="fab fa-whatsapp"></i>
-    </a>
+    <!-- Botón flotante WhatsApp mejorado -->
+    <div class="whatsapp-float-mejorado">
+        <a href="https://wa.me/51932359551?text=Hola,%20me%20interesa%20información%20sobre%20sus%20proyectos%20inmobiliarios" 
+           target="_blank" class="whatsapp-btn-float">
+            <i class="fab fa-whatsapp"></i>
+        </a>
+        <div class="whatsapp-pulse"></div>
+    </div>
 
     <!-- Footer -->
     <footer class="footer">
@@ -281,7 +649,7 @@
             <div class="footer-col">
                 <img src="../img/logosipan.png" alt="Logo Sipán" style="height:40px; background:#fff; border-radius:8px; padding:4px 10px;">
                 <p>C.C Boulevar - Oficina j3 (2d piso - Patio principal)</p>
-                <p>Tel: +52-1-33-12345678</p>
+                <p>Tel: +51 932 359 551</p>
                 <p>Email: info@sipaninmobiliaria.com</p>
             </div>
             <div class="footer-col">
@@ -307,7 +675,7 @@
                         <i class="fab fa-twitter"></i>
                     </a>
                 </div>
-                <p style="margin-top:1em;font-size:0.9em;">© 2025 Sipán Inmobiliaria. Todos los derechos reservados.</p>
+                <p style="margin-top:1em;font-size:0.9em;"> 2025 Sipán Inmobiliaria. Todos los derechos reservados.</p>
             </div>
         </div>
     </footer>

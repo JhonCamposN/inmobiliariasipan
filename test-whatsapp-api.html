@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test WhatsApp API - Sipán Inmobiliaria</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background: #f5f8fa;
+        }
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #1e7bbf;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            color: #1e7bbf;
+            font-weight: bold;
+        }
+        input, textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #b2d4ee;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        textarea {
+            height: 100px;
+            resize: vertical;
+        }
+        button {
+            background: linear-gradient(90deg, #1e7bbf 0%, #b2d4ee 100%);
+            color: white;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: bold;
+        }
+        button:hover {
+            background: linear-gradient(90deg, #b2d4ee 0%, #1e7bbf 100%);
+        }
+        .result {
+            margin-top: 20px;
+            padding: 15px;
+            border-radius: 5px;
+            display: none;
+        }
+        .success {
+            background: #d4edda;
+            border: 1px solid #c3e6cb;
+            color: #155724;
+        }
+        .error {
+            background: #f8d7da;
+            border: 1px solid #f5c6cb;
+            color: #721c24;
+        }
+        .info {
+            background: #d1ecf1;
+            border: 1px solid #bee5eb;
+            color: #0c5460;
+            margin-bottom: 20px;
+        }
+        .warning {
+            background: #fff3cd;
+            border: 1px solid #ffeaa7;
+            color: #856404;
+            margin-bottom: 20px;
+        }
+        .config-status {
+            background: #e2e3e5;
+            border: 1px solid #d6d8db;
+            color: #383d41;
+            margin-bottom: 20px;
+            padding: 15px;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🧪 Test WhatsApp API</h1>
+        
+        <div class="warning">
+            <h3>⚠️ Configuración Requerida</h3>
+            <p>Antes de usar esta API, debes configurar las credenciales en <code>php/config-whatsapp-api.php</code>:</p>
+            <ul>
+                <li><strong>WHATSAPP_PHONE_NUMBER_ID</strong>: Tu Phone Number ID de Meta</li>
+                <li><strong>WHATSAPP_ACCESS_TOKEN</strong>: Tu Permanent Access Token</li>
+                <li><strong>WHATSAPP_BUSINESS_ACCOUNT_ID</strong>: Tu Business Account ID</li>
+            </ul>
+        </div>
+        
+        <div class="info">
+            <h3>📋 ¿Cómo funciona?</h3>
+            <p>Este sistema usa la API oficial de WhatsApp Business para enviar mensajes y archivos directamente.</p>
+            <ul>
+                <li>✅ <strong>Envía archivos reales</strong> a WhatsApp</li>
+                <li>✅ <strong>Mensajes con emojis</strong> completos</li>
+                <li>✅ <strong>API oficial</strong> de Meta</li>
+                <li>⚠️ <strong>Requiere configuración</strong> en Meta for Developers</li>
+            </ul>
+        </div>
+        
+        <div id="configStatus" class="config-status">
+            <h3>🔧 Estado de Configuración</h3>
+            <p>Verificando configuración...</p>
+        </div>
+        
+        <form id="testForm">
+            <div class="form-group">
+                <label for="nombre">Nombre *</label>
+                <input type="text" id="nombre" name="nombre" required value="Juan">
+            </div>
+            
+            <div class="form-group">
+                <label for="apellido">Apellido *</label>
+                <input type="text" id="apellido" name="apellido" required value="Pérez">
+            </div>
+            
+            <div class="form-group">
+                <label for="email">Email *</label>
+                <input type="email" id="email" name="email" required value="test@ejemplo.com">
+            </div>
+            
+            <div class="form-group">
+                <label for="telefono">Teléfono</label>
+                <input type="text" id="telefono" name="telefono" value="+51 999 888 777">
+            </div>
+            
+            <div class="form-group">
+                <label for="mensaje">Mensaje *</label>
+                <textarea id="mensaje" name="mensaje" required>Hola, estoy interesado en sus servicios inmobiliarios. Me gustaría obtener más información sobre las propiedades disponibles.</textarea>
+            </div>
+            
+            <div class="form-group">
+                <label for="adjuntos">Archivos adjuntos (opcional)</label>
+                <input type="file" id="adjuntos" name="adjuntos[]" multiple accept="image/*,video/*,.pdf,.doc,.docx,.xls,.xlsx,.ppt,.pptx,.txt">
+                <small style="color:#666;">Puedes adjuntar imágenes, videos o documentos (máx. 16MB por archivo)</small>
+            </div>
+            
+            <button type="submit">📱 Enviar por WhatsApp API</button>
+        </form>
+        
+        <div id="result" class="result"></div>
+    </div>
+
+    <script>
+        // Verificar estado de configuración al cargar
+        window.addEventListener('load', function() {
+            checkConfigStatus();
+        });
+        
+        function checkConfigStatus() {
+            const statusDiv = document.getElementById('configStatus');
+            
+            fetch('php/contacto-whatsapp-api.php', {
+                method: 'POST',
+                body: new FormData()
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    statusDiv.innerHTML = `
+                        <h3>✅ Configuración Correcta</h3>
+                        <p>La API está configurada y funcionando correctamente.</p>
+                    `;
+                    statusDiv.className = 'config-status success';
+                } else {
+                    statusDiv.innerHTML = `
+                        <h3>❌ Error de Configuración</h3>
+                        <p><strong>Error:</strong> ${data.message}</p>
+                        <p>Revisa el archivo <code>php/config-whatsapp-api.php</code> y configura las credenciales.</p>
+                    `;
+                    statusDiv.className = 'config-status error';
+                }
+            })
+            .catch(error => {
+                statusDiv.innerHTML = `
+                    <h3>❌ Error de Conexión</h3>
+                    <p><strong>Error:</strong> ${error.message}</p>
+                    <p>Asegúrate de que el servidor esté funcionando correctamente.</p>
+                `;
+                statusDiv.className = 'config-status error';
+            });
+        }
+        
+        document.getElementById('testForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const form = this;
+            const result = document.getElementById('result');
+            const submitBtn = form.querySelector('button[type="submit"]');
+            const originalText = submitBtn.innerHTML;
+            
+            // Mostrar loading
+            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Enviando...';
+            submitBtn.disabled = true;
+            
+            // Recoger datos del formulario
+            const formData = new FormData();
+            formData.append('nombre', form.querySelector('#nombre').value);
+            formData.append('apellido', form.querySelector('#apellido').value);
+            formData.append('email', form.querySelector('#email').value);
+            formData.append('telefono', form.querySelector('#telefono').value);
+            formData.append('mensaje', form.querySelector('#mensaje').value);
+            
+            // Agregar archivos adjuntos si existen
+            const archivosInput = form.querySelector('#adjuntos');
+            if (archivosInput && archivosInput.files.length > 0) {
+                for (let i = 0; i < archivosInput.files.length; i++) {
+                    formData.append('adjuntos[]', archivosInput.files[i]);
+                }
+            }
+            
+            // Enviar datos
+            fetch('php/contacto-whatsapp-api.php', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.json())
+            .then(data => {
+                if(data.success) {
+                    result.innerHTML = `
+                        <h3>✅ ¡Éxito!</h3>
+                        <p><strong>Mensaje:</strong> ${data.message}</p>
+                        <p><strong>Método:</strong> ${data.method}</p>
+                        <p><strong>Archivos adjuntos:</strong> ${data.archivos_count || 0} archivo(s)</p>
+                        <p><strong>Respuesta API:</strong> ${JSON.stringify(data.api_response, null, 2)}</p>
+                    `;
+                    result.className = 'result success';
+                    form.reset();
+                } else {
+                    result.innerHTML = `
+                        <h3>❌ Error</h3>
+                        <p><strong>Mensaje:</strong> ${data.message}</p>
+                        <p><strong>Método:</strong> ${data.method}</p>
+                    `;
+                    result.className = 'result error';
+                }
+            })
+            .catch(error => {
+                result.innerHTML = `
+                    <h3>❌ Error de Conexión</h3>
+                    <p><strong>Error:</strong> ${error.message}</p>
+                    <p>Asegúrate de que el servidor esté funcionando correctamente.</p>
+                `;
+                result.className = 'result error';
+            })
+            .finally(() => {
+                // Restaurar botón
+                submitBtn.innerHTML = originalText;
+                submitBtn.disabled = false;
+            });
+        });
+    </script>
+</body>
+</html> 

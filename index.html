@@ -20,17 +20,21 @@
                 <i class="fas fa-bars"></i>
             </button>
             <!-- Ejemplo de menú -->
-            <nav class="menu-superior">
-                <ul>
-                    <li><a href="index.html"><i class="fas fa-home"></i> Inicio</a></li>
-                    <li><a href="proyecto.html"><i class="fas fa-building"></i> Proyecto</a></li>
-                    <li><a href="#servicios"><i class="fas fa-cogs"></i> Servicios</a></li>
-                    <li><a href="#ubicacion"><i class="fas fa-map-marker-alt"></i> Ubicación</a></li>
-                    <li><a href="html/contacto.html"><i class="fas fa-envelope"></i> Contacto</a></li>
-                </ul>
-            </nav>
+                    <nav class="menu-superior">
+            <ul>
+                <li><a href="index.html"><i class="fas fa-home"></i> Inicio</a></li>
+                <li><a href="html/proyecto.html"><i class="fas fa-building"></i> Proyecto</a></li>
+                <li><a href="#servicios"><i class="fas fa-cogs"></i> Servicios</a></li>
+                <li><a href="#oportunidades"><i class="fas fa-briefcase"></i> Trabaja con Nosotros</a></li>
+                <li><a href="#ubicacion"><i class="fas fa-map-marker-alt"></i> Ubicación</a></li>
+                <li><a href="html/contacto.html"><i class="fas fa-envelope"></i> Contacto</a></li>
+            </ul>
+        </nav>
         </div>
     </header>
+
+    <!-- Overlay para menú móvil -->
+    <div class="menu-overlay" id="menuOverlay"></div>
 
     <!-- Hero principal -->
     <section class="hero" id="inicio">
@@ -46,23 +50,328 @@
     </section>
     <script src="js/hero-reverse.js"></script>
 
-    <!-- Sección Proyecto -->
+    <!-- Proyecto Destacado - DISEÑO PROFESIONAL INMOBILIARIO -->
+    <section class="proyecto-destacado-section" id="proyecto-destacado">
+        <div class="proyecto-destacado-container">
+            <!-- Header Profesional -->
+            <div class="proyecto-destacado-header">
+                <div class="proyecto-badge-premium">
+                    <span class="badge-text">PROYECTO ESTRELLA</span>
+                    <div class="badge-shine"></div>
+                </div>
+                <h2 class="proyecto-titulo-principal">Dominio Media Luna</h2>
+                <p class="proyecto-tagline">Inversión inteligente en zona de alta plusvalía</p>
+                <div class="proyecto-stats-header">
+                    <div class="stat-header-item">
+                        <span class="stat-number">66m²</span>
+                        <span class="stat-label">Área total</span>
+                    </div>
+                    <div class="stat-header-item">
+                        <span class="stat-number">100%</span>
+                        <span class="stat-label">Urbanizado</span>
+                    </div>
+                    <div class="stat-header-item">
+                        <span class="stat-number">5,300ha</span>
+                        <span class="stat-label">Parque Industrial</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Contenido Principal Profesional -->
+            <div class="proyecto-destacado-content">
+                <!-- Galería de Imágenes Profesional -->
+                <div class="proyecto-galeria-profesional">
+                    <div class="imagen-principal-container">
+                        <img src="img/img7.jpg" alt="Dominio Media Luna - Vista Principal" class="imagen-principal">
+                        <div class="imagen-overlay-profesional">
+                            <div class="precio-destacado">
+                                <span class="precio-desde">Desde</span>
+                                <span class="precio-monto">S/ 89,900</span>
+                                <span class="precio-financiamiento">Con financiamiento disponible</span>
+                            </div>
+                            <div class="disponibilidad-badge">
+                                <i class="fas fa-check-circle"></i>
+                                <span>Disponible Inmediatamente</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Thumbnails Profesionales -->
+                    <div class="galeria-thumbnails">
+                        <div class="thumbnail-item active">
+                            <img src="img/img7.jpg" alt="Vista exterior">
+                            <span class="thumbnail-label">Exterior</span>
+                        </div>
+                        <div class="thumbnail-item">
+                            <img src="img/img1.jpg" alt="Planos">
+                            <span class="thumbnail-label">Planos</span>
+                        </div>
+                        <div class="thumbnail-item">
+                            <img src="img/img3.jpg" alt="Amenidades">
+                            <span class="thumbnail-label">Amenidades</span>
+                        </div>
+                        <div class="thumbnail-item">
+                            <img src="img/img5.jpg" alt="Ubicación">
+                            <span class="thumbnail-label">Ubicación</span>
+                        </div>
+                    </div>
+                    
+                    <!-- Información del Proyecto en Construcción -->
+                    <div class="proyecto-info-construccion">
+                        <div class="info-contenido">
+                            <div class="info-mensaje-principal">
+                                <h3>
+                                    <i class="fas fa-hard-hat"></i>
+                                    Proyecto en Construcción - Dominio Media Luna
+                                </h3>
+                                <p>Dominio Media Luna es un proyecto habitacional en desarrollo ubicado en una zona estratégica de alta proyección. Actualmente se encuentra en fase de construcción, diseñado para ofrecer viviendas de calidad con acabados modernos y amenidades premium.</p>
+                            </div>
+                            
+                            <div class="info-estado-proyecto">
+                                <div class="estado-badge">
+                                    <i class="fas fa-tools"></i>
+                                    <span>En construcción</span>
+                                </div>
+                                <div class="acceso-programa">
+                                    <span class="programa-texto">Acceso mediante</span>
+                                    <span class="programa-nombre">Programa Mi Vivienda</span>
+                                    <span class="programa-descripcion">Programa gubernamental de vivienda</span>
+                                </div>
+                            </div>
+                            
+                            <div class="info-detalles">
+                                <div class="detalle-item">
+                                    <i class="fas fa-map-marker-alt"></i>
+                                    <div class="detalle-content">
+                                        <h4>Ubicación Estratégica</h4>
+                                        <p>Carretera Rique Puerto Ete, filo de pista</p>
+                                        <p><strong>Próximo al Megapuerto de Ete</strong></p>
+                                        <p>Parque Industrial de 5,300 hectáreas</p>
+                                    </div>
+                                </div>
+                                
+                                <div class="detalle-item">
+                                    <i class="fas fa-home"></i>
+                                    <div class="detalle-content">
+                                        <h4>Tipos de Vivienda</h4>
+                                        <p>Casas de 1 y 2 pisos con terrenos de 66m² y construcciones desde 40m²</p>
+                                    </div>
+                                </div>
+                                
+                                <div class="detalle-item">
+                                    <i class="fas fa-shield-alt"></i>
+                                    <div class="detalle-content">
+                                        <h4>Programa Mi Vivienda</h4>
+                                        <p>Acceso exclusivo mediante el programa gubernamental con beneficios y financiamiento preferencial</p>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="info-contacto">
+                                <p><strong>Para más información sobre el programa Mi Vivienda y requisitos:</strong></p>
+                                <div class="contacto-opciones">
+                                    <a href="https://wa.me/51932359551?text=Hola,%20me%20interesa%20información%20sobre%20Dominio%20Media%20Luna%20y%20el%20programa%20Mi%20Vivienda" 
+                                       class="btn-info-contacto" target="_blank">
+                                        <i class="fab fa-whatsapp"></i>
+                                        Consultar Información
+                                    </a>
+                                    <a href="tel:+51932359551" class="btn-info-telefono">
+                                        <i class="fas fa-phone"></i>
+                                        +51 932 359 551
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Información Técnica Profesional -->
+                <div class="proyecto-info-profesional">
+                    <!-- Características Técnicas -->
+                    <div class="caracteristicas-tecnicas">
+                        <h3 class="seccion-titulo">
+                            <i class="fas fa-clipboard-list"></i>
+                            Especificaciones Técnicas
+                        </h3>
+                        
+                        <div class="specs-grid">
+                            <div class="spec-item">
+                                <div class="spec-icon">
+                                    <i class="fas fa-home"></i>
+                                </div>
+                                <div class="spec-content">
+                                    <h4>Tipos de Vivienda</h4>
+                                    <div class="spec-details">
+                                        <div class="spec-option">
+                                            <strong>Casa 1 Piso:</strong> 66m² terreno, 40m² construidos
+                                        </div>
+                                        <div class="spec-option">
+                                            <strong>Casa 2 Pisos:</strong> 66m² terreno, 60m² construidos
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="spec-item">
+                                <div class="spec-icon">
+                                    <i class="fas fa-map-marker-alt"></i>
+                                </div>
+                                <div class="spec-content">
+                                    <h4>Ubicación Estratégica</h4>
+                                    <div class="spec-details">
+                                        <p>Carretera Rique Puerto Ete, filo de pista</p>
+                                        <p><strong>Próximo al Megapuerto de Ete</strong></p>
+                                        <p>Parque Industrial de 5,300 hectáreas</p>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="spec-item">
+                                <div class="spec-icon">
+                                    <i class="fas fa-shield-alt"></i>
+                                </div>
+                                <div class="spec-content">
+                                    <h4>Respaldo Gubernamental</h4>
+                                    <div class="spec-details">
+                                        <p><strong>Bono del Estado disponible</strong></p>
+                                        <p>Financiamiento preferencial</p>
+                                        <p>Garantía de inversión segura</p>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="spec-item">
+                                <div class="spec-icon">
+                                    <i class="fas fa-chart-line"></i>
+                                </div>
+                                <div class="spec-content">
+                                    <h4>Proyección de Rentabilidad</h4>
+                                    <div class="spec-details">
+                                        <p><strong>+25% plusvalía proyectada</strong></p>
+                                        <p>Zona en desarrollo acelerado</p>
+                                        <p>ROI estimado: 15-20% anual</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Amenidades Premium -->
+                    <div class="amenidades-premium">
+                        <h3 class="seccion-titulo">
+                            <i class="fas fa-star"></i>
+                            Amenidades Premium Incluidas
+                        </h3>
+                        
+                        <div class="amenidades-profesional-grid">
+                            <div class="amenidad-premium">
+                                <div class="amenidad-icon-container">
+                                    <i class="fas fa-swimming-pool"></i>
+                                </div>
+                                <div class="amenidad-info">
+                                    <h4>Casa Club Ejecutiva</h4>
+                                    <p>Con piscina semiolímpica y área social</p>
+                                </div>
+                            </div>
+                            
+                            <div class="amenidad-premium">
+                                <div class="amenidad-icon-container">
+                                    <i class="fas fa-dumbbell"></i>
+                                </div>
+                                <div class="amenidad-info">
+                                    <h4>Gimnasio Equipado</h4>
+                                    <p>Equipamiento profesional completo</p>
+                                </div>
+                            </div>
+                            
+                            <div class="amenidad-premium">
+                                <div class="amenidad-icon-container">
+                                    <i class="fas fa-futbol"></i>
+                                </div>
+                                <div class="amenidad-info">
+                                    <h4>Complejo Deportivo</h4>
+                                    <p>Canchas multideportivas profesionales</p>
+                                </div>
+                            </div>
+                            
+                            <div class="amenidad-premium">
+                                <div class="amenidad-icon-container">
+                                    <i class="fas fa-shield-alt"></i>
+                                </div>
+                                <div class="amenidad-info">
+                                    <h4>Seguridad 24/7</h4>
+                                    <p>Vigilancia y control de acceso</p>
+                                </div>
+                            </div>
+                            
+                            <div class="amenidad-premium">
+                                <div class="amenidad-icon-container">
+                                    <i class="fas fa-tree"></i>
+                                </div>
+                                <div class="amenidad-info">
+                                    <h4>Áreas Verdes</h4>
+                                    <p>Parques y jardines paisajísticos</p>
+                                </div>
+                            </div>
+                            
+                            <div class="amenidad-premium">
+                                <div class="amenidad-icon-container">
+                                    <i class="fas fa-road"></i>
+                                </div>
+                                <div class="amenidad-info">
+                                    <h4>Infraestructura Completa</h4>
+                                    <p>Pistas asfaltadas y servicios básicos</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ¿Por qué elegir Corporación Sipán? -->
     <section class="proyecto-section" id="proyecto">
         <div class="proyecto-container">
             <div class="proyecto-info">
-                <h2>¿Por qué elegir a Corporación Sipán?</h2>
-                <p>
-                    En Sipán Inmobiliaria te acompañamos en cada paso para que encuentres el espacio ideal para ti. Nuestro proyecto combina diseño, ubicación estratégica y tecnología para ofrecerte una experiencia única.
-                </p>
-                <ul>
-                    <li>Departamentos y oficinas con acabados premium</li>
-                    <li>Áreas verdes, gimnasio y espacios de coworking</li>
-                    <li>Seguridad 24/7 y acceso controlado</li>
-                </ul>
-                <a href="html/contacto.html" class="btn-secundario">Solicita información</a>
+                <!-- Iconos de fondo -->
+                <div class="proyecto-bg-icons">
+                    <i class="fas fa-home"></i>
+                    <i class="fas fa-building"></i>
+                    <i class="fas fa-chart-line"></i>
+                    <i class="fas fa-shield-alt"></i>
+                    <i class="fas fa-leaf"></i>
+                    <i class="fas fa-dumbbell"></i>
+                    <i class="fas fa-wifi"></i>
+                    <i class="fas fa-parking"></i>
+                    <i class="fas fa-tree"></i>
+                    <i class="fas fa-users"></i>
+                    <i class="fas fa-map-marker-alt"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-key"></i>
+                    <i class="fas fa-handshake"></i>
+                    <i class="fas fa-award"></i>
+                    <i class="fas fa-gem"></i>
+                </div>
+                
+                <!-- Contenido principal -->
+                <div class="proyecto-content">
+                    <h2>¿Por qué elegir a Corporación Sipán?</h2>
+                    <p>
+                        En Corporación Sipán nos especializamos en el desarrollo de proyectos habitacionales de calidad. Con años de experiencia en el sector inmobiliario, acompañamos a las familias peruanas en el proceso de acceder a una vivienda digna a través de los programas gubernamentales como "Mi Vivienda".
+                    </p>
+                    <ul>
+                        <li>Experiencia comprobada en proyectos habitacionales</li>
+                        <li>Especialistas en trámites del programa "Mi Vivienda"</li>
+                        <li>Asesoría integral desde la postulación hasta la entrega</li>
+                        <li>Proyectos con ubicaciones estratégicas y alta proyección</li>
+                        <li>Construcciones con acabados de calidad y amenidades</li>
+                    </ul>
+                    <a href="html/contacto.html" class="btn-secundario">Conoce más sobre nuestros proyectos</a>
+                </div>
             </div>
             <div class="proyecto-video">
-                <video controls poster="img/img1.jpg">
+                <video controls muted poster="img/img1.jpg">
                     <source src="video/video1.mp4" type="video/mp4">
                     Tu navegador no soporta video HTML5.
                 </video>
@@ -70,29 +379,101 @@
         </div>
     </section>
 
-    <!-- Servicios -->
+    <!-- Nuestros Servicios -->
     <section class="servicios-section" id="servicios">
         <h2>Nuestros Servicios</h2>
         <div class="servicios-cards">
             <div class="servicio-card">
-                <img src="img/img3.jpg" alt="Venta de propiedades">
-                <h3>Venta de Propiedades</h3>
-                <p>Te ayudamos a encontrar y adquirir la propiedad ideal, con asesoría personalizada y acompañamiento legal.</p>
+                <div class="servicio-content">
+                    <div class="servicio-texto">
+                        <h3>Venta de Propiedades</h3>
+                        <p>Te ayudamos a encontrar y adquirir la propiedad ideal, con asesoría personalizada y acompañamiento legal.</p>
+                    </div>
+                    <div class="servicio-imagen">
+                        <img src="img/img3.jpg" alt="Venta de propiedades">
+                        <div class="imagen-overlay-servicio">
+                            <i class="fas fa-home"></i>
+                        </div>
+                    </div>
+                </div>
             </div>
             <div class="servicio-card">
-                <img src="img/img4.jpg" alt="Renta de inmuebles">
-                <h3>Renta de Inmuebles</h3>
-                <p>Opciones de renta residencial y comercial en las mejores zonas, con contratos claros y seguros.</p>
+                <div class="servicio-content">
+                    <div class="servicio-texto">
+                        <h3>Desarrollos Inmobiliarios</h3>
+                        <p>Proyectos innovadores y sustentables, desde la planeación hasta la entrega final.</p>
+                    </div>
+                    <div class="servicio-imagen">
+                        <img src="img/img5.jpg" alt="Desarrollos inmobiliarios">
+                        <div class="imagen-overlay-servicio">
+                            <i class="fas fa-building"></i>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="servicio-card">
-                <img src="img/img5.jpg" alt="Desarrollos inmobiliarios">
-                <h3>Desarrollos Inmobiliarios</h3>
-                <p>Proyectos innovadores y sustentables, desde la planeación hasta la entrega final.</p>
+        </div>
+    </section>
+
+    <!-- Testimonios de Clientes -->
+    <section class="testimonios-section" id="testimonios">
+        <div class="testimonios-container">
+            <div class="testimonios-header">
+                <h2><i class="fas fa-quote-left"></i> Lo que dicen nuestros clientes</h2>
+                <p class="testimonios-subtitle">Experiencias reales de quienes confiaron en Sipán Inmobiliaria</p>
             </div>
-            <div class="servicio-card">
-                <img src="img/img6.jpg" alt="Asesoría integral">
-                <h3>Asesoría Integral</h3>
-                <p>Consultoría legal, financiera y de inversión para que tomes la mejor decisión inmobiliaria.</p>
+            
+            <div class="testimonios-content">
+                <div class="testimonios-video">
+                    <div class="video-container">
+                        <video controls poster="img/img7.jpg" style="width: 100%; height: 100%; object-fit: contain;">
+                            <source src="video/testimonios/testimonio1.mp4" type="video/mp4">
+                            Tu navegador no soporta video HTML5.
+                        </video>
+                    </div>
+                </div>
+                
+                <div class="testimonios-texto">
+                    <div class="testimonio-destacado">
+                        <div class="testimonio-header">
+                            <div class="cliente-info">
+                                <h4>María González</h4>
+                                <p class="cliente-ubicacion">Chiclayo, Lambayeque</p>
+                                <div class="estrellas">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                </div>
+                            </div>
+                            <div class="testimonio-icon">
+                                <i class="fas fa-quote-right"></i>
+                            </div>
+                        </div>
+                        <blockquote>
+                            "Sipán Inmobiliaria hizo realidad mi sueño de tener mi propia casa. El proceso fue transparente, profesional y muy eficiente. Recomiendo totalmente sus servicios."
+                        </blockquote>
+                        <div class="testimonio-proyecto">
+                            <i class="fas fa-home"></i>
+                            <span>Proyecto: Residencial Las Palmeras</span>
+                        </div>
+                    </div>
+                    
+                    <div class="testimonios-stats">
+                        <div class="stat-item">
+                            <div class="stat-number">98%</div>
+                            <div class="stat-label">Clientes Satisfechos</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">4.9</div>
+                            <div class="stat-label">Calificación Promedio</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">500+</div>
+                            <div class="stat-label">Familias Felices</div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
@@ -107,7 +488,7 @@
                 </p>
                 <ul>
                     <li>Av. Faya Al Ataria 10, Guadalajara, Jal., México</li>
-                    <li>Tel: +52-1-33-12345678</li>
+                    <li>Tel: +51 932 359 551</li>
                     <li>Email: info@sipaninmobiliaria.com</li>
                 </ul>
             </div>
@@ -120,6 +501,314 @@
         </div>
     </section>
 
+    <!-- Experiencia y Testimonios Profesionales -->
+    <section class="experiencia-testimonios-section" id="calificaciones">
+        <div class="experiencia-container">
+            <!-- Header Premium con Estadísticas -->
+            <div class="experiencia-header">
+                <div class="header-content">
+                    <div class="badge-premium">
+                        <i class="fas fa-award"></i>
+                        <span>Excelencia Inmobiliaria</span>
+                    </div>
+                    <h2 class="titulo-principal">
+                        <span class="titulo-destacado">Experiencias</span> 
+                        <span class="titulo-secundario">que Transforman Vidas</span>
+                    </h2>
+                    <p class="subtitulo-profesional">
+                        Más de 500 familias han confiado en nosotros para encontrar su hogar ideal. 
+                        Conoce sus experiencias y comparte la tuya.
+                    </p>
+                </div>
+                
+                <!-- Estadísticas de Confianza -->
+                <div class="stats-confianza">
+                    <div class="stat-item">
+                        <div class="stat-numero">98%</div>
+                        <div class="stat-label">Satisfacción</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-numero">500+</div>
+                        <div class="stat-label">Familias Atendidas</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-numero">15</div>
+                        <div class="stat-label">Años de Experiencia</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-numero">4.9</div>
+                        <div class="stat-label">Calificación Promedio</div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Contenido Principal Dividido -->
+            <div class="experiencia-content">
+                <!-- Testimonios Destacados -->
+                <div class="testimonios-premium">
+                    <h3 class="seccion-titulo">
+                        <i class="fas fa-quote-left"></i>
+                        Testimonios Destacados
+                    </h3>
+                    
+                    <div class="testimonios-grid">
+                        <div class="testimonio-card premium">
+                            <div class="testimonio-header">
+                                <div class="cliente-avatar">
+                                    <i class="fas fa-user-tie"></i>
+                                </div>
+                                <div class="cliente-info">
+                                    <h4>Carlos Mendoza</h4>
+                                    <span class="cliente-ubicacion">Dominio Media Luna</span>
+                                    <div class="estrellas-rating">
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                    </div>
+                                </div>
+                                <div class="testimonio-fecha">
+                                    <i class="fas fa-calendar-alt"></i>
+                                    <span>Hace 2 días</span>
+                                </div>
+                            </div>
+                            <div class="testimonio-contenido">
+                                <p>"Corporación Sipán me acompañó durante todo el proceso del programa Mi Vivienda. Su profesionalismo y conocimiento del sector me dieron la confianza necesaria para tomar la mejor decisión para mi familia."</p>
+                            </div>
+                            <div class="testimonio-verificado">
+                                <i class="fas fa-shield-check"></i>
+                                <span>Cliente Verificado</span>
+                            </div>
+                        </div>
+                        
+                        <div class="testimonio-card">
+                            <div class="testimonio-header">
+                                <div class="cliente-avatar">
+                                    <i class="fas fa-user"></i>
+                                </div>
+                                <div class="cliente-info">
+                                    <h4>Ana Torres</h4>
+                                    <span class="cliente-ubicacion">Proyecto Habitacional</span>
+                                    <div class="estrellas-rating">
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                    </div>
+                                </div>
+                                <div class="testimonio-fecha">
+                                    <i class="fas fa-calendar-alt"></i>
+                                    <span>Hace 1 semana</span>
+                                </div>
+                            </div>
+                            <div class="testimonio-contenido">
+                                <p>"Proceso transparente y profesional. Me orientaron en cada paso del programa gubernamental y ahora tengo mi casa propia. Altamente recomendados."</p>
+                            </div>
+                            <div class="testimonio-verificado">
+                                <i class="fas fa-shield-check"></i>
+                                <span>Cliente Verificado</span>
+                            </div>
+                        </div>
+                        
+                        <div class="testimonio-card">
+                            <div class="testimonio-header">
+                                <div class="cliente-avatar">
+                                    <i class="fas fa-user"></i>
+                                </div>
+                                <div class="cliente-info">
+                                    <h4>María González</h4>
+                                    <span class="cliente-ubicacion">Mi Vivienda</span>
+                                    <div class="estrellas-rating">
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                    </div>
+                                </div>
+                                <div class="testimonio-fecha">
+                                    <i class="fas fa-calendar-alt"></i>
+                                    <span>Hace 3 días</span>
+                                </div>
+                            </div>
+                            <div class="testimonio-contenido">
+                                <p>"Sipán Inmobiliaria hizo realidad mi sueño de tener mi propia casa. El proceso fue transparente, profesional y muy eficiente."</p>
+                            </div>
+                            <div class="testimonio-verificado">
+                                <i class="fas fa-shield-check"></i>
+                                <span>Cliente Verificado</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Formulario de Experiencia -->
+                <div class="formulario-experiencia">
+                    <div class="formulario-header">
+                        <h3 class="seccion-titulo">
+                            <i class="fas fa-pen-fancy"></i>
+                            Comparte tu Experiencia
+                        </h3>
+                        <p class="formulario-descripcion">
+                            Tu opinión nos ayuda a mejorar continuamente nuestros servicios y a brindar la mejor experiencia a futuras familias.
+                        </p>
+                    </div>
+                    
+                    <form id="formExperiencia" class="form-experiencia-premium">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="nombreExperiencia">
+                                    <i class="fas fa-user"></i>
+                                    Nombre Completo *
+                                </label>
+                                <input type="text" id="nombreExperiencia" name="nombre" required placeholder="Ingresa tu nombre completo">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="emailExperiencia">
+                                    <i class="fas fa-envelope"></i>
+                                    Correo Electrónico *
+                                </label>
+                                <input type="email" id="emailExperiencia" name="email" required placeholder="tu@email.com">
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="proyectoExperiencia">
+                                <i class="fas fa-building"></i>
+                                Proyecto o Servicio
+                            </label>
+                            <select id="proyectoExperiencia" name="proyecto">
+                                <option value="">Selecciona el proyecto o servicio</option>
+                                <option value="dominio-media-luna">Dominio Media Luna</option>
+                                <option value="mi-vivienda">Programa Mi Vivienda</option>
+                                <option value="asesoria-inmobiliaria">Asesoría Inmobiliaria</option>
+                                <option value="tramites-legales">Trámites Legales</option>
+                                <option value="otro">Otro</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group rating-group">
+                            <label>
+                                <i class="fas fa-star"></i>
+                                Calificación General *
+                            </label>
+                            <div class="rating-container">
+                                <div class="estrellas-interactivas">
+                                    <i class="fas fa-star" data-rating="1"></i>
+                                    <i class="fas fa-star" data-rating="2"></i>
+                                    <i class="fas fa-star" data-rating="3"></i>
+                                    <i class="fas fa-star" data-rating="4"></i>
+                                    <i class="fas fa-star" data-rating="5"></i>
+                                </div>
+                                <span class="rating-text">Selecciona tu calificación</span>
+                            </div>
+                            <input type="hidden" id="ratingValue" name="rating" value="0">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="experienciaTexto">
+                                <i class="fas fa-comment-dots"></i>
+                                Cuéntanos tu Experiencia *
+                            </label>
+                            <textarea id="experienciaTexto" name="experiencia" required 
+                                placeholder="Comparte los detalles de tu experiencia con Corporación Sipán. ¿Qué aspectos destacarías? ¿Recomendarías nuestros servicios?"></textarea>
+                        </div>
+                        
+                        <div class="form-actions">
+                            <button type="submit" class="btn-experiencia-premium">
+                                <i class="fas fa-paper-plane"></i>
+                                <span>Compartir Experiencia</span>
+                            </button>
+                            <div class="form-garantia">
+                                <i class="fas fa-shield-alt"></i>
+                                <span>Tu información está protegida y será tratada con confidencialidad</span>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            
+            <!-- Call to Action Final -->
+            <div class="experiencia-cta">
+                <div class="cta-content">
+                    <h3>¿Listo para Vivir tu Propia Experiencia?</h3>
+                    <p>Únete a las más de 500 familias que han confiado en nosotros para encontrar su hogar ideal</p>
+                    <a href="html/contacto.html" class="btn-cta-experiencia">
+                        <i class="fas fa-home"></i>
+                        Comenzar mi Búsqueda
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Oportunidades Laborales -->
+    <section class="oportunidades-section" id="oportunidades">
+        <div class="oportunidades-container">
+            <div class="oportunidades-content">
+                <div class="oportunidades-texto">
+                    <div class="oportunidades-header">
+                        <h2><i class="fas fa-star"></i> Oportunidad Única</h2>
+                        <h3>Trabaja con Nosotros AHORA</h3>
+                        <p>Únete al equipo de profesionales más exitoso en el sector inmobiliario de Chiclayo. En Sipán Inmobiliaria creemos en el talento y te ofrecemos las mejores condiciones para que desarrolles tu potencial.</p>
+                    </div>
+                    
+                    <div class="oportunidades-details">
+                        <div class="requisitos-beneficios">
+                            <div class="requisitos">
+                                <h4><i class="fas fa-check-circle"></i> Requerimientos</h4>
+                                <ul>
+                                    <li><i class="fas fa-arrow-right"></i> Proactivo y responsable</li>
+                                    <li><i class="fas fa-arrow-right"></i> Experiencia en ventas del rubro inmobiliario</li>
+                                    <li><i class="fas fa-arrow-right"></i> Trabajo en equipo</li>
+                                    <li><i class="fas fa-arrow-right"></i> Creativo y orientado a resultados</li>
+                                </ul>
+                            </div>
+                            
+                            <div class="beneficios">
+                                <h4><i class="fas fa-gift"></i> Beneficios</h4>
+                                <ul>
+                                    <li><i class="fas fa-dollar-sign"></i> Sueldo fijo + comisiones</li>
+                                    <li><i class="fas fa-chart-line"></i> Comisiones altas</li>
+                                    <li><i class="fas fa-tools"></i> Herramientas de trabajo</li>
+                                    <li><i class="fas fa-graduation-cap"></i> Capacitación constante</li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <div class="oportunidades-cta">
+                            <div class="cta-content">
+                                <h4><i class="fab fa-whatsapp"></i> ¡Postula Ahora!</h4>
+                                <p>No dejes pasar esta oportunidad única de crecer profesionalmente</p>
+                                <a href="https://wa.me/51932359551" class="btn-oportunidades" target="_blank">
+                                    <i class="fab fa-whatsapp"></i> Contactar por WhatsApp
+                                </a>
+                                <div class="telefono">
+                                    <i class="fas fa-phone"></i> +51 932 359 551
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="oportunidades-imagen">
+                    <div class="imagen-container">
+                        <img src="img/oportunidad_trabajo.jpg" alt="Oportunidad laboral Sipán Inmobiliaria">
+                        <div class="imagen-overlay">
+                            <div class="overlay-content">
+                                <i class="fas fa-users"></i>
+                                <h4>Únete a Nuestro Equipo</h4>
+                                <p>Construye tu futuro con nosotros</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
     <!-- Footer -->
     <footer class="footer">
@@ -127,7 +816,7 @@
             <div class="footer-col">
                 <img src="img/logosipan.png" alt="Logo Sipán" style="height:40px; background:#fff; border-radius:8px; padding:4px 10px;">
                 <p>C.C Boulevar - Oficina j3 (2d piso - Patio principal)</p>
-                <p>Tel: +52-1-33-12345678</p>
+                <p>Tel: +51 932 359 551</p>
                 <p>Email: info@sipaninmobiliaria.com</p>
             </div>
             <div class="footer-col">
@@ -152,7 +841,7 @@
                         <i class="fab fa-twitter"></i>
                     </a>
                 </div>
-                <p style="margin-top:1em;font-size:0.9em;">© 2025 Sipán Inmobiliaria. Todos los derechos reservados.</p>
+                <p style="margin-top:1em;font-size:0.9em;"> 2025 Sipán Inmobiliaria. Todos los derechos reservados.</p>
             </div>
         </div>
     </footer>
