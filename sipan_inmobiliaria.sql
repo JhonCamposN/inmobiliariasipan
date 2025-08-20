@@ -3,14 +3,13 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 04-08-2025 a las 22:38:21
+-- Tiempo de generación: 17-08-2025 a las 20:19:46
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
 SET time_zone = "+00:00";
-
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -20,36 +19,6 @@ SET time_zone = "+00:00";
 --
 -- Base de datos: `sipan_inmobiliaria`
 --
-
-DELIMITER $$
---
--- Procedimientos
---
-CREATE DEFINER=`root`@`localhost` PROCEDURE `actualizar_estadisticas` ()   BEGIN
-    DECLARE total_cal INT;
-    DECLARE promedio DECIMAL(3,2);
-    DECLARE satisfechos DECIMAL(5,2);
-    
-    -- Calcular total de calificaciones
-    SELECT COUNT(*) INTO total_cal FROM calificaciones WHERE estado = 'activo';
-    
-    -- Calcular promedio
-    SELECT AVG(calificacion) INTO promedio FROM calificaciones WHERE estado = 'activo';
-    
-    -- Calcular porcentaje de satisfechos (4-5 estrellas)
-    SELECT (COUNT(*) * 100.0 / total_cal) INTO satisfechos 
-    FROM calificaciones 
-    WHERE estado = 'activo' AND calificacion >= 4;
-    
-    -- Actualizar estadísticas
-    UPDATE estadisticas_calificaciones 
-    SET total_calificaciones = total_cal,
-        promedio_calificacion = COALESCE(promedio, 0.00),
-        porcentaje_satisfechos = COALESCE(satisfechos, 0.00),
-        ultima_actualizacion = CURRENT_TIMESTAMP;
-END$$
-
-DELIMITER ;
 
 -- --------------------------------------------------------
 
@@ -61,10 +30,10 @@ CREATE TABLE `calificaciones` (
   `id` int(11) NOT NULL,
   `nombre` varchar(100) NOT NULL,
   `email` varchar(150) NOT NULL,
-  `calificacion` int(11) NOT NULL CHECK (`calificacion` >= 1 and `calificacion` <= 5),
+  `calificacion` int(11) NOT NULL,
   `comentario` text NOT NULL,
   `fecha_creacion` timestamp NOT NULL DEFAULT current_timestamp(),
-  `estado` enum('activo','inactivo') DEFAULT 'activo',
+  `estado` varchar(20) DEFAULT 'activo',
   `ip_address` varchar(45) DEFAULT NULL,
   `user_agent` text DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -80,16 +49,6 @@ INSERT INTO `calificaciones` (`id`, `nombre`, `email`, `calificacion`, `comentar
 (4, 'Luis Ramírez', 'luis@ejemplo.com', 4, 'Buen servicio, encontré lo que buscaba. El personal es muy atento y profesional.', '2025-08-02 22:37:16', 'activo', '192.168.1.4', NULL),
 (5, 'Carmen Silva', 'carmen@ejemplo.com', 5, 'Increíble experiencia. Me ayudaron a encontrar la casa perfecta para mi familia. Altamente recomendados.', '2025-08-02 22:37:16', 'activo', '192.168.1.5', NULL);
 
---
--- Disparadores `calificaciones`
---
-DELIMITER $$
-CREATE TRIGGER `trigger_actualizar_estadisticas` AFTER INSERT ON `calificaciones` FOR EACH ROW BEGIN
-    CALL actualizar_estadisticas();
-END
-$$
-DELIMITER ;
-
 -- --------------------------------------------------------
 
 --
@@ -101,7 +60,7 @@ CREATE TABLE `estadisticas_calificaciones` (
   `total_calificaciones` int(11) DEFAULT 0,
   `promedio_calificacion` decimal(3,2) DEFAULT 0.00,
   `porcentaje_satisfechos` decimal(5,2) DEFAULT 0.00,
-  `ultima_actualizacion` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+  `ultima_actualizacion` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -109,8 +68,24 @@ CREATE TABLE `estadisticas_calificaciones` (
 --
 
 INSERT INTO `estadisticas_calificaciones` (`id`, `total_calificaciones`, `promedio_calificacion`, `porcentaje_satisfechos`, `ultima_actualizacion`) VALUES
-(1, 5, 4.80, 100.00, '2025-08-02 22:37:16'),
-(2, 0, 0.00, 0.00, '2025-08-02 22:37:41');
+(1, 5, 4.80, 100.00, '2025-08-02 22:37:16');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `contactos`
+--
+
+CREATE TABLE `contactos` (
+  `id` int(11) NOT NULL,
+  `nombre` varchar(100) NOT NULL,
+  `email` varchar(150) NOT NULL,
+  `telefono` varchar(20) DEFAULT NULL,
+  `mensaje` text NOT NULL,
+  `fecha_creacion` timestamp NOT NULL DEFAULT current_timestamp(),
+  `estado` varchar(20) DEFAULT 'pendiente',
+  `ip_address` varchar(45) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Índices para tablas volcadas
@@ -132,6 +107,14 @@ ALTER TABLE `estadisticas_calificaciones`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indices de la tabla `contactos`
+--
+ALTER TABLE `contactos`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `idx_contactos_fecha` (`fecha_creacion`),
+  ADD KEY `idx_contactos_estado` (`estado`);
+
+--
 -- AUTO_INCREMENT de las tablas volcadas
 --
 
@@ -145,7 +128,14 @@ ALTER TABLE `calificaciones`
 -- AUTO_INCREMENT de la tabla `estadisticas_calificaciones`
 --
 ALTER TABLE `estadisticas_calificaciones`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT de la tabla `contactos`
+--
+ALTER TABLE `contactos`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

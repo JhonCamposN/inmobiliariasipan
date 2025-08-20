@@ -21,13 +21,14 @@
             </button>
             <!-- Ejemplo de menú -->
                     <nav class="menu-superior">
-            <ul>
-                <li><a href="index.html"><i class="fas fa-home"></i> Inicio</a></li>
+            <ul class="nav-links">
+                <li><a href="#inicio"><i class="fas fa-home"></i> Inicio</a></li>
                 <li><a href="html/proyecto.html"><i class="fas fa-building"></i> Proyecto</a></li>
                 <li><a href="#servicios"><i class="fas fa-cogs"></i> Servicios</a></li>
                 <li><a href="#oportunidades"><i class="fas fa-briefcase"></i> Trabaja con Nosotros</a></li>
                 <li><a href="#ubicacion"><i class="fas fa-map-marker-alt"></i> Ubicación</a></li>
                 <li><a href="html/contacto.html"><i class="fas fa-envelope"></i> Contacto</a></li>
+                <li><a href="html/login.html"><i class="fas fa-sign-in-alt"></i> Inicio de Sesión</a></li>
             </ul>
         </nav>
         </div>
@@ -59,7 +60,7 @@
                     <span class="badge-text">PROYECTO ESTRELLA</span>
                     <div class="badge-shine"></div>
                 </div>
-                <h2 class="proyecto-titulo-principal">Dominio Media Luna</h2>
+                <h2 class="proyecto-titulo-principal">Condominio Media Luna</h2>
                 <p class="proyecto-tagline">Inversión inteligente en zona de alta plusvalía</p>
                 <div class="proyecto-stats-header">
                     <div class="stat-header-item">
@@ -82,11 +83,11 @@
                 <!-- Galería de Imágenes Profesional -->
                 <div class="proyecto-galeria-profesional">
                     <div class="imagen-principal-container">
-                        <img src="img/img7.jpg" alt="Dominio Media Luna - Vista Principal" class="imagen-principal">
+                        <img src="img/casa25.jpg" alt="Dominio Media Luna - Vista Principal" class="imagen-principal">
                         <div class="imagen-overlay-profesional">
                             <div class="precio-destacado">
                                 <span class="precio-desde">Desde</span>
-                                <span class="precio-monto">S/ 89,900</span>
+                                <span class="precio-monto">S/ 25,500</span>
                                 <span class="precio-financiamiento">Con financiamiento disponible</span>
                             </div>
                             <div class="disponibilidad-badge">
@@ -98,8 +99,8 @@
                     
                     <!-- Thumbnails Profesionales -->
                     <div class="galeria-thumbnails">
-                        <div class="thumbnail-item active">
-                            <img src="img/img7.jpg" alt="Vista exterior">
+                        <div class="thumbnail-item active" onclick="abrirModalVideo('exterior')">
+                            <img src="img/casa26.jpg" alt="Vista exterior casa moderna">
                             <span class="thumbnail-label">Exterior</span>
                         </div>
                         <div class="thumbnail-item">
@@ -110,7 +111,7 @@
                             <img src="img/img3.jpg" alt="Amenidades">
                             <span class="thumbnail-label">Amenidades</span>
                         </div>
-                        <div class="thumbnail-item">
+                        <div class="thumbnail-item" onclick="abrirModalVideo('ubicacion')">
                             <img src="img/img5.jpg" alt="Ubicación">
                             <span class="thumbnail-label">Ubicación</span>
                         </div>
@@ -122,9 +123,9 @@
                             <div class="info-mensaje-principal">
                                 <h3>
                                     <i class="fas fa-hard-hat"></i>
-                                    Proyecto en Construcción - Dominio Media Luna
+                                    Proyecto en Construcción - Residencial Media Luna
                                 </h3>
-                                <p>Dominio Media Luna es un proyecto habitacional en desarrollo ubicado en una zona estratégica de alta proyección. Actualmente se encuentra en fase de construcción, diseñado para ofrecer viviendas de calidad con acabados modernos y amenidades premium.</p>
+                                <p>Media Luna es un proyecto habitacional en desarrollo ubicado en una zona estratégica de alta proyección. Actualmente se encuentra en fase de construcción, diseñado para ofrecer viviendas de calidad con acabados modernos y amenidades premium.</p>
                             </div>
                             
                             <div class="info-estado-proyecto">
@@ -134,7 +135,7 @@
                                 </div>
                                 <div class="acceso-programa">
                                     <span class="programa-texto">Acceso mediante</span>
-                                    <span class="programa-nombre">Programa Mi Vivienda</span>
+                                    <span class="programa-nombre">Programa Techo Propio</span>
                                     <span class="programa-descripcion">Programa gubernamental de vivienda</span>
                                 </div>
                             </div>
@@ -144,9 +145,9 @@
                                     <i class="fas fa-map-marker-alt"></i>
                                     <div class="detalle-content">
                                         <h4>Ubicación Estratégica</h4>
-                                        <p>Carretera Rique Puerto Ete, filo de pista</p>
-                                        <p><strong>Próximo al Megapuerto de Ete</strong></p>
-                                        <p>Parque Industrial de 5,300 hectáreas</p>
+                                        <p>Carretera Reque Puerto Eten, filo de pista</p>
+                                        <p><strong>Próximo al Megapuerto de Eten</strong></p>
+                                        <p>Cerca del Parque Industrial de 5,300 hectáreas</p>
                                     </div>
                                 </div>
                                 
@@ -154,21 +155,21 @@
                                     <i class="fas fa-home"></i>
                                     <div class="detalle-content">
                                         <h4>Tipos de Vivienda</h4>
-                                        <p>Casas de 1 y 2 pisos con terrenos de 66m² y construcciones desde 40m²</p>
+                                        <p>Casas de 1 y 2 pisos con terrenos de 66m² y construcciones de 40m² y 60m²</p>
                                     </div>
                                 </div>
                                 
                                 <div class="detalle-item">
                                     <i class="fas fa-shield-alt"></i>
                                     <div class="detalle-content">
-                                        <h4>Programa Mi Vivienda</h4>
+                                        <h4>Programa Techo Propio</h4>
                                         <p>Acceso exclusivo mediante el programa gubernamental con beneficios y financiamiento preferencial</p>
                                     </div>
                                 </div>
                             </div>
                             
                             <div class="info-contacto">
-                                <p><strong>Para más información sobre el programa Mi Vivienda y requisitos:</strong></p>
+                                <p><strong>Para más información sobre el programa Techo Propio y requisitos:</strong></p>
                                 <div class="contacto-opciones">
                                     <a href="https://wa.me/51932359551?text=Hola,%20me%20interesa%20información%20sobre%20Dominio%20Media%20Luna%20y%20el%20programa%20Mi%20Vivienda" 
                                        class="btn-info-contacto" target="_blank">
@@ -219,9 +220,9 @@
                                 <div class="spec-content">
                                     <h4>Ubicación Estratégica</h4>
                                     <div class="spec-details">
-                                        <p>Carretera Rique Puerto Ete, filo de pista</p>
-                                        <p><strong>Próximo al Megapuerto de Ete</strong></p>
-                                        <p>Parque Industrial de 5,300 hectáreas</p>
+                                        <p>Carretera Reque Puerto Eten, filo de pista</p>
+                                        <p><strong>Próximo al Megapuerto de Eten</strong></p>
+                                        <p>Cerca del Parque Industrial de 5,300 hectáreas</p>
                                     </div>
                                 </div>
                             </div>
@@ -247,9 +248,9 @@
                                 <div class="spec-content">
                                     <h4>Proyección de Rentabilidad</h4>
                                     <div class="spec-details">
-                                        <p><strong>+25% plusvalía proyectada</strong></p>
+                                        <p><strong>+50% plusvalía proyectada</strong></p>
                                         <p>Zona en desarrollo acelerado</p>
-                                        <p>ROI estimado: 15-20% anual</p>
+                                        
                                     </div>
                                 </div>
                             </div>
@@ -270,7 +271,7 @@
                                 </div>
                                 <div class="amenidad-info">
                                     <h4>Casa Club Ejecutiva</h4>
-                                    <p>Con piscina semiolímpica y área social</p>
+                                    <p>Con piscina,zona de parrillas y zona social</p>
                                 </div>
                             </div>
                             
@@ -280,7 +281,7 @@
                                 </div>
                                 <div class="amenidad-info">
                                     <h4>Gimnasio Equipado</h4>
-                                    <p>Equipamiento profesional completo</p>
+                                    <p>Equipamiento completo</p>
                                 </div>
                             </div>
                             
@@ -290,7 +291,7 @@
                                 </div>
                                 <div class="amenidad-info">
                                     <h4>Complejo Deportivo</h4>
-                                    <p>Canchas multideportivas profesionales</p>
+                                    <p>Canchas multideportivas (Futbol, Basket, Voleibol y Tenis)</p>
                                 </div>
                             </div>
                             
@@ -310,7 +311,7 @@
                                 </div>
                                 <div class="amenidad-info">
                                     <h4>Áreas Verdes</h4>
-                                    <p>Parques y jardines paisajísticos</p>
+                                    <p>Parques, jardines y juegos para niños</p>
                                 </div>
                             </div>
                             
@@ -320,7 +321,7 @@
                                 </div>
                                 <div class="amenidad-info">
                                     <h4>Infraestructura Completa</h4>
-                                    <p>Pistas asfaltadas y servicios básicos</p>
+                                    <p>Pistas asfaltadas y servicios básicos (Luz, Agua y Desagüe)</p>
                                 </div>
                             </div>
                         </div>
@@ -356,9 +357,9 @@
                 
                 <!-- Contenido principal -->
                 <div class="proyecto-content">
-                    <h2>¿Por qué elegir a Corporación Sipán?</h2>
+                    <h2>¿Por qué elegir a Corporación Inmobiliaria Sipán?</h2>
                     <p>
-                        En Corporación Sipán nos especializamos en el desarrollo de proyectos habitacionales de calidad. Con años de experiencia en el sector inmobiliario, acompañamos a las familias peruanas en el proceso de acceder a una vivienda digna a través de los programas gubernamentales como "Mi Vivienda".
+                        En Corporación Inmobiliaria Sipán nos especializamos en el desarrollo de proyectos habitacionales de calidad. Con años de experiencia en el sector inmobiliario, acompañamos a las familias peruanas en el proceso de acceder a una vivienda digna a través de los programas gubernamentales como "Techo propio" y "Mi Vivienda".
                     </p>
                     <ul>
                         <li>Experiencia comprobada en proyectos habitacionales</li>
@@ -371,10 +372,12 @@
                 </div>
             </div>
             <div class="proyecto-video">
-                <video controls muted poster="img/img1.jpg">
-                    <source src="video/video1.mp4" type="video/mp4">
-                    Tu navegador no soporta video HTML5.
-                </video>
+                <div class="video-container">
+                    <video controls autoplay onloadeddata="this.volume=0.2;" muted poster="img/img1.jpg">
+                        <source src="video/video1.mp4" type="video/mp4">
+                        Tu navegador no soporta video HTML5.
+                    </video>
+                </div>
             </div>
         </div>
     </section>
@@ -425,7 +428,7 @@
             <div class="testimonios-content">
                 <div class="testimonios-video">
                     <div class="video-container">
-                        <video controls poster="img/img7.jpg" style="width: 100%; height: 100%; object-fit: contain;">
+                        <video controls autoplay onloadeddata="this.volume=0.2;">
                             <source src="video/testimonios/testimonio1.mp4" type="video/mp4">
                             Tu navegador no soporta video HTML5.
                         </video>
@@ -436,7 +439,7 @@
                     <div class="testimonio-destacado">
                         <div class="testimonio-header">
                             <div class="cliente-info">
-                                <h4>María González</h4>
+                                <h4>Monica Capuñay</h4>
                                 <p class="cliente-ubicacion">Chiclayo, Lambayeque</p>
                                 <div class="estrellas">
                                     <i class="fas fa-star"></i>
@@ -484,19 +487,31 @@
             <div class="ubicacion-info">
                 <h2>Ubicación Estratégica</h2>
                 <p>
-                    Nos encontramos en el corazón de la ciudad, cerca de centros comerciales, escuelas y vías principales. ¡Visítanos y descubre por qué Sipán es tu mejor opción!
+                    Nos encontramos en el corazón de la ciudad, cerca de centros comerciales, escuelas y vías principales. ¡Visítanos y descubre por qué Corporación Inmobiliaria Sipán es tu mejor opción!
                 </p>
                 <ul>
-                    <li>Av. Faya Al Ataria 10, Guadalajara, Jal., México</li>
-                    <li>Tel: +51 932 359 551</li>
+                    <li>C.C Boulevard - Oficina J3 (2d piso - Patio principal)</li>
+                    <li>Celular: +51 932 359 551</li>
                     <li>Email: info@sipaninmobiliaria.com</li>
                 </ul>
             </div>
-            <div class="ubicacion-mapa">
-                <iframe 
-                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d784.0371774205454!2d-79.83037712657676!3d-6.775011237891499!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x904cef2b49eac405%3A0x73fd1693d93e2115!2sCentro%20Comercial%20Boulevard%2C%20Mariscal%20Nieto%20480%2C%20Chiclayo%2014001!5e1!3m2!1ses-419!2spe!4v1752460977058!5m2!1ses-419!2spe" 
-                    width="100%" height="320" style="border:0; border-radius:10px; box-shadow:0 2px 16px rgba(0,0,0,0.08);" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
-                </iframe>
+            <div class="ubicacion-media-container">
+                <div class="ubicacion-mapa">
+                    <div class="mapa-wrapper">
+                        <iframe 
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d784.0371774205454!2d-79.83037712657676!3d-6.775011237891499!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x904cef2b49eac405%3A0x73fd1693d93e2115!2sCentro%20Comercial%20Boulevard%2C%20Mariscal%20Nieto%20480%2C%20Chiclayo%2014001!5e1!3m2!1ses-419!2spe!4v1752460977058!5m2!1ses-419!2spe" 
+                            width="100%" height="100%" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+                        </iframe>
+                    </div>
+                </div>
+                <div class="ubicacion-video">
+                    <div class="video-wrapper">
+                        <video controls width="100%">
+                            <source src="video/ubicacion/ubicacionruta_video.mp4" type="video/mp4">
+                            Tu navegador no soporta video HTML5.
+                        </video>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
@@ -516,7 +531,7 @@
                         <span class="titulo-secundario">que Transforman Vidas</span>
                     </h2>
                     <p class="subtitulo-profesional">
-                        Más de 500 familias han confiado en nosotros para encontrar su hogar ideal. 
+                        Muchas familias vienen confiando en nosotros para encontrar su hogar ideal. 
                         Conoce sus experiencias y comparte la tuya.
                     </p>
                 </div>
@@ -526,14 +541,6 @@
                     <div class="stat-item">
                         <div class="stat-numero">98%</div>
                         <div class="stat-label">Satisfacción</div>
-                    </div>
-                    <div class="stat-item">
-                        <div class="stat-numero">500+</div>
-                        <div class="stat-label">Familias Atendidas</div>
-                    </div>
-                    <div class="stat-item">
-                        <div class="stat-numero">15</div>
-                        <div class="stat-label">Años de Experiencia</div>
                     </div>
                     <div class="stat-item">
                         <div class="stat-numero">4.9</div>
@@ -554,12 +561,9 @@
                     <div class="testimonios-grid">
                         <div class="testimonio-card premium">
                             <div class="testimonio-header">
-                                <div class="cliente-avatar">
-                                    <i class="fas fa-user-tie"></i>
-                                </div>
                                 <div class="cliente-info">
                                     <h4>Carlos Mendoza</h4>
-                                    <span class="cliente-ubicacion">Dominio Media Luna</span>
+                                    <span class="cliente-ubicacion">Condominio Media Luna</span>
                                     <div class="estrellas-rating">
                                         <i class="fas fa-star"></i>
                                         <i class="fas fa-star"></i>
@@ -568,9 +572,8 @@
                                         <i class="fas fa-star"></i>
                                     </div>
                                 </div>
-                                <div class="testimonio-fecha">
-                                    <i class="fas fa-calendar-alt"></i>
-                                    <span>Hace 2 días</span>
+                                <div class="testimonio-icon">
+                                    <i class="fas fa-quote-right"></i>
                                 </div>
                             </div>
                             <div class="testimonio-contenido">
@@ -748,7 +751,7 @@
     <!-- Oportunidades Laborales -->
     <section class="oportunidades-section" id="oportunidades">
         <div class="oportunidades-container">
-            <div class="oportunidades-content">
+            <div class="oportunidades-content-centered">
                 <div class="oportunidades-texto">
                     <div class="oportunidades-header">
                         <h2><i class="fas fa-star"></i> Oportunidad Única</h2>
@@ -772,36 +775,23 @@
                                 <h4><i class="fas fa-gift"></i> Beneficios</h4>
                                 <ul>
                                     <li><i class="fas fa-dollar-sign"></i> Sueldo fijo + comisiones</li>
-                                    <li><i class="fas fa-chart-line"></i> Comisiones altas</li>
+                                    <li><i class="fas fa-calendar-alt"></i> Comisiones altas</li>
                                     <li><i class="fas fa-tools"></i> Herramientas de trabajo</li>
                                     <li><i class="fas fa-graduation-cap"></i> Capacitación constante</li>
                                 </ul>
                             </div>
                         </div>
                         
-                        <div class="oportunidades-cta">
+                        <div class="cta-oportunidad">
                             <div class="cta-content">
-                                <h4><i class="fab fa-whatsapp"></i> ¡Postula Ahora!</h4>
+                                <h4><i class="fab fa-whatsapp"></i> ¡POSTULA AHORA!</h4>
                                 <p>No dejes pasar esta oportunidad única de crecer profesionalmente</p>
-                                <a href="https://wa.me/51932359551" class="btn-oportunidades" target="_blank">
-                                    <i class="fab fa-whatsapp"></i> Contactar por WhatsApp
+                                <a href="https://wa.me/51932359551?text=Hola,%20estoy%20interesado%20en%20trabajar%20con%20ustedes" class="btn-whatsapp-oportunidad" target="_blank">
+                                    <i class="fab fa-whatsapp"></i> CONTACTAR POR WHATSAPP
                                 </a>
-                                <div class="telefono">
+                                <div class="telefono-contacto">
                                     <i class="fas fa-phone"></i> +51 932 359 551
                                 </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="oportunidades-imagen">
-                    <div class="imagen-container">
-                        <img src="img/oportunidad_trabajo.jpg" alt="Oportunidad laboral Sipán Inmobiliaria">
-                        <div class="imagen-overlay">
-                            <div class="overlay-content">
-                                <i class="fas fa-users"></i>
-                                <h4>Únete a Nuestro Equipo</h4>
-                                <p>Construye tu futuro con nosotros</p>
                             </div>
                         </div>
                     </div>
@@ -845,6 +835,29 @@
             </div>
         </div>
     </footer>
+
+    <!-- Modal para Video Exterior -->
+    <div id="modalVideoExterior" class="modal-video" onclick="cerrarModalVideo()">
+        <div class="modal-video-content" onclick="event.stopPropagation()">
+            <span class="modal-close" onclick="cerrarModalVideo()">&times;</span>
+            <video id="videoExterior" controls width="100%">
+                <source src="video/exterior/exterior_video.mp4" type="video/mp4">
+                Tu navegador no soporta video HTML5.
+            </video>
+        </div>
+    </div>
+
+    <!-- Modal para Video Ubicación -->
+    <div id="modalVideoUbicacion" class="modal-video" onclick="cerrarModalVideo()">
+        <div class="modal-video-content" onclick="event.stopPropagation()">
+            <span class="modal-close" onclick="cerrarModalVideo()">&times;</span>
+            <video id="videoUbicacion" controls width="100%">
+                <source src="video/ubicacion/ubicacion_video.mp4" type="video/mp4">
+                Tu navegador no soporta video HTML5.
+            </video>
+        </div>
+    </div>
+
     <script src="js/script.js"></script>
 </body>
 </html>

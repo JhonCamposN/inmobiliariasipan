@@ -396,34 +396,124 @@ document.addEventListener('DOMContentLoaded', function () {
     
     // Función para actualizar comentarios
     function actualizarComentarios(comentarios) {
-        const comentariosContainer = document.getElementById('comentariosContainer');
-        if (!comentariosContainer) return;
+        const testimoniosGrid = document.getElementById('testimoniosGrid');
+        if (!testimoniosGrid) return;
         
         // Limpiar contenedor
-        comentariosContainer.innerHTML = '';
+        testimoniosGrid.innerHTML = '';
         
-        // Agregar comentarios desde la base de datos
-        comentarios.forEach(comentario => {
-            const comentarioItem = document.createElement('div');
-            comentarioItem.className = 'comentario-item';
+        // Si no hay comentarios, mostrar mensaje
+        if (!comentarios || comentarios.length === 0) {
+            testimoniosGrid.innerHTML = `
+                <div class="no-testimonios">
+                    <i class="fas fa-comments"></i>
+                    <p>Sé el primero en compartir tu experiencia</p>
+                </div>
+            `;
+            return;
+        }
+        
+        // Agregar comentarios desde la base de datos con el diseño exacto del HTML estático
+        comentarios.forEach((comentario, index) => {
+            const testimonioCard = document.createElement('div');
+            testimonioCard.className = `testimonio-card ${index === 0 ? 'premium' : ''}`;
             
             const estrellasHTML = '<i class="fas fa-star"></i>'.repeat(comentario.calificacion);
             
-            comentarioItem.innerHTML = `
-                <div class="comentario-header">
-                    <div class="cliente-info">
-                        <h4>${comentario.nombre}</h4>
-                        <div class="estrellas">
-                            ${estrellasHTML}
+            // Usar el formato exacto del HTML estático
+            if (index === 0) {
+                // Primer testimonio (premium) - sin avatar, con icono de quote
+                testimonioCard.innerHTML = `
+                    <div class="testimonio-header">
+                        <div class="cliente-info">
+                            <h4>${comentario.nombre}</h4>
+                            <span class="cliente-ubicacion">Cliente Verificado</span>
+                            <div class="estrellas-rating">
+                                ${estrellasHTML}
+                            </div>
+                        </div>
+                        <div class="testimonio-icon">
+                            <i class="fas fa-quote-right"></i>
                         </div>
                     </div>
-                    <div class="fecha">${comentario.fecha}</div>
-                </div>
-                <p>"${comentario.comentario}"</p>
-            `;
+                    <div class="testimonio-contenido">
+                        <p>"${comentario.comentario}"</p>
+                    </div>
+                    <div class="testimonio-verificado">
+                        <i class="fas fa-shield-check"></i>
+                        <span>Cliente Verificado</span>
+                    </div>
+                `;
+            } else {
+                // Testimonios normales - con avatar y fecha
+                testimonioCard.innerHTML = `
+                    <div class="testimonio-header">
+                        <div class="cliente-avatar">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        <div class="cliente-info">
+                            <h4>${comentario.nombre}</h4>
+                            <span class="cliente-ubicacion">Cliente Verificado</span>
+                            <div class="estrellas-rating">
+                                ${estrellasHTML}
+                            </div>
+                        </div>
+                        <div class="testimonio-fecha">
+                            <i class="fas fa-calendar-alt"></i>
+                            <span>${comentario.fecha}</span>
+                        </div>
+                    </div>
+                    <div class="testimonio-contenido">
+                        <p>"${comentario.comentario}"</p>
+                    </div>
+                    <div class="testimonio-verificado">
+                        <i class="fas fa-shield-check"></i>
+                        <span>Cliente Verificado</span>
+                    </div>
+                `;
+            }
             
-            comentariosContainer.appendChild(comentarioItem);
+            testimoniosGrid.appendChild(testimonioCard);
         });
+        
+        // Mostrar botón "Ver más" si hay exactamente 3 comentarios (indica que hay más)
+        const verMasBtn = document.getElementById('verMasComentarios');
+        if (verMasBtn && comentarios.length === 3) {
+            verMasBtn.style.display = 'inline-block';
+        }
+    }
+    
+    // Función para cargar todos los comentarios
+    function cargarTodosLosComentarios() {
+        const verMasBtn = document.getElementById('verMasComentarios');
+        if (verMasBtn) {
+            verMasBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Cargando...';
+            verMasBtn.disabled = true;
+        }
+        
+        fetch('php/calificaciones-api.php?accion=comentarios&limite=100')
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+                }
+                return response.json();
+            })
+            .then(data => {
+                if (data.success && data.data) {
+                    actualizarComentarios(data.data);
+                    // Ocultar botón después de cargar todos
+                    if (verMasBtn) {
+                        verMasBtn.style.display = 'none';
+                    }
+                }
+            })
+            .catch(error => {
+                console.error('Error al cargar todos los comentarios:', error);
+                if (verMasBtn) {
+                    verMasBtn.innerHTML = '<i class="fas fa-comments"></i> Ver todos los comentarios';
+                    verMasBtn.disabled = false;
+                }
+            });
     }
     
     // Inicializar calificaciones cuando el DOM esté listo
@@ -455,15 +545,31 @@ document.addEventListener('DOMContentLoaded', function () {
     // Optimización de videos
     const videos = document.querySelectorAll('video');
     videos.forEach(video => {
+        // Variable para rastrear si el usuario pausó manualmente
+        video.userPaused = false;
+        
         video.addEventListener('loadedmetadata', function() {
             video.style.opacity = '1';
+        });
+        
+        // Detectar cuando el usuario pausa manualmente
+        video.addEventListener('pause', function() {
+            if (!video.ended) {
+                video.userPaused = true;
+            }
+        });
+        
+        // Detectar cuando el usuario reproduce manualmente
+        video.addEventListener('play', function() {
+            video.userPaused = false;
         });
         
         // Pausar videos cuando no están visibles
         const videoObserver = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
-                    if (video.paused && !video.muted) {
+                    // Solo reproducir si el usuario no lo pausó manualmente
+                    if (video.paused && !video.muted && !video.userPaused) {
                         video.play().catch(e => console.log('Video play prevented'));
                     }
                 } else {
@@ -476,6 +582,14 @@ document.addEventListener('DOMContentLoaded', function () {
         
         videoObserver.observe(video);
     });
+
+    // Configurar volumen de video de ubicación al cargar la página
+    const videoUbicacion = document.querySelector('.ubicacion-video video');
+    if (videoUbicacion) {
+        videoUbicacion.addEventListener('loadeddata', function() {
+            this.volume = 0.25; // Establecer volumen al 25%
+        });
+    }
 
     // Función para animaciones de aparición de secciones
     function initSectionAnimations() {
@@ -582,34 +696,107 @@ document.addEventListener('DOMContentLoaded', function () {
             e.preventDefault();
             
             // Validar que se haya seleccionado una calificación
-            const rating = parseInt(ratingInput.value);
-            if (!rating || rating < 1) {
-                alert('Por favor, selecciona una calificación con las estrellas.');
+            const ratingValue = document.getElementById('ratingValue').value;
+            if (ratingValue === '0') {
+                alert('Por favor, selecciona una calificación antes de enviar.');
                 return;
             }
             
-            // Mostrar mensaje de éxito (aquí puedes agregar la lógica para enviar al servidor)
+            // Obtener datos del formulario
+            const nombre = document.getElementById('nombreExperiencia').value.trim();
+            const email = document.getElementById('emailExperiencia').value.trim();
+            const calificacion = parseInt(ratingValue);
+            const experiencia = document.getElementById('experienciaTexto').value.trim();
+            
+            // Validaciones básicas
+            if (!nombre || nombre.length < 2) {
+                alert('Por favor, ingresa un nombre válido (mínimo 2 caracteres).');
+                return;
+            }
+            
+            if (!email || !email.includes('@')) {
+                alert('Por favor, ingresa un email válido.');
+                return;
+            }
+            
+            if (!experiencia || experiencia.length < 10) {
+                alert('Por favor, escribe tu experiencia (mínimo 10 caracteres).');
+                return;
+            }
+            
+            // Preparar botón de envío
             const submitBtn = formExperiencia.querySelector('.btn-experiencia-premium');
             const originalText = submitBtn.innerHTML;
             
             submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> <span>Enviando...</span>';
             submitBtn.disabled = true;
             
-            // Simular envío (reemplazar con llamada real al servidor)
-            setTimeout(() => {
-                alert('¡Gracias por compartir tu experiencia! Tu testimonio ha sido enviado exitosamente.');
-                formExperiencia.reset();
-                ratingInput.value = '0';
-                ratingText.textContent = 'Selecciona tu calificación';
-                estrellasInteractivas.forEach(star => {
-                    star.classList.remove('active');
-                    star.style.color = '#d1d5db';
-                    star.style.transform = 'scale(1)';
-                });
-                
+            // Preparar datos para enviar
+            const datosCalificacion = {
+                nombre: nombre,
+                email: email,
+                calificacion: calificacion,
+                comentario: experiencia
+            };
+            
+            // Enviar a la API
+            fetch('php/calificaciones-api.php', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(datosCalificacion)
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+                }
+                return response.json();
+            })
+            .then(data => {
+                if (data.success) {
+                    // Mostrar mensaje de éxito
+                    alert('¡Gracias por compartir tu experiencia! Tu testimonio ha sido enviado exitosamente y aparecerá en nuestro sitio web.');
+                    
+                    // Limpiar formulario
+                    formExperiencia.reset();
+                    document.getElementById('ratingValue').value = '0';
+                    
+                    // Resetear estrellas
+                    const ratingText = document.querySelector('.rating-text');
+                    const estrellasInteractivas = document.querySelectorAll('.estrellas-interactivas i');
+                    
+                    if (ratingText) {
+                        ratingText.textContent = 'Selecciona tu calificación';
+                    }
+                    
+                    estrellasInteractivas.forEach(star => {
+                        star.classList.remove('active');
+                    });
+                    
+                    // Recargar calificaciones para mostrar la nueva
+                    cargarCalificaciones();
+                    
+                } else {
+                    // Mostrar error
+                    let errorMessage = 'Error al enviar tu experiencia:\n\n';
+                    if (data.errors && data.errors.length > 0) {
+                        errorMessage += data.errors.join('\n• ');
+                    } else {
+                        errorMessage += data.message || 'Error desconocido. Inténtalo de nuevo.';
+                    }
+                    alert(errorMessage);
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('Error de conexión. Verifica que XAMPP esté ejecutándose y que accedas desde http://localhost/inmobiliaria_sipan/');
+            })
+            .finally(() => {
+                // Restaurar botón
                 submitBtn.innerHTML = originalText;
                 submitBtn.disabled = false;
-            }, 2000);
+            });
         });
     }
 
@@ -680,5 +867,66 @@ document.addEventListener('DOMContentLoaded', function () {
         window.addEventListener('resize', () => {
             animarElementos();
         });
+    }
+});
+
+// Funciones para Modal de Video Exterior (fuera del DOMContentLoaded para acceso global)
+function abrirModalVideo(tipo) {
+    if (tipo === 'exterior') {
+        const modal = document.getElementById('modalVideoExterior');
+        const video = document.getElementById('videoExterior');
+        
+        if (modal && video) {
+            modal.style.display = 'block';
+            video.currentTime = 0; // Reiniciar video desde el inicio
+            video.volume = 0.25; // Establecer volumen al 25%
+            
+            // Prevenir scroll del body cuando el modal está abierto
+            document.body.style.overflow = 'hidden';
+        }
+    } else if (tipo === 'ubicacion') {
+        const modal = document.getElementById('modalVideoUbicacion');
+        const video = document.getElementById('videoUbicacion');
+        
+        if (modal && video) {
+            modal.style.display = 'block';
+            video.currentTime = 0; // Reiniciar video desde el inicio
+            video.volume = 0.25; // Establecer volumen al 25%
+            
+            // Prevenir scroll del body cuando el modal está abierto
+            document.body.style.overflow = 'hidden';
+        }
+    }
+}
+
+function cerrarModalVideo() {
+    // Cerrar modal de exterior
+    const modalExterior = document.getElementById('modalVideoExterior');
+    const videoExterior = document.getElementById('videoExterior');
+    
+    if (modalExterior && videoExterior) {
+        modalExterior.style.display = 'none';
+        videoExterior.pause(); // Pausar video al cerrar
+        videoExterior.currentTime = 0; // Reiniciar posición
+    }
+    
+    // Cerrar modal de ubicación
+    const modalUbicacion = document.getElementById('modalVideoUbicacion');
+    const videoUbicacion = document.getElementById('videoUbicacion');
+    
+    if (modalUbicacion && videoUbicacion) {
+        modalUbicacion.style.display = 'none';
+        videoUbicacion.pause(); // Pausar video al cerrar
+        videoUbicacion.currentTime = 0; // Reiniciar posición
+    }
+    
+    // Restaurar scroll del body
+    document.body.style.overflow = 'auto';
+}
+
+// Cerrar modal con tecla Escape
+document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') {
+        cerrarModalVideo();
     }
 });

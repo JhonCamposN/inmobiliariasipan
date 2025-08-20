@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard Administrativo - Sipán Inmobiliaria</title>
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="dashboard-container">
+        <!-- Header del Dashboard -->
+        <header class="dashboard-header">
+            <div class="header-content">
+                <div class="logo-dashboard">
+                    <i class="fas fa-building"></i>
+                    <h1>Sipán Inmobiliaria</h1>
+                    <span class="dashboard-title">Panel Administrativo</span>
+                </div>
+                <div class="header-actions">
+                    <div class="user-info">
+                        <i class="fas fa-user-circle"></i>
+                        <span>Administrador</span>
+                    </div>
+                    <button class="btn-logout" onclick="logout()">
+                        <i class="fas fa-sign-out-alt"></i>
+                        Cerrar Sesión
+                    </button>
+                </div>
+            </div>
+        </header>
+
+        <!-- Navegación del Dashboard -->
+        <nav class="dashboard-nav">
+            <button class="nav-btn active" onclick="showSection('calificaciones')">
+                <i class="fas fa-star"></i>
+                Calificaciones
+            </button>
+            <button class="nav-btn" onclick="showSection('solicitudes')">
+                <i class="fas fa-envelope"></i>
+                Solicitudes de Asesoría
+            </button>
+            <button class="nav-btn" onclick="showSection('estadisticas')">
+                <i class="fas fa-chart-bar"></i>
+                Estadísticas
+            </button>
+        </nav>
+
+        <!-- Contenido Principal -->
+        <main class="dashboard-main">
+            <!-- Sección de Calificaciones -->
+            <section id="calificaciones" class="dashboard-section active">
+                <div class="section-header">
+                    <h2><i class="fas fa-star"></i> Calificaciones de la Página</h2>
+                    <div class="stats-summary">
+                        <div class="stat-card">
+                            <div class="stat-number">4.9</div>
+                            <div class="stat-label">Promedio</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-number">127</div>
+                            <div class="stat-label">Total</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="data-table">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Fecha</th>
+                                <th>Cliente</th>
+                                <th>Calificación</th>
+                                <th>Comentario</th>
+                                <th>Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody id="calificacionesTable">
+                            <tr>
+                                <td>19/08/2025</td>
+                                <td>María González</td>
+                                <td>
+                                    <div class="rating">
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <span>5.0</span>
+                                    </div>
+                                </td>
+                                <td>Excelente atención y profesionalismo</td>
+                                <td>
+                                    <button class="btn-action view" onclick="viewDetails('cal', 1)">
+                                        <i class="fas fa-eye"></i>
+                                    </button>
+                                    <button class="btn-action delete" onclick="deleteItem('cal', 1)">
+                                        <i class="fas fa-trash"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>18/08/2025</td>
+                                <td>Carlos Mendoza</td>
+                                <td>
+                                    <div class="rating">
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="far fa-star"></i>
+                                        <span>4.0</span>
+                                    </div>
+                                </td>
+                                <td>Muy buena experiencia, encontré mi hogar ideal</td>
+                                <td>
+                                    <button class="btn-action view" onclick="viewDetails('cal', 2)">
+                                        <i class="fas fa-eye"></i>
+                                    </button>
+                                    <button class="btn-action delete" onclick="deleteItem('cal', 2)">
+                                        <i class="fas fa-trash"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- Sección de Solicitudes -->
+            <section id="solicitudes" class="dashboard-section">
+                <div class="section-header">
+                    <h2><i class="fas fa-envelope"></i> Solicitudes de Asesoría</h2>
+                    <div class="stats-summary">
+                        <div class="stat-card">
+                            <div class="stat-number">23</div>
+                            <div class="stat-label">Pendientes</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-number">156</div>
+                            <div class="stat-label">Total</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="data-table">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Fecha</th>
+                                <th>Cliente</th>
+                                <th>Email</th>
+                                <th>Teléfono</th>
+                                <th>Estado</th>
+                                <th>Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody id="solicitudesTable">
+                            <tr>
+                                <td>19/08/2025</td>
+                                <td>Ana Rodríguez</td>
+                                <td>ana.rodriguez@email.com</td>
+                                <td>+51 987 654 321</td>
+                                <td><span class="status pending">Pendiente</span></td>
+                                <td>
+                                    <button class="btn-action view" onclick="viewDetails('sol', 1)">
+                                        <i class="fas fa-eye"></i>
+                                    </button>
+                                    <button class="btn-action contact" onclick="contactClient(1)">
+                                        <i class="fas fa-phone"></i>
+                                    </button>
+                                    <button class="btn-action complete" onclick="markComplete(1)">
+                                        <i class="fas fa-check"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>18/08/2025</td>
+                                <td>Roberto Silva</td>
+                                <td>roberto.silva@email.com</td>
+                                <td>+51 912 345 678</td>
+                                <td><span class="status completed">Atendida</span></td>
+                                <td>
+                                    <button class="btn-action view" onclick="viewDetails('sol', 2)">
+                                        <i class="fas fa-eye"></i>
+                                    </button>
+                                    <button class="btn-action contact" onclick="contactClient(2)">
+                                        <i class="fas fa-phone"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- Sección de Estadísticas -->
+            <section id="estadisticas" class="dashboard-section">
+                <div class="section-header">
+                    <h2><i class="fas fa-chart-bar"></i> Estadísticas Generales</h2>
+                </div>
+
+                <div class="stats-grid">
+                    <div class="stat-card-large">
+                        <div class="stat-icon">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <div class="stat-info">
+                            <div class="stat-number">1,247</div>
+                            <div class="stat-label">Visitantes Únicos</div>
+                            <div class="stat-change positive">+12% este mes</div>
+                        </div>
+                    </div>
+
+                    <div class="stat-card-large">
+                        <div class="stat-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <div class="stat-info">
+                            <div class="stat-number">156</div>
+                            <div class="stat-label">Solicitudes Totales</div>
+                            <div class="stat-change positive">+8% este mes</div>
+                        </div>
+                    </div>
+
+                    <div class="stat-card-large">
+                        <div class="stat-icon">
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <div class="stat-info">
+                            <div class="stat-number">4.9</div>
+                            <div class="stat-label">Calificación Promedio</div>
+                            <div class="stat-change positive">+0.2 este mes</div>
+                        </div>
+                    </div>
+
+                    <div class="stat-card-large">
+                        <div class="stat-icon">
+                            <i class="fas fa-handshake"></i>
+                        </div>
+                        <div class="stat-info">
+                            <div class="stat-number">89</div>
+                            <div class="stat-label">Ventas Cerradas</div>
+                            <div class="stat-change positive">+15% este mes</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script>
+        // Verificar autenticación
+        if (!localStorage.getItem('isLoggedIn')) {
+            window.location.href = 'login.html';
+        }
+
+        function showSection(sectionName) {
+            // Ocultar todas las secciones
+            document.querySelectorAll('.dashboard-section').forEach(section => {
+                section.classList.remove('active');
+            });
+            
+            // Remover clase active de botones
+            document.querySelectorAll('.nav-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            
+            // Mostrar sección seleccionada
+            document.getElementById(sectionName).classList.add('active');
+            
+            // Activar botón correspondiente
+            event.target.classList.add('active');
+        }
+
+        function logout() {
+            localStorage.removeItem('isLoggedIn');
+            window.location.href = 'login.html';
+        }
+
+        function viewDetails(type, id) {
+            alert(`Ver detalles del ${type === 'cal' ? 'calificación' : 'solicitud'} ID: ${id}`);
+        }
+
+        function deleteItem(type, id) {
+            if (confirm('¿Está seguro de eliminar este elemento?')) {
+                alert(`Elemento ${id} eliminado`);
+            }
+        }
+
+        function contactClient(id) {
+            alert(`Contactando cliente ID: ${id}`);
+        }
+
+        function markComplete(id) {
+            alert(`Solicitud ${id} marcada como completada`);
+        }
+    </script>
+</body>
+</html>

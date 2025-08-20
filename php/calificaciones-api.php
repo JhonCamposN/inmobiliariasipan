@@ -1,10 +1,30 @@
 <?php
+// Habilitar reporte de errores para debug
+error_reporting(E_ALL);
+ini_set('display_errors', 0); // No mostrar errores en pantalla, solo en logs
+ini_set('log_errors', 1);
+
 header('Content-Type: application/json; charset=UTF-8');
 header('Access-Control-Allow-Origin: *');
-header('Access-Control-Allow-Methods: GET, POST');
-header('Access-Control-Allow-Headers: Content-Type');
+header('Access-Control-Allow-Methods: GET, POST, OPTIONS');
+header('Access-Control-Allow-Headers: Content-Type, X-Requested-With');
 
-require_once 'config-database.php';
+// Manejar preflight OPTIONS
+if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
+    http_response_code(200);
+    exit();
+}
+
+try {
+    require_once 'config-database.php';
+} catch (Exception $e) {
+    error_log("Error al cargar config-database.php: " . $e->getMessage());
+    echo json_encode([
+        'success' => false,
+        'message' => 'Error de configuración del servidor'
+    ], JSON_UNESCAPED_UNICODE);
+    exit;
+}
 
 // Función para limpiar datos
 function limpiarDatos($dato) {
@@ -40,7 +60,16 @@ $metodo = $_SERVER['REQUEST_METHOD'];
 
 switch ($metodo) {
     case 'GET':
-        // Obtener estadísticas y comentarios
+        // Verificar conexión a BD primero
+        $dbStatus = verificarDB();
+        if (!$dbStatus['success']) {
+            echo json_encode([
+                'success' => false,
+                'message' => 'Error de base de datos: ' . $dbStatus['message']
+            ], JSON_UNESCAPED_UNICODE);
+            exit;
+        }
+        
         $accion = $_GET['accion'] ?? '';
         
         if ($accion === 'estadisticas') {
@@ -61,7 +90,8 @@ switch ($metodo) {
                 ], JSON_UNESCAPED_UNICODE);
             }
         } elseif ($accion === 'comentarios') {
-            $comentarios = obtenerComentariosRecientes(10);
+            $limite = isset($_GET['limite']) ? (int)$_GET['limite'] : 3;
+            $comentarios = obtenerComentariosRecientes($limite);
             $comentariosFormateados = [];
             
             foreach ($comentarios as $comentario) {
@@ -78,9 +108,9 @@ switch ($metodo) {
                 'data' => $comentariosFormateados
             ], JSON_UNESCAPED_UNICODE);
         } else {
-            // Obtener todo: estadísticas y comentarios
+            // Obtener todo: estadísticas y comentarios (solo 3 más recientes)
             $estadisticas = obtenerEstadisticas();
-            $comentarios = obtenerComentariosRecientes(10);
+            $comentarios = obtenerComentariosRecientes(3);
             
             $comentariosFormateados = [];
             foreach ($comentarios as $comentario) {
@@ -107,8 +137,9 @@ switch ($metodo) {
         break;
         
     case 'POST':
-        // Agregar nueva calificación
-        $input = json_decode(file_get_contents('php://input'), true);
+        // Leer datos de entrada
+        $rawInput = file_get_contents('php://input');
+        $input = json_decode($rawInput, true);
         
         if (!$input) {
             echo json_encode([
@@ -174,4 +205,4 @@ switch ($metodo) {
         ], JSON_UNESCAPED_UNICODE);
         break;
 }
-?> 
+?>
