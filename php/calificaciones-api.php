@@ -34,24 +34,30 @@ function limpiarDatos($dato) {
     return $dato;
 }
 
-// Función para formatear fecha relativa
+// Función para formatear fecha relativa o absoluta
 function tiempoRelativo($fecha) {
-    $ahora = new DateTime();
-    $fecha = new DateTime($fecha);
-    $diferencia = $ahora->diff($fecha);
+    // Configurar zona horaria de Perú
+    date_default_timezone_set('America/Lima');
     
-    if ($diferencia->y > 0) {
-        return "Hace " . $diferencia->y . " año" . ($diferencia->y > 1 ? "s" : "");
-    } elseif ($diferencia->m > 0) {
-        return "Hace " . $diferencia->m . " mes" . ($diferencia->m > 1 ? "es" : "");
-    } elseif ($diferencia->d > 0) {
-        return "Hace " . $diferencia->d . " día" . ($diferencia->d > 1 ? "s" : "");
-    } elseif ($diferencia->h > 0) {
-        return "Hace " . $diferencia->h . " hora" . ($diferencia->h > 1 ? "s" : "");
-    } elseif ($diferencia->i > 0) {
-        return "Hace " . $diferencia->i . " minuto" . ($diferencia->i > 1 ? "s" : "");
+    $ahora = new DateTime();
+    $fechaComentario = new DateTime($fecha);
+    $diferencia = $ahora->diff($fechaComentario);
+    
+    // Calcular total de horas transcurridas
+    $totalHoras = ($diferencia->days * 24) + $diferencia->h;
+    
+    // Si han pasado menos de 24 horas, mostrar formato relativo
+    if ($totalHoras < 24) {
+        if ($diferencia->h > 0) {
+            return "Hace " . $diferencia->h . " hora" . ($diferencia->h > 1 ? "s" : "");
+        } elseif ($diferencia->i > 0) {
+            return "Hace " . $diferencia->i . " minuto" . ($diferencia->i > 1 ? "s" : "");
+        } else {
+            return "Ahora";
+        }
     } else {
-        return "Ahora";
+        // Si han pasado 24 horas o más, mostrar fecha exacta en formato DD/MM/YYYY
+        return $fechaComentario->format('d/m/Y');
     }
 }
 
@@ -95,17 +101,51 @@ switch ($metodo) {
             $comentariosFormateados = [];
             
             foreach ($comentarios as $comentario) {
+                $fechaCreacion = new DateTime($comentario['fecha_creacion']);
                 $comentariosFormateados[] = [
                     'nombre' => $comentario['nombre'],
+                    'email' => $comentario['email'] ?? '',
                     'calificacion' => (int)$comentario['calificacion'],
                     'comentario' => $comentario['comentario'],
-                    'fecha' => tiempoRelativo($comentario['fecha_creacion'])
+                    'fecha' => tiempoRelativo($comentario['fecha_creacion']),
+                    'fecha_completa' => $fechaCreacion->format('d/m/Y H:i:s'),
+                    'ip_address' => $comentario['ip_address'] ?? 'N/A'
                 ];
             }
             
             echo json_encode([
                 'success' => true,
                 'data' => $comentariosFormateados
+            ], JSON_UNESCAPED_UNICODE);
+        } elseif ($accion === 'todas') {
+            // Obtener todas las calificaciones para el dashboard
+            $pdo = conectarDB();
+            $stmt = $pdo->prepare("
+                SELECT id, nombre, email, calificacion, comentario, fecha_creacion, activo 
+                FROM calificaciones 
+                ORDER BY fecha_creacion DESC
+            ");
+            $stmt->execute();
+            $calificaciones = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            
+            $calificacionesFormateadas = [];
+            foreach ($calificaciones as $calificacion) {
+                $fechaCreacion = new DateTime($calificacion['fecha_creacion']);
+                $calificacionesFormateadas[] = [
+                    'id' => (int)$calificacion['id'],
+                    'nombre' => $calificacion['nombre'],
+                    'email' => $calificacion['email'] ?? '',
+                    'calificacion' => (int)$calificacion['calificacion'],
+                    'comentario' => $calificacion['comentario'],
+                    'fecha' => $fechaCreacion->format('d/m/Y'),
+                    'fecha_completa' => $fechaCreacion->format('d/m/Y H:i:s'),
+                    'activo' => (int)$calificacion['activo']
+                ];
+            }
+            
+            echo json_encode([
+                'success' => true,
+                'data' => $calificacionesFormateadas
             ], JSON_UNESCAPED_UNICODE);
         } else {
             // Obtener todo: estadísticas y comentarios (solo 3 más recientes)
@@ -155,6 +195,16 @@ switch ($metodo) {
         $comentario = limpiarDatos($input['comentario'] ?? '');
         
         // Validar datos
+        $pdo = conectarDB();
+        $stmt = $pdo->prepare("
+            SELECT id, nombre, email, calificacion, comentario, fecha_creacion 
+            FROM calificaciones 
+            WHERE activo = 1
+            ORDER BY fecha_creacion DESC
+        ");
+        $stmt->execute();
+        $comentarios = $stmt->fetchAll();
+        
         $errores = validarCalificacion($nombre, $email, $calificacion, $comentario);
         
         if (!empty($errores)) {
@@ -198,11 +248,121 @@ switch ($metodo) {
         }
         break;
         
+    case 'DELETE':
+        if (isset($_GET['id']) && isset($_GET['action'])) {
+            eliminarCalificacion($_GET['id'], $_GET['action']);
+        } else {
+            http_response_code(400);
+            echo json_encode(['success' => false, 'message' => 'Parámetros faltantes']);
+        }
+        break;
+        
+    case 'PUT':
+        if (isset($_GET['id']) && isset($_GET['action']) && $_GET['action'] === 'restaurar') {
+            restaurarCalificacion($_GET['id']);
+        } else {
+            http_response_code(400);
+            echo json_encode(['error' => 'Parámetros faltantes']);
+        }
+        break;
+        
     default:
+        http_response_code(405);
+        echo json_encode(['error' => 'Método no permitido']);
+}
+
+function eliminarCalificacion($id, $action) {
+    try {
+        $id = (int)$id;
+        
+        if ($id <= 0) {
+            echo json_encode([
+                'success' => false,
+                'message' => 'ID de calificación no válido'
+            ], JSON_UNESCAPED_UNICODE);
+            return;
+        }
+        
+        $pdo = conectarDB();
+        
+        if ($action === 'ocultar') {
+            // Eliminación lógica
+            $stmt = $pdo->prepare("UPDATE calificaciones SET activo = 0 WHERE id = ?");
+            $resultado = $stmt->execute([$id]);
+            
+            if ($resultado) {
+                echo json_encode([
+                    'success' => true,
+                    'message' => 'Calificación ocultada exitosamente'
+                ], JSON_UNESCAPED_UNICODE);
+            } else {
+                echo json_encode([
+                    'success' => false,
+                    'message' => 'Error al ocultar la calificación'
+                ], JSON_UNESCAPED_UNICODE);
+            }
+        } elseif ($action === 'eliminar') {
+            // Eliminación permanente
+            $stmt = $pdo->prepare("DELETE FROM calificaciones WHERE id = ?");
+            $resultado = $stmt->execute([$id]);
+            
+            if ($resultado) {
+                echo json_encode([
+                    'success' => true,
+                    'message' => 'Calificación eliminada permanentemente'
+                ], JSON_UNESCAPED_UNICODE);
+            } else {
+                echo json_encode([
+                    'success' => false,
+                    'message' => 'Error al eliminar la calificación'
+                ], JSON_UNESCAPED_UNICODE);
+            }
+        } else {
+            echo json_encode([
+                'success' => false,
+                'message' => 'Acción no válida'
+            ], JSON_UNESCAPED_UNICODE);
+        }
+    } catch (PDOException $e) {
         echo json_encode([
             'success' => false,
-            'message' => 'Método no permitido'
+            'message' => 'Error del servidor: ' . $e->getMessage()
         ], JSON_UNESCAPED_UNICODE);
-        break;
+    }
+}
+
+function restaurarCalificacion($id) {
+    try {
+        $id = (int)$id;
+        
+        if ($id <= 0) {
+            echo json_encode([
+                'success' => false,
+                'message' => 'ID de calificación no válido'
+            ], JSON_UNESCAPED_UNICODE);
+            return;
+        }
+        
+        $pdo = conectarDB();
+        $stmt = $pdo->prepare("UPDATE calificaciones SET activo = 1 WHERE id = ?");
+        $resultado = $stmt->execute([$id]);
+        
+        if ($resultado && $stmt->rowCount() > 0) {
+            echo json_encode([
+                'success' => true,
+                'message' => 'Calificación restaurada exitosamente'
+            ], JSON_UNESCAPED_UNICODE);
+        } else {
+            echo json_encode([
+                'success' => false,
+                'message' => 'No se pudo restaurar la calificación o ya estaba activa'
+            ], JSON_UNESCAPED_UNICODE);
+        }
+    } catch (PDOException $e) {
+        echo json_encode([
+            'success' => false,
+            'message' => 'Error del servidor: ' . $e->getMessage()
+        ], JSON_UNESCAPED_UNICODE);
+    }
 }
 ?>

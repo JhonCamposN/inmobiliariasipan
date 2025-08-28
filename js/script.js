@@ -1,4 +1,11 @@
 document.addEventListener('DOMContentLoaded', function () {
+    // Cargar estadísticas de calificaciones al iniciar
+    cargarEstadisticasCalificaciones();
+    // Cargar testimonios dinámicos
+    cargarTestimoniosRecientes();
+    // Cargar estadísticas para la sección de testimonios
+    cargarEstadisticasTestimonios();
+    
     // Menú hamburguesa con overlay
     const menuToggle = document.querySelector('.menu-toggle');
     const menu = document.querySelector('.menu-superior');
@@ -234,10 +241,182 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
+    // Control del video de testimonios
+    function initTestimonioVideo() {
+        const testimonioVideo = document.getElementById('testimonioVideo');
+        if (testimonioVideo) {
+            testimonioVideo.muted = true;
+            testimonioVideo.volume = 0;
+            
+            let videoStarted = false;
+            const videoObserver = new IntersectionObserver(
+                (entries, obs) => {
+                    entries.forEach(entry => {
+                        if (!videoStarted && entry.isIntersecting && entry.intersectionRatio >= 0.75) {
+                            testimonioVideo.play().catch(e => console.log('Video autoplay prevented'));
+                            videoStarted = true;
+                        } else if (videoStarted && !entry.isIntersecting && entry.intersectionRatio < 0.25) {
+                            testimonioVideo.pause();
+                            videoStarted = false;
+                        }
+                    });
+                },
+                {
+                    threshold: [0, 0.25, 0.75]
+                }
+            );
+            videoObserver.observe(testimonioVideo);
+            
+            // Crear botón para activar/desactivar sonido
+            const soundButton = document.createElement('button');
+            soundButton.innerHTML = '<i class="fas fa-volume-mute"></i>';
+            soundButton.className = 'testimonio-sound-toggle-btn';
+            soundButton.title = 'Activar sonido';
+            soundButton.style.cssText = `
+                position: absolute;
+                top: 10px;
+                left: 10px;
+                z-index: 10;
+                background: rgba(0,0,0,0.7);
+                color: white;
+                border: none;
+                border-radius: 50%;
+                width: 40px;
+                height: 40px;
+                cursor: pointer;
+                font-size: 16px;
+                transition: all 0.3s ease;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            `;
+            
+            // Agregar botón al contenedor del video
+            const videoContainer = document.querySelector('.testimonios-video .video-container');
+            if (videoContainer) {
+                videoContainer.style.position = 'relative';
+                videoContainer.appendChild(soundButton);
+            }
+            
+            // Funcionalidad del botón de sonido
+            soundButton.addEventListener('click', function() {
+                if (testimonioVideo.muted) {
+                    testimonioVideo.muted = false;
+                    testimonioVideo.volume = 0.5;
+                    soundButton.innerHTML = '<i class="fas fa-volume-up"></i>';
+                    soundButton.title = 'Desactivar sonido';
+                } else {
+                    testimonioVideo.muted = true;
+                    testimonioVideo.volume = 0;
+                    soundButton.innerHTML = '<i class="fas fa-volume-mute"></i>';
+                    soundButton.title = 'Activar sonido';
+                }
+            });
+            
+            // Hover effect
+            soundButton.addEventListener('mouseenter', function() {
+                soundButton.style.background = 'rgba(0,0,0,0.9)';
+                soundButton.style.transform = 'scale(1.1)';
+            });
+            
+            soundButton.addEventListener('mouseleave', function() {
+                soundButton.style.background = 'rgba(0,0,0,0.7)';
+                soundButton.style.transform = 'scale(1)';
+            });
+        }
+    }
+
+    // Control del video de ubicación
+    function initUbicacionVideo() {
+        const ubicacionVideo = document.getElementById('ubicacionVideo');
+        if (ubicacionVideo) {
+            ubicacionVideo.muted = true;
+            ubicacionVideo.volume = 0;
+            
+            let videoStarted = false;
+            const videoObserver = new IntersectionObserver(
+                (entries, obs) => {
+                    entries.forEach(entry => {
+                        if (!videoStarted && entry.isIntersecting && entry.intersectionRatio >= 0.75) {
+                            ubicacionVideo.play().catch(e => console.log('Video autoplay prevented'));
+                            videoStarted = true;
+                        } else if (videoStarted && !entry.isIntersecting && entry.intersectionRatio < 0.25) {
+                            ubicacionVideo.pause();
+                            videoStarted = false;
+                        }
+                    });
+                },
+                {
+                    threshold: [0, 0.25, 0.75]
+                }
+            );
+            videoObserver.observe(ubicacionVideo);
+            
+            // Crear botón para activar/desactivar sonido
+            const soundButton = document.createElement('button');
+            soundButton.innerHTML = '<i class="fas fa-volume-mute"></i>';
+            soundButton.className = 'ubicacion-sound-toggle-btn';
+            soundButton.title = 'Activar sonido';
+            soundButton.style.cssText = `
+                position: absolute;
+                top: 10px;
+                right: 10px;
+                z-index: 10;
+                background: rgba(0,0,0,0.7);
+                color: white;
+                border: none;
+                border-radius: 50%;
+                width: 40px;
+                height: 40px;
+                cursor: pointer;
+                font-size: 16px;
+                transition: all 0.3s ease;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            `;
+            
+            // Agregar botón al contenedor del video
+            const videoWrapper = document.querySelector('.ubicacion-video .video-wrapper');
+            if (videoWrapper) {
+                videoWrapper.style.position = 'relative';
+                videoWrapper.appendChild(soundButton);
+            }
+            
+            // Funcionalidad del botón de sonido
+            soundButton.addEventListener('click', function() {
+                if (ubicacionVideo.muted) {
+                    ubicacionVideo.muted = false;
+                    ubicacionVideo.volume = 0.5;
+                    soundButton.innerHTML = '<i class="fas fa-volume-up"></i>';
+                    soundButton.title = 'Desactivar sonido';
+                } else {
+                    ubicacionVideo.muted = true;
+                    ubicacionVideo.volume = 0;
+                    soundButton.innerHTML = '<i class="fas fa-volume-mute"></i>';
+                    soundButton.title = 'Activar sonido';
+                }
+            });
+            
+            // Hover effect
+            soundButton.addEventListener('mouseenter', function() {
+                soundButton.style.background = 'rgba(0,0,0,0.9)';
+                soundButton.style.transform = 'scale(1.1)';
+            });
+            
+            soundButton.addEventListener('mouseleave', function() {
+                soundButton.style.background = 'rgba(0,0,0,0.7)';
+                soundButton.style.transform = 'scale(1)';
+            });
+        }
+    }
+
     // Inicializar funciones de optimización
     lazyLoadImages();
     animateOnScroll();
     preloadCriticalResources();
+    initTestimonioVideo();
+    initUbicacionVideo();
 
     // Service Worker (comentado temporalmente)
     // if ('serviceWorker' in navigator) {
@@ -375,12 +554,12 @@ document.addEventListener('DOMContentLoaded', function () {
                 // Recargar calificaciones
                 cargarCalificaciones();
             } else {
-                alert('Error: ' + data.message);
+                throw new Error(data.error || 'Error desconocido al enviar la calificación');
             }
         })
         .catch(error => {
             console.error('Error al enviar calificación:', error);
-            alert('Error al enviar la calificación. Inténtalo de nuevo.');
+            mostrarPopupCalificacion('Error al enviar tu experiencia: ' + error.message + '. Por favor, intenta nuevamente.', 'error');
         });
     }
     
@@ -698,7 +877,7 @@ document.addEventListener('DOMContentLoaded', function () {
             // Validar que se haya seleccionado una calificación
             const ratingValue = document.getElementById('ratingValue').value;
             if (ratingValue === '0') {
-                alert('Por favor, selecciona una calificación antes de enviar.');
+                mostrarPopupCalificacion('Por favor, selecciona una calificación antes de enviar.', 'error');
                 return;
             }
             
@@ -710,17 +889,26 @@ document.addEventListener('DOMContentLoaded', function () {
             
             // Validaciones básicas
             if (!nombre || nombre.length < 2) {
-                alert('Por favor, ingresa un nombre válido (mínimo 2 caracteres).');
+                mostrarPopupCalificacion('Por favor, ingresa un nombre válido (mínimo 2 caracteres).', 'error');
                 return;
             }
             
+            // Validar dominios de email permitidos
+            const dominiosPermitidos = ['@gmail.com', '@hotmail.com', '@email.com'];
+            const emailValido = dominiosPermitidos.some(dominio => email.toLowerCase().endsWith(dominio));
+            
             if (!email || !email.includes('@')) {
-                alert('Por favor, ingresa un email válido.');
+                mostrarPopupCalificacion('Por favor, ingresa un email válido.', 'error');
+                return;
+            }
+            
+            if (!emailValido) {
+                mostrarPopupCalificacion('Solo se permiten correos de Gmail, Hotmail o Email.com', 'error');
                 return;
             }
             
             if (!experiencia || experiencia.length < 10) {
-                alert('Por favor, escribe tu experiencia (mínimo 10 caracteres).');
+                mostrarPopupCalificacion('Por favor, escribe tu experiencia (mínimo 10 caracteres).', 'error');
                 return;
             }
             
@@ -756,7 +944,7 @@ document.addEventListener('DOMContentLoaded', function () {
             .then(data => {
                 if (data.success) {
                     // Mostrar mensaje de éxito
-                    alert('¡Gracias por compartir tu experiencia! Tu testimonio ha sido enviado exitosamente y aparecerá en nuestro sitio web.');
+                    mostrarPopupCalificacion('¡Gracias por compartir tu experiencia! Tu testimonio ha sido enviado exitosamente y aparecerá en nuestro sitio web.', 'success');
                     
                     // Limpiar formulario
                     formExperiencia.reset();
@@ -774,8 +962,8 @@ document.addEventListener('DOMContentLoaded', function () {
                         star.classList.remove('active');
                     });
                     
-                    // Recargar calificaciones para mostrar la nueva
-                    cargarCalificaciones();
+                    // Recargar testimonios para mostrar el nuevo comentario
+                    cargarTestimoniosRecientes();
                     
                 } else {
                     // Mostrar error
@@ -930,3 +1118,286 @@ document.addEventListener('keydown', function(e) {
         cerrarModalVideo();
     }
 });
+
+// Función para cargar estadísticas de calificaciones en tiempo real
+async function cargarEstadisticasCalificaciones() {
+    try {
+        const response = await fetch('php/calificaciones-api.php?accion=estadisticas');
+        const data = await response.json();
+        
+        if (data.success) {
+            // Actualizar porcentaje de satisfacción
+            const satisfaccionElement = document.getElementById('satisfaccionPorcentaje');
+            if (satisfaccionElement) {
+                const porcentaje = Math.round(parseFloat(data.data.porcentaje_satisfechos));
+                satisfaccionElement.textContent = porcentaje + '%';
+            }
+            
+            // Actualizar calificación promedio
+            const promedioElement = document.getElementById('calificacionPromedio');
+            if (promedioElement) {
+                const promedio = parseFloat(data.data.promedio_calificacion).toFixed(1);
+                promedioElement.textContent = promedio;
+            }
+        } else {
+            console.error('Error al cargar estadísticas:', data.message);
+            // Mostrar valores por defecto en caso de error
+            const satisfaccionElement = document.getElementById('satisfaccionPorcentaje');
+            const promedioElement = document.getElementById('calificacionPromedio');
+            
+            if (satisfaccionElement) satisfaccionElement.textContent = 'N/A';
+            if (promedioElement) promedioElement.textContent = 'N/A';
+        }
+    } catch (error) {
+        console.error('Error de conexión al cargar estadísticas:', error);
+        // Mostrar valores por defecto en caso de error de conexión
+        const satisfaccionElement = document.getElementById('satisfaccionPorcentaje');
+        const promedioElement = document.getElementById('calificacionPromedio');
+        
+        if (satisfaccionElement) satisfaccionElement.textContent = 'N/A';
+        if (promedioElement) promedioElement.textContent = 'N/A';
+    }
+}
+
+// Función para cargar testimonios recientes desde la base de datos
+async function cargarTestimoniosRecientes() {
+    try {
+        const response = await fetch('php/calificaciones-api.php?accion=comentarios&limite=3');
+        const data = await response.json();
+        
+        if (data.success && data.data.length > 0) {
+            mostrarTestimonios(data.data);
+        } else {
+            mostrarTestimoniosVacios();
+        }
+    } catch (error) {
+        console.error('Error al cargar testimonios:', error);
+        mostrarTestimoniosError();
+    }
+}
+
+// Función para mostrar testimonios dinámicos manteniendo el diseño original
+function mostrarTestimonios(testimonios) {
+    const testimoniosGrid = document.getElementById('testimoniosGrid');
+    if (!testimoniosGrid) return;
+    
+    testimoniosGrid.innerHTML = '';
+    
+    testimonios.forEach((testimonio, index) => {
+        const testimonioCard = document.createElement('div');
+        testimonioCard.className = 'testimonio-card';
+        
+        // Generar estrellas basadas en la calificación
+        const estrellas = generarEstrellasTestimonio(testimonio.calificacion);
+        
+        // Determinar ubicación/proyecto basado en el comentario o usar genérico
+        const ubicacion = determinarUbicacion(testimonio.comentario);
+        
+        // Todos los testimonios tendrán el mismo diseño consistente
+        testimonioCard.innerHTML = `
+            <div class="testimonio-header">
+                <div class="cliente-avatar">
+                    <i class="fas fa-user"></i>
+                </div>
+                <div class="cliente-info">
+                    <h4>${testimonio.nombre}</h4>
+                    <span class="cliente-ubicacion">${ubicacion}</span>
+                    <div class="estrellas-rating">
+                        ${estrellas}
+                    </div>
+                </div>
+                <div class="testimonio-fecha">
+                    <i class="fas fa-calendar-alt"></i>
+                    <span>${testimonio.fecha}</span>
+                </div>
+            </div>
+            <div class="testimonio-contenido">
+                <p>"${testimonio.comentario}"</p>
+            </div>
+        `;
+        
+        testimoniosGrid.appendChild(testimonioCard);
+    });
+}
+
+// Función para generar estrellas para testimonios
+function generarEstrellasTestimonio(calificacion) {
+    let estrellas = '';
+    for (let i = 1; i <= 5; i++) {
+        if (i <= calificacion) {
+            estrellas += '<i class="fas fa-star"></i>';
+        } else {
+            estrellas += '<i class="far fa-star"></i>';
+        }
+    }
+    return estrellas;
+}
+
+// Función para determinar ubicación/proyecto basado en palabras clave
+function determinarUbicacion(comentario) {
+    const comentarioLower = comentario.toLowerCase();
+    
+    if (comentarioLower.includes('media luna') || comentarioLower.includes('dominio')) {
+        return 'Condominio Media Luna';
+    } else if (comentarioLower.includes('techo propio')) {
+        return 'Programa Techo Propio';
+    } else if (comentarioLower.includes('mi vivienda')) {
+        return 'Programa Mi Vivienda';
+    } else if (comentarioLower.includes('proyecto') || comentarioLower.includes('habitacional')) {
+        return 'Proyecto Habitacional';
+    } else {
+        return 'Cliente Sipán';
+    }
+}
+
+// Función para mostrar mensaje cuando no hay testimonios
+function mostrarTestimoniosVacios() {
+    const testimoniosGrid = document.getElementById('testimoniosGrid');
+    if (!testimoniosGrid) return;
+    
+    testimoniosGrid.innerHTML = `
+        <div class="testimonio-card no-data">
+            <div class="no-data-content">
+                <i class="fas fa-comments"></i>
+                <h4>¡Sé el primero en compartir tu experiencia!</h4>
+                <p>Aún no hay testimonios disponibles. Comparte tu experiencia con nosotros.</p>
+            </div>
+        </div>
+    `;
+}
+
+// Función para mostrar mensaje de error
+function mostrarTestimoniosError() {
+    const testimoniosGrid = document.getElementById('testimoniosGrid');
+    if (!testimoniosGrid) return;
+    
+    testimoniosGrid.innerHTML = `
+        <div class="testimonio-card error">
+            <div class="error-content">
+                <i class="fas fa-exclamation-triangle"></i>
+                <h4>Error al cargar testimonios</h4>
+                <p>No se pudieron cargar los testimonios. Intenta recargar la página.</p>
+            </div>
+        </div>
+    `;
+}
+
+// Función para mostrar pop-up de calificaciones (similar al de exportación)
+function mostrarPopupCalificacion(mensaje, tipo = 'success') {
+    // Crear el pop-up si no existe
+    let popup = document.getElementById('popupCalificacion');
+    if (!popup) {
+        popup = document.createElement('div');
+        popup.id = 'popupCalificacion';
+        popup.className = 'popup-overlay';
+        popup.innerHTML = `
+            <div class="popup-content">
+                <div class="popup-icon">
+                    <i class="fas fa-check-circle"></i>
+                </div>
+                <div class="popup-text">
+                    <h3 class="popup-title">Mensaje</h3>
+                    <p class="popup-message"></p>
+                </div>
+                <div class="popup-progress">
+                    <div class="progress-bar"></div>
+                </div>
+            </div>
+        `;
+        document.body.appendChild(popup);
+    }
+    
+    const icon = popup.querySelector('.popup-icon i');
+    const title = popup.querySelector('.popup-title');
+    const message = popup.querySelector('.popup-message');
+    const progressBar = popup.querySelector('.progress-bar');
+    
+    // Configurar según el tipo
+    if (tipo === 'success') {
+        icon.className = 'fas fa-check-circle';
+        title.textContent = '¡Éxito!';
+        popup.querySelector('.popup-content').style.borderColor = '#28a745';
+        icon.style.color = '#28a745';
+        progressBar.style.backgroundColor = '#28a745';
+    } else if (tipo === 'error') {
+        icon.className = 'fas fa-exclamation-triangle';
+        title.textContent = 'Error';
+        popup.querySelector('.popup-content').style.borderColor = '#dc3545';
+        icon.style.color = '#dc3545';
+        progressBar.style.backgroundColor = '#dc3545';
+    } else if (tipo === 'info') {
+        icon.className = 'fas fa-info-circle';
+        title.textContent = 'Información';
+        popup.querySelector('.popup-content').style.borderColor = '#17a2b8';
+        icon.style.color = '#17a2b8';
+        progressBar.style.backgroundColor = '#17a2b8';
+    }
+    
+    message.textContent = mensaje;
+    
+    // Mostrar el pop-up
+    popup.style.display = 'flex';
+    setTimeout(() => popup.classList.add('show'), 10);
+    
+    // Animar barra de progreso sincronizada con el tiempo del popup
+    progressBar.style.width = '0%';
+    progressBar.style.transition = 'width 1.5s ease-in-out';
+    setTimeout(() => {
+        progressBar.style.width = '100%';
+    }, 100);
+    
+    // Ocultar después de 1.5 segundos
+    setTimeout(() => {
+        popup.classList.remove('show');
+        setTimeout(() => {
+            popup.style.display = 'none';
+        }, 300);
+    }, 1500);
+}
+
+// Función para cargar estadísticas en la sección de testimonios
+async function cargarEstadisticasTestimonios() {
+    try {
+        const response = await fetch('php/calificaciones-api.php?accion=estadisticas');
+        const data = await response.json();
+        
+        if (data.success && data.data) {
+            const estadisticas = data.data;
+            
+            // Actualizar elementos de la sección testimonios
+            const clientesSatisfechos = document.getElementById('clientesSatisfechosTestimonios');
+            const calificacionPromedio = document.getElementById('calificacionPromedioTestimonios');
+            
+            if (clientesSatisfechos) {
+                clientesSatisfechos.textContent = estadisticas.porcentaje_satisfechos + '%';
+            }
+            
+            if (calificacionPromedio) {
+                calificacionPromedio.textContent = estadisticas.promedio_calificacion;
+            }
+            
+        } else {
+            console.error('Error al obtener estadísticas para testimonios:', data.message);
+            // Mantener valores por defecto en caso de error
+            const clientesSatisfechos = document.getElementById('clientesSatisfechosTestimonios');
+            const calificacionPromedio = document.getElementById('calificacionPromedioTestimonios');
+            
+            if (clientesSatisfechos) clientesSatisfechos.textContent = 'N/A';
+            if (calificacionPromedio) calificacionPromedio.textContent = 'N/A';
+        }
+    } catch (error) {
+        console.error('Error de conexión al cargar estadísticas de testimonios:', error);
+        // Mostrar valores por defecto en caso de error de conexión
+        const clientesSatisfechos = document.getElementById('clientesSatisfechosTestimonios');
+        const calificacionPromedio = document.getElementById('calificacionPromedioTestimonios');
+        
+        if (clientesSatisfechos) clientesSatisfechos.textContent = 'N/A';
+        if (calificacionPromedio) calificacionPromedio.textContent = 'N/A';
+    }
+}
+
+// Hacer las funciones globales para poder ser llamadas desde otros lugares
+window.cargarEstadisticasCalificaciones = cargarEstadisticasCalificaciones;
+window.cargarTestimoniosRecientes = cargarTestimoniosRecientes;
+window.mostrarPopupCalificacion = mostrarPopupCalificacion;
+window.cargarEstadisticasTestimonios = cargarEstadisticasTestimonios;

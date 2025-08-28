@@ -344,7 +344,7 @@
                     }
                     
                     // Enviar datos al servidor
-                    fetch('../php/contacto-whatsapp-directo.php', {
+                    fetch('../php/procesar-contacto.php', {
                         method: 'POST',
                         body: formData
                     })
@@ -500,21 +500,6 @@
                             </div>
                         </div>
 
-                        <!-- Archivos Adjuntos -->
-                        <div class="form-section">
-                            <h3 class="form-section-title">
-                                <i class="fas fa-paperclip"></i>
-                                Documentos de Apoyo (Opcional)
-                            </h3>
-                            <div class="form-field">
-                                <label for="adjuntos">Adjuntar archivos</label>
-                                <input type="file" id="adjuntos" name="adjuntos[]" multiple 
-                                    accept="image/*,video/*,.pdf,.doc,.docx,.xls,.xlsx,.ppt,.pptx,.txt">
-                                <small class="field-help">
-                                    Puedes adjuntar documentos, imágenes o videos relacionados con tu consulta (máx. 10MB por archivo)
-                                </small>
-                            </div>
-                        </div>
 
                         <!-- Botón de Envío -->
                         <div class="form-actions">
@@ -592,21 +577,17 @@
                         Síguenos
                     </h3>
                     <div class="redes-links">
-                        <a href="https://www.facebook.com/corporacioninmobiliariasipan" target="_blank" class="red-link facebook">
+                        <a href="https://www.facebook.com/share/19ivg4HBHX/" target="_blank" class="red-link facebook">
                             <i class="fab fa-facebook-f"></i>
                             <span>Facebook</span>
                         </a>
-                        <a href="https://instagram.com/" target="_blank" class="red-link instagram">
+                        <a href="https://www.instagram.com/inmobiliaria_sipan?igsh=amMxNHgzN2pqbnli" target="_blank" class="red-link instagram">
                             <i class="fab fa-instagram"></i>
                             <span>Instagram</span>
                         </a>
-                        <a href="https://twitter.com/" target="_blank" class="red-link twitter">
-                            <i class="fab fa-twitter"></i>
-                            <span>Twitter</span>
-                        </a>
-                        <a href="mailto:info@sipaninmobiliaria.com" class="red-link email">
-                            <i class="fas fa-envelope"></i>
-                            <span>Email</span>
+                        <a href="https://www.tiktok.com/@inmobiliaria_sipan?_t=ZS-8yipEpRj0sB&_r=1" target="_blank" class="red-link tiktok">
+                            <i class="fab fa-tiktok"></i>
+                            <span>TikTok</span>
                         </a>
                     </div>
                 </div>
@@ -643,39 +624,103 @@
         <div class="whatsapp-pulse"></div>
     </div>
 
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="footer-container">
-            <div class="footer-col">
-                <img src="../img/logosipan.png" alt="Logo Sipán" style="height:40px; background:#fff; border-radius:8px; padding:4px 10px;">
-                <p>C.C Boulevar - Oficina j3 (2d piso - Patio principal)</p>
-                <p>Tel: +51 932 359 551</p>
-                <p>Email: info@sipaninmobiliaria.com</p>
-            </div>
-            <div class="footer-col">
-                <h4>Enlaces</h4>
-                <ul>
-                    <li><a href="../index.html">Inicio</a></li>
-                    <li><a href="proyecto.html">Proyecto</a></li>
-                    <li><a href="../index.html#servicios">Servicios</a></li>
-                    <li><a href="ubicacion.html">Ubicación</a></li>
-                    <li><a href="contacto.html" class="active">Contacto</a></li>
-                </ul>
-            </div>
-            <div class="footer-col">
-                <h4>Síguenos</h4>
-                <div class="redes">
-                    <a href="https://www.facebook.com/corporacioninmobiliariasipan" aria-label="Facebook" target="_blank">
-                        <i class="fab fa-facebook-f"></i>
-                    </a>
-                    <a href="https://instagram.com/" aria-label="Instagram" target="_blank">
-                        <i class="fab fa-instagram"></i>
-                    </a>
-                    <a href="https://twitter.com/" aria-label="Twitter" target="_blank">
-                        <i class="fab fa-twitter"></i>
-                    </a>
+    <!-- Footer con Olas Animadas -->
+    <footer class="footer-waves">
+        <!-- Olas animadas -->
+        <div class="waves-container">
+            <svg class="waves" xmlns="http://www.w3.org/2000/svg" viewBox="0 24 150 28" preserveAspectRatio="none">
+                <defs>
+                    <path id="gentle-wave" d="m-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z" />
+                </defs>
+                <g class="parallax">
+                    <use href="#gentle-wave" x="48" y="0" fill="rgba(30, 123, 191, 0.7)" />
+                    <use href="#gentle-wave" x="48" y="3" fill="rgba(30, 123, 191, 0.5)" />
+                    <use href="#gentle-wave" x="48" y="5" fill="rgba(30, 123, 191, 0.3)" />
+                    <use href="#gentle-wave" x="48" y="7" fill="rgba(12, 60, 97, 1)" />
+                </g>
+            </svg>
+        </div>
+
+        <!-- Contenido del Footer -->
+        <div class="footer-content">
+            <div class="footer-container">
+                <!-- Síguenos -->
+                <div class="footer-section">
+                    <h4>Síguenos</h4>
+                    <div class="social-links">
+                        <a href="https://www.facebook.com/share/19ivg4HBHX/" target="_blank" aria-label="Facebook">
+                            <i class="fab fa-facebook-f"></i>
+                            <span>Facebook</span>
+                        </a>
+                        <a href="https://www.instagram.com/inmobiliaria_sipan?igsh=amMxNHgzN2pqbnli" target="_blank" aria-label="Instagram">
+                            <i class="fab fa-instagram"></i>
+                            <span>Instagram</span>
+                        </a>
+                        <a href="https://www.tiktok.com/@inmobiliaria_sipan?_t=ZS-8yipEpRj0sB&_r=1" target="_blank" aria-label="TikTok">
+                            <i class="fab fa-tiktok"></i>
+                            <span>TikTok</span>
+                        </a>
+                    </div>
                 </div>
-                <p style="margin-top:1em;font-size:0.9em;"> 2025 Sipán Inmobiliaria. Todos los derechos reservados.</p>
+
+                <!-- Enlaces Rápidos -->
+                <div class="footer-section">
+                    <h4>Enlaces Rápidos</h4>
+                    <div class="quick-links">
+                        <a href="../index.html#inicio"><i class="fas fa-home"></i> Inicio</a>
+                        <a href="proyecto.html"><i class="fas fa-building"></i> Proyecto</a>
+                        <a href="../index.html#servicios"><i class="fas fa-cogs"></i> Servicios</a>
+                        <a href="../index.html#oportunidades"><i class="fas fa-briefcase"></i> Trabaja con Nosotros</a>
+                        <a href="../index.html#ubicacion"><i class="fas fa-map-marker-alt"></i> Ubicación</a>
+                        <a href="contacto.html"><i class="fas fa-envelope"></i> Contacto</a>
+                    </div>
+                </div>
+
+                <!-- Contacto -->
+                <div class="footer-section">
+                    <h4>Contacto</h4>
+                    <div class="contact-info">
+                        <div class="contact-item">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>C.C Boulevard | Oficina J-3</span>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-phone"></i>
+                            <span>+51 932 359 551</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Horarios de Atención -->
+                <div class="footer-section">
+                    <h4>Horarios de Atención</h4>
+                    <div class="schedule-info">
+                        <div class="schedule-item">
+                            <i class="fas fa-clock"></i>
+                            <div>
+                                <span>Lunes - Sábado</span>
+                                <span>9:30 am - 07:00 pm</span>
+                            </div>
+                        </div>
+                        <div class="schedule-item">
+                            <i class="fas fa-calendar-times"></i>
+                            <div>
+                                <span>Domingos</span>
+                                <span>Cerrado</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Copyright -->
+            <div class="footer-bottom">
+                <div class="footer-container">
+                    <div class="copyright">
+                        <p>© 2025 Corporación Inmobiliaria Sipán. Todos los derechos reservados.</p>
+                        <p class="developer">Sitio desarrollado por: MA - NI - AD</p>
+                    </div>
+                </div>
             </div>
         </div>
     </footer>

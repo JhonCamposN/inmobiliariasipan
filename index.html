@@ -15,22 +15,31 @@
             <a href="index.html">
                 <img src="img/logosipan.png" alt="Logo Sipán" class="logo">
             </a>
+            
+            <!-- Navegación principal -->
+            <nav class="menu-superior">
+                <ul class="nav-links">
+                    <li><a href="#inicio"><i class="fas fa-home"></i> Inicio</a></li>
+                    <li><a href="html/proyecto.html"><i class="fas fa-building"></i> Proyecto</a></li>
+                    <li><a href="#servicios"><i class="fas fa-cogs"></i> Servicios</a></li>
+                    <li><a href="#oportunidades"><i class="fas fa-briefcase"></i> Trabaja con Nosotros</a></li>
+                    <li><a href="#ubicacion"><i class="fas fa-map-marker-alt"></i> Ubicación</a></li>
+                    <li><a href="html/contacto.html"><i class="fas fa-envelope"></i> Contacto</a></li>
+                </ul>
+            </nav>
+            
+            <!-- Botón de inicio de sesión independiente -->
+            <div class="login-section">
+                <a href="html/login.html" class="login-btn">
+                    <i class="fas fa-user-circle"></i>
+                    <span>Iniciar Sesión</span>
+                </a>
+            </div>
+            
             <!-- Botón para menú móvil -->
             <button class="menu-toggle" aria-label="Abrir menú">
                 <i class="fas fa-bars"></i>
             </button>
-            <!-- Ejemplo de menú -->
-                    <nav class="menu-superior">
-            <ul class="nav-links">
-                <li><a href="#inicio"><i class="fas fa-home"></i> Inicio</a></li>
-                <li><a href="html/proyecto.html"><i class="fas fa-building"></i> Proyecto</a></li>
-                <li><a href="#servicios"><i class="fas fa-cogs"></i> Servicios</a></li>
-                <li><a href="#oportunidades"><i class="fas fa-briefcase"></i> Trabaja con Nosotros</a></li>
-                <li><a href="#ubicacion"><i class="fas fa-map-marker-alt"></i> Ubicación</a></li>
-                <li><a href="html/contacto.html"><i class="fas fa-envelope"></i> Contacto</a></li>
-                <li><a href="html/login.html"><i class="fas fa-sign-in-alt"></i> Inicio de Sesión</a></li>
-            </ul>
-        </nav>
         </div>
     </header>
 
@@ -363,7 +372,7 @@
                     </p>
                     <ul>
                         <li>Experiencia comprobada en proyectos habitacionales</li>
-                        <li>Especialistas en trámites del programa "Mi Vivienda"</li>
+                        <li>Especialistas en trámites del programa "Techo Propio"</li>
                         <li>Asesoría integral desde la postulación hasta la entrega</li>
                         <li>Proyectos con ubicaciones estratégicas y alta proyección</li>
                         <li>Construcciones con acabados de calidad y amenidades</li>
@@ -428,7 +437,7 @@
             <div class="testimonios-content">
                 <div class="testimonios-video">
                     <div class="video-container">
-                        <video controls autoplay onloadeddata="this.volume=0.2;">
+                        <video controls muted onloadeddata="this.volume=0.2;" id="testimonioVideo">
                             <source src="video/testimonios/testimonio1.mp4" type="video/mp4">
                             Tu navegador no soporta video HTML5.
                         </video>
@@ -458,22 +467,18 @@
                         </blockquote>
                         <div class="testimonio-proyecto">
                             <i class="fas fa-home"></i>
-                            <span>Proyecto: Residencial Las Palmeras</span>
+                            <span>Proyecto: Media Luna</span>
                         </div>
                     </div>
                     
                     <div class="testimonios-stats">
                         <div class="stat-item">
-                            <div class="stat-number">98%</div>
+                            <div class="stat-number" id="clientesSatisfechosTestimonios">98%</div>
                             <div class="stat-label">Clientes Satisfechos</div>
                         </div>
                         <div class="stat-item">
-                            <div class="stat-number">4.9</div>
+                            <div class="stat-number" id="calificacionPromedioTestimonios">4.9</div>
                             <div class="stat-label">Calificación Promedio</div>
-                        </div>
-                        <div class="stat-item">
-                            <div class="stat-number">500+</div>
-                            <div class="stat-label">Familias Felices</div>
                         </div>
                     </div>
                 </div>
@@ -492,7 +497,6 @@
                 <ul>
                     <li>C.C Boulevard - Oficina J3 (2d piso - Patio principal)</li>
                     <li>Celular: +51 932 359 551</li>
-                    <li>Email: info@sipaninmobiliaria.com</li>
                 </ul>
             </div>
             <div class="ubicacion-media-container">
@@ -506,7 +510,7 @@
                 </div>
                 <div class="ubicacion-video">
                     <div class="video-wrapper">
-                        <video controls width="100%">
+                        <video controls width="100%" muted id="ubicacionVideo">
                             <source src="video/ubicacion/ubicacionruta_video.mp4" type="video/mp4">
                             Tu navegador no soporta video HTML5.
                         </video>
@@ -539,11 +543,11 @@
                 <!-- Estadísticas de Confianza -->
                 <div class="stats-confianza">
                     <div class="stat-item">
-                        <div class="stat-numero">98%</div>
+                        <div class="stat-numero" id="satisfaccionPorcentaje">-</div>
                         <div class="stat-label">Satisfacción</div>
                     </div>
                     <div class="stat-item">
-                        <div class="stat-numero">4.9</div>
+                        <div class="stat-numero" id="calificacionPromedio">-</div>
                         <div class="stat-label">Calificación Promedio</div>
                     </div>
                 </div>
@@ -558,90 +562,12 @@
                         Testimonios Destacados
                     </h3>
                     
-                    <div class="testimonios-grid">
-                        <div class="testimonio-card premium">
-                            <div class="testimonio-header">
-                                <div class="cliente-info">
-                                    <h4>Carlos Mendoza</h4>
-                                    <span class="cliente-ubicacion">Condominio Media Luna</span>
-                                    <div class="estrellas-rating">
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                    </div>
-                                </div>
-                                <div class="testimonio-icon">
-                                    <i class="fas fa-quote-right"></i>
-                                </div>
-                            </div>
-                            <div class="testimonio-contenido">
-                                <p>"Corporación Sipán me acompañó durante todo el proceso del programa Mi Vivienda. Su profesionalismo y conocimiento del sector me dieron la confianza necesaria para tomar la mejor decisión para mi familia."</p>
-                            </div>
-                            <div class="testimonio-verificado">
-                                <i class="fas fa-shield-check"></i>
-                                <span>Cliente Verificado</span>
-                            </div>
-                        </div>
-                        
-                        <div class="testimonio-card">
-                            <div class="testimonio-header">
-                                <div class="cliente-avatar">
-                                    <i class="fas fa-user"></i>
-                                </div>
-                                <div class="cliente-info">
-                                    <h4>Ana Torres</h4>
-                                    <span class="cliente-ubicacion">Proyecto Habitacional</span>
-                                    <div class="estrellas-rating">
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                    </div>
-                                </div>
-                                <div class="testimonio-fecha">
-                                    <i class="fas fa-calendar-alt"></i>
-                                    <span>Hace 1 semana</span>
-                                </div>
-                            </div>
-                            <div class="testimonio-contenido">
-                                <p>"Proceso transparente y profesional. Me orientaron en cada paso del programa gubernamental y ahora tengo mi casa propia. Altamente recomendados."</p>
-                            </div>
-                            <div class="testimonio-verificado">
-                                <i class="fas fa-shield-check"></i>
-                                <span>Cliente Verificado</span>
-                            </div>
-                        </div>
-                        
-                        <div class="testimonio-card">
-                            <div class="testimonio-header">
-                                <div class="cliente-avatar">
-                                    <i class="fas fa-user"></i>
-                                </div>
-                                <div class="cliente-info">
-                                    <h4>María González</h4>
-                                    <span class="cliente-ubicacion">Mi Vivienda</span>
-                                    <div class="estrellas-rating">
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                    </div>
-                                </div>
-                                <div class="testimonio-fecha">
-                                    <i class="fas fa-calendar-alt"></i>
-                                    <span>Hace 3 días</span>
-                                </div>
-                            </div>
-                            <div class="testimonio-contenido">
-                                <p>"Sipán Inmobiliaria hizo realidad mi sueño de tener mi propia casa. El proceso fue transparente, profesional y muy eficiente."</p>
-                            </div>
-                            <div class="testimonio-verificado">
-                                <i class="fas fa-shield-check"></i>
-                                <span>Cliente Verificado</span>
+                    <div class="testimonios-grid" id="testimoniosGrid">
+                        <!-- Los testimonios se cargarán dinámicamente desde la base de datos -->
+                        <div class="testimonio-card loading">
+                            <div class="loading-content">
+                                <i class="fas fa-spinner fa-spin"></i>
+                                <p>Cargando testimonios...</p>
                             </div>
                         </div>
                     </div>
@@ -800,38 +726,103 @@
         </div>
     </section>
 
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="footer-container">
-            <div class="footer-col">
-                <img src="img/logosipan.png" alt="Logo Sipán" style="height:40px; background:#fff; border-radius:8px; padding:4px 10px;">
-                <p>C.C Boulevar - Oficina j3 (2d piso - Patio principal)</p>
-                <p>Tel: +51 932 359 551</p>
-                <p>Email: info@sipaninmobiliaria.com</p>
-            </div>
-            <div class="footer-col">
-                <h4>Enlaces</h4>
-                <ul>
-                    <li><a href="#inicio">Inicio</a></li>
-                    <li><a href="#proyecto">Proyecto</a></li>
-                    <li><a href="#servicios">Servicios</a></li>
-                    <li><a href="#contacto">Contacto</a></li>
-                </ul>
-            </div>
-            <div class="footer-col">
-                <h4>Síguenos</h4>
-                <div class="redes">
-                    <a href="https://www.facebook.com/corporacioninmobiliariasipan" aria-label="Facebook" target="_blank">
-                        <i class="fab fa-facebook-f"></i>
-                    </a>
-                    <a href="https://instagram.com/" aria-label="Instagram" target="_blank">
-                        <i class="fab fa-instagram"></i>
-                    </a>
-                    <a href="https://twitter.com/" aria-label="Twitter" target="_blank">
-                        <i class="fab fa-twitter"></i>
-                    </a>
+    <!-- Footer con Olas Animadas -->
+    <footer class="footer-waves">
+        <!-- Olas animadas -->
+        <div class="waves-container">
+            <svg class="waves" xmlns="http://www.w3.org/2000/svg" viewBox="0 24 150 28" preserveAspectRatio="none">
+                <defs>
+                    <path id="gentle-wave" d="m-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z" />
+                </defs>
+                <g class="parallax">
+                    <use href="#gentle-wave" x="48" y="0" fill="rgba(30, 123, 191, 0.7)" />
+                    <use href="#gentle-wave" x="48" y="3" fill="rgba(30, 123, 191, 0.5)" />
+                    <use href="#gentle-wave" x="48" y="5" fill="rgba(30, 123, 191, 0.3)" />
+                    <use href="#gentle-wave" x="48" y="7" fill="rgba(12, 60, 97, 1)" />
+                </g>
+            </svg>
+        </div>
+
+        <!-- Contenido del Footer -->
+        <div class="footer-content">
+            <div class="footer-container">
+                <!-- Síguenos -->
+                <div class="footer-section">
+                    <h4>Síguenos</h4>
+                    <div class="social-links">
+                        <a href="https://www.facebook.com/share/19ivg4HBHX/" target="_blank" aria-label="Facebook">
+                            <i class="fab fa-facebook-f"></i>
+                            <span>Facebook</span>
+                        </a>
+                        <a href="https://www.instagram.com/inmobiliaria_sipan?igsh=amMxNHgzN2pqbnli" target="_blank" aria-label="Instagram">
+                            <i class="fab fa-instagram"></i>
+                            <span>Instagram</span>
+                        </a>
+                        <a href="https://www.tiktok.com/@inmobiliaria_sipan?_t=ZS-8yipEpRj0sB&_r=1" target="_blank" aria-label="TikTok">
+                            <i class="fab fa-tiktok"></i>
+                            <span>TikTok</span>
+                        </a>
+                    </div>
                 </div>
-                <p style="margin-top:1em;font-size:0.9em;"> 2025 Sipán Inmobiliaria. Todos los derechos reservados.</p>
+
+                <!-- Enlaces Rápidos -->
+                <div class="footer-section">
+                    <h4>Enlaces Rápidos</h4>
+                    <div class="quick-links">
+                        <a href="#inicio"><i class="fas fa-home"></i> Inicio</a>
+                        <a href="html/proyecto.html"><i class="fas fa-building"></i> Proyecto</a>
+                        <a href="#servicios"><i class="fas fa-cogs"></i> Servicios</a>
+                        <a href="#oportunidades"><i class="fas fa-briefcase"></i> Trabaja con Nosotros</a>
+                        <a href="#ubicacion"><i class="fas fa-map-marker-alt"></i> Ubicación</a>
+                        <a href="html/contacto.html"><i class="fas fa-envelope"></i> Contacto</a>
+                    </div>
+                </div>
+
+                <!-- Contacto -->
+                <div class="footer-section">
+                    <h4>Contacto</h4>
+                    <div class="contact-info">
+                        <div class="contact-item">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>C.C Boulevard | Oficina J-3</span>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-phone"></i>
+                            <span>+51 932 359 551</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Horarios de Atención -->
+                <div class="footer-section">
+                    <h4>Horarios de Atención</h4>
+                    <div class="schedule-info">
+                        <div class="schedule-item">
+                            <i class="fas fa-clock"></i>
+                            <div>
+                                <span>Lunes - Sábado</span>
+                                <span>9:30 am - 07:00 pm</span>
+                            </div>
+                        </div>
+                        <div class="schedule-item">
+                            <i class="fas fa-calendar-times"></i>
+                            <div>
+                                <span>Domingos</span>
+                                <span>Cerrado</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Copyright -->
+            <div class="footer-bottom">
+                <div class="footer-container">
+                    <div class="copyright">
+                        <p>© 2025 Corporación Inmobiliaria Sipán. Todos los derechos reservados.</p>
+                        <p class="developer">Sitio desarrollado por: Jhon Antony Campos Nuñez</p>
+                    </div>
+                </div>
             </div>
         </div>
     </footer>

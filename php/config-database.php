@@ -68,8 +68,29 @@ function obtenerEstadisticas() {
     if (!$pdo) return false;
     
     try {
-        $stmt = $pdo->query("SELECT * FROM estadisticas_calificaciones ORDER BY id DESC LIMIT 1");
-        return $stmt->fetch();
+        // Calcular estadísticas en tiempo real desde la tabla calificaciones
+        $stmt = $pdo->query("
+            SELECT 
+                COUNT(*) as total_calificaciones,
+                AVG(calificacion) as promedio_calificacion,
+                (COUNT(CASE WHEN calificacion >= 4 THEN 1 END) * 100.0 / COUNT(*)) as porcentaje_satisfechos
+            FROM calificaciones 
+            WHERE estado = 'activo' AND activo = 1
+        ");
+        
+        $resultado = $stmt->fetch();
+        
+        // Si no hay datos, devolver valores por defecto
+        if (!$resultado || $resultado['total_calificaciones'] == 0) {
+            return [
+                'total_calificaciones' => 0,
+                'promedio_calificacion' => 0.0,
+                'porcentaje_satisfechos' => 0.0
+            ];
+        }
+        
+        return $resultado;
+        
     } catch (PDOException $e) {
         error_log("Error al obtener estadísticas: " . $e->getMessage());
         return false;
@@ -83,9 +104,9 @@ function obtenerComentariosRecientes($limite = 10) {
     
     try {
         $stmt = $pdo->prepare("
-            SELECT nombre, calificacion, comentario, fecha_creacion 
+            SELECT nombre, email, calificacion, comentario, fecha_creacion, ip_address
             FROM calificaciones 
-            WHERE estado = 'activo' 
+            WHERE estado = 'activo' AND activo = 1
             ORDER BY fecha_creacion DESC 
             LIMIT ?
         ");
