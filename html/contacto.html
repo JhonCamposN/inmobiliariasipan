@@ -289,9 +289,109 @@
             from { opacity: 0;}
             to   { opacity: 1;}
         }
+        
+        /* Estilos para ayuda de formulario y validación */
+        .form-help {
+            display: block;
+            font-size: 0.85em;
+            color: #6c757d;
+            margin-top: 4px;
+            font-style: italic;
+        }
+        
+        .form-field input:invalid {
+            border-color: #dc3545 !important;
+        }
+        
+        .form-field input:valid {
+            border-color: #28a745 !important;
+        }
+        
+        .form-field input:focus {
+            outline: none;
+            box-shadow: 0 0 0 2px rgba(30, 123, 191, 0.25);
+        }
     </style>
     
     <script>
+        // Funciones de validación en tiempo real
+        function validarEmailDominio(input) {
+            const email = input.value;
+            const dominiosPermitidos = ['gmail.com', 'hotmail.com', 'email.com'];
+            
+            if (email.includes('@')) {
+                const dominio = email.split('@')[1];
+                if (dominio && !dominiosPermitidos.includes(dominio)) {
+                    input.setCustomValidity('Solo se permiten correos de Gmail, Hotmail o Email.com');
+                    input.style.borderColor = '#dc3545';
+                } else {
+                    input.setCustomValidity('');
+                    input.style.borderColor = '#28a745';
+                }
+            } else {
+                input.setCustomValidity('');
+                input.style.borderColor = '';
+            }
+        }
+        
+        function validarTelefono(input) {
+            let valor = input.value;
+            
+            // Permitir solo números, espacios, guiones, paréntesis y el signo +
+            valor = valor.replace(/[^\d\s\-\(\)\+]/g, '');
+            
+            // Si empieza con +, asegurar que el resto sean solo números y espacios/guiones
+            if (valor.startsWith('+')) {
+                const partes = valor.substring(1);
+                if (!/^[\d\s\-\(\)]*$/.test(partes)) {
+                    valor = '+' + partes.replace(/[^\d\s\-\(\)]/g, '');
+                }
+            }
+            
+            input.value = valor;
+            
+            // Validación visual
+            const telefonoLimpio = valor.replace(/[\s\-\(\)]/g, '');
+            
+            if (telefonoLimpio.startsWith('+')) {
+                const codigoPais = telefonoLimpio.substring(1, 3);
+                const numeroSinCodigo = telefonoLimpio.substring(3);
+                
+                let longitudEsperada;
+                switch(codigoPais) {
+                    case '51': longitudEsperada = 9; break;
+                    case '1': longitudEsperada = 10; break;
+                    case '34': longitudEsperada = 9; break;
+                    case '52': longitudEsperada = 10; break;
+                    case '54': longitudEsperada = 10; break;
+                    case '55': longitudEsperada = 11; break;
+                    default: longitudEsperada = 9;
+                }
+                
+                if (numeroSinCodigo.length === longitudEsperada) {
+                    input.style.borderColor = '#28a745';
+                    input.setCustomValidity('');
+                } else if (numeroSinCodigo.length > 0) {
+                    input.style.borderColor = '#ffc107';
+                    input.setCustomValidity(`Para +${codigoPais} se requieren ${longitudEsperada} dígitos`);
+                } else {
+                    input.style.borderColor = '';
+                    input.setCustomValidity('');
+                }
+            } else {
+                if (telefonoLimpio.length === 9 && /^\d{9}$/.test(telefonoLimpio)) {
+                    input.style.borderColor = '#28a745';
+                    input.setCustomValidity('');
+                } else if (telefonoLimpio.length > 0) {
+                    input.style.borderColor = '#ffc107';
+                    input.setCustomValidity('Para Perú se requieren 9 dígitos');
+                } else {
+                    input.style.borderColor = '';
+                    input.setCustomValidity('');
+                }
+            }
+        }
+
         // Manejo del formulario premium de contacto
         document.addEventListener('DOMContentLoaded', function() {
             const form = document.getElementById('formContactoElegante');
@@ -304,20 +404,88 @@
                     // Validar campos requeridos
                     const nombre = document.getElementById('nombre').value.trim();
                     const apellidos = document.getElementById('apellidos').value.trim();
+                    const dni = document.getElementById('dni').value.trim();
                     const email = document.getElementById('email').value.trim();
                     const telefono = document.getElementById('telefono').value.trim();
                     const mensajeTexto = document.getElementById('mensaje').value.trim();
                     
-                    if (!nombre || !apellidos || !email || !telefono || !mensajeTexto) {
+                    if (!nombre || !apellidos || !dni || !email || !telefono || !mensajeTexto) {
                         alert('Por favor, completa todos los campos obligatorios marcados con *');
                         return;
                     }
                     
-                    // Validar formato de email
+                    // Validar formato de DNI
+                    const dniRegex = /^[0-9]{8}$/;
+                    if (!dniRegex.test(dni)) {
+                        alert('Por favor, ingresa un DNI válido de 8 dígitos');
+                        return;
+                    }
+                    
+                    // Validar formato de email y dominios permitidos
                     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                    const dominiosPermitidos = ['gmail.com', 'hotmail.com', 'email.com'];
+                    
                     if (!emailRegex.test(email)) {
                         alert('Por favor, ingresa un email válido');
                         return;
+                    }
+                    
+                    const dominio = email.split('@')[1];
+                    if (!dominiosPermitidos.includes(dominio)) {
+                        alert('Solo se permiten correos de Gmail, Hotmail o Email.com');
+                        return;
+                    }
+                    
+                    // Validar formato de teléfono
+                    const telefonoLimpio = telefono.replace(/[\s\-\(\)]/g, '');
+                    
+                    // Verificar si tiene código de país
+                    if (telefonoLimpio.startsWith('+')) {
+                        // Teléfono internacional
+                        const codigoPais = telefonoLimpio.substring(1, 3);
+                        const numeroSinCodigo = telefonoLimpio.substring(3);
+                        
+                        // Validar que solo contenga números después del +
+                        if (!/^\+\d+$/.test(telefonoLimpio)) {
+                            alert('El teléfono debe contener solo números después del código de país');
+                            return;
+                        }
+                        
+                        // Validar longitud según código de país
+                        let longitudEsperada;
+                        switch(codigoPais) {
+                            case '51': // Perú
+                                longitudEsperada = 9;
+                                break;
+                            case '1': // USA/Canadá
+                                longitudEsperada = 10;
+                                break;
+                            case '34': // España
+                                longitudEsperada = 9;
+                                break;
+                            case '52': // México
+                                longitudEsperada = 10;
+                                break;
+                            case '54': // Argentina
+                                longitudEsperada = 10;
+                                break;
+                            case '55': // Brasil
+                                longitudEsperada = 11;
+                                break;
+                            default:
+                                longitudEsperada = 9; // Por defecto
+                        }
+                        
+                        if (numeroSinCodigo.length !== longitudEsperada) {
+                            alert(`Para el código de país +${codigoPais}, el número debe tener ${longitudEsperada} dígitos`);
+                            return;
+                        }
+                    } else {
+                        // Teléfono nacional (Perú por defecto)
+                        if (!/^\d{9}$/.test(telefonoLimpio)) {
+                            alert('Para Perú, el teléfono debe tener 9 dígitos');
+                            return;
+                        }
                     }
                     
                     // Mostrar loading
@@ -330,6 +498,7 @@
                     const formData = new FormData();
                     formData.append('nombre', nombre);
                     formData.append('apellidos', apellidos);
+                    formData.append('dni', dni);
                     formData.append('email', email);
                     formData.append('telefono', telefono);
                     formData.append('tipo_consulta', document.getElementById('tipoConsulta').value);
@@ -446,12 +615,16 @@
                             <div class="form-grid-2">
                                 <div class="form-field">
                                     <label for="nombre">Nombre Completo *</label>
-                                    <input type="text" id="nombre" name="nombre" required placeholder="Ingresa tu nombre completo">
+                                    <input type="text" id="nombre" name="nombre" required placeholder="Ingresa tu nombre completo" pattern="[A-Za-zÁáÉéÍíÓóÚúÑñ\s]+" title="Solo se permiten letras y espacios" oninput="this.value = this.value.replace(/[^A-Za-zÁáÉéÍíÓóÚúÑñ\s]/g, '')">
                                 </div>
                                 <div class="form-field">
                                     <label for="apellidos">Apellidos *</label>
-                                    <input type="text" id="apellidos" name="apellidos" required placeholder="Ingresa tus apellidos">
+                                    <input type="text" id="apellidos" name="apellidos" required placeholder="Ingresa tus apellidos" pattern="[A-Za-zÁáÉéÍíÓóÚúÑñ\s]+" title="Solo se permiten letras y espacios" oninput="this.value = this.value.replace(/[^A-Za-zÁáÉéÍíÓóÚúÑñ\s]/g, '')">
                                 </div>
+                            </div>
+                            <div class="form-field">
+                                <label for="dni">DNI *</label>
+                                <input type="text" id="dni" name="dni" required placeholder="Ingresa tu número de DNI" pattern="[0-9]{8}" maxlength="8" title="El DNI debe tener 8 dígitos" oninput="this.value = this.value.replace(/[^0-9]/g, '')">
                             </div>
                         </div>
 
@@ -464,11 +637,11 @@
                             <div class="form-grid-2">
                                 <div class="form-field">
                                     <label for="email">Correo Electrónico *</label>
-                                    <input type="email" id="email" name="email" required placeholder="tu@email.com">
+                                    <input type="email" id="email" name="email" required placeholder="ejemplo@gmail.com" title="Solo se permiten correos de Gmail, Hotmail o Email.com" oninput="validarEmailDominio(this)">
                                 </div>
                                 <div class="form-field">
                                     <label for="telefono">Teléfono *</label>
-                                    <input type="tel" id="telefono" name="telefono" required placeholder="+51 999 999 999">
+                                    <input type="tel" id="telefono" name="telefono" required placeholder="+51 999 999 999" title="Ingresa un número válido. Para Perú: 9 dígitos" oninput="validarTelefono(this)">
                                 </div>
                             </div>
                         </div>

@@ -72,13 +72,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         // Obtener y validar datos
         $nombre = isset($_POST['nombre']) ? limpiarDatos($_POST['nombre']) : '';
         $apellidos = isset($_POST['apellidos']) ? limpiarDatos($_POST['apellidos']) : '';
+        $dni = isset($_POST['dni']) ? limpiarDatos($_POST['dni']) : '';
         $email = isset($_POST['email']) ? limpiarDatos($_POST['email']) : '';
         $telefono = isset($_POST['telefono']) ? limpiarDatos($_POST['telefono']) : '';
         $tipoConsulta = isset($_POST['tipo_consulta']) ? limpiarDatos($_POST['tipo_consulta']) : '';
         $mensaje = isset($_POST['mensaje']) ? limpiarDatos($_POST['mensaje']) : '';
         
         // Validaciones
-        if (empty($nombre) || empty($apellidos) || empty($email) || empty($mensaje)) {
+        if (empty($nombre) || empty($apellidos) || empty($dni) || empty($email) || empty($mensaje)) {
             throw new Exception('Todos los campos obligatorios deben estar completos.');
         }
         
@@ -99,12 +100,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         
         // Insertar en la base de datos
         $stmt = $pdo->prepare("
-            INSERT INTO contactos (nombre, email, telefono, mensaje, fecha_creacion, estado, ip_address) 
-            VALUES (?, ?, ?, ?, NOW(), 'pendiente', ?)
+            INSERT INTO contactos (nombre, dni, email, telefono, mensaje, fecha_creacion, estado, ip_address) 
+            VALUES (?, ?, ?, ?, ?, NOW(), 'pendiente', ?)
         ");
         
         $stmt->execute([
             $nombreCompleto,
+            $dni,
             $email,
             $telefono,
             $mensajeCompleto,

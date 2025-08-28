@@ -70,46 +70,46 @@
                     </div>
                 </div>
 
-                <!-- Filtros para calificaciones -->
-                <div class="filtros-container">
-                    <div class="filtros-group">
-                        <label for="filtroOrden">Ordenar por:</label>
-                        <select id="filtroOrden" onchange="aplicarFiltros()">
-                            <option value="mas-reciente">Más reciente</option>
-                            <option value="mas-antiguo">Más antiguo</option>
-                            <option value="mejor-valorado">Mejor valorado</option>
-                            <option value="menor-valorado">Menor valorado</option>
-                        </select>
+                <!-- Filtros para Calificaciones -->
+                <div class="filters-section">
+                    <div class="filters-container">
+                        <div class="filter-group">
+                            <label for="filtroOrden">Ordenar por:</label>
+                            <select id="filtroOrden" onchange="aplicarFiltros()">
+                                <option value="mas-reciente">Más reciente</option>
+                                <option value="mas-antiguo">Más antiguo</option>
+                                <option value="mejor-valorado">Mejor valorado</option>
+                                <option value="menor-valorado">Menor valorado</option>
+                            </select>
+                        </div>
+                        <div class="filter-group">
+                            <label for="filtroEstrellas">Filtrar por estrellas:</label>
+                            <select id="filtroEstrellas" onchange="aplicarFiltros()">
+                                <option value="todas">Todas las calificaciones</option>
+                                <option value="5">5 estrellas</option>
+                                <option value="4">4 estrellas</option>
+                                <option value="3">3 estrellas</option>
+                                <option value="2">2 estrellas</option>
+                                <option value="1">1 estrella</option>
+                            </select>
+                        </div>
+                        <div class="filter-group">
+                            <label for="filtroEstado">Estado:</label>
+                            <select id="filtroEstado" onchange="aplicarFiltros()">
+                                <option value="todos">Todos los registros</option>
+                                <option value="activos">Solo activos</option>
+                                <option value="ocultos">Solo ocultos</option>
+                            </select>
+                        </div>
+                        <button class="btn-reset-filters" onclick="resetearFiltros()">
+                            <i class="fas fa-undo"></i>
+                            Limpiar Filtros
+                        </button>
                     </div>
-                    
-                    <div class="filtros-group">
-                        <label for="filtroEstrellas">Filtrar por estrellas:</label>
-                        <select id="filtroEstrellas" onchange="aplicarFiltros()">
-                            <option value="todas">Todas las calificaciones</option>
-                            <option value="5">5 estrellas</option>
-                            <option value="4">4 estrellas</option>
-                            <option value="3">3 estrellas</option>
-                            <option value="2">2 estrellas</option>
-                            <option value="1">1 estrella</option>
-                        </select>
-                    </div>
-                    
-                    <div class="filtros-group">
-                        <label for="filtroEstado">Estado:</label>
-                        <select id="filtroEstado" onchange="aplicarFiltros()">
-                            <option value="todos">Todos los registros</option>
-                            <option value="activos">Solo activos</option>
-                            <option value="ocultos">Solo ocultos</option>
-                        </select>
-                    </div>
-                    
-                    <button class="btn-reset-filtros" onclick="resetearFiltros()">
-                        <i class="fas fa-refresh"></i> Limpiar filtros
-                    </button>
                 </div>
 
-                <!-- Controles de paginación superior -->
-                <div class="paginacion-container" id="paginacionSuperior">
+                <!-- Paginación Superior -->
+                <div class="pagination-container" id="paginacionSuperior">
                     <!-- Se genera dinámicamente -->
                 </div>
 
@@ -130,8 +130,8 @@
                     </table>
                 </div>
 
-                <!-- Controles de paginación inferior -->
-                <div class="paginacion-container" id="paginacionInferior">
+                <!-- Paginación Inferior -->
+                <div class="pagination-container" id="paginacionInferior">
                     <!-- Se genera dinámicamente -->
                 </div>
             </section>
@@ -158,12 +158,51 @@
                     </div>
                 </div>
 
+                <!-- Filtros para Solicitudes -->
+                <div class="filters-section">
+                    <div class="filters-container">
+                        <div class="filter-group">
+                            <label for="estadoFilterSolicitudes">Estado:</label>
+                            <select id="estadoFilterSolicitudes" onchange="aplicarFiltrosSolicitudes()">
+                                <option value="todos">Todos</option>
+                                <option value="pendiente">Solo Pendientes</option>
+                                <option value="atendido">Solo Atendidos</option>
+                            </select>
+                        </div>
+                        <div class="filter-group">
+                            <label for="visibilidadFilterSolicitudes">Visibilidad:</label>
+                            <select id="visibilidadFilterSolicitudes" onchange="aplicarFiltrosSolicitudes()">
+                                <option value="todos">Todos</option>
+                                <option value="activo">Solo Activos</option>
+                                <option value="oculto">Solo Ocultos</option>
+                            </select>
+                        </div>
+                        <div class="filter-group">
+                            <label for="ordenFilterSolicitudes">Ordenar por:</label>
+                            <select id="ordenFilterSolicitudes" onchange="aplicarFiltrosSolicitudes()">
+                                <option value="reciente">Más Reciente</option>
+                                <option value="antiguo">Más Antiguo</option>
+                            </select>
+                        </div>
+                        <button class="btn-reset-filters" onclick="limpiarFiltrosSolicitudes()">
+                            <i class="fas fa-undo"></i>
+                            Limpiar Filtros
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Paginación Superior -->
+                <div class="pagination-container" id="paginacionSuperiorSolicitudes">
+                    <!-- Se generará dinámicamente -->
+                </div>
+
                 <div class="data-table">
                     <table>
                         <thead>
                             <tr>
                                 <th>Fecha</th>
                                 <th>Cliente</th>
+                                <th>DNI</th>
                                 <th>Email</th>
                                 <th>Teléfono</th>
                                 <th>Estado</th>
@@ -174,6 +213,11 @@
                             <!-- Los datos se cargarán dinámicamente desde la base de datos -->
                         </tbody>
                     </table>
+                </div>
+
+                <!-- Paginación Inferior -->
+                <div class="pagination-container" id="paginacionInferiorSolicitudes">
+                    <!-- Se generará dinámicamente -->
                 </div>
             </section>
 
@@ -277,8 +321,12 @@
                                     <span class="dato-valor" id="modalTelefonoAsesoria">-</span>
                                 </div>
                                 <div class="dato-item-sipan">
+                                    <span class="dato-label">DNI:</span>
+                                    <span class="dato-valor" id="modalDniAsesoria">-</span>
+                                </div>
+                                <div class="dato-item-sipan">
                                     <span class="dato-label">Tipo de consulta:</span>
-                                    <span class="dato-valor" id="modalTipoConsulta">Asesoría inmobiliaria</span>
+                                    <span class="dato-valor" id="modalTipoConsulta">-</span>
                                 </div>
                             </div>
                             
@@ -431,7 +479,8 @@
                 const data = await response.json();
                 
                 if (data.success) {
-                    mostrarContactos(data.data);
+                    solicitudesCompletas = data.data || [];
+                    aplicarFiltrosSolicitudes();
                 } else {
                     console.error('Error al cargar contactos:', data.error);
                 }
@@ -497,7 +546,7 @@
             tbody.innerHTML = '';
             
             if (contactos.length === 0) {
-                tbody.innerHTML = '<tr><td colspan="6" style="text-align: center;">No hay solicitudes registradas</td></tr>';
+                tbody.innerHTML = '<tr><td colspan="7" style="text-align: center;">No hay solicitudes registradas</td></tr>';
                 return;
             }
             
@@ -514,16 +563,12 @@
                 tr.innerHTML = `
                     <td>${contacto.fecha_formateada}</td>
                     <td>${contacto.nombre}</td>
+                    <td>${contacto.dni || 'N/A'}</td>
                     <td>${contacto.email}</td>
                     <td>${contacto.telefono || 'N/A'}</td>
-                    <td><span class="status ${estadoClass}">${estadoTexto}</span></td>
+                    <td class="${estadoClass}">${estadoTexto}</td>
                     <td>
-                        <button class="btn-action view" onclick="viewDetails('sol', ${contacto.id}, \`${contacto.mensaje}\`)">
-                            <i class="fas fa-eye"></i>
-                        </button>
-                        <button class="btn-action contact" onclick="contactClient('${contacto.telefono}', '${contacto.nombre}')">
-                            <i class="fas fa-phone"></i>
-                        </button>
+                        <button class="btn-action view" onclick="viewDetails('sol', ${contacto.id})"><i class="fas fa-eye"></i></button>
                         ${contacto.estado === 'pendiente' && contacto.activo == 1 ? 
                             `<button class="btn-action complete check-btn" onclick="markComplete(${contacto.id})">
                                 <i class="fas fa-check"></i>
@@ -547,45 +592,332 @@
             });
         }
 
+        // Funciones para filtros y paginación de solicitudes
+        function aplicarFiltrosSolicitudes() {
+            const estadoFilter = document.getElementById('estadoFilterSolicitudes').value;
+            const visibilidadFilter = document.getElementById('visibilidadFilterSolicitudes').value;
+            const ordenFilter = document.getElementById('ordenFilterSolicitudes').value;
+            
+            // Aplicar filtros
+            solicitudesFiltradas = solicitudesCompletas.filter(solicitud => {
+                let cumpleEstado = true;
+                let cumpleVisibilidad = true;
+                
+                // Filtro por estado
+                if (estadoFilter !== 'todos') {
+                    cumpleEstado = solicitud.estado === estadoFilter;
+                }
+                
+                // Filtro por visibilidad
+                if (visibilidadFilter !== 'todos') {
+                    if (visibilidadFilter === 'activo') {
+                        cumpleVisibilidad = solicitud.activo == 1;
+                    } else if (visibilidadFilter === 'oculto') {
+                        cumpleVisibilidad = solicitud.activo == 0;
+                    }
+                }
+                
+                return cumpleEstado && cumpleVisibilidad;
+            });
+            
+            // Aplicar ordenamiento
+            if (ordenFilter === 'reciente') {
+                solicitudesFiltradas.sort((a, b) => {
+                    const fechaA = new Date(a.fecha_creacion);
+                    const fechaB = new Date(b.fecha_creacion);
+                    return fechaB - fechaA;
+                });
+            } else if (ordenFilter === 'antiguo') {
+                solicitudesFiltradas.sort((a, b) => {
+                    const fechaA = new Date(a.fecha_creacion);
+                    const fechaB = new Date(b.fecha_creacion);
+                    return fechaA - fechaB;
+                });
+            }
+            
+            // Resetear página actual
+            paginaActualSolicitudes = 1;
+            
+            // Mostrar resultados paginados
+            mostrarSolicitudesPaginadas();
+            actualizarPaginacionSolicitudes();
+        }
+        
+        function mostrarSolicitudesPaginadas() {
+            const inicio = (paginaActualSolicitudes - 1) * registrosPorPaginaSolicitudes;
+            const fin = inicio + registrosPorPaginaSolicitudes;
+            const solicitudesPagina = solicitudesFiltradas.slice(inicio, fin);
+            
+            mostrarContactos(solicitudesPagina);
+        }
+        
+        function actualizarPaginacionSolicitudes() {
+            const totalPaginas = Math.ceil(solicitudesFiltradas.length / registrosPorPaginaSolicitudes);
+            const paginacionSuperior = document.getElementById('paginacionSuperiorSolicitudes');
+            const paginacionInferior = document.getElementById('paginacionInferiorSolicitudes');
+            
+            const htmlPaginacion = generarHtmlPaginacionSolicitudes(totalPaginas);
+            
+            paginacionSuperior.innerHTML = htmlPaginacion;
+            paginacionInferior.innerHTML = htmlPaginacion;
+        }
+        
+        function generarHtmlPaginacionSolicitudes(totalPaginas) {
+            if (totalPaginas <= 1) return '';
+            
+            let html = '<div class="pagination-controls">';
+            
+            // Botón anterior
+            html += `<button class="btn-pagination ${paginaActualSolicitudes === 1 ? 'disabled' : ''}" 
+                     onclick="cambiarPaginaSolicitudes(${paginaActualSolicitudes - 1})" 
+                     ${paginaActualSolicitudes === 1 ? 'disabled' : ''}>
+                        <i class="fas fa-chevron-left"></i> Anterior
+                     </button>`;
+            
+            // Números de página
+            const maxBotones = 5;
+            let inicioPag = Math.max(1, paginaActualSolicitudes - Math.floor(maxBotones / 2));
+            let finPag = Math.min(totalPaginas, inicioPag + maxBotones - 1);
+            
+            if (finPag - inicioPag < maxBotones - 1) {
+                inicioPag = Math.max(1, finPag - maxBotones + 1);
+            }
+            
+            if (inicioPag > 1) {
+                html += `<button class="btn-pagination-number" onclick="cambiarPaginaSolicitudes(1)">1</button>`;
+                if (inicioPag > 2) {
+                    html += '<span class="pagination-dots">...</span>';
+                }
+            }
+            
+            for (let i = inicioPag; i <= finPag; i++) {
+                html += `<button class="btn-pagination-number ${i === paginaActualSolicitudes ? 'active' : ''}" 
+                         onclick="cambiarPaginaSolicitudes(${i})">${i}</button>`;
+            }
+            
+            if (finPag < totalPaginas) {
+                if (finPag < totalPaginas - 1) {
+                    html += '<span class="pagination-dots">...</span>';
+                }
+                html += `<button class="btn-pagination-number" onclick="cambiarPaginaSolicitudes(${totalPaginas})">${totalPaginas}</button>`;
+            }
+            
+            // Botón siguiente
+            html += `<button class="btn-pagination ${paginaActualSolicitudes === totalPaginas ? 'disabled' : ''}" 
+                     onclick="cambiarPaginaSolicitudes(${paginaActualSolicitudes + 1})" 
+                     ${paginaActualSolicitudes === totalPaginas ? 'disabled' : ''}>
+                        Siguiente <i class="fas fa-chevron-right"></i>
+                     </button>`;
+            
+            html += '</div>';
+            
+            // Información de registros
+            const inicioInfo = (paginaActualSolicitudes - 1) * registrosPorPaginaSolicitudes + 1;
+            const finInfo = Math.min(paginaActualSolicitudes * registrosPorPaginaSolicitudes, solicitudesFiltradas.length);
+            
+            html += `<div class="pagination-info">
+                        Mostrando ${inicioInfo} - ${finInfo} de ${solicitudesFiltradas.length} solicitudes
+                     </div>`;
+            
+            return html;
+        }
+        
+        function cambiarPaginaSolicitudes(nuevaPagina) {
+            const totalPaginas = Math.ceil(solicitudesFiltradas.length / registrosPorPaginaSolicitudes);
+            
+            if (nuevaPagina >= 1 && nuevaPagina <= totalPaginas) {
+                paginaActualSolicitudes = nuevaPagina;
+                mostrarSolicitudesPaginadas();
+                actualizarPaginacionSolicitudes();
+            }
+        }
+        
+        function limpiarFiltrosSolicitudes() {
+            document.getElementById('estadoFilterSolicitudes').value = 'todos';
+            document.getElementById('visibilidadFilterSolicitudes').value = 'todos';
+            document.getElementById('ordenFilterSolicitudes').value = 'reciente';
+            aplicarFiltrosSolicitudes();
+        }
+
         function logout() {
             localStorage.removeItem('isLoggedIn');
             window.location.href = 'login.html';
         }
 
         function viewDetails(type, id, mensaje = '') {
-            if (type === 'sol' && mensaje) {
+            console.log('viewDetails llamado:', type, id);
+            console.log('Tipo de parámetros:', typeof type, typeof id);
+            if (type === 'sol') {
+                console.log('Entrando en lógica de solicitud');
                 // Buscar datos del contacto en los datos cargados
                 let contacto = null;
-                // Buscar en la tabla actual mostrada
-                const filas = document.querySelectorAll('#solicitudesTable tr');
-                filas.forEach(fila => {
-                    const celdas = fila.querySelectorAll('td');
-                    if (celdas.length > 0) {
-                        const botonVer = fila.querySelector('.btn-action.view');
-                        if (botonVer && botonVer.onclick && botonVer.onclick.toString().includes(`${id}`)) {
-                            contacto = {
-                                nombre: celdas[1].textContent,
-                                email: celdas[2].textContent,
-                                telefono: celdas[3].textContent
-                            };
+                let mensajeReal = '';
+                
+                // Buscar en solicitudesFiltradas primero
+                console.log('solicitudesFiltradas:', window.solicitudesFiltradas);
+                console.log('solicitudesCompletas:', window.solicitudesCompletas);
+                
+                if (window.solicitudesFiltradas) {
+                    contacto = window.solicitudesFiltradas.find(c => c.id == id);
+                    console.log('Búsqueda en filtradas:', contacto);
+                }
+                
+                // Si no se encuentra, buscar en solicitudesCompletas
+                if (!contacto && window.solicitudesCompletas) {
+                    contacto = window.solicitudesCompletas.find(c => c.id == id);
+                    console.log('Búsqueda en completas:', contacto);
+                }
+                
+                // Fallback: buscar directamente en la API
+                if (!contacto) {
+                    console.log('Buscando directamente en la API...');
+                    // Hacer una consulta directa a la API para obtener el contacto
+                    fetch(`../php/contactos-api.php?action=contactos`)
+                        .then(response => response.json())
+                        .then(data => {
+                            if (data.success) {
+                                const contactoEncontrado = data.data.find(c => c.id == id);
+                                if (contactoEncontrado) {
+                                    console.log('Contacto encontrado en API:', contactoEncontrado);
+                                    llenarModalConDatos(contactoEncontrado);
+                                    mostrarModal();
+                                }
+                            }
+                        });
+                    return; // Salir aquí para evitar ejecutar el resto
+                }
+                
+                if (contacto) {
+                    console.log('Contacto encontrado:', contacto);
+                    
+                    // Extraer datos del mensaje completo
+                    const mensajeCompleto = contacto.mensaje || '';
+                    let datosExtraidos = {
+                        nombre: contacto.nombre || '-',
+                        dni: contacto.dni || '-',
+                        email: contacto.email || '-',
+                        telefono: contacto.telefono || '-',
+                        tipoConsulta: '-',
+                        mensaje: '-'
+                    };
+                    
+                    // Parsear el mensaje completo para extraer datos individuales
+                    if (mensajeCompleto.includes('DATOS DEL CONTACTO:')) {
+                        const lineas = mensajeCompleto.split('\n');
+                        
+                        lineas.forEach(linea => {
+                            if (linea.includes('Nombre:')) {
+                                datosExtraidos.nombre = linea.split('Nombre:')[1]?.trim() || datosExtraidos.nombre;
+                            }
+                            if (linea.includes('Email:')) {
+                                datosExtraidos.email = linea.split('Email:')[1]?.trim() || datosExtraidos.email;
+                            }
+                            if (linea.includes('Teléfono:')) {
+                                datosExtraidos.telefono = linea.split('Teléfono:')[1]?.trim() || datosExtraidos.telefono;
+                            }
+                            if (linea.includes('Tipo de consulta:')) {
+                                datosExtraidos.tipoConsulta = linea.split('Tipo de consulta:')[1]?.trim() || datosExtraidos.tipoConsulta;
+                            }
+                        });
+                        
+                        // Extraer mensaje real
+                        if (mensajeCompleto.includes('MENSAJE:')) {
+                            const partesMensaje = mensajeCompleto.split('MENSAJE:');
+                            if (partesMensaje.length > 1) {
+                                datosExtraidos.mensaje = partesMensaje[1].trim();
+                            }
                         }
+                    }
+                    
+                    llenarModalConDatos(contacto);
+                    mostrarModal();
+                } else {
+                    console.log('Contacto no encontrado localmente, buscando en API...');
+                    // Búsqueda directa en API como fallback
+                    fetch(`php/contactos-api.php?id=${id}`)
+                        .then(response => response.json())
+                        .then(data => {
+                            if (data.success && data.contacto) {
+                                console.log('Contacto encontrado en API:', data.contacto);
+                                llenarModalConDatos(data.contacto);
+                                mostrarModal();
+                            } else {
+                                console.log('Contacto no encontrado en API');
+                                alert('No se pudo cargar la información del contacto');
+                            }
+                        })
+                        .catch(error => {
+                            console.error('Error al buscar contacto en API:', error);
+                            alert('Error al cargar la información del contacto');
+                        });
+                }
+        }
+        
+        function llenarModalConDatos(contacto) {
+            console.log('Llenando modal con contacto:', contacto);
+            
+            // Extraer datos del mensaje completo
+            const mensajeCompleto = contacto.mensaje || '';
+            let datosExtraidos = {
+                nombre: contacto.nombre || '-',
+                dni: contacto.dni || '-',
+                email: contacto.email || '-',
+                telefono: contacto.telefono || '-',
+                tipoConsulta: '-',
+                mensaje: '-'
+            };
+            
+            // Parsear el mensaje completo para extraer datos individuales
+            if (mensajeCompleto.includes('DATOS DEL CONTACTO:')) {
+                const lineas = mensajeCompleto.split('\n');
+                
+                lineas.forEach(linea => {
+                    if (linea.includes('Nombre:')) {
+                        datosExtraidos.nombre = linea.split('Nombre:')[1]?.trim() || datosExtraidos.nombre;
+                    }
+                    if (linea.includes('Email:')) {
+                        datosExtraidos.email = linea.split('Email:')[1]?.trim() || datosExtraidos.email;
+                    }
+                    if (linea.includes('Teléfono:')) {
+                        datosExtraidos.telefono = linea.split('Teléfono:')[1]?.trim() || datosExtraidos.telefono;
+                    }
+                    if (linea.includes('Tipo de consulta:')) {
+                        datosExtraidos.tipoConsulta = linea.split('Tipo de consulta:')[1]?.trim() || datosExtraidos.tipoConsulta;
                     }
                 });
                 
-                // Extraer solo el mensaje real (después de "MENSAJE:")
-                let mensajeReal = mensaje || 'Sin mensaje adicional';
-                if (mensaje && mensaje.includes('MENSAJE:')) {
-                    const partes = mensaje.split('MENSAJE:');
-                    if (partes.length > 1) {
-                        mensajeReal = partes[1].trim();
+                // Extraer mensaje real
+                if (mensajeCompleto.includes('MENSAJE:')) {
+                    const partesMensaje = mensajeCompleto.split('MENSAJE:');
+                    if (partesMensaje.length > 1) {
+                        datosExtraidos.mensaje = partesMensaje[1].trim();
                     }
                 }
-                
-                // Llenar datos del modal de asesoría
-                document.getElementById('modalMensaje').textContent = mensajeReal;
-                document.getElementById('modalNombreAsesoria').textContent = contacto ? contacto.nombre : '-';
-                document.getElementById('modalCorreoAsesoria').textContent = contacto ? contacto.email : '-';
-                document.getElementById('modalTelefonoAsesoria').textContent = contacto ? (contacto.telefono || 'No especificado') : '-';
+            }
+            
+            // Llenar datos del modal de asesoría con logs para debug
+            console.log('Datos extraídos:', datosExtraidos);
+            
+            const modalMensaje = document.getElementById('modalMensaje');
+            const modalNombre = document.getElementById('modalNombreAsesoria');
+            const modalDni = document.getElementById('modalDniAsesoria');
+            const modalCorreo = document.getElementById('modalCorreoAsesoria');
+            const modalTelefono = document.getElementById('modalTelefonoAsesoria');
+            const modalTipo = document.getElementById('modalTipoConsulta');
+            
+            console.log('Elementos encontrados:', {
+                modalMensaje, modalNombre, modalDni, modalCorreo, modalTelefono, modalTipo
+            });
+            
+            if (modalMensaje) modalMensaje.textContent = datosExtraidos.mensaje;
+            if (modalNombre) modalNombre.textContent = datosExtraidos.nombre;
+            if (modalDni) modalDni.textContent = datosExtraidos.dni;
+            if (modalCorreo) modalCorreo.textContent = datosExtraidos.email;
+            if (modalTelefono) modalTelefono.textContent = datosExtraidos.telefono;
+            if (modalTipo) modalTipo.textContent = datosExtraidos.tipoConsulta;
+        }
+        
+        function mostrarModal() {
                 
                 // Ocultar secciones de calificación y mostrar sección de mensaje
                 const clienteInfo = document.querySelector('.cliente-info');
@@ -604,10 +936,25 @@
                 const modalTitle = document.querySelector('.modal-header h3');
                 if (modalTitle) modalTitle.innerHTML = '<i class="fas fa-envelope"></i> Mensaje de Asesoría';
                 
-                // Mostrar modal
+                // Mostrar modal con animación suave para asesoría
                 const modal = document.getElementById('modalCalificacion');
-                modal.style.display = 'flex';
-                modal.classList.add('active');
+                console.log('Modal encontrado:', modal);
+                if (modal) {
+                    // Agregar clase específica para asesoría
+                    modal.classList.add('modal-asesoria');
+                    modal.style.display = 'flex';
+                    modal.style.opacity = '0';
+                    
+                    // Animación suave sin parpadeo
+                    requestAnimationFrame(() => {
+                        modal.style.transition = 'opacity 0.2s ease-in-out';
+                        modal.style.opacity = '1';
+                        modal.classList.add('active');
+                        console.log('Modal activado');
+                    });
+                } else {
+                    console.error('Modal no encontrado');
+                }
             }
         }
 
@@ -685,10 +1032,13 @@
             }
         }
 
-        // Variables para paginación y filtros
-        let todasLasCalificaciones = [];
-        let calificacionesFiltradas = [];
-        let paginaActual = 1;
+        // Variables para paginación de solicitudes
+        let solicitudesCompletas = [];
+        let solicitudesFiltradas = [];
+        let paginaActualSolicitudes = 1;
+        let registrosPorPaginaSolicitudes = 10;
+        let contactosFiltrados = [];
+        let contactoActualModal = null;
         const registrosPorPagina = 10;
 
         function mostrarCalificaciones(calificaciones, pagina = 1) {
@@ -828,15 +1178,10 @@
                     return;
                 }
                 
-                let html = '<div class="paginacion-controles">';
-                
-                // Información de registros
-                const inicio = (paginaActual - 1) * registrosPorPagina + 1;
-                const fin = Math.min(paginaActual * registrosPorPagina, totalRegistros);
-                html += `<div class="paginacion-info">Mostrando ${inicio}-${fin} de ${totalRegistros} registros</div>`;
+                let html = '<div class="pagination-controls">';
                 
                 // Botón anterior
-                html += `<button class="btn-paginacion ${paginaActual === 1 ? 'disabled' : ''}" 
+                html += `<button class="btn-pagination ${paginaActual === 1 ? 'disabled' : ''}" 
                          onclick="cambiarPagina(${paginaActual - 1})" 
                          ${paginaActual === 1 ? 'disabled' : ''}>
                          <i class="fas fa-chevron-left"></i> Anterior
@@ -853,34 +1198,42 @@
                 
                 // Primera página si no está en el rango
                 if (inicioRango > 1) {
-                    html += `<button class="btn-paginacion numero" onclick="cambiarPagina(1)">1</button>`;
+                    html += `<button class="btn-pagination-number" onclick="cambiarPagina(1)">1</button>`;
                     if (inicioRango > 2) {
-                        html += '<span class="paginacion-puntos">...</span>';
+                        html += '<span class="pagination-dots">...</span>';
                     }
                 }
                 
                 // Páginas del rango
                 for (let i = inicioRango; i <= finRango; i++) {
-                    html += `<button class="btn-paginacion numero ${i === paginaActual ? 'active' : ''}" 
+                    html += `<button class="btn-pagination-number ${i === paginaActual ? 'active' : ''}" 
                              onclick="cambiarPagina(${i})">${i}</button>`;
                 }
                 
                 // Última página si no está en el rango
                 if (finRango < totalPaginas) {
                     if (finRango < totalPaginas - 1) {
-                        html += '<span class="paginacion-puntos">...</span>';
+                        html += '<span class="pagination-dots">...</span>';
                     }
-                    html += `<button class="btn-paginacion numero" onclick="cambiarPagina(${totalPaginas})">${totalPaginas}</button>`;
+                    html += `<button class="btn-pagination-number" onclick="cambiarPagina(${totalPaginas})">${totalPaginas}</button>`;
                 }
                 
                 // Botón siguiente
-                html += `<button class="btn-paginacion ${paginaActual === totalPaginas ? 'disabled' : ''}" 
+                html += `<button class="btn-pagination ${paginaActual === totalPaginas ? 'disabled' : ''}" 
                          onclick="cambiarPagina(${paginaActual + 1})" 
                          ${paginaActual === totalPaginas ? 'disabled' : ''}>
                          Siguiente <i class="fas fa-chevron-right"></i>
                          </button>`;
                 
                 html += '</div>';
+                
+                // Información de registros
+                const inicio = (paginaActual - 1) * registrosPorPagina + 1;
+                const fin = Math.min(paginaActual * registrosPorPagina, totalRegistros);
+                html += `<div class="pagination-info">
+                            Mostrando ${inicio} - ${fin} de ${totalRegistros} calificaciones
+                         </div>`;
+                
                 contenedor.innerHTML = html;
             });
         }
@@ -1114,10 +1467,24 @@
 
         function cerrarModal() {
             const modal = document.getElementById('modalCalificacion');
-            modal.classList.remove('active');
-            setTimeout(() => {
-                modal.style.display = 'none';
-            }, 300);
+            
+            // Animación suave para cerrar solo si es modal de asesoría
+            if (modal.classList.contains('modal-asesoria')) {
+                modal.style.transition = 'opacity 0.2s ease-in-out';
+                modal.style.opacity = '0';
+                setTimeout(() => {
+                    modal.style.display = 'none';
+                    modal.classList.remove('active', 'modal-asesoria');
+                    modal.style.transition = '';
+                    modal.style.opacity = '';
+                }, 200);
+            } else {
+                // Comportamiento original para modal de calificaciones
+                modal.classList.remove('active');
+                setTimeout(() => {
+                    modal.style.display = 'none';
+                }, 300);
+            }
         }
 
 

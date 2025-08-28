@@ -28,6 +28,8 @@ try {
                         http_response_code(400);
                         echo json_encode(['error' => 'Acción no válida']);
                 }
+            } elseif (isset($_GET['id'])) {
+                obtenerContactoPorId($pdo, $_GET['id']);
             } else {
                 obtenerContactos($pdo);
             }
@@ -67,13 +69,13 @@ try {
     
 } catch (PDOException $e) {
     http_response_code(500);
-    echo json_encode(['error' => 'Error de base de datos: ' . $e->getMessage()]);
+    echo json_encode(['error' => 'Error interno del servidor: ' . $e->getMessage()]);
 }
 
 function obtenerContactos($pdo) {
     try {
         $stmt = $pdo->prepare("
-            SELECT id, nombre, email, telefono, mensaje, fecha_creacion, estado, activo 
+            SELECT id, nombre, dni, email, telefono, mensaje, fecha_creacion, estado, activo 
             FROM contactos 
             ORDER BY fecha_creacion DESC
         ");
@@ -88,6 +90,7 @@ function obtenerContactos($pdo) {
             
             // Limpiar y validar datos para exportación
             $contacto['nombre'] = htmlspecialchars($contacto['nombre'] ?? '', ENT_QUOTES, 'UTF-8');
+            $contacto['dni'] = htmlspecialchars($contacto['dni'] ?? '', ENT_QUOTES, 'UTF-8');
             $contacto['email'] = htmlspecialchars($contacto['email'] ?? '', ENT_QUOTES, 'UTF-8');
             $contacto['telefono'] = htmlspecialchars($contacto['telefono'] ?? '', ENT_QUOTES, 'UTF-8');
             $contacto['mensaje'] = htmlspecialchars($contacto['mensaje'] ?? '', ENT_QUOTES, 'UTF-8');
@@ -298,6 +301,43 @@ function revertirEstadoContacto($pdo, $id) {
             'success' => false,
             'message' => 'Error del servidor: ' . $e->getMessage()
         ], JSON_UNESCAPED_UNICODE);
+    }
+}
+
+function obtenerContactoPorId($pdo, $id) {
+    try {
+        $stmt = $pdo->prepare("SELECT id, nombre, dni, email, telefono, mensaje, estado, fecha_creacion, activo FROM contactos WHERE id = ?");
+        $stmt->execute([$id]);
+        $contacto = $stmt->fetch(PDO::FETCH_ASSOC);
+        
+        if ($contacto) {
+            // Limpiar datos
+            $contacto['nombre'] = htmlspecialchars($contacto['nombre'], ENT_QUOTES, 'UTF-8');
+            $contacto['dni'] = htmlspecialchars($contacto['dni'], ENT_QUOTES, 'UTF-8');
+            $contacto['email'] = htmlspecialchars($contacto['email'], ENT_QUOTES, 'UTF-8');
+            $contacto['telefono'] = htmlspecialchars($contacto['telefono'], ENT_QUOTES, 'UTF-8');
+            $contacto['mensaje'] = htmlspecialchars($contacto['mensaje'], ENT_QUOTES, 'UTF-8');
+            
+            // Formatear fecha
+            $fecha = new DateTime($contacto['fecha_creacion']);
+            $contacto['fecha_formateada'] = $fecha->format('d/m/Y H:i');
+            
+            echo json_encode([
+                'success' => true,
+                'contacto' => $contacto
+            ]);
+        } else {
+            echo json_encode([
+                'success' => false,
+                'error' => 'Contacto no encontrado'
+            ]);
+        }
+    } catch (Exception $e) {
+        http_response_code(500);
+        echo json_encode([
+            'success' => false,
+            'error' => 'Error al obtener contacto: ' . $e->getMessage()
+        ]);
     }
 }
 ?>
