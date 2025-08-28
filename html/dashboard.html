@@ -1729,6 +1729,7 @@
                                     <tr>
                                         <th style="background-color: #0c3c61; color: white; font-weight: bold; padding: 12px 8px; text-align: center; font-size: 11px;">Fecha</th>
                                         <th style="background-color: #0c3c61; color: white; font-weight: bold; padding: 12px 8px; text-align: center; font-size: 11px;">Cliente</th>
+                                        <th style="background-color: #0c3c61; color: white; font-weight: bold; padding: 12px 8px; text-align: center; font-size: 11px;">DNI</th>
                                         <th style="background-color: #0c3c61; color: white; font-weight: bold; padding: 12px 8px; text-align: center; font-size: 11px;">Email</th>
                                         <th style="background-color: #0c3c61; color: white; font-weight: bold; padding: 12px 8px; text-align: center; font-size: 11px;">Teléfono</th>
                                         <th style="background-color: #0c3c61; color: white; font-weight: bold; padding: 12px 8px; text-align: center; font-size: 11px;">Tipo Consulta</th>
@@ -1749,10 +1750,21 @@
                             const estadoClass = estado === 'pendiente' ? 'pendiente' : 'atendido';
                             const estadoTexto = estado === 'pendiente' ? '⏳ PENDIENTE' : '✅ ATENDIDO';
                             
-                            // Extraer solo el mensaje limpio del cliente
+                            // Obtener DNI del contacto
+                            const dni = (contacto.dni || 'N/A').toString().replace(/"/g, '""');
+                            
+                            // Extraer datos del mensaje completo
                             let mensajeCompleto = (contacto.mensaje || 'Sin mensaje').toString();
                             let mensajeLimpio = 'Sin mensaje específico';
                             let tipoConsulta = 'General';
+                            
+                            // Extraer tipo de consulta del mensaje estructurado
+                            if (mensajeCompleto.includes('Tipo de consulta:')) {
+                                const tipoMatch = mensajeCompleto.match(/Tipo de consulta:\s*([^\n\r]+)/i);
+                                if (tipoMatch && tipoMatch[1]) {
+                                    tipoConsulta = tipoMatch[1].trim();
+                                }
+                            }
                             
                             // Extraer el mensaje real del cliente
                             const mensajeMatch = mensajeCompleto.match(/MENSAJE:\s*(.+?)(?:\s*$)/i);
@@ -1762,22 +1774,24 @@
                                 mensajeLimpio = mensajeCompleto.trim();
                             }
                             
-                            // Determinar tipo de consulta basado en palabras clave
-                            const mensajeParaAnalisis = mensajeLimpio.toLowerCase();
-                            if (mensajeParaAnalisis.includes('dominio') || mensajeParaAnalisis.includes('media luna')) {
-                                tipoConsulta = '🏘️ Dominio Media Luna';
-                            } else if (mensajeParaAnalisis.includes('informacion') || mensajeParaAnalisis.includes('información')) {
-                                tipoConsulta = 'ℹ️ Información General';
-                            } else if (mensajeParaAnalisis.includes('precio') || mensajeParaAnalisis.includes('costo')) {
-                                tipoConsulta = '💰 Consulta de Precios';
-                            } else if (mensajeParaAnalisis.includes('visita') || mensajeParaAnalisis.includes('ver')) {
-                                tipoConsulta = '👁️ Solicitud de Visita';
-                            } else if (mensajeParaAnalisis.includes('financiamiento') || mensajeParaAnalisis.includes('credito')) {
-                                tipoConsulta = '🏦 Financiamiento';
-                            } else if (mensajeParaAnalisis.includes('techo propio') || mensajeParaAnalisis.includes('mi vivienda')) {
-                                tipoConsulta = '🏛️ Programa Gubernamental';
-                            } else {
-                                tipoConsulta = '📋 Consulta General';
+                            // Si no se pudo extraer tipo de consulta del mensaje, usar análisis de palabras clave como fallback
+                            if (tipoConsulta === 'General') {
+                                const mensajeParaAnalisis = mensajeLimpio.toLowerCase();
+                                if (mensajeParaAnalisis.includes('dominio') || mensajeParaAnalisis.includes('media luna')) {
+                                    tipoConsulta = 'Dominio Media Luna';
+                                } else if (mensajeParaAnalisis.includes('informacion') || mensajeParaAnalisis.includes('información')) {
+                                    tipoConsulta = 'Información General';
+                                } else if (mensajeParaAnalisis.includes('precio') || mensajeParaAnalisis.includes('costo')) {
+                                    tipoConsulta = 'Consulta de Precios';
+                                } else if (mensajeParaAnalisis.includes('visita') || mensajeParaAnalisis.includes('ver')) {
+                                    tipoConsulta = 'Solicitud de Visita';
+                                } else if (mensajeParaAnalisis.includes('financiamiento') || mensajeParaAnalisis.includes('credito')) {
+                                    tipoConsulta = 'Financiamiento';
+                                } else if (mensajeParaAnalisis.includes('techo propio') || mensajeParaAnalisis.includes('mi vivienda')) {
+                                    tipoConsulta = 'Programa Gubernamental';
+                                } else {
+                                    tipoConsulta = 'Consulta General';
+                                }
                             }
                             
                             // Limpiar mensaje final
@@ -1796,9 +1810,10 @@
                                 <tr style="${filaStyle}">
                                     <td style="padding: 10px 8px; border: 1px solid #e1e5e9; text-align: center; font-weight: 600;">${fecha}</td>
                                     <td style="padding: 10px 8px; border: 1px solid #e1e5e9; font-weight: bold; color: #0c3c61;">${nombre}</td>
+                                    <td style="padding: 10px 8px; border: 1px solid #e1e5e9; text-align: center; font-weight: 600; color: #1e7bbf;">${dni}</td>
                                     <td style="padding: 10px 8px; border: 1px solid #e1e5e9; color: #1e7bbf;">${email}</td>
                                     <td style="padding: 10px 8px; border: 1px solid #e1e5e9; text-align: center; font-weight: 600;">${telefono}</td>
-                                    <td style="padding: 10px 8px; border: 1px solid #e1e5e9; text-align: center; font-weight: 600;">${tipoConsulta}</td>
+                                    <td style="padding: 10px 8px; border: 1px solid #e1e5e9; text-align: center; font-weight: 600; color: #0c3c61;">${tipoConsulta}</td>
                                     <td style="padding: 10px 8px; border: 1px solid #e1e5e9; text-align: center;"><span style="${estadoStyle}">${estadoTexto}</span></td>
                                     <td style="padding: 10px 8px; border: 1px solid #e1e5e9; word-wrap: break-word; max-width: 300px;">${mensajeLimpio}</td>
                                 </tr>
