@@ -1,0 +1,936 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nuestros Servicios | Sipán Inmobiliaria</title>
+    <link rel="icon" type="image/png" href="../img/logo_medialuna.png">
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Estilos específicos para la página de servicios */
+        .servicios-hero {
+            background: linear-gradient(120deg, rgb(12, 60, 97) 0%, #1e7bbf 100%);
+            padding: 4em 0 2em 0;
+            text-align: center;
+            color: #fff;
+        }
+
+        .servicios-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2em;
+        }
+
+        .servicios-hero h1 {
+            font-size: 2.8em;
+            margin-bottom: 0.5em;
+            text-shadow: 0 2px 8px rgba(0,0,0,0.3);
+        }
+
+        .servicios-hero p {
+            font-size: 1.3em;
+            opacity: 0.9;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .servicios-main {
+            padding: 4em 0;
+            background: linear-gradient(135deg, #f8fbff 0%, #e8f4fd 100%);
+        }
+
+        .servicios-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+            gap: 2em;
+            margin-top: 2em;
+            padding: 0 1em;
+        }
+
+        .servicio-card {
+            background: #fff;
+            border-radius: 16px;
+            box-shadow: 0 4px 20px rgba(30, 123, 191, 0.1);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            height: auto;
+            min-height: 420px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .servicio-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 30px rgba(30, 123, 191, 0.2);
+        }
+
+        .servicio-icon {
+            background: linear-gradient(45deg, #1e7bbf, #28a745);
+            color: white;
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8em;
+            margin: 1.5em auto 1em;
+            transition: transform 0.3s ease;
+            flex-shrink: 0;
+        }
+
+        .servicio-card:hover .servicio-icon {
+            transform: scale(1.05);
+        }
+
+        .servicio-content {
+            padding: 0 1.5em 1.5em;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+        }
+
+        .servicio-title {
+            color: #0c3c61;
+            font-size: 1.3em;
+            font-weight: 700;
+            margin-bottom: 0.8em;
+            line-height: 1.3;
+        }
+
+        .servicio-description {
+            color: #4a5568;
+            line-height: 1.6;
+            margin-bottom: 1.2em;
+            font-size: 0.95em;
+            flex-grow: 1;
+        }
+
+        .servicio-features {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.4em;
+            justify-content: center;
+            margin-bottom: 1.5em;
+        }
+
+        .feature-item {
+            background: linear-gradient(135deg, #e8f4fd, #f0f9ff);
+            color: #1e7bbf;
+            padding: 0.25em 0.6em;
+            border-radius: 12px;
+            font-size: 0.8em;
+            font-weight: 500;
+            border: 1px solid rgba(30, 123, 191, 0.1);
+        }
+
+        .ver-mas-btn {
+            background: linear-gradient(45deg, #1e7bbf 0%, #28a745 100%);
+            color: white;
+            border: none;
+            padding: 0.7em 1.5em;
+            border-radius: 20px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 0.9em;
+            margin-top: auto;
+        }
+
+        .ver-mas-btn:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 6px 15px rgba(30, 123, 191, 0.3);
+        }
+
+        /* Modal para detalles */
+        .modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 10000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .modal.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .modal-content {
+            background: white;
+            border-radius: 20px;
+            padding: 2em;
+            max-width: 600px;
+            max-height: 80vh;
+            overflow-y: auto;
+            position: relative;
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            background: none;
+            border: none;
+            font-size: 1.5em;
+            cursor: pointer;
+            color: #666;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .servicios-hero {
+                padding: 3em 0 1.5em 0;
+            }
+            
+            .servicios-hero h1 {
+                font-size: 2.2em;
+            }
+            
+            .servicios-hero p {
+                font-size: 1.1em;
+            }
+            
+            .servicios-main {
+                padding: 3em 0;
+            }
+            
+            .servicios-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5em;
+                margin-top: 1.5em;
+                padding: 0 0.5em;
+            }
+            
+            .servicio-card {
+                min-height: 380px;
+            }
+            
+            .servicio-icon {
+                width: 60px;
+                height: 60px;
+                font-size: 1.5em;
+                margin: 1.2em auto 0.8em;
+            }
+            
+            .servicio-content {
+                padding: 0 1.2em 1.2em;
+            }
+            
+            .servicio-title {
+                font-size: 1.2em;
+            }
+            
+            .servicio-description {
+                font-size: 0.9em;
+            }
+            
+            .feature-item {
+                font-size: 0.75em;
+                padding: 0.2em 0.5em;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .servicios-container {
+                padding: 0 1em;
+            }
+            
+            .servicios-hero h1 {
+                font-size: 1.8em;
+            }
+            
+            .servicios-hero p {
+                font-size: 1em;
+            }
+            
+            .servicios-grid {
+                grid-template-columns: 1fr;
+                gap: 1.2em;
+                padding: 0;
+            }
+            
+            .servicio-card {
+                min-height: 350px;
+                margin: 0 0.5em;
+            }
+            
+            .servicio-content {
+                padding: 0 1em 1em;
+            }
+        }
+
+        /* Estilos específicos del Footer para esta página */
+        .footer-waves {
+            position: relative;
+            background: linear-gradient(135deg, #0c3c61 0%, #1e7bbf 100%);
+            color: white;
+            overflow: hidden;
+        }
+
+        .waves-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100px;
+            overflow: hidden;
+        }
+
+        .waves {
+            position: relative;
+            width: 100%;
+            height: 100px;
+            margin-bottom: -7px;
+        }
+
+        .parallax > use {
+            animation: move-forever 25s cubic-bezier(.55,.5,.45,.5) infinite;
+        }
+
+        .parallax > use:nth-child(1) {
+            animation-delay: -2s;
+            animation-duration: 7s;
+        }
+
+        .parallax > use:nth-child(2) {
+            animation-delay: -3s;
+            animation-duration: 10s;
+        }
+
+        .parallax > use:nth-child(3) {
+            animation-delay: -4s;
+            animation-duration: 13s;
+        }
+
+        .parallax > use:nth-child(4) {
+            animation-delay: -5s;
+            animation-duration: 20s;
+        }
+
+        @keyframes move-forever {
+            0% { transform: translate3d(-90px,0,0); }
+            100% { transform: translate3d(85px,0,0); }
+        }
+
+        .footer-content {
+            position: relative;
+            z-index: 1;
+            padding-top: 120px;
+            padding-bottom: 2em;
+        }
+
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2em;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 3em;
+            margin-bottom: 2em;
+        }
+
+        .footer-section h4 {
+            color: white;
+            font-size: 1.3em;
+            margin-bottom: 1.5em;
+            font-weight: 700;
+        }
+
+        .footer-logo img {
+            max-width: 150px;
+            margin-bottom: 1em;
+        }
+
+        .footer-description {
+            color: rgba(255, 255, 255, 0.9);
+            line-height: 1.6;
+            margin-bottom: 1.5em;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1em;
+        }
+
+        .social-link {
+            display: flex;
+            align-items: center;
+            gap: 0.5em;
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            padding: 0.5em;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .social-link:hover {
+            color: white;
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .quick-links {
+            display: flex;
+            flex-direction: column;
+            gap: 0.8em;
+        }
+
+        .quick-links a {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5em;
+            transition: color 0.3s ease;
+        }
+
+        .quick-links a:hover {
+            color: white;
+        }
+
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 1em;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 0.8em;
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .contact-item i {
+            color: #28a745;
+            width: 20px;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+            padding-top: 1.5em;
+            text-align: center;
+        }
+
+        .copyright p {
+            color: rgba(255, 255, 255, 0.8);
+            margin: 0.5em 0;
+        }
+
+        .developer {
+            font-size: 0.9em;
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        /* Footer Responsive */
+        @media (max-width: 768px) {
+            .footer-grid {
+                grid-template-columns: 1fr;
+                gap: 2em;
+            }
+            
+            .footer-container {
+                padding: 0 1em;
+            }
+            
+            .social-links {
+                justify-content: center;
+            }
+            
+            .waves-container {
+                height: 80px;
+            }
+            
+            .waves {
+                height: 80px;
+            }
+            
+            .footer-content {
+                padding-top: 100px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .footer-section h4 {
+                font-size: 1.1em;
+            }
+            
+            .footer-logo img {
+                max-width: 120px;
+            }
+            
+            .social-links {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .waves-container {
+                height: 60px;
+            }
+            
+            .waves {
+                height: 60px;
+            }
+            
+            .footer-content {
+                padding-top: 80px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header y menú principal -->
+    <header class="header">
+        <div class="header-container">
+            <a href="../index.html">
+                <img src="../img/logosipan.png" alt="Logo Sipán" class="logo">
+            </a>
+            <button class="menu-toggle" aria-label="Abrir menú">
+                <i class="fas fa-bars"></i>
+            </button>
+            <nav class="menu-superior">
+                <ul>
+                    <li><a href="../index.html"><i class="fas fa-home"></i> Inicio</a></li>
+                    <li><a href="proyecto.html"><i class="fas fa-building"></i> Beneficios</a></li>
+                    <li><a href="servicios.html" class="active"><i class="fas fa-cogs"></i> Servicios</a></li>
+                    <li><a href="../index.html#oportunidades"><i class="fas fa-briefcase"></i> Trabaja con Nosotros</a></li>
+                    <li><a href="../index.html#ubicacion"><i class="fas fa-map-marker-alt"></i> Ubicación</a></li>
+                    <li><a href="contacto.html"><i class="fas fa-envelope"></i> Contacto</a></li>
+                </ul>
+            </nav>
+            
+            <!-- Botón de inicio de sesión independiente -->
+            <div class="login-section">
+                <a href="login.html" class="login-btn">
+                    <i class="fas fa-user-circle"></i>
+                    <span>Iniciar Sesión</span>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero de servicios -->
+    <section class="servicios-hero">
+        <div class="servicios-container">
+            <h1>
+                <i class="fas fa-cogs"></i> Nuestros Servicios
+            </h1>
+            <p>Soluciones inmobiliarias profesionales pensadas para ti</p>
+        </div>
+    </section>
+
+    <!-- Servicios principales -->
+    <section class="servicios-main">
+        <div class="servicios-container">
+            <div class="servicios-grid">
+                <!-- Venta de Propiedades -->
+                <div class="servicio-card" data-servicio="venta">
+                    <div class="servicio-icon">
+                        <i class="fas fa-home"></i>
+                    </div>
+                    <div class="servicio-content">
+                        <h3 class="servicio-title">Venta de Propiedades</h3>
+                        <p class="servicio-description">
+                            Te ayudamos a encontrar y adquirir la propiedad ideal, con asesoría personalizada y acompañamiento legal completo.
+                        </p>
+                        <div class="servicio-features">
+                            <span class="feature-item">Asesoría Personalizada</span>
+                            <span class="feature-item">Acompañamiento Legal</span>
+                            <span class="feature-item">Financiamiento</span>
+                        </div>
+                        <button class="ver-mas-btn" onclick="openModal('venta')">
+                            <i class="fas fa-info-circle"></i> Ver Más
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Desarrollos Inmobiliarios -->
+                <div class="servicio-card" data-servicio="desarrollo">
+                    <div class="servicio-icon">
+                        <i class="fas fa-building"></i>
+                    </div>
+                    <div class="servicio-content">
+                        <h3 class="servicio-title">Desarrollos Inmobiliarios</h3>
+                        <p class="servicio-description">
+                            Proyectos innovadores y sustentables, desde la planeación hasta la entrega final con los más altos estándares de calidad.
+                        </p>
+                        <div class="servicio-features">
+                            <span class="feature-item">Proyectos Innovadores</span>
+                            <span class="feature-item">Sustentables</span>
+                            <span class="feature-item">Alta Calidad</span>
+                        </div>
+                        <button class="ver-mas-btn" onclick="openModal('desarrollo')">
+                            <i class="fas fa-info-circle"></i> Ver Más
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Gestión de Proyectos -->
+                <div class="servicio-card" data-servicio="gestion">
+                    <div class="servicio-icon">
+                        <i class="fas fa-tasks"></i>
+                    </div>
+                    <div class="servicio-content">
+                        <h3 class="servicio-title">Gestión de Proyectos</h3>
+                        <p class="servicio-description">
+                            Administración integral de proyectos residenciales y corporativos con supervisión profesional y control de calidad.
+                        </p>
+                        <div class="servicio-features">
+                            <span class="feature-item">Supervisión Profesional</span>
+                            <span class="feature-item">Control de Calidad</span>
+                            <span class="feature-item">Entrega a Tiempo</span>
+                        </div>
+                        <button class="ver-mas-btn" onclick="openModal('gestion')">
+                            <i class="fas fa-info-circle"></i> Ver Más
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Trámites Legales -->
+                <div class="servicio-card" data-servicio="legal">
+                    <div class="servicio-icon">
+                        <i class="fas fa-file-contract"></i>
+                    </div>
+                    <div class="servicio-content">
+                        <h3 class="servicio-title">Trámites Legales</h3>
+                        <p class="servicio-description">
+                            Acompañamiento completo en trámites legales y financieros para garantizar transacciones seguras y transparentes.
+                        </p>
+                        <div class="servicio-features">
+                            <span class="feature-item">Documentación Legal</span>
+                            <span class="feature-item">Trámites Seguros</span>
+                            <span class="feature-item">Transparencia Total</span>
+                        </div>
+                        <button class="ver-mas-btn" onclick="openModal('legal')">
+                            <i class="fas fa-info-circle"></i> Ver Más
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Servicios Postventa -->
+                <div class="servicio-card" data-servicio="postventa">
+                    <div class="servicio-icon">
+                        <i class="fas fa-headset"></i>
+                    </div>
+                    <div class="servicio-content">
+                        <h3 class="servicio-title">Servicios Postventa</h3>
+                        <p class="servicio-description">
+                            Soporte continuo y servicios postventa para garantizar tu satisfacción y el mantenimiento de tu inversión.
+                        </p>
+                        <div class="servicio-features">
+                            <span class="feature-item">Soporte 24/7</span>
+                            <span class="feature-item">Mantenimiento</span>
+                            <span class="feature-item">Garantías</span>
+                        </div>
+                        <button class="ver-mas-btn" onclick="openModal('postventa')">
+                            <i class="fas fa-info-circle"></i> Ver Más
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Asesoría Financiera -->
+                <div class="servicio-card" data-servicio="financiera">
+                    <div class="servicio-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <div class="servicio-content">
+                        <h3 class="servicio-title">Asesoría Financiera</h3>
+                        <p class="servicio-description">
+                            Orientación especializada en opciones de financiamiento y programas gubernamentales como Mi Vivienda.
+                        </p>
+                        <div class="servicio-features">
+                            <span class="feature-item">Mi Vivienda</span>
+                            <span class="feature-item">Créditos Bancarios</span>
+                            <span class="feature-item">Planes de Pago</span>
+                        </div>
+                        <button class="ver-mas-btn" onclick="openModal('financiera')">
+                            <i class="fas fa-info-circle"></i> Ver Más
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Modal para detalles -->
+    <div id="serviceModal" class="modal">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeModal()">
+                <i class="fas fa-times"></i>
+            </button>
+            <div id="modalContent"></div>
+        </div>
+    </div>
+
+    <!-- Footer con Olas Animadas -->
+    <footer class="footer-waves">
+        <!-- Olas animadas -->
+        <div class="waves-container">
+            <svg class="waves" xmlns="http://www.w3.org/2000/svg" viewBox="0 24 150 28" preserveAspectRatio="none">
+                <defs>
+                    <path id="gentle-wave" d="m-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z" />
+                </defs>
+                <g class="parallax">
+                    <use href="#gentle-wave" x="48" y="0" fill="rgba(30, 123, 191, 0.7)" />
+                    <use href="#gentle-wave" x="48" y="3" fill="rgba(30, 123, 191, 0.5)" />
+                    <use href="#gentle-wave" x="48" y="5" fill="rgba(30, 123, 191, 0.3)" />
+                    <use href="#gentle-wave" x="48" y="7" fill="rgba(12, 60, 97, 1)" />
+                </g>
+            </svg>
+        </div>
+
+        <!-- Contenido del Footer -->
+        <div class="footer-content">
+            <div class="footer-container">
+                <!-- Síguenos -->
+                <div class="footer-section">
+                    <h4>Síguenos</h4>
+                    <div class="social-links">
+                        <a href="https://www.facebook.com/share/19ivg4HBHX/" target="_blank" aria-label="Facebook">
+                            <i class="fab fa-facebook-f"></i>
+                            <span>Facebook</span>
+                        </a>
+                        <a href="https://www.instagram.com/inmobiliaria_sipan?igsh=amMxNHgzN2pqbnli" target="_blank" aria-label="Instagram">
+                            <i class="fab fa-instagram"></i>
+                            <span>Instagram</span>
+                        </a>
+                        <a href="https://www.tiktok.com/@inmobiliaria_sipan?_t=ZS-8yipEpRj0sB&_r=1" target="_blank" aria-label="TikTok">
+                            <i class="fab fa-tiktok"></i>
+                            <span>TikTok</span>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Enlaces Rápidos -->
+                <div class="footer-section">
+                    <h4>Enlaces Rápidos</h4>
+                    <div class="quick-links">
+                        <a href="../index.html#inicio"><i class="fas fa-home"></i> Inicio</a>
+                        <a href="proyecto.html"><i class="fas fa-building"></i> Beneficios</a>
+                        <a href="servicios.html"><i class="fas fa-cogs"></i> Servicios</a>
+                        <a href="../index.html#oportunidades"><i class="fas fa-briefcase"></i> Trabaja con Nosotros</a>
+                        <a href="../index.html#ubicacion"><i class="fas fa-map-marker-alt"></i> Ubicación</a>
+                        <a href="contacto.html"><i class="fas fa-envelope"></i> Contacto</a>
+                    </div>
+                </div>
+
+                <!-- Contacto -->
+                <div class="footer-section">
+                    <h4>Contacto</h4>
+                    <div class="contact-info">
+                        <div class="contact-item">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>C.C Boulevard | Oficina J-3</span>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-phone"></i>
+                            <span>+51 932 359 551</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Horarios de Atención -->
+                <div class="footer-section">
+                    <h4>Horarios de Atención</h4>
+                    <div class="schedule-info">
+                        <div class="schedule-item">
+                            <i class="fas fa-clock"></i>
+                            <div>
+                                <span>Lunes - Sábado</span>
+                                <span>9:30 am - 07:00 pm</span>
+                            </div>
+                        </div>
+                        <div class="schedule-item">
+                            <i class="fas fa-calendar-times"></i>
+                            <div>
+                                <span>Domingos</span>
+                                <span>Cerrado</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Copyright -->
+            <div class="footer-bottom">
+                <div class="footer-container">
+                    <div class="copyright">
+                        <p>© 2025 Corporación Inmobiliaria Sipán. Todos los derechos reservados.</p>
+                        <p class="developer">Sitio desarrollado por: MA - NI - AD</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../js/script.js"></script>
+    
+    <script>
+        // Datos detallados de servicios
+        const serviciosData = {
+            venta: {
+                title: 'Venta de Propiedades',
+                content: `
+                    <h3>Venta de Propiedades Residenciales</h3>
+                    <p>En Corporación Sipán te acompañamos en todo el proceso de compra de tu propiedad ideal:</p>
+                    <ul>
+                        <li><strong>Asesoría Personalizada:</strong> Evaluamos tus necesidades y presupuesto</li>
+                        <li><strong>Portafolio Exclusivo:</strong> Acceso a las mejores propiedades del mercado</li>
+                        <li><strong>Acompañamiento Legal:</strong> Gestión completa de documentación</li>
+                        <li><strong>Financiamiento:</strong> Te ayudamos con opciones de crédito</li>
+                        <li><strong>Entrega de Llaves:</strong> Proceso transparente y seguro</li>
+                    </ul>
+                    <p><strong>¿Por qué elegirnos?</strong> Más de 10 años de experiencia respaldando familias peruanas en la compra de su primera vivienda.</p>
+                `
+            },
+            desarrollo: {
+                title: 'Desarrollos Inmobiliarios',
+                content: `
+                    <h3>Proyectos Inmobiliarios de Vanguardia</h3>
+                    <p>Desarrollamos proyectos residenciales y comerciales con los más altos estándares:</p>
+                    <ul>
+                        <li><strong>Diseño Arquitectónico:</strong> Espacios funcionales y modernos</li>
+                        <li><strong>Construcción Sustentable:</strong> Materiales eco-amigables</li>
+                        <li><strong>Ubicaciones Estratégicas:</strong> Zonas de alta valorización</li>
+                        <li><strong>Amenidades Completas:</strong> Áreas verdes, seguridad, recreación</li>
+                        <li><strong>Entrega Garantizada:</strong> Cumplimiento de plazos establecidos</li>
+                    </ul>
+                    <p><strong>Nuestro Compromiso:</strong> Crear espacios que mejoren la calidad de vida de nuestros clientes.</p>
+                `
+            },
+            gestion: {
+                title: 'Gestión de Proyectos',
+                content: `
+                    <h3>Administración Integral de Proyectos</h3>
+                    <p>Gestionamos tu proyecto inmobiliario de principio a fin:</p>
+                    <ul>
+                        <li><strong>Planificación Estratégica:</strong> Cronogramas detallados y factibles</li>
+                        <li><strong>Supervisión Técnica:</strong> Ingenieros especializados</li>
+                        <li><strong>Control de Calidad:</strong> Inspecciones rigurosas en cada etapa</li>
+                        <li><strong>Gestión de Proveedores:</strong> Red de contratistas confiables</li>
+                        <li><strong>Reportes Periódicos:</strong> Transparencia total del avance</li>
+                    </ul>
+                    <p><strong>Garantía:</strong> Proyectos entregados a tiempo y dentro del presupuesto acordado.</p>
+                `
+            },
+            legal: {
+                title: 'Trámites Legales y Financieros',
+                content: `
+                    <h3>Asesoría Legal Especializada</h3>
+                    <p>Te acompañamos en todos los aspectos legales de tu transacción inmobiliaria:</p>
+                    <ul>
+                        <li><strong>Verificación de Títulos:</strong> Análisis completo de documentación</li>
+                        <li><strong>Contratos de Compraventa:</strong> Redacción y revisión legal</li>
+                        <li><strong>Trámites Registrales:</strong> Inscripción en Registros Públicos</li>
+                        <li><strong>Gestión Notarial:</strong> Coordinación con notarías</li>
+                        <li><strong>Asesoría Tributaria:</strong> Optimización de impuestos</li>
+                    </ul>
+                    <p><strong>Seguridad Jurídica:</strong> Transacciones 100% legales y transparentes.</p>
+                `
+            },
+            postventa: {
+                title: 'Servicios Postventa',
+                content: `
+                    <h3>Soporte Continuo Post-Entrega</h3>
+                    <p>Nuestro compromiso continúa después de la entrega de tu propiedad:</p>
+                    <ul>
+                        <li><strong>Garantías Extendidas:</strong> Cobertura de defectos constructivos</li>
+                        <li><strong>Mantenimiento Preventivo:</strong> Programas de cuidado</li>
+                        <li><strong>Soporte Técnico:</strong> Atención 24/7 para emergencias</li>
+                        <li><strong>Comunidad de Propietarios:</strong> Gestión de áreas comunes</li>
+                        <li><strong>Valorización:</strong> Seguimiento del valor de tu inversión</li>
+                    </ul>
+                    <p><strong>Compromiso de Vida:</strong> Tu satisfacción es nuestra prioridad permanente.</p>
+                `
+            },
+            financiera: {
+                title: 'Asesoría Financiera',
+                content: `
+                    <h3>Opciones de Financiamiento Personalizadas</h3>
+                    <p>Te ayudamos a encontrar la mejor opción de financiamiento:</p>
+                    <ul>
+                        <li><strong>Programa Mi Vivienda:</strong> Asesoría completa para acceder al bono</li>
+                        <li><strong>Créditos Bancarios:</strong> Negociación de mejores tasas</li>
+                        <li><strong>Planes de Pago Directo:</strong> Facilidades con la empresa</li>
+                        <li><strong>Evaluación Crediticia:</strong> Análisis de capacidad de pago</li>
+                        <li><strong>Simuladores Financieros:</strong> Proyecciones claras y detalladas</li>
+                    </ul>
+                    <p><strong>Objetivo:</strong> Hacer realidad tu sueño de casa propia con la mejor opción financiera.</p>
+                `
+            }
+        };
+
+        function openModal(servicio) {
+            const modal = document.getElementById('serviceModal');
+            const modalContent = document.getElementById('modalContent');
+            
+            modalContent.innerHTML = serviciosData[servicio].content;
+            modal.classList.add('active');
+            
+            // Prevenir scroll del body
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('serviceModal');
+            modal.classList.remove('active');
+            
+            // Restaurar scroll del body
+            document.body.style.overflow = 'auto';
+        }
+
+        // Cerrar modal al hacer clic fuera del contenido
+        document.getElementById('serviceModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeModal();
+            }
+        });
+
+        // Cerrar modal con tecla Escape
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                closeModal();
+            }
+        });
+
+        // Animaciones de entrada para las tarjetas
+        function animateCards() {
+            const cards = document.querySelectorAll('.servicio-card');
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach((entry, index) => {
+                    if (entry.isIntersecting) {
+                        setTimeout(() => {
+                            entry.target.style.opacity = '1';
+                            entry.target.style.transform = 'translateY(0)';
+                        }, index * 150);
+                    }
+                });
+            }, { threshold: 0.1 });
+
+            cards.forEach(card => {
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(30px)';
+                card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+                observer.observe(card);
+            });
+        }
+
+        // Inicializar animaciones cuando se carga la página
+        document.addEventListener('DOMContentLoaded', animateCards);
+    </script>
+</body>
+</html>
