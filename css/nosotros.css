@@ -302,3 +302,600 @@
         font-size: 0.9rem;
     }
 }
+
+/* Sección Misión y Visión */
+.mision-vision-section {
+    position: relative;
+    background: #f8f9fa;
+    overflow: hidden;
+}
+
+/* Bordes decorativos con patrón zigzag */
+.decorative-border-top,
+.decorative-border-bottom {
+    height: 20px;
+    background: linear-gradient(45deg, #28a745 25%, transparent 25%),
+                linear-gradient(-45deg, #28a745 25%, transparent 25%),
+                linear-gradient(45deg, transparent 75%, #28a745 75%),
+                linear-gradient(-45deg, transparent 75%, #28a745 75%);
+    background-size: 20px 20px;
+    background-position: 0 0, 0 10px, 10px -10px, -10px 0px;
+    width: 100%;
+}
+
+.decorative-border-bottom {
+    background: linear-gradient(45deg, #28a745 25%, transparent 25%),
+                linear-gradient(-45deg, #28a745 25%, transparent 25%),
+                linear-gradient(45deg, transparent 75%, #28a745 75%),
+                linear-gradient(-45deg, transparent 75%, #28a745 75%);
+    background-size: 20px 20px;
+    background-position: 0 0, 0 10px, 10px -10px, -10px 0px;
+}
+
+/* Contenedor de tarjetas superiores */
+.mision-vision-cards-container {
+    position: relative;
+    height: 400px;
+    overflow: hidden;
+}
+
+.background-image-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+}
+
+.background-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: brightness(0.7);
+}
+
+.cards-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(135, 206, 235, 0.3);
+}
+
+.mision-vision-cards {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 40px 20px;
+}
+
+.card {
+    background: rgba(40, 167, 69, 0.95);
+    border-radius: 25px;
+    padding: 30px;
+    color: white;
+    text-align: center;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(10px);
+    transition: all 0.3s ease;
+    border: 3px solid rgba(255, 255, 255, 0.2);
+    margin: 20px;
+    position: relative;
+    z-index: 3;
+}
+
+.card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
+    border-color: rgba(255, 255, 255, 0.4);
+}
+
+.card-icon {
+    background: rgba(255, 165, 0, 1);
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 20px;
+    font-size: 20px;
+    color: white;
+}
+
+.card h3 {
+    font-size: 1.4rem;
+    font-weight: 700;
+    margin-bottom: 15px;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.card h4 {
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin-bottom: 15px;
+    color: #fff;
+}
+
+.card p {
+    font-size: 0.95rem;
+    line-height: 1.6;
+    opacity: 0.95;
+}
+
+/* Sección inferior Misión y Visión */
+.mision-vision-content {
+    background: white;
+    padding: 80px 0;
+}
+
+.content-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: center;
+}
+
+.text-content {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+}
+
+.mision-section,
+.vision-section {
+    text-align: left;
+}
+
+.mision-section h2,
+.vision-section h2 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #0c3c61;
+    margin-bottom: 20px;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.mision-section p,
+.vision-section p {
+    font-size: 1.1rem;
+    line-height: 1.7;
+    color: #666;
+}
+
+.image-content {
+    position: relative;
+    text-align: center;
+}
+
+.families-badge {
+    position: absolute;
+    top: -20px;
+    right: -20px;
+    background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
+    color: white;
+    padding: 15px 20px;
+    border-radius: 15px;
+    box-shadow: 0 8px 25px rgba(40, 167, 69, 0.4);
+    z-index: 3;
+    transform: rotate(15deg);
+    animation: bounce 2s ease-in-out infinite;
+}
+
+@keyframes bounce {
+    0%, 100% { transform: rotate(15deg) translateY(0); }
+    50% { transform: rotate(15deg) translateY(-10px); }
+}
+
+.badge-text {
+    display: block;
+    font-size: 2rem;
+    font-weight: 700;
+    line-height: 1;
+}
+
+.badge-subtitle {
+    display: block;
+    font-size: 0.9rem;
+    opacity: 0.9;
+    margin-top: 5px;
+}
+
+.families-image {
+    width: 100%;
+    max-width: 400px;
+    border-radius: 20px;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease;
+}
+
+.families-image:hover {
+    transform: scale(1.05);
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+    .mision-vision-cards {
+        gap: 30px;
+    }
+    
+    .content-container {
+        gap: 40px;
+    }
+    
+    .families-badge {
+        top: -10px;
+        right: -10px;
+        padding: 12px 16px;
+    }
+    
+    .badge-text {
+        font-size: 1.6rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .mision-vision-cards {
+        grid-template-columns: 1fr;
+        gap: 20px;
+        padding: 0 15px;
+    }
+    
+    .content-container {
+        grid-template-columns: 1fr;
+        gap: 40px;
+        text-align: center;
+    }
+    
+    .text-content {
+        gap: 30px;
+    }
+    
+    .mision-section h2,
+    .vision-section h2 {
+        font-size: 2rem;
+    }
+    
+    .families-badge {
+        position: static;
+        display: inline-block;
+        margin-bottom: 20px;
+        transform: none;
+    }
+    
+    .card {
+        padding: 25px;
+    }
+    
+    .card h3 {
+        font-size: 1.2rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .mision-vision-content {
+        padding: 60px 0;
+    }
+    
+    .card {
+        padding: 20px;
+    }
+    
+    .card h3 {
+        font-size: 1.1rem;
+    }
+    
+    .card p {
+        font-size: 0.9rem;
+    }
+    
+    .mision-section h2,
+    .vision-section h2 {
+        font-size: 1.8rem;
+    }
+    
+    .badge-text {
+        font-size: 1.4rem;
+    }
+}
+
+/* Sección Propósito y Valores */
+.proposito-valores-section {
+    background: #f8f9fa;
+    padding: 0;
+}
+
+/* Sección Propósito */
+.proposito-container {
+    background: linear-gradient(135deg, #0c3c61 0%, #1e7bbf 50%, #28a745 100%);
+    position: relative;
+    text-align: center;
+    padding: 60px 20px;
+}
+
+.decorative-border-top-green,
+.decorative-border-bottom-green {
+    height: 20px;
+    background: linear-gradient(45deg, #28a745 25%, transparent 25%),
+                linear-gradient(-45deg, #28a745 25%, transparent 25%),
+                linear-gradient(45deg, transparent 75%, #28a745 75%),
+                linear-gradient(-45deg, transparent 75%, #28a745 75%);
+    background-size: 20px 20px;
+    background-position: 0 0, 0 10px, 10px -10px, -10px 0px;
+    width: 100%;
+}
+
+.proposito-content {
+    max-width: 800px;
+    margin: 0 auto;
+    color: white;
+}
+
+.proposito-content h2 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 20px;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    letter-spacing: 2px;
+}
+
+.proposito-content h3 {
+    font-size: 1.4rem;
+    font-weight: 400;
+    line-height: 1.6;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+.proposito-content strong {
+    font-weight: 700;
+}
+
+/* Sección Valores */
+.valores-container {
+    background: white;
+    padding: 80px 20px;
+    text-align: center;
+}
+
+.valores-title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #28a745;
+    margin-bottom: 50px;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.valores-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+    max-width: 1400px;
+    margin: 0 auto;
+    align-items: stretch;
+}
+
+.valor-card {
+    background: white;
+    border-radius: 20px;
+    padding: 30px 25px;
+    text-align: center;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
+    position: relative;
+    overflow: hidden;
+    opacity: 0;
+    transform: translateY(50px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.valor-card.animate:nth-child(1) {
+    animation: fadeInUp 0.6s ease-out forwards;
+    animation-delay: 0.2s;
+}
+
+.valor-card.animate:nth-child(2) {
+    animation: fadeInUp 0.6s ease-out forwards;
+    animation-delay: 0.4s;
+}
+
+.valor-card.animate:nth-child(3) {
+    animation: fadeInUp 0.6s ease-out forwards;
+    animation-delay: 0.6s;
+}
+
+.valor-card.animate:nth-child(4) {
+    animation: fadeInUp 0.6s ease-out forwards;
+    animation-delay: 0.8s;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.valor-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, #28a745, #20c997);
+    transition: all 0.3s ease;
+}
+
+.valor-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+    border-color: #28a745;
+}
+
+.valor-card:hover::before {
+    height: 6px;
+}
+
+.valor-icon {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 28px;
+    color: white;
+    margin: 0 auto 20px;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+    transition: all 0.3s ease;
+}
+
+.valor-card:hover .valor-icon {
+    transform: scale(1.1);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+}
+
+.valor-card h4 {
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: #0c3c61;
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+.valor-card p {
+    font-size: 0.95rem;
+    color: #666;
+    line-height: 1.6;
+    text-align: center;
+}
+
+/* Colores específicos para cada valor */
+.honestidad {
+    background: white;
+    color: #28a745;
+    border: 3px solid #28a745;
+}
+
+.compromiso {
+    background: white;
+    color: #17a2b8;
+    border: 3px solid #17a2b8;
+}
+
+.excelencia {
+    background: white;
+    color: #ffc107;
+    border: 3px solid #ffc107;
+}
+
+.innovacion {
+    background: white;
+    color: #6f42c1;
+    border: 3px solid #6f42c1;
+}
+
+.responsabilidad {
+    background: white;
+    color: #28a745;
+    border: 3px solid #28a745;
+}
+
+/* Responsive Design */
+@media (max-width: 1200px) {
+    .valores-grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 25px;
+    }
+}
+
+@media (max-width: 900px) {
+    .valores-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 25px;
+    }
+    
+    .proposito-content h2 {
+        font-size: 2.2rem;
+    }
+    
+    .proposito-content h3 {
+        font-size: 1.3rem;
+    }
+}
+
+@media (max-width: 600px) {
+    .valores-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+    
+    .valor-card {
+        padding: 25px 20px;
+    }
+    
+    .valor-icon {
+        width: 60px;
+        height: 60px;
+        font-size: 24px;
+    }
+    
+    .proposito-content h2 {
+        font-size: 2rem;
+    }
+    
+    .proposito-content h3 {
+        font-size: 1.2rem;
+    }
+    
+    .valores-title {
+        font-size: 2.2rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .proposito-container {
+        padding: 40px 15px;
+    }
+    
+    .valores-container {
+        padding: 60px 15px;
+    }
+    
+    .valor-card h4 {
+        font-size: 1.2rem;
+    }
+    
+    .valor-card p {
+        font-size: 0.9rem;
+    }
+    
+    .proposito-content h2 {
+        font-size: 1.8rem;
+    }
+    
+    .proposito-content h3 {
+        font-size: 1.1rem;
+    }
+    
+    .valores-title {
+        font-size: 2rem;
+    }
+}
