@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sobre Nosotros - Corporación Inmobiliaria Sipán</title>
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <style>
+        /* Estilos específicos para la página Sobre Nosotros */
+        .sobre-nosotros-hero {
+            background: linear-gradient(135deg, #0c3c61 0%, #1e7bbf 100%);
+            color: white;
+            padding: 8em 0 4em;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .sobre-nosotros-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('../img/casa25.jpg') center/cover;
+            opacity: 0.1;
+            z-index: 0;
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 2em;
+        }
+        
+        .hero-title {
+            font-size: 3.5em;
+            font-weight: 700;
+            margin-bottom: 0.5em;
+            text-shadow: 0 4px 8px rgba(0,0,0,0.3);
+        }
+        
+        .hero-subtitle {
+            font-size: 1.3em;
+            opacity: 0.9;
+            line-height: 1.6;
+        }
+        
+        /* Secciones principales */
+        .sobre-section {
+            padding: 5em 0;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .section-header {
+            text-align: center;
+            margin-bottom: 4em;
+        }
+        
+        .section-title {
+            font-size: 2.5em;
+            color: #0c3c61;
+            font-weight: 700;
+            margin-bottom: 1em;
+            position: relative;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(90deg, #1e7bbf, #28a745);
+            border-radius: 2px;
+        }
+        
+        .section-subtitle {
+            font-size: 1.2em;
+            color: #0c3c61;
+            opacity: 0.8;
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+        
+        /* Historia */
+        .historia-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4em;
+            align-items: center;
+            padding: 0 2em;
+        }
+        
+        .historia-text {
+            font-size: 1.1em;
+            line-height: 1.8;
+            color: #0c3c61;
+        }
+        
+        .historia-text p {
+            margin-bottom: 1.5em;
+        }
+        
+        .historia-imagen {
+            text-align: center;
+        }
+        
+        .historia-imagen img {
+            width: 100%;
+            max-width: 400px;
+            border-radius: 20px;
+            box-shadow: 0 15px 40px rgba(30, 123, 191, 0.2);
+        }
+        
+        /* Valores */
+        .valores-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2em;
+            padding: 0 2em;
+        }
+        
+        .valor-card {
+            background: linear-gradient(135deg, #ffffff 0%, #f8fbff 100%);
+            border-radius: 20px;
+            padding: 2.5em;
+            text-align: center;
+            box-shadow: 0 15px 40px rgba(30, 123, 191, 0.1);
+            border: 1px solid rgba(30, 123, 191, 0.1);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .valor-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #0c3c61 0%, #1e7bbf 50%, #28a745 100%);
+        }
+        
+        .valor-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 25px 50px rgba(30, 123, 191, 0.15);
+        }
+        
+        .valor-icon {
+            font-size: 3em;
+            color: #1e7bbf;
+            margin-bottom: 1em;
+        }
+        
+        .valor-title {
+            font-size: 1.5em;
+            color: #0c3c61;
+            font-weight: 600;
+            margin-bottom: 1em;
+        }
+        
+        .valor-description {
+            color: #0c3c61;
+            opacity: 0.8;
+            line-height: 1.6;
+        }
+        
+        /* Estadísticas */
+        .estadisticas-section {
+            background: linear-gradient(135deg, #0c3c61 0%, #1e7bbf 100%);
+            color: white;
+            padding: 5em 0;
+            text-align: center;
+        }
+        
+        .estadisticas-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 3em;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 2em;
+        }
+        
+        .estadistica-item {
+            text-align: center;
+        }
+        
+        .estadistica-numero {
+            font-size: 3em;
+            font-weight: 700;
+            margin-bottom: 0.5em;
+            color: #28a745;
+        }
+        
+        .estadistica-label {
+            font-size: 1.1em;
+            opacity: 0.9;
+        }
+        
+        /* Equipo */
+        .equipo-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2.5em;
+            padding: 0 2em;
+        }
+        
+        .miembro-card {
+            background: white;
+            border-radius: 20px;
+            padding: 2em;
+            text-align: center;
+            box-shadow: 0 15px 40px rgba(30, 123, 191, 0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .miembro-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 25px 50px rgba(30, 123, 191, 0.15);
+        }
+        
+        .miembro-foto {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            margin: 0 auto 1.5em;
+            background: linear-gradient(135deg, #1e7bbf, #28a745);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3em;
+            color: white;
+        }
+        
+        .miembro-nombre {
+            font-size: 1.4em;
+            color: #0c3c61;
+            font-weight: 600;
+            margin-bottom: 0.5em;
+        }
+        
+        .miembro-cargo {
+            color: #1e7bbf;
+            font-weight: 500;
+            margin-bottom: 1em;
+        }
+        
+        .miembro-descripcion {
+            color: #0c3c61;
+            opacity: 0.8;
+            line-height: 1.6;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 2.5em;
+            }
+            
+            .historia-content {
+                grid-template-columns: 1fr;
+                gap: 2em;
+            }
+            
+            .sobre-section {
+                padding: 3em 0;
+            }
+            
+            .estadisticas-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 2em;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .hero-title {
+                font-size: 2em;
+            }
+            
+            .section-title {
+                font-size: 2em;
+            }
+            
+            .estadisticas-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header y menú principal -->
+    <header class="header">
+        <div class="header-container">
+            <a href="../index.html">
+                <img src="../img/logosipan.png" alt="Logo Sipán" class="logo">
+            </a>
+            <button class="menu-toggle" aria-label="Abrir menú">
+                <i class="fas fa-bars"></i>
+            </button>
+            <nav class="menu-superior">
+                <ul>
+                    <li class="dropdown">
+                        <a href="../index.html"><i class="fas fa-home"></i> Inicio <i class="fas fa-chevron-down dropdown-arrow"></i></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="sobre-nosotros.html"><i class="fas fa-users"></i> Sobre Nosotros</a></li>
+                            <li><a href="../index.html#oportunidades"><i class="fas fa-briefcase"></i> Trabaja con Nosotros</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="proyecto.html"><i class="fas fa-building"></i> Beneficios</a></li>
+                    <li><a href="servicios.html"><i class="fas fa-cogs"></i> Servicios</a></li>
+                    <li><a href="../index.html#ubicacion"><i class="fas fa-map-marker-alt"></i> Ubicación</a></li>
+                    <li><a href="contacto.html"><i class="fas fa-envelope"></i> Contacto</a></li>
+                </ul>
+            </nav>
+            
+            <!-- Botón de inicio de sesión independiente -->
+            <div class="login-section">
+                <a href="login.html" class="login-btn">
+                    <i class="fas fa-user-circle"></i>
+                    <span>Iniciar Sesión</span>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Overlay para menú móvil -->
+    <div class="menu-overlay" id="menuOverlay"></div>
+
+    <script src="../js/script.js"></script>
+
+    <!-- Hero Section -->
+    <section class="sobre-nosotros-hero">
+        <div class="hero-content">
+            <h1 class="hero-title">Sobre Nosotros</h1>
+            <p class="hero-subtitle">Más de 15 años transformando sueños en realidad, construyendo hogares y forjando el futuro inmobiliario del norte del Perú</p>
+        </div>
+    </section>
+
+    <!-- Historia -->
+    <section class="sobre-section">
+        <div class="section-header">
+            <h2 class="section-title">Nuestra Historia</h2>
+            <p class="section-subtitle">Una trayectoria sólida construida sobre la confianza y el compromiso con nuestros clientes</p>
+        </div>
+        
+        <div class="historia-content">
+            <div class="historia-text">
+                <p><strong>Corporación Inmobiliaria Sipán</strong> nació en 2008 con la visión de democratizar el acceso a la vivienda digna en el norte del Perú. Desde nuestros inicios en Chiclayo, hemos sido pioneros en la implementación de programas gubernamentales como <strong>Mi Vivienda</strong> y <strong>Techo Propio</strong>.</p>
+                
+                <p>A lo largo de estos años, hemos desarrollado más de <strong>20 proyectos habitacionales</strong>, entregando más de <strong>1,500 viviendas</strong> y ayudando a miles de familias a cumplir el sueño de la casa propia.</p>
+                
+                <p>Nuestro compromiso va más allá de la construcción: somos facilitadores de sueños, asesores de confianza y compañeros en el camino hacia la estabilidad habitacional de nuestros clientes.</p>
+            </div>
+            
+            <div class="historia-imagen">
+                <img src="../img/casa25.jpg" alt="Historia Corporación Sipán">
+            </div>
+        </div>
+    </section>
+
+    <!-- Valores -->
+    <section class="sobre-section" style="background: #f8fbff;">
+        <div class="section-header">
+            <h2 class="section-title">Nuestros Valores</h2>
+            <p class="section-subtitle">Los principios que guían cada decisión y acción en Corporación Sipán</p>
+        </div>
+        
+        <div class="valores-grid">
+            <div class="valor-card">
+                <i class="fas fa-handshake valor-icon"></i>
+                <h3 class="valor-title">Confianza</h3>
+                <p class="valor-description">Construimos relaciones duraderas basadas en la transparencia, honestidad y cumplimiento de nuestros compromisos con cada cliente.</p>
+            </div>
+            
+            <div class="valor-card">
+                <i class="fas fa-star valor-icon"></i>
+                <h3 class="valor-title">Excelencia</h3>
+                <p class="valor-description">Buscamos la perfección en cada proyecto, desde el diseño arquitectónico hasta los acabados finales, superando las expectativas.</p>
+            </div>
+            
+            <div class="valor-card">
+                <i class="fas fa-users valor-icon"></i>
+                <h3 class="valor-title">Compromiso Social</h3>
+                <p class="valor-description">Contribuimos al desarrollo de comunidades sostenibles y al acceso equitativo a viviendas dignas para todas las familias.</p>
+            </div>
+            
+            <div class="valor-card">
+                <i class="fas fa-lightbulb valor-icon"></i>
+                <h3 class="valor-title">Innovación</h3>
+                <p class="valor-description">Implementamos tecnologías y metodologías de vanguardia para ofrecer soluciones inmobiliarias modernas y eficientes.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Estadísticas -->
+    <section class="estadisticas-section">
+        <div class="section-header">
+            <h2 class="section-title" style="color: white;">Nuestros Logros</h2>
+            <p class="section-subtitle" style="color: white; opacity: 0.9;">Números que reflejan nuestro compromiso y experiencia</p>
+        </div>
+        
+        <div class="estadisticas-grid">
+            <div class="estadistica-item">
+                <div class="estadistica-numero">15+</div>
+                <div class="estadistica-label">Años de Experiencia</div>
+            </div>
+            
+            <div class="estadistica-item">
+                <div class="estadistica-numero">1,500+</div>
+                <div class="estadistica-label">Viviendas Entregadas</div>
+            </div>
+            
+            <div class="estadistica-item">
+                <div class="estadistica-numero">20+</div>
+                <div class="estadistica-label">Proyectos Desarrollados</div>
+            </div>
+            
+            <div class="estadistica-item">
+                <div class="estadistica-numero">98%</div>
+                <div class="estadistica-label">Satisfacción del Cliente</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Equipo -->
+    <section class="sobre-section">
+        <div class="section-header">
+            <h2 class="section-title">Nuestro Equipo</h2>
+            <p class="section-subtitle">Profesionales especializados comprometidos con tu éxito inmobiliario</p>
+        </div>
+        
+        <div class="equipo-grid">
+            <div class="miembro-card">
+                <div class="miembro-foto">
+                    <i class="fas fa-user-tie"></i>
+                </div>
+                <h3 class="miembro-nombre">Gerencia General</h3>
+                <p class="miembro-cargo">Dirección Ejecutiva</p>
+                <p class="miembro-descripcion">Liderazgo estratégico con más de 20 años de experiencia en el sector inmobiliario y programas habitacionales gubernamentales.</p>
+            </div>
+            
+            <div class="miembro-card">
+                <div class="miembro-foto">
+                    <i class="fas fa-hard-hat"></i>
+                </div>
+                <h3 class="miembro-nombre">Departamento Técnico</h3>
+                <p class="miembro-cargo">Ingeniería y Construcción</p>
+                <p class="miembro-descripcion">Equipo de ingenieros civiles y arquitectos especializados en proyectos residenciales y comerciales de alta calidad.</p>
+            </div>
+            
+            <div class="miembro-card">
+                <div class="miembro-foto">
+                    <i class="fas fa-balance-scale"></i>
+                </div>
+                <h3 class="miembro-nombre">Asesoría Legal</h3>
+                <p class="miembro-cargo">Departamento Jurídico</p>
+                <p class="miembro-descripcion">Abogados especializados en derecho inmobiliario, trámites registrales y programas gubernamentales de vivienda.</p>
+            </div>
+            
+            <div class="miembro-card">
+                <div class="miembro-foto">
+                    <i class="fas fa-headset"></i>
+                </div>
+                <h3 class="miembro-nombre">Atención al Cliente</h3>
+                <p class="miembro-cargo">Servicio y Soporte</p>
+                <p class="miembro-descripcion">Equipo dedicado a brindar asesoría personalizada 24/7 y acompañamiento integral durante todo el proceso.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Corporación Inmobiliaria Sipán</h3>
+                    <p>Transformando sueños en realidad desde 2008</p>
+                    <div class="footer-social">
+                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+                        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Enlaces Rápidos</h4>
+                    <ul>
+                        <li><a href="../index.html">Inicio</a></li>
+                        <li><a href="sobre-nosotros.html">Sobre Nosotros</a></li>
+                        <li><a href="proyecto.html">Beneficios</a></li>
+                        <li><a href="servicios.html">Servicios</a></li>
+                        <li><a href="contacto.html">Contacto</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Contacto</h4>
+                    <p><i class="fas fa-map-marker-alt"></i> C.C Boulevard, Chiclayo</p>
+                    <p><i class="fas fa-phone"></i> +51 932 359 551</p>
+                    <p><i class="fas fa-envelope"></i> info@sipan.com</p>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2024 Corporación Inmobiliaria Sipán. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Botón flotante de WhatsApp -->
+    <a href="https://wa.me/51932359551?text=Hola,%20me%20interesa%20conocer%20más%20sobre%20Corporación%20Sipán" 
+       class="whatsapp-float-mejorado" 
+       target="_blank" 
+       title="¡Chatea con nosotros!">
+        <i class="fab fa-whatsapp"></i>
+        <div class="whatsapp-tooltip">¡Chatea con nosotros!</div>
+    </a>
+</body>
+</html>

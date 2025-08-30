@@ -26,29 +26,73 @@
             pointer-events: none;
             z-index: 0;
         }
-        .formulario-elegante-section {
-            background: #fff;
-            border-radius: 18px;
-            box-shadow: 0 4px 24px #b2d4ee;
-            padding: 2em;
-            margin-bottom: 2em;
-        }
-        .formulario-elegante-container {
-            max-width: 800px;
+        .contacto-main-container {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 3em;
+            max-width: 1400px;
             margin: 0 auto;
+            padding: 3em 2em;
         }
+        
+        .formulario-elegante-section {
+            background: linear-gradient(135deg, #ffffff 0%, #f8fbff 100%);
+            border-radius: 24px;
+            box-shadow: 0 20px 60px rgba(30, 123, 191, 0.15);
+            padding: 3em;
+            border: 1px solid rgba(30, 123, 191, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .formulario-elegante-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 6px;
+            background: linear-gradient(90deg, #0c3c61 0%, #1e7bbf 50%, #28a745 100%);
+        }
+        
+        .formulario-elegante-container {
+            position: relative;
+            z-index: 2;
+        }
+        
         .formulario-header {
-            margin-bottom: 1em;
+            text-align: center;
+            margin-bottom: 2.5em;
+            padding-bottom: 1.5em;
+            border-bottom: 2px solid rgba(30, 123, 191, 0.1);
         }
+        
         .formulario-elegante h2 {
-            font-size: 1.8em;
-            margin-bottom: 0.5em;
-            color: #1e7bbf;
-        }
-        .formulario-elegante p {
-            font-size: 1em;
-            margin-bottom: 1em;
+            font-size: 2.2em;
+            margin-bottom: 0.8em;
             color: #0c3c61;
+            font-weight: 700;
+            position: relative;
+        }
+        
+        .formulario-elegante h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(90deg, #1e7bbf, #28a745);
+            border-radius: 2px;
+        }
+        
+        .formulario-elegante p {
+            font-size: 1.1em;
+            margin-bottom: 0;
+            color: #0c3c61;
+            opacity: 0.8;
+            line-height: 1.6;
         }
         .mensaje-resultado {
             display: none;
@@ -69,59 +113,130 @@
         .form-elegante {
             display: flex;
             flex-direction: column;
+            gap: 2.5em;
         }
+        
         .form-section {
-            margin-bottom: 2em;
+            background: rgba(255, 255, 255, 0.7);
+            border-radius: 16px;
+            padding: 2em;
+            border: 1px solid rgba(30, 123, 191, 0.1);
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
         }
+        
+        .form-section:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(30, 123, 191, 0.1);
+        }
+        
         .form-section-title {
-            font-size: 1.2em;
-            margin-bottom: 0.5em;
-            color: #1e7bbf;
+            font-size: 1.4em;
+            margin-bottom: 1.5em;
+            color: #0c3c61;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 0.5em;
+            padding-bottom: 0.8em;
+            border-bottom: 2px solid rgba(30, 123, 191, 0.1);
         }
+        
+        .form-section-title i {
+            color: #1e7bbf;
+            font-size: 1.2em;
+        }
+        
         .form-grid-2 {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
-            gap: 1em;
+            gap: 1.5em;
         }
+        
         .form-field {
-            margin-bottom: 1em;
+            margin-bottom: 1.5em;
         }
+        
         .form-field label {
             font-size: 1em;
-            margin-bottom: 0.5em;
+            margin-bottom: 0.8em;
             color: #0c3c61;
+            font-weight: 500;
+            display: block;
         }
-        .form-field input, .form-field textarea {
-            background: #fff;
+        
+        .form-field input, .form-field textarea, .form-field select {
+            background: #ffffff;
             color: #0c3c61;
-            box-shadow: 0 2px 8px #b2d4ee;
-            border: 1px solid #b2d4ee;
-            transition: border 0.2s, box-shadow 0.2s;
-            padding: 0.5em;
-            border-radius: 4px;
+            box-shadow: 0 4px 15px rgba(30, 123, 191, 0.08);
+            border: 2px solid rgba(30, 123, 191, 0.15);
+            width: 100%;
+            padding: 1em 1.2em;
+            border-radius: 12px;
+            font-size: 1em;
+            transition: all 0.3s ease;
         }
-        .form-field input:focus, .form-field textarea:focus {
-            border: 1.5px solid #1e7bbf;
-            box-shadow: 0 4px 16px #1e7bbf;
+        
+        .form-field input:focus, .form-field textarea:focus, .form-field select:focus {
+            border: 2px solid #1e7bbf;
+            box-shadow: 0 8px 25px rgba(30, 123, 191, 0.15);
             outline: none;
+            transform: translateY(-1px);
+        }
+        
+        .form-field textarea {
+            resize: vertical;
+            min-height: 120px;
         }
         .form-actions {
-            margin-top: 1em;
+            text-align: center;
+            margin-top: 2em;
+            padding-top: 2em;
+            border-top: 2px solid rgba(30, 123, 191, 0.1);
         }
+        
         .btn-enviar-elegante {
-            background: linear-gradient(90deg, #1e7bbf 0%, #b2d4ee 100%);
-            color: rgb(12, 60, 97);
-            box-shadow: 0 2px 12px 0 #b2d4ee;
+            background: linear-gradient(135deg, #0c3c61 0%, #1e7bbf 50%, #28a745 100%);
+            color: #ffffff;
+            box-shadow: 0 8px 25px rgba(30, 123, 191, 0.3);
             font-weight: 600;
-            padding: 0.5em 1em;
-            border-radius: 4px;
+            padding: 1.2em 3em;
+            border-radius: 50px;
             border: none;
             cursor: pointer;
+            font-size: 1.1em;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.8em;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            position: relative;
+            overflow: hidden;
         }
+        
+        .btn-enviar-elegante::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.5s;
+        }
+        
+        .btn-enviar-elegante:hover::before {
+            left: 100%;
+        }
+        
         .btn-enviar-elegante:hover {
-            background: linear-gradient(90deg, #b2d4ee 0%, #1e7bbf 100%);
-            color: rgb(12, 60, 97);
-            box-shadow: 0 4px 24px 0 #1e7bbf;
+            transform: translateY(-3px);
+            box-shadow: 0 15px 35px rgba(30, 123, 191, 0.4);
+        }
+        
+        .btn-enviar-elegante:active {
+            transform: translateY(-1px);
         }
         .form-privacy {
             font-size: 0.9em;
@@ -130,52 +245,142 @@
         }
         .info-ubicacion-section {
             display: flex;
-            flex-wrap: wrap;
-            justify-content: space-around;
+            flex-direction: column;
+            gap: 2em;
         }
+        
         .contacto-info-card {
-            background: #fff;
-            border-radius: 18px;
-            box-shadow: 0 4px 24px #b2d4ee;
-            padding: 2em;
-            margin: 1em;
+            background: linear-gradient(135deg, #ffffff 0%, #f8fbff 100%);
+            border-radius: 20px;
+            box-shadow: 0 15px 40px rgba(30, 123, 191, 0.12);
+            padding: 2.5em;
+            border: 1px solid rgba(30, 123, 191, 0.1);
+            position: relative;
+            overflow: hidden;
         }
+        
+        .contacto-info-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #0c3c61 0%, #1e7bbf 50%, #28a745 100%);
+        }
+        
         .contacto-info-card h3 {
-            font-size: 1.2em;
-            margin-bottom: 0.5em;
-            color: #1e7bbf;
+            font-size: 1.6em;
+            margin-bottom: 1.5em;
+            color: #0c3c61;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 0.5em;
         }
+        
+        .contacto-info-card h3 i {
+            color: #1e7bbf;
+            font-size: 1.2em;
+        }
+        
         .info-items {
             display: flex;
             flex-direction: column;
+            gap: 1.5em;
         }
+        
         .info-item {
-            margin-bottom: 1em;
+            display: flex;
+            align-items: flex-start;
+            gap: 1.2em;
+            padding: 1em;
+            background: rgba(255, 255, 255, 0.6);
+            border-radius: 12px;
+            border: 1px solid rgba(30, 123, 191, 0.08);
+            transition: all 0.3s ease;
         }
+        
+        .info-item:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(30, 123, 191, 0.1);
+        }
+        
         .info-item i {
-            font-size: 1.5em;
-            margin-right: 0.5em;
+            font-size: 1.4em;
             color: #1e7bbf;
+            margin-top: 0.2em;
+            min-width: 24px;
         }
-        .info-item div {
-            font-size: 1em;
+        
+        .info-item strong {
             color: #0c3c61;
+            font-size: 1.1em;
+            font-weight: 600;
+            display: block;
+            margin-bottom: 0.3em;
+        }
+        
+        .info-item p {
+            margin: 0;
+            color: #0c3c61;
+            opacity: 0.8;
+            line-height: 1.5;
         }
         .mapa-card {
-            background: #fff;
-            border-radius: 18px;
-            box-shadow: 0 4px 24px #b2d4ee;
-            padding: 2em;
-            margin: 1em;
-        }
-        .mapa-card h3 {
-            font-size: 1.2em;
-            margin-bottom: 0.5em;
-            color: #1e7bbf;
-        }
-        .mapa-wrapper {
-            border-radius: 18px;
+            background: linear-gradient(135deg, #ffffff 0%, #f8fbff 100%);
+            border-radius: 20px;
+            box-shadow: 0 15px 40px rgba(30, 123, 191, 0.12);
+            padding: 2.5em;
+            border: 1px solid rgba(30, 123, 191, 0.1);
+            position: relative;
             overflow: hidden;
+        }
+        
+        .mapa-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #0c3c61 0%, #1e7bbf 50%, #28a745 100%);
+        }
+        
+        .mapa-card h3 {
+            font-size: 1.6em;
+            margin-bottom: 1.5em;
+            color: #0c3c61;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 0.5em;
+        }
+        
+        .mapa-card h3 i {
+            color: #1e7bbf;
+            font-size: 1.2em;
+        }
+        
+        .mapa-container {
+            width: 100%;
+            height: 350px;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 8px 25px rgba(30, 123, 191, 0.15);
+            border: 2px solid rgba(30, 123, 191, 0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .mapa-container:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 35px rgba(30, 123, 191, 0.2);
+        }
+        
+        .mapa-container iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
         }
         .redes-sociales-card {
             background: #fff;
@@ -360,6 +565,56 @@
             outline: none;
             box-shadow: 0 0 0 2px rgba(30, 123, 191, 0.25);
         }
+        /* Responsive Design */
+        @media (max-width: 1200px) {
+            .contacto-main-container {
+                grid-template-columns: 1fr;
+                gap: 2em;
+                padding: 2em 1em;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .form-grid-2 {
+                grid-template-columns: 1fr;
+            }
+            
+            .formulario-elegante-section {
+                padding: 2em 1.5em;
+            }
+            
+            .form-section {
+                padding: 1.5em;
+            }
+            
+            .btn-enviar-elegante {
+                padding: 1em 2em;
+                font-size: 1em;
+            }
+            
+            .contacto-info-card, .mapa-card {
+                padding: 2em 1.5em;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .contacto-main-container {
+                padding: 1em;
+            }
+            
+            .formulario-elegante h2 {
+                font-size: 1.8em;
+            }
+            
+            .form-section-title {
+                font-size: 1.2em;
+            }
+            
+            .btn-enviar-elegante {
+                width: 100%;
+                justify-content: center;
+            }
+        }
     </style>
     
     <script>
@@ -441,10 +696,25 @@
             }
         }
 
+        // Función para obtener parámetros de URL
+        function getURLParameter(name) {
+            const urlParams = new URLSearchParams(window.location.search);
+            return urlParams.get(name);
+        }
+
         // Manejo del formulario premium de contacto
         document.addEventListener('DOMContentLoaded', function() {
             const form = document.getElementById('formContactoElegante');
             const mensaje = document.getElementById('mensaje-resultado');
+            
+            // Prellenar el tipo de consulta si viene desde servicios
+            const servicioParam = getURLParameter('servicio');
+            if (servicioParam) {
+                const tipoConsultaSelect = document.getElementById('tipoConsulta');
+                if (tipoConsultaSelect) {
+                    tipoConsultaSelect.value = servicioParam;
+                }
+            }
             
             if(form) {
                 form.addEventListener('submit', function(e) {
@@ -629,10 +899,15 @@
             </button>
             <nav class="menu-superior">
                 <ul>
-                    <li><a href="../index.html"><i class="fas fa-home"></i> Inicio</a></li>
+                    <li class="dropdown">
+                        <a href="../index.html"><i class="fas fa-home"></i> Inicio <i class="fas fa-chevron-down dropdown-arrow"></i></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="sobre-nosotros.html"><i class="fas fa-users"></i> Sobre Nosotros</a></li>
+                            <li><a href="../index.html#oportunidades"><i class="fas fa-briefcase"></i> Trabaja con Nosotros</a></li>
+                        </ul>
+                    </li>
                     <li><a href="proyecto.html"><i class="fas fa-building"></i> Beneficios</a></li>
                     <li><a href="servicios.html"><i class="fas fa-cogs"></i> Servicios</a></li>
-                    <li><a href="../index.html#oportunidades"><i class="fas fa-briefcase"></i> Trabaja con Nosotros</a></li>
                     <li><a href="../index.html#ubicacion"><i class="fas fa-map-marker-alt"></i> Ubicación</a></li>
                     <li><a href="contacto.html" class="active"><i class="fas fa-envelope"></i> Contacto</a></li>
                 </ul>
