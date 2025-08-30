@@ -458,7 +458,7 @@
                     const telefono = document.getElementById('telefono').value.trim();
                     const mensajeTexto = document.getElementById('mensaje').value.trim();
                     
-                    if (!nombre || !apellidos || !dni || !email || !telefono || !mensajeTexto) {
+                    if (!nombre || !apellidos || !dni || !email || !telefono) {
                         alert('Por favor, completa todos los campos obligatorios marcados con *');
                         return;
                     }
@@ -551,7 +551,8 @@
                     formData.append('email', email);
                     formData.append('telefono', telefono);
                     formData.append('tipo_consulta', document.getElementById('tipoConsulta').value);
-                    formData.append('mensaje', mensajeTexto);
+                    // Si el mensaje está vacío, enviar cadena vacía para que el backend genere el mensaje automático
+                    formData.append('mensaje', mensajeTexto || '');
                     
                     // Agregar archivos adjuntos si existen
                     const archivosInput = document.getElementById('adjuntos');
@@ -575,10 +576,17 @@
                             mensaje.style.background = 'linear-gradient(90deg, #28a745 0%, #20c997 100%)';
                             form.reset();
                             
-                            // Si es método directo, abrir WhatsApp después de 2 segundos
-                            if(data.method === 'direct' && data.whatsapp_url) {
+                            // Abrir WhatsApp automáticamente con el mensaje prellenado
+                            if(data.whatsapp_url) {
+                                // Mostrar mensaje adicional al usuario
                                 setTimeout(() => {
-                                    window.open(data.whatsapp_url, '_blank');
+                                    mensaje.innerHTML = '<i class="fas fa-whatsapp"></i> ¡Datos guardados! Ahora se abrirá WhatsApp con tu mensaje prellenado. Solo debes hacer clic en "Enviar" en el chat.';
+                                    mensaje.style.background = 'linear-gradient(90deg, #25d366 0%, #128c7e 100%)';
+                                    
+                                    // Abrir WhatsApp después de mostrar el mensaje
+                                    setTimeout(() => {
+                                        window.open(data.whatsapp_url, '_blank');
+                                    }, 1500);
                                 }, 2000);
                             }
                         } else {
@@ -714,9 +722,14 @@
                                 <select id="tipoConsulta" name="tipo_consulta">
                                     <option value="">Selecciona el tipo de consulta</option>
                                     <option value="dominio-media-luna">Proyecto Dominio Media Luna</option>
+                                    <option value="venta-propiedades">Venta de Propiedades</option>
+                                    <option value="desarrollos-inmobiliarios">Desarrollos Inmobiliarios</option>
+                                    <option value="gestion-proyectos">Gestión de Proyectos</option>
+                                    <option value="tramites-legales">Trámites Legales</option>
+                                    <option value="servicios-postventa">Servicios Postventa</option>
+                                    <option value="asesoria-financiera">Asesoría Financiera</option>
                                     <option value="mi-vivienda">Programa Mi Vivienda - Asesoría</option>
                                     <option value="requisitos-mi-vivienda">Requisitos para Mi Vivienda</option>
-                                    <option value="tramites-legales">Trámites y Documentación Legal</option>
                                     <option value="financiamiento">Opciones de Financiamiento</option>
                                     <option value="visita-proyecto">Agendar Visita al Proyecto</option>
                                     <option value="asesoria-general">Asesoría General Inmobiliaria</option>
@@ -724,9 +737,9 @@
                                 </select>
                             </div>
                             <div class="form-field">
-                                <label for="mensaje">Cuéntanos más sobre tu consulta *</label>
-                                <textarea id="mensaje" name="mensaje" required rows="5" 
-                                    placeholder="Describe tu situación actual, qué tipo de vivienda buscas, tu presupuesto aproximado, o cualquier pregunta específica que tengas sobre el proceso habitacional..."></textarea>
+                                <label for="mensaje">Cuéntanos más sobre tu consulta</label>
+                                <textarea id="mensaje" name="mensaje" rows="5" 
+                                    placeholder="Describe tu situación actual, qué tipo de vivienda buscas, tu presupuesto aproximado, o cualquier pregunta específica que tengas sobre el proceso habitacional... (Opcional: si no escribes nada, se enviará un mensaje automático)"></textarea>
                             </div>
                         </div>
 

@@ -8,44 +8,585 @@
     <link rel="stylesheet" href="../css/styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        /* Estilos específicos para la página de servicios */
+        /* ===== ESTILOS RADICALES PARA SERVICIOS SIPÁN ===== */
+        
+        /* Variables CSS */
+        :root {
+            --primary-blue: #0c3c61;
+            --secondary-blue: #1e7bbf;
+            --accent-green: #28a745;
+            --gold: #ffd700;
+            --white: #ffffff;
+            --light-gray: #f8f9fa;
+            --dark-gray: #2c3e50;
+        }
+
+        /* Animaciones globales */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-100px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes slideInRight {
+            from {
+                opacity: 0;
+                transform: translateX(100px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes zoomIn {
+            from {
+                opacity: 0;
+                transform: scale(0.8);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0px);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.05);
+            }
+        }
+
+        @keyframes shimmer {
+            0% {
+                background-position: -200% center;
+            }
+            100% {
+                background-position: 200% center;
+            }
+        }
+
+        /* Hero Section Radical */
         .servicios-hero {
-            background: linear-gradient(120deg, rgb(12, 60, 97) 0%, #1e7bbf 100%);
-            padding: 4em 0 2em 0;
+            position: relative;
+            min-height: 100vh;
+            background: linear-gradient(135deg, var(--primary-blue) 0%, var(--secondary-blue) 50%, var(--accent-green) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            color: var(--white);
+        }
+
+        .servicios-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('../img/img1.jpg') center/cover;
+            opacity: 0.1;
+            z-index: 1;
+        }
+
+        .servicios-hero::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 30% 70%, rgba(255, 215, 0, 0.2) 0%, transparent 50%);
+            z-index: 2;
+        }
+
+        .hero-particles {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 3;
+        }
+
+        .particle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: var(--gold);
+            border-radius: 50%;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .particle:nth-child(1) { top: 20%; left: 10%; animation-delay: 0s; }
+        .particle:nth-child(2) { top: 60%; left: 20%; animation-delay: 1s; }
+        .particle:nth-child(3) { top: 40%; left: 80%; animation-delay: 2s; }
+        .particle:nth-child(4) { top: 80%; left: 70%; animation-delay: 3s; }
+        .particle:nth-child(5) { top: 30%; left: 50%; animation-delay: 4s; }
+
+        .hero-content {
+            position: relative;
+            z-index: 4;
             text-align: center;
-            color: #fff;
+            max-width: 800px;
+            padding: 0 2rem;
+            animation: fadeInUp 1.5s ease-out;
+        }
+
+        .hero-title {
+            font-size: 4rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            background: linear-gradient(45deg, var(--white), var(--gold), var(--white));
+            background-size: 200% auto;
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: shimmer 3s linear infinite;
+            text-shadow: 0 4px 20px rgba(0,0,0,0.3);
+        }
+
+        .hero-subtitle {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+            animation: slideInUp 1.5s ease-out 0.3s both;
+        }
+
+        .hero-cta {
+            display: inline-block;
+            padding: 1rem 2.5rem;
+            background: linear-gradient(45deg, var(--accent-green), var(--gold));
+            color: var(--white);
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            animation: zoomIn 1.5s ease-out 0.6s both;
+            box-shadow: 0 10px 30px rgba(40, 167, 69, 0.3);
+        }
+
+        .hero-cta:hover {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 15px 40px rgba(40, 167, 69, 0.4);
+        }
+
+        /* Servicios Main Section */
+        .servicios-main {
+            padding: 5rem 0;
+            background: linear-gradient(135deg, #f8fbff 0%, #e8f4fd 100%);
+            position: relative;
         }
 
         .servicios-container {
-            max-width: 1200px;
+            max-width: 1400px;
             margin: 0 auto;
-            padding: 0 2em;
+            padding: 0 2rem;
         }
 
-        .servicios-hero h1 {
-            font-size: 2.8em;
-            margin-bottom: 0.5em;
-            text-shadow: 0 2px 8px rgba(0,0,0,0.3);
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+            animation: fadeInUp 1s ease-out;
         }
 
-        .servicios-hero p {
-            font-size: 1.3em;
-            opacity: 0.9;
+        .section-title {
+            font-size: 3rem;
+            color: var(--primary-blue);
+            margin-bottom: 1rem;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 4px;
+            background: linear-gradient(45deg, var(--secondary-blue), var(--accent-green));
+            border-radius: 2px;
+        }
+
+        .section-description {
+            font-size: 1.2rem;
+            color: var(--dark-gray);
             max-width: 600px;
             margin: 0 auto;
+            line-height: 1.6;
         }
 
-        .servicios-main {
-            padding: 4em 0;
-            background: linear-gradient(135deg, #f8fbff 0%, #e8f4fd 100%);
-        }
-
+        /* Servicios Grid Radical */
         .servicios-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
-            gap: 2em;
-            margin-top: 2em;
-            padding: 0 1em;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 3rem;
+            margin-top: 3rem;
+        }
+
+        .servicio-card {
+            position: relative;
+            background: var(--white);
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+            transition: all 0.4s ease;
+        }
+
+        .servicio-card:hover {
+            transform: translateY(-5px) scale(1.02);
+            box-shadow: 0 12px 30px rgba(30, 123, 191, 0.2);
+        }
+
+        .card-image-container {
+            position: relative;
+            height: 250px;
+            overflow: hidden;
+        }
+
+        .card-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.4s ease;
+        }
+
+        .servicio-card:hover .card-image {
+            transform: scale(1.1);
+        }
+
+        .card-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(12, 60, 97, 0.8), rgba(30, 123, 191, 0.8));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: all 0.3s ease;
+        }
+
+        .servicio-card:hover .card-overlay {
+            opacity: 1;
+        }
+
+        .overlay-icon {
+            font-size: 3rem;
+            color: var(--white);
+            animation: pulse 2s infinite;
+        }
+
+        .card-content {
+            padding: 2rem;
+        }
+
+        .card-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary-blue);
+            margin-bottom: 1rem;
+        }
+
+        .card-description {
+            color: var(--dark-gray);
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+        }
+
+        .card-features {
+            list-style: none;
+            padding: 0;
+            margin-bottom: 2rem;
+        }
+
+        .card-features li {
+            padding: 0.5rem 0;
+            color: var(--dark-gray);
+            position: relative;
+            padding-left: 1.5rem;
+        }
+
+        .card-features li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--accent-green);
+            font-weight: bold;
+        }
+
+        .card-cta {
+            display: inline-block;
+            padding: 0.8rem 2rem;
+            background: linear-gradient(45deg, var(--secondary-blue), var(--accent-green));
+            color: var(--white);
+            text-decoration: none;
+            border-radius: 25px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card-cta::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .card-cta:hover::before {
+            left: 100%;
+        }
+
+        .card-cta:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(30, 123, 191, 0.3);
+        }
+
+        /* Galería de Proyectos */
+        .proyectos-gallery {
+            padding: 5rem 0;
+            background: var(--primary-blue);
+            color: var(--white);
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .gallery-item {
+            position: relative;
+            height: 300px;
+            border-radius: 15px;
+            overflow: hidden;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            animation: zoomIn 1s ease-out;
+        }
+
+        .gallery-item:hover {
+            transform: scale(1.05);
+        }
+
+        .gallery-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .gallery-item:hover .gallery-image {
+            transform: scale(1.1);
+        }
+
+        .gallery-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 1.5rem;
+            background: linear-gradient(transparent, rgba(0,0,0,0.8));
+            color: var(--white);
+            transform: translateY(100%);
+            transition: transform 0.3s ease;
+        }
+
+        .gallery-item:hover .gallery-overlay {
+            transform: translateY(0);
+        }
+
+        .gallery-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .gallery-description {
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+
+        /* Estadísticas */
+        .stats-section {
+            padding: 4rem 0;
+            background: linear-gradient(45deg, var(--accent-green), var(--secondary-blue));
+            color: var(--white);
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            text-align: center;
+        }
+
+        .stat-item {
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 0.5rem;
+            color: var(--gold);
+        }
+
+        .stat-label {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+        /* Header de Presentación Animado */
+        .presentation-header {
+            background: linear-gradient(to right, #0d4068, #1c76b8);
+            padding: 2rem 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .presentation-content {
+            position: relative;
+            z-index: 2;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .animated-title {
+            font-size: 3.5rem;
+            font-weight: 800;
+            color: #fff;
+            margin-bottom: 1rem;
+            text-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+            letter-spacing: -0.02em;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: slideInUp 1s ease-out 0.3s forwards;
+        }
+
+        .animated-title i {
+            color: #fff;
+            margin-right: 1rem;
+            text-shadow: 0 2px 10px rgba(255, 255, 255, 0.3);
+            animation: iconBounce 1.5s ease-out 0.8s forwards;
+        }
+
+        .animated-subtitle {
+            font-size: 1.3rem;
+            color: rgba(255, 255, 255, 0.95);
+            font-weight: 400;
+            line-height: 1.6;
+            text-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+            opacity: 0;
+            transform: translateY(20px);
+            animation: slideInUp 1s ease-out 0.6s forwards;
+        }
+
+        /* Animaciones para header */
+        @keyframes slideInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes iconBounce {
+            0% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.2);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 2.5rem;
+            }
+            
+            .servicios-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+            
+            .gallery-grid {
+                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            }
+            
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .animated-title {
+                font-size: 2rem;
+            }
+
+            .animated-subtitle {
+                font-size: 1rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-title {
+                font-size: 2rem;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+            
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
         }
 
         .servicio-card {
@@ -493,12 +1034,13 @@
     </style>
 </head>
 <body>
-    <!-- Header y menú principal -->
+    <!-- Header -->
     <header class="header">
         <div class="header-container">
-            <a href="../index.html">
+            <a href="../index.html" class="logo-link">
                 <img src="../img/logosipan.png" alt="Logo Sipán" class="logo">
             </a>
+            <!-- Botón para menú móvil -->
             <button class="menu-toggle" aria-label="Abrir menú">
                 <i class="fas fa-bars"></i>
             </button>
@@ -523,148 +1065,152 @@
         </div>
     </header>
 
-    <!-- Hero de servicios -->
-    <section class="servicios-hero">
-        <div class="servicios-container">
-            <h1>
-                <i class="fas fa-cogs"></i> Nuestros Servicios
+    <!-- Header de Presentación -->
+    <section class="presentation-header">
+        <div class="presentation-content">
+            <h1 class="animated-title">
+                <i class="fas fa-briefcase"></i> Servicios Inmobiliarios de Excelencia
             </h1>
-            <p>Soluciones inmobiliarias profesionales pensadas para ti</p>
+            <p class="animated-subtitle">Transformamos sueños en realidad con soluciones inmobiliarias innovadoras y personalizadas</p>
         </div>
     </section>
 
-    <!-- Servicios principales -->
-    <section class="servicios-main">
+
+    <!-- Servicios Main Section -->
+    <main class="servicios-main" id="servicios">
         <div class="servicios-container">
+            
             <div class="servicios-grid">
-                <!-- Venta de Propiedades -->
-                <div class="servicio-card" data-servicio="venta">
-                    <div class="servicio-icon">
-                        <i class="fas fa-home"></i>
-                    </div>
-                    <div class="servicio-content">
-                        <h3 class="servicio-title">Venta de Propiedades</h3>
-                        <p class="servicio-description">
-                            Te ayudamos a encontrar y adquirir la propiedad ideal, con asesoría personalizada y acompañamiento legal completo.
-                        </p>
-                        <div class="servicio-features">
-                            <span class="feature-item">Asesoría Personalizada</span>
-                            <span class="feature-item">Acompañamiento Legal</span>
-                            <span class="feature-item">Financiamiento</span>
+                <!-- Servicio 1: Venta de Propiedades -->
+                <div class="servicio-card">
+                    <div class="card-image-container">
+                        <img src="../img/servicios/venta.jpg" alt="Venta de Propiedades" class="card-image">
+                        <div class="card-overlay">
+                            <i class="fas fa-home overlay-icon"></i>
                         </div>
-                        <button class="ver-mas-btn" onclick="openModal('venta')">
-                            <i class="fas fa-info-circle"></i> Ver Más
-                        </button>
+                    </div>
+                    <div class="card-content">
+                        <h3 class="card-title">Venta de Propiedades</h3>
+                        <p class="card-description">Asesoría personalizada en la compra y venta de propiedades residenciales y comerciales con el respaldo de nuestros expertos.</p>
+                        <ul class="card-features">
+                            <li>Evaluación profesional del inmueble</li>
+                            <li>Asesoría legal completa</li>
+                            <li>Acompañamiento en todo el proceso</li>
+                            <li>Gestión de documentación</li>
+                        </ul>
+                        <a href="contacto.html" class="card-cta">Más Información</a>
                     </div>
                 </div>
 
-                <!-- Desarrollos Inmobiliarios -->
-                <div class="servicio-card" data-servicio="desarrollo">
-                    <div class="servicio-icon">
-                        <i class="fas fa-building"></i>
-                    </div>
-                    <div class="servicio-content">
-                        <h3 class="servicio-title">Desarrollos Inmobiliarios</h3>
-                        <p class="servicio-description">
-                            Proyectos innovadores y sustentables, desde la planeación hasta la entrega final con los más altos estándares de calidad.
-                        </p>
-                        <div class="servicio-features">
-                            <span class="feature-item">Proyectos Innovadores</span>
-                            <span class="feature-item">Sustentables</span>
-                            <span class="feature-item">Alta Calidad</span>
+                <!-- Servicio 2: Desarrollos Inmobiliarios -->
+                <div class="servicio-card">
+                    <div class="card-image-container">
+                        <img src="../img/servicios/Inversion.jpg" alt="Desarrollos Inmobiliarios" class="card-image">
+                        <div class="card-overlay">
+                            <i class="fas fa-building overlay-icon"></i>
                         </div>
-                        <button class="ver-mas-btn" onclick="openModal('desarrollo')">
-                            <i class="fas fa-info-circle"></i> Ver Más
-                        </button>
+                    </div>
+                    <div class="card-content">
+                        <h3 class="card-title">Desarrollos Inmobiliarios</h3>
+                        <p class="card-description">Proyectos innovadores y sustentables que transforman espacios en hogares de ensueño con la más alta calidad.</p>
+                        <ul class="card-features">
+                            <li>Diseño arquitectónico moderno</li>
+                            <li>Construcción de calidad premium</li>
+                            <li>Proyectos eco-sustentables</li>
+                            <li>Ubicaciones estratégicas</li>
+                        </ul>
+                        <a href="contacto.html" class="card-cta">Más Información</a>
                     </div>
                 </div>
 
-                <!-- Gestión de Proyectos -->
-                <div class="servicio-card" data-servicio="gestion">
-                    <div class="servicio-icon">
-                        <i class="fas fa-tasks"></i>
-                    </div>
-                    <div class="servicio-content">
-                        <h3 class="servicio-title">Gestión de Proyectos</h3>
-                        <p class="servicio-description">
-                            Administración integral de proyectos residenciales y corporativos con supervisión profesional y control de calidad.
-                        </p>
-                        <div class="servicio-features">
-                            <span class="feature-item">Supervisión Profesional</span>
-                            <span class="feature-item">Control de Calidad</span>
-                            <span class="feature-item">Entrega a Tiempo</span>
+                <!-- Servicio 3: Gestión de Proyectos -->
+                <div class="servicio-card">
+                    <div class="card-image-container">
+                        <img src="../img/servicios/gestion.jpg" alt="Gestión de Proyectos" class="card-image">
+                        <div class="card-overlay">
+                            <i class="fas fa-tasks overlay-icon"></i>
                         </div>
-                        <button class="ver-mas-btn" onclick="openModal('gestion')">
-                            <i class="fas fa-info-circle"></i> Ver Más
-                        </button>
+                    </div>
+                    <div class="card-content">
+                        <h3 class="card-title">Gestión de Proyectos</h3>
+                        <p class="card-description">Administración integral de proyectos inmobiliarios residenciales y corporativos con metodologías probadas.</p>
+                        <ul class="card-features">
+                            <li>Planificación estratégica</li>
+                            <li>Control de calidad riguroso</li>
+                            <li>Supervisión técnica especializada</li>
+                            <li>Entrega oportuna garantizada</li>
+                        </ul>
+                        <a href="contacto.html" class="card-cta">Más Información</a>
                     </div>
                 </div>
 
-                <!-- Trámites Legales -->
-                <div class="servicio-card" data-servicio="legal">
-                    <div class="servicio-icon">
-                        <i class="fas fa-file-contract"></i>
-                    </div>
-                    <div class="servicio-content">
-                        <h3 class="servicio-title">Trámites Legales</h3>
-                        <p class="servicio-description">
-                            Acompañamiento completo en trámites legales y financieros para garantizar transacciones seguras y transparentes.
-                        </p>
-                        <div class="servicio-features">
-                            <span class="feature-item">Documentación Legal</span>
-                            <span class="feature-item">Trámites Seguros</span>
-                            <span class="feature-item">Transparencia Total</span>
+                <!-- Servicio 4: Trámites Legales -->
+                <div class="servicio-card">
+                    <div class="card-image-container">
+                        <img src="../img/servicios/tramites.jpg" alt="Trámites Legales" class="card-image">
+                        <div class="card-overlay">
+                            <i class="fas fa-file-contract overlay-icon"></i>
                         </div>
-                        <button class="ver-mas-btn" onclick="openModal('legal')">
-                            <i class="fas fa-info-circle"></i> Ver Más
-                        </button>
+                    </div>
+                    <div class="card-content">
+                        <h3 class="card-title">Trámites Legales</h3>
+                        <p class="card-description">Acompañamiento legal completo en documentación y procesos de financiamiento con total transparencia.</p>
+                        <ul class="card-features">
+                            <li>Revisión exhaustiva de documentos</li>
+                            <li>Trámites notariales especializados</li>
+                            <li>Gestión registral completa</li>
+                            <li>Asesoría financiera personalizada</li>
+                        </ul>
+                        <a href="contacto.html" class="card-cta">Más Información</a>
                     </div>
                 </div>
 
-                <!-- Servicios Postventa -->
-                <div class="servicio-card" data-servicio="postventa">
-                    <div class="servicio-icon">
-                        <i class="fas fa-headset"></i>
-                    </div>
-                    <div class="servicio-content">
-                        <h3 class="servicio-title">Servicios Postventa</h3>
-                        <p class="servicio-description">
-                            Soporte continuo y servicios postventa para garantizar tu satisfacción y el mantenimiento de tu inversión.
-                        </p>
-                        <div class="servicio-features">
-                            <span class="feature-item">Soporte 24/7</span>
-                            <span class="feature-item">Mantenimiento</span>
-                            <span class="feature-item">Garantías</span>
+                <!-- Servicio 5: Servicios Postventa -->
+                <div class="servicio-card">
+                    <div class="card-image-container">
+                        <img src="../img/servicios/postventa.jpg" alt="Servicios Postventa" class="card-image">
+                        <div class="card-overlay">
+                            <i class="fas fa-handshake overlay-icon"></i>
                         </div>
-                        <button class="ver-mas-btn" onclick="openModal('postventa')">
-                            <i class="fas fa-info-circle"></i> Ver Más
-                        </button>
+                    </div>
+                    <div class="card-content">
+                        <h3 class="card-title">Servicios Postventa</h3>
+                        <p class="card-description">Soporte continuo y garantías extendidas para asegurar tu satisfacción total y tranquilidad permanente.</p>
+                        <ul class="card-features">
+                            <li>Garantía de construcción extendida</li>
+                            <li>Mantenimiento preventivo</li>
+                            <li>Soporte técnico 24/7</li>
+                            <li>Atención personalizada VIP</li>
+                        </ul>
+                        <a href="contacto.html" class="card-cta">Más Información</a>
                     </div>
                 </div>
 
-                <!-- Asesoría Financiera -->
-                <div class="servicio-card" data-servicio="financiera">
-                    <div class="servicio-icon">
-                        <i class="fas fa-chart-line"></i>
-                    </div>
-                    <div class="servicio-content">
-                        <h3 class="servicio-title">Asesoría Financiera</h3>
-                        <p class="servicio-description">
-                            Orientación especializada en opciones de financiamiento y programas gubernamentales como Mi Vivienda.
-                        </p>
-                        <div class="servicio-features">
-                            <span class="feature-item">Mi Vivienda</span>
-                            <span class="feature-item">Créditos Bancarios</span>
-                            <span class="feature-item">Planes de Pago</span>
+                <!-- Servicio 6: Asesoría Financiera -->
+                <div class="servicio-card">
+                    <div class="card-image-container">
+                        <img src="../img/servicios/asesoria.jpg" alt="Asesoría Financiera" class="card-image">
+                        <div class="card-overlay">
+                            <i class="fas fa-calculator overlay-icon"></i>
                         </div>
-                        <button class="ver-mas-btn" onclick="openModal('financiera')">
-                            <i class="fas fa-info-circle"></i> Ver Más
-                        </button>
+                    </div>
+                    <div class="card-content">
+                        <h3 class="card-title">Asesoría Financiera</h3>
+                        <p class="card-description">Orientación especializada en programas Mi Vivienda, créditos bancarios y planes de pago flexibles adaptados a ti.</p>
+                        <ul class="card-features">
+                            <li>Programa Mi Vivienda optimizado</li>
+                            <li>Créditos bancarios preferenciales</li>
+                            <li>Planes de financiamiento flexibles</li>
+                            <li>Evaluación crediticia gratuita</li>
+                        </ul>
+                        <a href="contacto.html" class="card-cta">Más Información</a>
                     </div>
                 </div>
             </div>
         </div>
-    </section>
+    </main>
+
+
 
     <!-- Modal para detalles -->
     <div id="serviceModal" class="modal">
@@ -910,22 +1456,41 @@
         // Animaciones de entrada para las tarjetas
         function animateCards() {
             const cards = document.querySelectorAll('.servicio-card');
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach((entry, index) => {
-                    if (entry.isIntersecting) {
-                        setTimeout(() => {
-                            entry.target.style.opacity = '1';
-                            entry.target.style.transform = 'translateY(0)';
-                        }, index * 150);
-                    }
-                });
-            }, { threshold: 0.1 });
-
+            let animatedCount = 0;
+            
+            // Configurar estilos iniciales para todas las cartas
             cards.forEach(card => {
                 card.style.opacity = '0';
-                card.style.transform = 'translateY(30px)';
-                card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-                observer.observe(card);
+                card.style.transform = 'translateY(50px) scale(0.9)';
+                card.style.transition = 'all 0.6s cubic-bezier(0.4, 0, 0.2, 1)';
+            });
+            
+            // Observar cada carta individualmente
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting && !entry.target.classList.contains('animated')) {
+                        entry.target.classList.add('animated');
+                        
+                        // Aplicar delay basado en el orden de aparición
+                        setTimeout(() => {
+                            entry.target.style.opacity = '1';
+                            entry.target.style.transform = 'translateY(0) scale(1)';
+                        }, animatedCount * 200);
+                        
+                        animatedCount++;
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { 
+                threshold: 0.2,
+                rootMargin: '0px 0px -50px 0px'
+            });
+            
+            // Observar cada carta con un pequeño delay para crear efecto escalonado
+            cards.forEach((card, index) => {
+                setTimeout(() => {
+                    observer.observe(card);
+                }, index * 100);
             });
         }
 
