@@ -45,7 +45,7 @@ img {
 
 /* Header */
 .header {
-    background: rgb(12, 60, 97);
+    background: linear-gradient(135deg, #0c3c61 0%, #1e7bbf 70%, #28a745 100%);
     box-shadow: 0 4px 24px 0 rgba(12,60,97,0.10);
 }
 .header-container {

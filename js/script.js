@@ -191,10 +191,10 @@ document.addEventListener('DOMContentLoaded', function () {
             const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
             
             if (scrollTop > 100) {
-                header.style.background = 'rgba(12, 60, 97, 0.95)';
+                header.style.background = 'linear-gradient(135deg, rgba(12, 60, 97, 0.95) 0%, rgba(30, 123, 191, 0.95) 70%, rgba(40, 167, 69, 0.95) 100%)';
                 header.style.backdropFilter = 'blur(10px)';
             } else {
-                header.style.background = 'rgb(12, 60, 97)';
+                header.style.background = 'linear-gradient(135deg, #0c3c61 0%, #1e7bbf 70%, #28a745 100%)';
                 header.style.backdropFilter = 'none';
             }
             
