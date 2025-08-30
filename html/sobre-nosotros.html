@@ -5,37 +5,401 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sobre Nosotros - Corporación Inmobiliaria Sipán</title>
     <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="../css/nosotros.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     
     <style>
         /* Estilos específicos para la página Sobre Nosotros */
-        .sobre-nosotros-hero {
-            background: linear-gradient(135deg, #0c3c61 0%, #1e7bbf 100%);
-            color: white;
-            padding: 8em 0 4em;
-            text-align: center;
+        .sobre-nosotros-header {
+            background: white;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+        
+        .header-image-container {
+            width: 100%;
+            height: 50vh;
+            overflow: hidden;
             position: relative;
+        }
+        
+        .header-family-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+        }
+        
+        .header-content-text {
+            flex: 1;
+            background: white;
+            padding: 4em 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .header-text-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2em;
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 4em;
+            align-items: center;
+        }
+        
+        .company-title {
+            font-size: 3.5em;
+            line-height: 1.1;
+            margin: 0;
+            font-weight: 700;
+        }
+        
+        .somos-text {
+            display: block;
+            color: #0c3c61;
+            font-size: 1em;
+        }
+        
+        .empresa-subtitle {
+            display: block;
+            color: #0c3c61;
+            font-size: 0.6em;
+            font-weight: 400;
+            margin: 0.2em 0;
+        }
+        
+        .peruano-highlight {
+            display: block;
+            color: #28a745;
+            font-size: 0.8em;
+            font-weight: 700;
+        }
+        
+        .company-description {
+            font-size: 1.1em;
+            line-height: 1.8;
+            color: #0c3c61;
+            margin: 0;
+            text-align: justify;
+        }
+        
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .header-text-container {
+                grid-template-columns: 1fr;
+                gap: 2em;
+                text-align: center;
+            }
+            
+            .company-title {
+                font-size: 2.8em;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .header-image-container {
+                height: 40vh;
+            }
+            
+            .header-content-text {
+                padding: 2em 0;
+            }
+            
+            .company-title {
+                font-size: 2.2em;
+            }
+            
+            .company-description {
+                font-size: 1em;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .header-image-container {
+                height: 35vh;
+            }
+            
+            .company-title {
+                font-size: 1.8em;
+            }
+            
+            .header-text-container {
+                padding: 0 1em;
+            }
+        }
+        
+        /* Timeline Historia Styles */
+        .historia-timeline-section {
+            background: #f8fbff;
+            padding: 5em 0;
             overflow: hidden;
         }
         
-        .sobre-nosotros-hero::before {
+        .timeline-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2em;
+        }
+        
+        .timeline-header {
+            text-align: center;
+            margin-bottom: 4em;
+        }
+        
+        .timeline-title {
+            font-size: 2.5em;
+            color: #28a745;
+            font-weight: 700;
+            margin-bottom: 0.5em;
+        }
+        
+        .timeline-subtitle {
+            font-size: 1.1em;
+            color: #0c3c61;
+            opacity: 0.8;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .timeline-wrapper {
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 2em;
+        }
+        
+        .timeline-content {
+            width: 100%;
+            max-width: 900px;
+            position: relative;
+            overflow: hidden;
+            height: 350px;
+        }
+        
+        .timeline-line {
+            position: absolute;
+            top: 60px;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #28a745 0%, #1e7bbf 100%);
+            border-radius: 2px;
+            z-index: 1;
+            overflow: hidden;
+        }
+        
+        .timeline-line::after {
             content: '';
             position: absolute;
             top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: url('../img/casa25.jpg') center/cover;
-            opacity: 0.1;
-            z-index: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.6), transparent);
+            animation: shimmer 3s ease-in-out infinite;
         }
         
-        .hero-content {
+        @keyframes shimmer {
+            0% { left: -100%; }
+            50% { left: 100%; }
+            100% { left: 100%; }
+        }
+        
+        .timeline-slide {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2em;
+            align-items: flex-start;
+            opacity: 0;
+            transform: translateX(100px);
+            transition: all 0.5s ease-in-out;
+            position: absolute;
+            width: 100%;
+            top: 0;
+            left: 0;
+        }
+        
+        .timeline-slide.active {
+            opacity: 1;
+            transform: translateX(0);
+        }
+        
+        .timeline-slide.prev {
+            transform: translateX(-100px);
+            opacity: 0;
+        }
+        
+        .timeline-item {
+            text-align: center;
             position: relative;
             z-index: 2;
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 0 2em;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease;
+            transition-delay: 0.2s;
+        }
+        
+        .timeline-slide.active .timeline-item {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .timeline-slide.active .timeline-item:nth-child(1) {
+            transition-delay: 0.1s;
+        }
+        
+        .timeline-slide.active .timeline-item:nth-child(2) {
+            transition-delay: 0.3s;
+        }
+        
+        .timeline-slide.active .timeline-item:nth-child(3) {
+            transition-delay: 0.5s;
+        }
+        
+        .timeline-icon {
+            width: 60px;
+            height: 60px;
+            background: #28a745;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1em;
+            color: white;
+            font-size: 1.5em;
+            box-shadow: 0 4px 15px rgba(40, 167, 69, 0.3);
+            border: 4px solid white;
+            transform: scale(0.8);
+            transition: all 0.4s ease;
+        }
+        
+        .timeline-slide.active .timeline-icon {
+            transform: scale(1);
+            animation: iconPulse 2s ease-in-out infinite;
+        }
+        
+        @keyframes iconPulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+        
+        .timeline-year {
+            background: #28a745;
+            color: white;
+            padding: 0.5em 1em;
+            border-radius: 20px;
+            font-weight: 600;
+            font-size: 0.9em;
+            display: inline-block;
+            margin-bottom: 1em;
+            box-shadow: 0 2px 10px rgba(40, 167, 69, 0.2);
+        }
+        
+        .timeline-content-item h3 {
+            color: #0c3c61;
+            font-size: 1.3em;
+            font-weight: 600;
+            margin-bottom: 0.5em;
+        }
+        
+        .timeline-content-item p {
+            color: #0c3c61;
+            opacity: 0.8;
+            line-height: 1.6;
+            font-size: 0.95em;
+        }
+        
+        .timeline-nav-btn {
+            background: white;
+            border: 2px solid #28a745;
+            color: #28a745;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 1.2em;
+            box-shadow: 0 4px 15px rgba(40, 167, 69, 0.2);
+        }
+        
+        .timeline-nav-btn:hover {
+            background: #28a745;
+            color: white;
+            transform: scale(1.1);
+        }
+        
+        .timeline-nav-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none;
+        }
+        
+        .timeline-prev {
+            margin-right: 2em;
+        }
+        
+        .timeline-next {
+            margin-left: 2em;
+        }
+        
+        .timeline-indicators {
+            display: flex;
+            justify-content: center;
+            gap: 1em;
+            margin-top: 2em;
+        }
+        
+        .indicator {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: #ddd;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .indicator.active {
+            background: #28a745;
+            transform: scale(1.2);
+        }
+        
+        /* Responsive Timeline */
+        @media (max-width: 768px) {
+            .timeline-slide {
+                grid-template-columns: 1fr;
+                gap: 3em;
+            }
+            
+            .timeline-line {
+                display: none;
+            }
+            
+            .timeline-nav-btn {
+                width: 40px;
+                height: 40px;
+                font-size: 1em;
+            }
+            
+            .timeline-prev {
+                margin-right: 1em;
+            }
+            
+            .timeline-next {
+                margin-left: 1em;
+            }
+            
+            .timeline-title {
+                font-size: 2em;
+            }
         }
         
         .hero-title {
@@ -339,184 +703,424 @@
     <div class="menu-overlay" id="menuOverlay"></div>
 
     <script src="../js/script.js"></script>
-
-    <!-- Hero Section -->
-    <section class="sobre-nosotros-hero">
-        <div class="hero-content">
-            <h1 class="hero-title">Sobre Nosotros</h1>
-            <p class="hero-subtitle">Más de 15 años transformando sueños en realidad, construyendo hogares y forjando el futuro inmobiliario del norte del Perú</p>
-        </div>
-    </section>
-
-    <!-- Historia -->
-    <section class="sobre-section">
-        <div class="section-header">
-            <h2 class="section-title">Nuestra Historia</h2>
-            <p class="section-subtitle">Una trayectoria sólida construida sobre la confianza y el compromiso con nuestros clientes</p>
-        </div>
-        
-        <div class="historia-content">
-            <div class="historia-text">
-                <p><strong>Corporación Inmobiliaria Sipán</strong> nació en 2008 con la visión de democratizar el acceso a la vivienda digna en el norte del Perú. Desde nuestros inicios en Chiclayo, hemos sido pioneros en la implementación de programas gubernamentales como <strong>Mi Vivienda</strong> y <strong>Techo Propio</strong>.</p>
+    
+    <script>
+        // Timeline interactivo - Inicialización después de que el DOM esté listo
+        document.addEventListener('DOMContentLoaded', function() {
+            let currentSlide = 0;
+            const totalSlides = 5;
+            
+            const timelineContent = document.getElementById('timelineContent');
+            const prevBtn = document.getElementById('timelinePrev');
+            const nextBtn = document.getElementById('timelineNext');
+            const indicators = document.querySelectorAll('.indicator');
+            const slides = document.querySelectorAll('.timeline-slide');
+            
+            console.log('Timeline inicializado:', {
+                slides: slides.length,
+                indicators: indicators.length,
+                prevBtn: prevBtn,
+                nextBtn: nextBtn
+            });
+            
+            function updateTimeline() {
+                console.log('Actualizando timeline, slide actual:', currentSlide);
                 
-                <p>A lo largo de estos años, hemos desarrollado más de <strong>20 proyectos habitacionales</strong>, entregando más de <strong>1,500 viviendas</strong> y ayudando a miles de familias a cumplir el sueño de la casa propia.</p>
+                // Actualizar slides con animación
+                slides.forEach((slide, index) => {
+                    slide.classList.remove('active', 'prev');
+                    
+                    if (index === currentSlide) {
+                        slide.classList.add('active');
+                    } else if (index < currentSlide) {
+                        slide.classList.add('prev');
+                    }
+                });
                 
-                <p>Nuestro compromiso va más allá de la construcción: somos facilitadores de sueños, asesores de confianza y compañeros en el camino hacia la estabilidad habitacional de nuestros clientes.</p>
-            </div>
+                // Actualizar indicadores
+                indicators.forEach((indicator, index) => {
+                    indicator.classList.toggle('active', index === currentSlide);
+                });
+                
+                // Actualizar botones
+                if (prevBtn) prevBtn.disabled = currentSlide === 0;
+                if (nextBtn) nextBtn.disabled = currentSlide === totalSlides - 1;
+            }
             
-            <div class="historia-imagen">
-                <img src="../img/casa25.jpg" alt="Historia Corporación Sipán">
+            function nextSlide() {
+                console.log('Siguiente slide');
+                if (currentSlide < totalSlides - 1) {
+                    currentSlide++;
+                    updateTimeline();
+                }
+            }
+            
+            function prevSlide() {
+                console.log('Slide anterior');
+                if (currentSlide > 0) {
+                    currentSlide--;
+                    updateTimeline();
+                }
+            }
+            
+            function goToSlide(slideIndex) {
+                console.log('Ir a slide:', slideIndex);
+                currentSlide = slideIndex;
+                updateTimeline();
+            }
+            
+            // Event listeners
+            if (nextBtn) {
+                nextBtn.addEventListener('click', nextSlide);
+                console.log('Event listener agregado al botón siguiente');
+            }
+            
+            if (prevBtn) {
+                prevBtn.addEventListener('click', prevSlide);
+                console.log('Event listener agregado al botón anterior');
+            }
+            
+            indicators.forEach((indicator, index) => {
+                indicator.addEventListener('click', () => goToSlide(index));
+            });
+            
+            // Inicializar
+            updateTimeline();
+            console.log('Timeline inicializado correctamente');
+        });
+    </script>
+
+    <!-- Header Section con Imagen -->
+    <section class="sobre-nosotros-header">
+        <div class="header-image-container">
+            <img src="../img/header_nosotros/familia_casa.png" alt="Familia feliz en su nuevo hogar" class="header-family-image">
+        </div>
+        <div class="header-content-text">
+            <div class="header-text-container">
+                <h1 class="company-title">
+                    <span class="somos-text">Construyendo un</span>
+                    <span class="empresa-subtitle">futuro mejor en</span>
+                    <span class="peruano-highlight">Chiclayo</span>
+                </h1>
+                <p class="company-description">
+                    Con más de 25 años de experiencia en desarrollo urbano, nuestro compromiso es elevar la calidad de vida de las familias chiclayanas. Contamos con todos los servicios básicos, portales de ingreso seguros y miles de m² de áreas verdes con diseño paisajista y zonas recreativas.
+                    <br><br>
+                    Nuestro modelo de gestión contribuye al crecimiento ordenado de Chiclayo y sus ciudades. En Corporación Inmobiliaria Sipán, no solo construimos viviendas, creamos comunidades donde el bienestar de tu familia es nuestra prioridad.
+                </p>
             </div>
         </div>
     </section>
 
-    <!-- Valores -->
-    <section class="sobre-section" style="background: #f8fbff;">
-        <div class="section-header">
-            <h2 class="section-title">Nuestros Valores</h2>
-            <p class="section-subtitle">Los principios que guían cada decisión y acción en Corporación Sipán</p>
-        </div>
-        
-        <div class="valores-grid">
-            <div class="valor-card">
-                <i class="fas fa-handshake valor-icon"></i>
-                <h3 class="valor-title">Confianza</h3>
-                <p class="valor-description">Construimos relaciones duraderas basadas en la transparencia, honestidad y cumplimiento de nuestros compromisos con cada cliente.</p>
+    <!-- Timeline Historia Interactiva -->
+    <section class="historia-timeline-section">
+        <div class="timeline-container">
+            <div class="timeline-header">
+                <h2 class="timeline-title">Historia</h2>
+                <p class="timeline-subtitle">Conoce un poco más sobre Corporación Sipán y cómo fuimos creciendo como inmobiliaria</p>
             </div>
             
-            <div class="valor-card">
-                <i class="fas fa-star valor-icon"></i>
-                <h3 class="valor-title">Excelencia</h3>
-                <p class="valor-description">Buscamos la perfección en cada proyecto, desde el diseño arquitectónico hasta los acabados finales, superando las expectativas.</p>
-            </div>
-            
-            <div class="valor-card">
-                <i class="fas fa-users valor-icon"></i>
-                <h3 class="valor-title">Compromiso Social</h3>
-                <p class="valor-description">Contribuimos al desarrollo de comunidades sostenibles y al acceso equitativo a viviendas dignas para todas las familias.</p>
-            </div>
-            
-            <div class="valor-card">
-                <i class="fas fa-lightbulb valor-icon"></i>
-                <h3 class="valor-title">Innovación</h3>
-                <p class="valor-description">Implementamos tecnologías y metodologías de vanguardia para ofrecer soluciones inmobiliarias modernas y eficientes.</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- Estadísticas -->
-    <section class="estadisticas-section">
-        <div class="section-header">
-            <h2 class="section-title" style="color: white;">Nuestros Logros</h2>
-            <p class="section-subtitle" style="color: white; opacity: 0.9;">Números que reflejan nuestro compromiso y experiencia</p>
-        </div>
-        
-        <div class="estadisticas-grid">
-            <div class="estadistica-item">
-                <div class="estadistica-numero">15+</div>
-                <div class="estadistica-label">Años de Experiencia</div>
-            </div>
-            
-            <div class="estadistica-item">
-                <div class="estadistica-numero">1,500+</div>
-                <div class="estadistica-label">Viviendas Entregadas</div>
-            </div>
-            
-            <div class="estadistica-item">
-                <div class="estadistica-numero">20+</div>
-                <div class="estadistica-label">Proyectos Desarrollados</div>
-            </div>
-            
-            <div class="estadistica-item">
-                <div class="estadistica-numero">98%</div>
-                <div class="estadistica-label">Satisfacción del Cliente</div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Equipo -->
-    <section class="sobre-section">
-        <div class="section-header">
-            <h2 class="section-title">Nuestro Equipo</h2>
-            <p class="section-subtitle">Profesionales especializados comprometidos con tu éxito inmobiliario</p>
-        </div>
-        
-        <div class="equipo-grid">
-            <div class="miembro-card">
-                <div class="miembro-foto">
-                    <i class="fas fa-user-tie"></i>
-                </div>
-                <h3 class="miembro-nombre">Gerencia General</h3>
-                <p class="miembro-cargo">Dirección Ejecutiva</p>
-                <p class="miembro-descripcion">Liderazgo estratégico con más de 20 años de experiencia en el sector inmobiliario y programas habitacionales gubernamentales.</p>
-            </div>
-            
-            <div class="miembro-card">
-                <div class="miembro-foto">
-                    <i class="fas fa-hard-hat"></i>
-                </div>
-                <h3 class="miembro-nombre">Departamento Técnico</h3>
-                <p class="miembro-cargo">Ingeniería y Construcción</p>
-                <p class="miembro-descripcion">Equipo de ingenieros civiles y arquitectos especializados en proyectos residenciales y comerciales de alta calidad.</p>
-            </div>
-            
-            <div class="miembro-card">
-                <div class="miembro-foto">
-                    <i class="fas fa-balance-scale"></i>
-                </div>
-                <h3 class="miembro-nombre">Asesoría Legal</h3>
-                <p class="miembro-cargo">Departamento Jurídico</p>
-                <p class="miembro-descripcion">Abogados especializados en derecho inmobiliario, trámites registrales y programas gubernamentales de vivienda.</p>
-            </div>
-            
-            <div class="miembro-card">
-                <div class="miembro-foto">
-                    <i class="fas fa-headset"></i>
-                </div>
-                <h3 class="miembro-nombre">Atención al Cliente</h3>
-                <p class="miembro-cargo">Servicio y Soporte</p>
-                <p class="miembro-descripcion">Equipo dedicado a brindar asesoría personalizada 24/7 y acompañamiento integral durante todo el proceso.</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="footer-container">
-            <div class="footer-content">
-                <div class="footer-section">
-                    <h3>Corporación Inmobiliaria Sipán</h3>
-                    <p>Transformando sueños en realidad desde 2008</p>
-                    <div class="footer-social">
-                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
-                        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-                        <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+            <div class="timeline-wrapper">
+                <button class="timeline-nav-btn timeline-prev" id="timelinePrev">
+                    <i class="fas fa-chevron-left"></i>
+                </button>
+                
+                <div class="timeline-content" id="timelineContent">
+                    <div class="timeline-line"></div>
+                    
+                    <!-- Slide 1: 1999-2005-2008 -->
+                    <div class="timeline-slide active" data-slide="0">
+                        <div class="timeline-item">
+                            <div class="timeline-icon">
+                                <i class="fas fa-home"></i>
+                            </div>
+                            <div class="timeline-year">1999</div>
+                            <div class="timeline-content-item">
+                                <h3>Fundación</h3>
+                                <p>Inicio de operaciones como empresa familiar en Chiclayo, estableciendo las bases de nuestra trayectoria inmobiliaria.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="timeline-item">
+                            <div class="timeline-icon">
+                                <i class="fas fa-seedling"></i>
+                            </div>
+                            <div class="timeline-year">2005</div>
+                            <div class="timeline-content-item">
+                                <h3>Primeros Terrenos</h3>
+                                <p>Adquisición de los primeros terrenos estratégicos en zonas de alta plusvalía en Lambayeque.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="timeline-item">
+                            <div class="timeline-icon">
+                                <i class="fas fa-building"></i>
+                            </div>
+                            <div class="timeline-year">2008</div>
+                            <div class="timeline-content-item">
+                                <h3>Primer Proyecto</h3>
+                                <p>Desarrollo de nuestro primer proyecto habitacional urbano, marcando el inicio de nuestra expansión.</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Slide 2: 2012-2015-2017 -->
+                    <div class="timeline-slide" data-slide="1">
+                        <div class="timeline-item">
+                            <div class="timeline-icon">
+                                <i class="fas fa-chart-line"></i>
+                            </div>
+                            <div class="timeline-year">2012</div>
+                            <div class="timeline-content-item">
+                                <h3>Crecimiento</h3>
+                                <p>Expansión significativa con 5 proyectos simultáneos y más de 200 viviendas entregadas.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="timeline-item">
+                            <div class="timeline-icon">
+                                <i class="fas fa-trophy"></i>
+                            </div>
+                            <div class="timeline-year">2015</div>
+                            <div class="timeline-content-item">
+                                <h3>Reconocimiento</h3>
+                                <p>Obtención de certificaciones ISO y reconocimientos por calidad en construcción y atención al cliente.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="timeline-item">
+                            <div class="timeline-icon">
+                                <i class="fas fa-handshake"></i>
+                            </div>
+                            <div class="timeline-year">2017</div>
+                            <div class="timeline-content-item">
+                                <h3>Alianzas Bancarias</h3>
+                                <p>Primeras alianzas con entidades financieras para facilitar el acceso a créditos hipotecarios.</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Slide 3: 2018-2020-2021 -->
+                    <div class="timeline-slide" data-slide="2">
+                        <div class="timeline-item">
+                            <div class="timeline-icon">
+                                <i class="fas fa-leaf"></i>
+                            </div>
+                            <div class="timeline-year">2018</div>
+                            <div class="timeline-content-item">
+                                <h3>Proyectos Sostenibles</h3>
+                                <p>Implementación de diseños eco-amigables y áreas verdes en todos nuestros desarrollos habitacionales.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="timeline-item">
+                            <div class="timeline-icon">
+                                <i class="fas fa-users"></i>
+                            </div>
+                            <div class="timeline-year">2020</div>
+                            <div class="timeline-content-item">
+                                <h3>Expansión Regional</h3>
+                                <p>Ampliación de operaciones a nivel regional, consolidando nuestra presencia en el norte del Perú.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="timeline-item">
+                            <div class="timeline-icon">
+                                <i class="fas fa-shield-alt"></i>
+                            </div>
+                            <div class="timeline-year">2021</div>
+                            <div class="timeline-content-item">
+                                <h3>Protocolos COVID</h3>
+                                <p>Implementación de protocolos de bioseguridad y adaptación digital durante la pandemia.</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Slide 4: 2022-2023-2024 -->
+                    <div class="timeline-slide" data-slide="3">
+                        <div class="timeline-item">
+                            <div class="timeline-icon">
+                                <i class="fas fa-coins"></i>
+                            </div>
+                            <div class="timeline-year">2022</div>
+                            <div class="timeline-content-item">
+                                <h3>Programas Gubernamentales</h3>
+                                <p>Especialización en programas Mi Vivienda y Techo Propio, facilitando el acceso a vivienda social.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="timeline-item">
+                            <div class="timeline-icon">
+                                <i class="fas fa-award"></i>
+                            </div>
+                            <div class="timeline-year">2023</div>
+                            <div class="timeline-content-item">
+                                <h3>Líder Regional</h3>
+                                <p>Reconocimiento como la inmobiliaria líder en Lambayeque con más de 1,000 familias beneficiadas.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="timeline-item">
+                            <div class="timeline-icon">
+                                <i class="fas fa-rocket"></i>
+                            </div>
+                            <div class="timeline-year">2024</div>
+                            <div class="timeline-content-item">
+                                <h3>Innovación Digital</h3>
+                                <p>Lanzamiento de plataforma digital para facilitar procesos de compra y seguimiento de proyectos.</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Slide 5: 2025-Futuro -->
+                    <div class="timeline-slide" data-slide="4">
+                        <div class="timeline-item">
+                            <div class="timeline-icon">
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <div class="timeline-year">2025</div>
+                            <div class="timeline-content-item">
+                                <h3>Consolidación</h3>
+                                <p>Consolidación como referente inmobiliario con más de 1,500 familias beneficiadas y 25 proyectos.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="timeline-item">
+                            <div class="timeline-icon">
+                                <i class="fas fa-globe"></i>
+                            </div>
+                            <div class="timeline-year">2027</div>
+                            <div class="timeline-content-item">
+                                <h3>Expansión Nacional</h3>
+                                <p>Inicio de operaciones en Lima y otras regiones del país, manteniendo nuestros estándares de calidad.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="timeline-item">
+                            <div class="timeline-icon">
+                                <i class="fas fa-city"></i>
+                            </div>
+                            <div class="timeline-year">2030</div>
+                            <div class="timeline-content-item">
+                                <h3>Visión 2030</h3>
+                                <p>Desarrollo de ciudades integrales sostenibles que transformen comunidades enteras en el Perú.</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 
-                <div class="footer-section">
-                    <h4>Enlaces Rápidos</h4>
-                    <ul>
-                        <li><a href="../index.html">Inicio</a></li>
-                        <li><a href="sobre-nosotros.html">Sobre Nosotros</a></li>
-                        <li><a href="proyecto.html">Beneficios</a></li>
-                        <li><a href="servicios.html">Servicios</a></li>
-                        <li><a href="contacto.html">Contacto</a></li>
-                    </ul>
-                </div>
-                
-                <div class="footer-section">
-                    <h4>Contacto</h4>
-                    <p><i class="fas fa-map-marker-alt"></i> C.C Boulevard, Chiclayo</p>
-                    <p><i class="fas fa-phone"></i> +51 932 359 551</p>
-                    <p><i class="fas fa-envelope"></i> info@sipan.com</p>
-                </div>
+                <button class="timeline-nav-btn timeline-next" id="timelineNext">
+                    <i class="fas fa-chevron-right"></i>
+                </button>
             </div>
             
-            <div class="footer-bottom">
-                <p>&copy; 2024 Corporación Inmobiliaria Sipán. Todos los derechos reservados.</p>
+            <div class="timeline-indicators">
+                <span class="indicator active" data-slide="0"></span>
+                <span class="indicator" data-slide="1"></span>
+                <span class="indicator" data-slide="2"></span>
+                <span class="indicator" data-slide="3"></span>
+                <span class="indicator" data-slide="4"></span>
             </div>
         </div>
+    </section>
+
+    <!-- Footer con Olas Animadas -->
+    <footer class="footer-waves">
+        <!-- Olas animadas -->
+        <div class="waves-container">
+            <svg class="waves" xmlns="http://www.w3.org/2000/svg" viewBox="0 24 150 28" preserveAspectRatio="none">
+                <defs>
+                    <path id="gentle-wave" d="m-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z" />
+                </defs>
+                <g class="parallax">
+                    <use href="#gentle-wave" x="48" y="0" fill="rgba(30, 123, 191, 0.7)" />
+                    <use href="#gentle-wave" x="48" y="3" fill="rgba(30, 123, 191, 0.5)" />
+                    <use href="#gentle-wave" x="48" y="5" fill="rgba(30, 123, 191, 0.3)" />
+                    <use href="#gentle-wave" x="48" y="7" fill="rgba(12, 60, 97, 1)" />
+                </g>
+            </svg>
+        </div>
+
+        <!-- Contenido del Footer -->
+        <div class="footer-content">
+            <div class="footer-container">
+                <!-- Síguenos -->
+                <div class="footer-section">
+                    <h4>Síguenos</h4>
+                    <div class="social-links">
+                        <a href="https://www.facebook.com/share/19ivg4HBHX/" target="_blank" aria-label="Facebook">
+                            <i class="fab fa-facebook-f"></i>
+                            <span>Facebook</span>
+                        </a>
+                        <a href="https://www.instagram.com/inmobiliaria_sipan?igsh=amMxNHgzN2pqbnli" target="_blank" aria-label="Instagram">
+                            <i class="fab fa-instagram"></i>
+                            <span>Instagram</span>
+                        </a>
+                        <a href="https://www.tiktok.com/@inmobiliaria_sipan?_t=ZS-8yipEpRj0sB&_r=1" target="_blank" aria-label="TikTok">
+                            <i class="fab fa-tiktok"></i>
+                            <span>TikTok</span>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Enlaces Rápidos -->
+                <div class="footer-section">
+                    <h4>Enlaces Rápidos</h4>
+                    <div class="quick-links">
+                        <a href="../index.html"><i class="fas fa-home"></i> Inicio</a>
+                        <a href="proyecto.html"><i class="fas fa-building"></i> Proyecto</a>
+                        <a href="servicios.html"><i class="fas fa-cogs"></i> Servicios</a>
+                        <a href="../index.html#oportunidades"><i class="fas fa-briefcase"></i> Trabaja con Nosotros</a>
+                        <a href="../index.html#ubicacion"><i class="fas fa-map-marker-alt"></i> Ubicación</a>
+                        <a href="contacto.html"><i class="fas fa-envelope"></i> Contacto</a>
+                    </div>
+                </div>
+
+                <!-- Contacto -->
+                <div class="footer-section">
+                    <h4>Contacto</h4>
+                    <div class="contact-info">
+                        <div class="contact-item">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>C.C Boulevard | Oficina J-3</span>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-phone"></i>
+                            <span>+51 932 359 551</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Horarios de Atención -->
+                <div class="footer-section">
+                    <h4>Horarios de Atención</h4>
+                    <div class="schedule-info">
+                        <div class="schedule-item">
+                            <i class="fas fa-clock"></i>
+                            <div>
+                                <span>Lunes - Sábado</span>
+                                <span>9:30 am - 07:00 pm</span>
+                            </div>
+                        </div>
+                        <div class="schedule-item">
+                            <i class="fas fa-calendar-times"></i>
+                            <div>
+                                <span>Domingos</span>
+                                <span>Cerrado</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Copyright -->
+            <div class="footer-bottom">
+                <div class="footer-container">
+                    <div class="copyright">
+                        <p> 2025 Corporación Inmobiliaria Sipán. Todos los derechos reservados.</p>
+                        <p class="developer">Sitio desarrollado por: Jhon Antony Campos Nuñez</p>
+                    </div>
+                </div>
+            </div>
     </footer>
 
     <!-- Botón flotante de WhatsApp -->
