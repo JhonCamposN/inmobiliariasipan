@@ -113,6 +113,157 @@
     height: 100%;
 }
 
+.animate {
+    opacity: 1;
+    transform: translateY(0);
+    transition: all 0.6s ease;
+}
+
+.animate-in {
+    opacity: 1;
+    transform: translateY(0);
+    transition: all 0.8s ease;
+}
+
+.valor-card {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.6s cubic-bezier(0.4, 0, 0.2, 1), transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    will-change: opacity, transform;
+}
+
+.valor-card.animate {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Animaciones para la sección del header */
+.header-text-container {
+    opacity: 0;
+    transform: translateY(50px);
+    transition: opacity 1s ease, transform 1s ease;
+}
+
+.header-text-container.animate-in {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.company-title {
+    opacity: 0;
+    transform: translateX(-50px);
+    transition: opacity 1.2s ease, transform 1.2s ease;
+}
+
+.company-title.animate-in {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.company-description {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 1s ease 0.3s, transform 1s ease 0.3s;
+}
+
+.company-description.animate-in {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Animaciones escalonadas para los spans del título */
+.somos-text {
+    opacity: 0;
+    transform: translateX(-30px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.empresa-subtitle {
+    opacity: 0;
+    transform: translateX(-30px);
+    transition: opacity 0.8s ease 0.2s, transform 0.8s ease 0.2s;
+}
+
+.peruano-highlight {
+    opacity: 0;
+    transform: translateX(-30px);
+    transition: opacity 0.8s ease 0.4s, transform 0.8s ease 0.4s;
+}
+
+.company-title.animate-in .somos-text,
+.company-title.animate-in .empresa-subtitle,
+.company-title.animate-in .peruano-highlight {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+/* Animaciones para la sección Misión y Visión */
+.mision-vision-cards {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: all 1s ease;
+}
+
+.mision-vision-cards.animate-in {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.mision-card {
+    opacity: 0;
+    transform: translateX(-50px);
+    transition: all 0.8s ease 0.2s;
+}
+
+.mision-card.animate-in {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.vision-card {
+    opacity: 0;
+    transform: translateX(50px);
+    transition: all 0.8s ease 0.4s;
+}
+
+.vision-card.animate-in {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.mision-section {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.8s ease;
+}
+
+.mision-section.animate-in {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.vision-section {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.8s ease 0.3s;
+}
+
+.vision-section.animate-in {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.families-image {
+    opacity: 0;
+    transform: scale(0.8) rotate(5deg);
+    transition: all 1s ease 0.5s;
+}
+
+.families-image.animate-in {
+    opacity: 1;
+    transform: scale(1) rotate(0deg);
+}
+
 .timeline-slide.active {
     opacity: 1;
     transform: translateX(0);
@@ -133,7 +284,6 @@
     position: relative;
     z-index: 2;
     border: 2px solid transparent;
-    animation: fadeInUp 0.6s ease-out;
 }
 
 .timeline-item:hover {
@@ -142,16 +292,6 @@
     border-color: #1e7bbf;
 }
 
-@keyframes fadeInUp {
-    from {
-        opacity: 0;
-        transform: translateY(30px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
 
 /* Iconos del timeline */
 .timeline-icon {
@@ -692,45 +832,16 @@
     padding: 30px 25px;
     text-align: center;
     box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
-    transition: all 0.3s ease;
     border: 2px solid transparent;
     position: relative;
     overflow: hidden;
     opacity: 0;
-    transform: translateY(50px);
-    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+    transform: translateY(30px);
+    transition: opacity 0.6s cubic-bezier(0.4, 0, 0.2, 1), transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    will-change: opacity, transform;
 }
 
-.valor-card.animate:nth-child(1) {
-    animation: fadeInUp 0.6s ease-out forwards;
-    animation-delay: 0.2s;
-}
 
-.valor-card.animate:nth-child(2) {
-    animation: fadeInUp 0.6s ease-out forwards;
-    animation-delay: 0.4s;
-}
-
-.valor-card.animate:nth-child(3) {
-    animation: fadeInUp 0.6s ease-out forwards;
-    animation-delay: 0.6s;
-}
-
-.valor-card.animate:nth-child(4) {
-    animation: fadeInUp 0.6s ease-out forwards;
-    animation-delay: 0.8s;
-}
-
-@keyframes fadeInUp {
-    from {
-        opacity: 0;
-        transform: translateY(50px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
 
 .valor-card::before {
     content: '';
@@ -743,31 +854,31 @@
     transition: all 0.3s ease;
 }
 
-.valor-card:hover {
+.valor-card.animate:hover {
     transform: translateY(-10px);
     box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
     border-color: #28a745;
+    transition: all 0.3s ease;
 }
 
-.valor-card:hover::before {
+.valor-card.animate:hover::before {
     height: 6px;
 }
 
 .valor-icon {
-    width: 70px;
-    height: 70px;
+    width: 80px;
+    height: 80px;
+    margin: 0 auto 20px;
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 28px;
+    font-size: 2rem;
     color: white;
-    margin: 0 auto 20px;
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
-    transition: all 0.3s ease;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.valor-card:hover .valor-icon {
+.valor-card.animate:hover .valor-icon {
     transform: scale(1.1);
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
 }
@@ -867,6 +978,260 @@
     
     .valores-title {
         font-size: 2.2rem;
+    }
+}
+
+/* Sección ¿Por qué elegir Sipán? */
+.elegir-sipan-section {
+    padding: 5em 0;
+    background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+    position: relative;
+    overflow: hidden;
+}
+
+.elegir-sipan-section::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(30, 123, 191, 0.05) 0%, transparent 70%);
+    animation: rotate 20s linear infinite;
+}
+
+.elegir-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 2em;
+    position: relative;
+    z-index: 2;
+}
+
+.elegir-header {
+    text-align: center;
+    margin-bottom: 4em;
+}
+
+.elegir-header h2 {
+    font-size: 3em;
+    color: #0c3c61;
+    margin-bottom: 0.5em;
+    font-weight: 700;
+    position: relative;
+}
+
+.elegir-header h2::after {
+    content: '';
+    position: absolute;
+    bottom: -15px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100px;
+    height: 4px;
+    background: linear-gradient(135deg, #1e7bbf, #28a745);
+    border-radius: 2px;
+}
+
+.elegir-subtitle {
+    font-size: 1.3em;
+    color: #64748b;
+    margin-top: 1.5em;
+    font-weight: 300;
+}
+
+.elegir-content {
+    display: grid;
+    grid-template-columns: 2fr 0.78fr;
+    gap: 4em;
+    align-items: center;
+}
+
+.elegir-info {
+    display: flex;
+    flex-direction: column;
+    gap: 2.5em;
+}
+
+.elegir-description p {
+    font-size: 1.2em;
+    line-height: 1.8;
+    color: #475569;
+    text-align: justify;
+}
+
+.elegir-reasons {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5em;
+}
+
+.reason-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 1.5em;
+    padding: 1.5em;
+    background: white;
+    border-radius: 15px;
+    box-shadow: 0 4px 20px rgba(30, 123, 191, 0.08);
+    transition: all 0.3s ease;
+    border-left: 4px solid transparent;
+    opacity: 0;
+    transform: translateY(30px);
+}
+
+.reason-item.animate {
+    opacity: 1;
+    transform: translateY(0);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.reason-item.animate:nth-child(1) {
+    transition-delay: 0.1s;
+}
+
+.reason-item.animate:nth-child(2) {
+    transition-delay: 0.2s;
+}
+
+.reason-item.animate:nth-child(3) {
+    transition-delay: 0.3s;
+}
+
+.reason-item.animate:nth-child(4) {
+    transition-delay: 0.4s;
+}
+
+.reason-item.animate:nth-child(5) {
+    transition-delay: 0.5s;
+}
+
+.reason-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 30px rgba(30, 123, 191, 0.15);
+    border-left-color: #1e7bbf;
+}
+
+.reason-item.animate:hover {
+    transform: translateY(-5px);
+}
+
+.reason-icon {
+    flex-shrink: 0;
+    width: 60px;
+    height: 60px;
+    background: linear-gradient(135deg, #1e7bbf, #28a745);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 1.5em;
+    box-shadow: 0 4px 15px rgba(30, 123, 191, 0.3);
+}
+
+.reason-content h4 {
+    font-size: 1.3em;
+    color: #0c3c61;
+    margin-bottom: 0.5em;
+    font-weight: 600;
+}
+
+.reason-content p {
+    color: #64748b;
+    line-height: 1.6;
+    font-size: 1em;
+}
+
+.elegir-cta {
+    text-align: center;
+    margin-top: 1em;
+}
+
+.btn-elegir {
+    display: inline-block;
+    padding: 1em 2.5em;
+    background: linear-gradient(135deg, #1e7bbf, #28a745);
+    color: white;
+    text-decoration: none;
+    border-radius: 50px;
+    font-weight: 600;
+    font-size: 1.1em;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 20px rgba(30, 123, 191, 0.3);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.btn-elegir:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 30px rgba(30, 123, 191, 0.4);
+    background: linear-gradient(135deg, #28a745, #1e7bbf);
+}
+
+.elegir-video {
+    position: relative;
+}
+
+.video-container-elegir {
+    position: relative;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 10px 40px rgba(30, 123, 191, 0.2);
+    background: linear-gradient(135deg, #1e7bbf, #28a745);
+    padding: 8px;
+}
+
+.video-container-elegir video {
+    width: 100%;
+    height: auto;
+    border-radius: 15px;
+    display: block;
+}
+
+/* Responsive para la sección elegir */
+@media (max-width: 1024px) {
+    .elegir-content {
+        grid-template-columns: 1fr;
+        gap: 3em;
+    }
+    
+    .elegir-header h2 {
+        font-size: 2.5em;
+    }
+}
+
+@media (max-width: 768px) {
+    .elegir-sipan-section {
+        padding: 3em 0;
+    }
+    
+    .elegir-container {
+        padding: 0 1.5em;
+    }
+    
+    .elegir-header h2 {
+        font-size: 2em;
+    }
+    
+    .elegir-subtitle {
+        font-size: 1.1em;
+    }
+    
+    .reason-item {
+        flex-direction: column;
+        text-align: center;
+        gap: 1em;
+    }
+    
+    .reason-icon {
+        width: 50px;
+        height: 50px;
+        font-size: 1.2em;
+    }
+    
+    .reason-content h4 {
+        font-size: 1.1em;
     }
 }
 

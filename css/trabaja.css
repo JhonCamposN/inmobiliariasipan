@@ -1,0 +1,505 @@
+/* Estilos para la página Trabaja con Nosotros */
+
+/* Sección Oportunidades */
+.oportunidades-trabajo-section {
+    padding: 5em 0;
+    background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+}
+
+.oportunidades-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 2em;
+}
+
+.oportunidades-header {
+    text-align: center;
+    margin-bottom: 4em;
+}
+
+.oportunidades-header h1 {
+    font-size: 3.5em;
+    color: #0c3c61;
+    margin-bottom: 0.3em;
+    font-weight: 700;
+    text-align: center;
+}
+
+.oportunidades-header h2 {
+    font-size: 2em;
+    color: #1e7bbf;
+    margin-bottom: 0.5em;
+    font-weight: 600;
+    text-align: center;
+    position: relative;
+}
+
+.oportunidades-header h2::after {
+    content: '';
+    position: absolute;
+    bottom: -15px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100px;
+    height: 4px;
+    background: linear-gradient(135deg, #1e7bbf, #28a745);
+    border-radius: 2px;
+}
+
+.oportunidades-subtitle {
+    font-size: 1.3em;
+    color: #64748b;
+    margin-top: 1.5em;
+    font-weight: 300;
+}
+
+/* Posición Destacada */
+.posicion-destacada {
+    background: white;
+    border-radius: 20px;
+    padding: 3em;
+    box-shadow: 0 10px 40px rgba(30, 123, 191, 0.1);
+    margin-bottom: 4em;
+    border: 2px solid transparent;
+    background-clip: padding-box;
+    position: relative;
+}
+
+.posicion-destacada::before {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    background: linear-gradient(135deg, #1e7bbf, #28a745);
+    border-radius: 22px;
+    z-index: -1;
+}
+
+.posicion-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5em;
+    background: linear-gradient(135deg, #ffd700, #ffed4e);
+    color: #0c3c61;
+    padding: 0.8em 1.5em;
+    border-radius: 50px;
+    font-weight: 600;
+    font-size: 0.9em;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 1.5em;
+}
+
+.posicion-info h3 {
+    font-size: 2.5em;
+    color: #0c3c61;
+    margin-bottom: 1em;
+    font-weight: 700;
+}
+
+.posicion-descripcion {
+    font-size: 1.2em;
+    line-height: 1.7;
+    color: #475569;
+    margin-bottom: 3em;
+}
+
+/* Grid de Requisitos y Beneficios */
+.requisitos-beneficios-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3em;
+    margin-bottom: 3em;
+}
+
+.requisitos-card,
+.beneficios-card {
+    background: #f8fafc;
+    border-radius: 15px;
+    padding: 2em;
+    border-left: 4px solid #1e7bbf;
+}
+
+.beneficios-card {
+    border-left-color: #28a745;
+}
+
+.card-header {
+    display: flex;
+    align-items: center;
+    gap: 1em;
+    margin-bottom: 1.5em;
+}
+
+.card-header i {
+    font-size: 1.5em;
+    color: #1e7bbf;
+}
+
+.beneficios-card .card-header i {
+    color: #28a745;
+}
+
+.card-header h4 {
+    font-size: 1.4em;
+    color: #0c3c61;
+    font-weight: 600;
+}
+
+.requisitos-lista,
+.beneficios-lista {
+    list-style: none;
+    padding: 0;
+}
+
+.requisitos-lista li,
+.beneficios-lista li {
+    display: flex;
+    align-items: center;
+    gap: 1em;
+    margin-bottom: 1em;
+    font-size: 1.1em;
+    color: #475569;
+}
+
+.requisitos-lista i,
+.beneficios-lista i {
+    color: #1e7bbf;
+    font-size: 0.9em;
+    width: 16px;
+}
+
+.beneficios-lista i {
+    color: #28a745;
+}
+
+/* Proceso de Postulación */
+.proceso-postulacion {
+    background: white;
+    border-radius: 20px;
+    padding: 3em;
+    box-shadow: 0 8px 30px rgba(30, 123, 191, 0.08);
+    margin-bottom: 4em;
+}
+
+.proceso-postulacion h3 {
+    font-size: 2.2em;
+    color: #0c3c61;
+    text-align: center;
+    margin-bottom: 2.5em;
+    font-weight: 700;
+}
+
+.proceso-steps {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2em;
+}
+
+.step-item {
+    text-align: center;
+    position: relative;
+}
+
+.step-item::after {
+    content: '';
+    position: absolute;
+    top: 30px;
+    right: -1em;
+    width: 2em;
+    height: 2px;
+    background: linear-gradient(90deg, #1e7bbf, #28a745);
+    z-index: 1;
+}
+
+.step-item:last-child::after {
+    display: none;
+}
+
+.step-number {
+    width: 60px;
+    height: 60px;
+    background: linear-gradient(135deg, #1e7bbf, #28a745);
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5em;
+    font-weight: 700;
+    margin: 0 auto 1.5em;
+    position: relative;
+    z-index: 2;
+}
+
+.step-content h4 {
+    font-size: 1.3em;
+    color: #0c3c61;
+    margin-bottom: 0.8em;
+    font-weight: 600;
+}
+
+.step-content p {
+    color: #64748b;
+    line-height: 1.5;
+    font-size: 1em;
+}
+
+/* CTA Postulación */
+.cta-postulacion {
+    background: linear-gradient(135deg, #0c3c61, #1e7bbf);
+    border-radius: 20px;
+    padding: 3em;
+    color: white;
+    text-align: center;
+}
+
+.cta-content {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.cta-text h3 {
+    font-size: 2.5em;
+    margin-bottom: 1em;
+    font-weight: 700;
+}
+
+.cta-text h3 i {
+    color: #25d366;
+    margin-right: 0.5em;
+}
+
+.cta-text p {
+    font-size: 1.2em;
+    margin-bottom: 2.5em;
+    opacity: 0.9;
+}
+
+.btn-whatsapp-principal {
+    display: inline-flex;
+    align-items: center;
+    gap: 1em;
+    background: #25d366;
+    color: white;
+    padding: 1.2em 3em;
+    border-radius: 50px;
+    text-decoration: none;
+    font-size: 1.2em;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    margin-bottom: 2em;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.btn-whatsapp-principal:hover {
+    background: #128c7e;
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(37, 211, 102, 0.3);
+}
+
+.contacto-info {
+    display: flex;
+    justify-content: center;
+    gap: 3em;
+    margin-top: 2em;
+}
+
+.telefono,
+.horario {
+    display: flex;
+    align-items: center;
+    gap: 0.8em;
+    font-size: 1.1em;
+    opacity: 0.9;
+}
+
+.telefono i,
+.horario i {
+    font-size: 1.2em;
+    color: #ffd700;
+}
+
+/* Por qué trabajar con nosotros */
+.por-que-trabajar-section {
+    padding: 5em 0;
+    background: white;
+}
+
+.por-que-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 2em;
+}
+
+.por-que-header {
+    text-align: center;
+    margin-bottom: 4em;
+}
+
+.por-que-header h2 {
+    font-size: 3em;
+    color: #0c3c61;
+    margin-bottom: 0.5em;
+    font-weight: 700;
+    position: relative;
+}
+
+.por-que-header h2::after {
+    content: '';
+    position: absolute;
+    bottom: -15px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100px;
+    height: 4px;
+    background: linear-gradient(135deg, #1e7bbf, #28a745);
+    border-radius: 2px;
+}
+
+.por-que-subtitle {
+    font-size: 1.3em;
+    color: #64748b;
+    margin-top: 1.5em;
+    font-weight: 300;
+}
+
+.razones-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2.5em;
+}
+
+.razon-card {
+    background: #f8fafc;
+    border-radius: 15px;
+    padding: 2.5em;
+    text-align: center;
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
+}
+
+.razon-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 40px rgba(30, 123, 191, 0.15);
+    border-color: #1e7bbf;
+}
+
+.razon-icon {
+    width: 80px;
+    height: 80px;
+    background: linear-gradient(135deg, #1e7bbf, #28a745);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 1.5em;
+    color: white;
+    font-size: 2em;
+}
+
+.razon-card h4 {
+    font-size: 1.4em;
+    color: #0c3c61;
+    margin-bottom: 1em;
+    font-weight: 600;
+}
+
+.razon-card p {
+    color: #64748b;
+    line-height: 1.6;
+    font-size: 1em;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+    .requisitos-beneficios-grid {
+        grid-template-columns: 1fr;
+        gap: 2em;
+    }
+    
+    .proceso-steps {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 3em;
+    }
+    
+    .step-item::after {
+        display: none;
+    }
+    
+    .razones-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .oportunidades-container,
+    .por-que-container {
+        padding: 0 1.5em;
+    }
+    
+    .oportunidades-header h1 {
+        font-size: 2.5em;
+    }
+    
+    .oportunidades-header h2,
+    .por-que-header h2 {
+        font-size: 1.6em;
+    }
+    
+    .posicion-destacada,
+    .proceso-postulacion,
+    .cta-postulacion {
+        padding: 2em;
+    }
+    
+    .posicion-info h3 {
+        font-size: 2em;
+    }
+    
+    .proceso-steps {
+        grid-template-columns: 1fr;
+        gap: 2em;
+    }
+    
+    .contacto-info {
+        flex-direction: column;
+        gap: 1.5em;
+    }
+    
+    .razones-grid {
+        grid-template-columns: 1fr;
+        gap: 2em;
+    }
+    
+    .razon-card {
+        padding: 2em;
+    }
+}
+
+@media (max-width: 480px) {
+    .oportunidades-header h1 {
+        font-size: 2em;
+    }
+    
+    .oportunidades-header h2,
+    .por-que-header h2 {
+        font-size: 1.4em;
+    }
+    
+    .posicion-info h3 {
+        font-size: 1.6em;
+    }
+    
+    .cta-text h3 {
+        font-size: 2em;
+    }
+    
+    .btn-whatsapp-principal {
+        padding: 1em 2em;
+        font-size: 1em;
+    }
+}

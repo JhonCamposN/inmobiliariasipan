@@ -24,6 +24,27 @@
             height: 50vh;
             overflow: hidden;
             position: relative;
+            background: linear-gradient(135deg, rgba(12, 60, 97, 0.8), rgba(30, 123, 191, 0.6));
+        }
+        
+        .header-slider {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .slider-track {
+            display: flex;
+            width: 500%;
+            height: 100%;
+            transition: transform 0.8s ease-in-out;
+        }
+        
+        .slider-slide {
+            width: 20%;
+            height: 100%;
+            position: relative;
         }
         
         .header-family-image {
@@ -31,6 +52,64 @@
             height: 100%;
             object-fit: cover;
             object-position: center;
+            filter: brightness(0.9);
+        }
+        
+        .slider-indicators {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 10px;
+            z-index: 10;
+        }
+        
+        .slider-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.5);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 2px solid rgba(255, 255, 255, 0.8);
+        }
+        
+        .slider-dot.active {
+            background: white;
+            transform: scale(1.2);
+        }
+        
+        .slider-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(255, 255, 255, 0.2);
+            border: 2px solid rgba(255, 255, 255, 0.5);
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            z-index: 10;
+            font-size: 1.2em;
+        }
+        
+        .slider-nav:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateY(-50%) scale(1.1);
+        }
+        
+        .slider-prev {
+            left: 20px;
+        }
+        
+        .slider-next {
+            right: 20px;
         }
         
         .header-content-text {
@@ -679,7 +758,7 @@
                         <a href="../index.html"><i class="fas fa-home"></i> Inicio <i class="fas fa-chevron-down dropdown-arrow"></i></a>
                         <ul class="dropdown-menu">
                             <li><a href="sobre-nosotros.html"><i class="fas fa-users"></i> Sobre Nosotros</a></li>
-                            <li><a href="../index.html#oportunidades"><i class="fas fa-briefcase"></i> Trabaja con Nosotros</a></li>
+                            <li><a href="trabaja-con-nosotros.html"><i class="fas fa-briefcase"></i> Trabaja con Nosotros</a></li>
                         </ul>
                     </li>
                     <li><a href="proyecto.html"><i class="fas fa-building"></i> Beneficios</a></li>
@@ -793,7 +872,42 @@
     <!-- Header Section con Imagen -->
     <section class="sobre-nosotros-header">
         <div class="header-image-container">
-            <img src="../img/header_nosotros/familia_casa.png" alt="Familia feliz en su nuevo hogar" class="header-family-image">
+            <div class="header-slider">
+                <div class="slider-track" id="sliderTrack">
+                    <div class="slider-slide">
+                        <img src="../img/header_nosotros/familia_casa.png" alt="Familia feliz en su nuevo hogar" class="header-family-image">
+                    </div>
+                    <div class="slider-slide">
+                        <img src="../img/header_nosotros/familia_casa2.png" alt="Familia feliz en su nuevo hogar" class="header-family-image">
+                    </div>
+                    <div class="slider-slide">
+                        <img src="../img/header_nosotros/familia_casa3.png" alt="Familia feliz en su nuevo hogar" class="header-family-image">
+                    </div>
+                    <div class="slider-slide">
+                        <img src="../img/header_nosotros/familia_casa4.png" alt="Familia feliz en su nuevo hogar" class="header-family-image">
+                    </div>
+                    <div class="slider-slide">
+                        <img src="../img/header_nosotros/familia_casa5.png" alt="Familia feliz en su nuevo hogar" class="header-family-image">
+                    </div>
+                </div>
+                
+                <!-- Navegación -->
+                <button class="slider-nav slider-prev" id="sliderPrev">
+                    <i class="fas fa-chevron-left"></i>
+                </button>
+                <button class="slider-nav slider-next" id="sliderNext">
+                    <i class="fas fa-chevron-right"></i>
+                </button>
+                
+                <!-- Indicadores -->
+                <div class="slider-indicators">
+                    <span class="slider-dot active" data-slide="0"></span>
+                    <span class="slider-dot" data-slide="1"></span>
+                    <span class="slider-dot" data-slide="2"></span>
+                    <span class="slider-dot" data-slide="3"></span>
+                    <span class="slider-dot" data-slide="4"></span>
+                </div>
+            </div>
         </div>
         <div class="header-content-text">
             <div class="header-text-container">
@@ -1081,6 +1195,91 @@
         <div class="decorative-border-bottom"></div>
     </section>
 
+    <!-- ¿Por qué elegir Corporación Sipán? -->
+    <section class="elegir-sipan-section">
+        <div class="elegir-container">
+            <div class="elegir-header">
+                <h2>¿Por qué elegir a Corporación Inmobiliaria Sipán?</h2>
+                <p class="elegir-subtitle">Conoce las razones que nos convierten en tu mejor opción inmobiliaria</p>
+            </div>
+            
+            <div class="elegir-content">
+                <div class="elegir-info">
+                    <div class="elegir-description">
+                        <p>
+                            En Corporación Inmobiliaria Sipán nos especializamos en el desarrollo de proyectos habitacionales de calidad. Con años de experiencia en el sector inmobiliario, acompañamos a las familias peruanas en el proceso de acceder a una vivienda digna a través de los programas gubernamentales como "Techo propio" y "Mi Vivienda".
+                        </p>
+                    </div>
+                    
+                    <div class="elegir-reasons">
+                        <div class="reason-item">
+                            <div class="reason-icon">
+                                <i class="fas fa-medal"></i>
+                            </div>
+                            <div class="reason-content">
+                                <h4>Experiencia comprobada en proyectos habitacionales</h4>
+                                <p>Años de trayectoria respaldando familias en su sueño de vivienda propia</p>
+                            </div>
+                        </div>
+                        
+                        <div class="reason-item">
+                            <div class="reason-icon">
+                                <i class="fas fa-home"></i>
+                            </div>
+                            <div class="reason-content">
+                                <h4>Especialistas en trámites del programa "Techo Propio"</h4>
+                                <p>Conocemos todos los procesos para facilitar tu acceso a los beneficios gubernamentales</p>
+                            </div>
+                        </div>
+                        
+                        <div class="reason-item">
+                            <div class="reason-icon">
+                                <i class="fas fa-user-tie"></i>
+                            </div>
+                            <div class="reason-content">
+                                <h4>Asesoría integral desde la postulación hasta la entrega</h4>
+                                <p>Te acompañamos en cada paso del proceso con profesionales especializados</p>
+                            </div>
+                        </div>
+                        
+                        <div class="reason-item">
+                            <div class="reason-icon">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </div>
+                            <div class="reason-content">
+                                <h4>Proyectos con ubicaciones estratégicas y alta proyección</h4>
+                                <p>Seleccionamos terrenos con gran potencial de crecimiento y valorización</p>
+                            </div>
+                        </div>
+                        
+                        <div class="reason-item">
+                            <div class="reason-icon">
+                                <i class="fas fa-hammer"></i>
+                            </div>
+                            <div class="reason-content">
+                                <h4>Construcciones con acabados de calidad y amenidades</h4>
+                                <p>Utilizamos materiales de primera y diseños que maximizan el confort familiar</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="elegir-cta">
+                        <a href="contacto.html" class="btn-elegir">Conoce más sobre nuestros proyectos</a>
+                    </div>
+                </div>
+                
+                <div class="elegir-video">
+                    <div class="video-container-elegir">
+                        <video id="elegir-video" controls onloadeddata="this.volume=0.2;" muted poster="../img/img1.jpg">
+                            <source src="../video/video1.mp4" type="video/mp4">
+                            Tu navegador no soporta video HTML5.
+                        </video>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Sección Nuestro Propósito y Valores -->
     <section class="proposito-valores-section">
         <!-- Sección Propósito -->
@@ -1126,7 +1325,6 @@
                     <h4>Innovación</h4>
                     <p>Implementamos tecnologías y metodologías modernas para crear soluciones habitacionales inteligentes y sostenibles.</p>
                 </div>
-                
             </div>
         </div>
     </section>
@@ -1177,7 +1375,7 @@
                         <a href="../index.html"><i class="fas fa-home"></i> Inicio</a>
                         <a href="proyecto.html"><i class="fas fa-building"></i> Proyecto</a>
                         <a href="servicios.html"><i class="fas fa-cogs"></i> Servicios</a>
-                        <a href="../index.html#oportunidades"><i class="fas fa-briefcase"></i> Trabaja con Nosotros</a>
+                        <a href="trabaja-con-nosotros.html"><i class="fas fa-briefcase"></i> Trabaja con Nosotros</a>
                         <a href="../index.html#ubicacion"><i class="fas fa-map-marker-alt"></i> Ubicación</a>
                         <a href="contacto.html"><i class="fas fa-envelope"></i> Contacto</a>
                     </div>
