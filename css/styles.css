@@ -1376,8 +1376,9 @@ color: #b2d4ee;
     width: 100%;
     height: 200px;
     object-fit: cover;
-    transition: transform 0.3s ease;
-    cursor: pointer;
+    border-radius: 8px;
+    transition: transform 1s ease, opacity 1s ease;
+    overflow: hidden;
 }
 
 .imagen-principal:hover {
@@ -1571,6 +1572,44 @@ color: #b2d4ee;
     }
 }
 
+/* Botones de navegación del zoom */
+.btn-nav-zoom {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(255, 255, 255, 0.9);
+    border: none;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    font-size: 20px;
+    color: #333;
+    transition: all 0.3s ease;
+    z-index: 10001;
+}
+
+.btn-anterior {
+    left: -70px;
+}
+
+.btn-siguiente {
+    right: -70px;
+}
+
+.btn-nav-zoom:hover {
+    background: rgba(255, 255, 255, 1);
+    transform: translateY(-50%) scale(1.1);
+}
+
+.btn-nav-zoom:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
 /* Responsive para el modal de zoom */
 @media (max-width: 768px) {
     .btn-cerrar-zoom {
@@ -1579,6 +1618,20 @@ color: #b2d4ee;
         width: 35px;
         height: 35px;
         font-size: 16px;
+    }
+    
+    .btn-nav-zoom {
+        width: 40px;
+        height: 40px;
+        font-size: 16px;
+    }
+    
+    .btn-anterior {
+        left: -50px;
+    }
+    
+    .btn-siguiente {
+        right: -50px;
     }
     
     .modal-zoom-content {

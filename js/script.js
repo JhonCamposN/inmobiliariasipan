@@ -10,12 +10,34 @@ document.addEventListener('DOMContentLoaded', function () {
     inicializarGaleriasAmenidades();
     inicializarAnimacionesAmenidades();
     inicializarModalZoom();
+    inicializarCarruselAmenidades();
 });
+
+// Variables globales para el carrusel de amenidades
+let intervalosCarrusel = {};
+let tiemposInactividad = {};
+let imagenActualZoom = null;
+let imagenesZoom = [];
+let indiceZoomActual = 0;
 
 // Función para abrir imagen en zoom
 function abrirZoomImagen(imagen) {
     const modal = document.getElementById('modal-zoom');
     const imagenZoom = document.getElementById('imagen-zoom');
+    
+    // Encontrar la carta padre y obtener todas sus imágenes
+    const cartaPadre = imagen.closest('.amenidad-card');
+    const todasLasImagenes = cartaPadre.querySelectorAll('.thumbnail');
+    
+    // Guardar las imágenes y encontrar el índice actual
+    imagenesZoom = Array.from(todasLasImagenes);
+    indiceZoomActual = imagenesZoom.findIndex(img => img.src === imagen.src);
+    
+    // Si no se encuentra en thumbnails, usar la imagen principal
+    if (indiceZoomActual === -1) {
+        const imagenPrincipal = cartaPadre.querySelector('.imagen-principal');
+        indiceZoomActual = imagenesZoom.findIndex(img => img.src === imagenPrincipal.src);
+    }
     
     imagenZoom.src = imagen.src;
     imagenZoom.alt = imagen.alt;
@@ -23,6 +45,12 @@ function abrirZoomImagen(imagen) {
     
     // Prevenir scroll del body cuando el modal está abierto
     document.body.style.overflow = 'hidden';
+    
+    // Pausar todas las animaciones de carrusel
+    pausarTodasLasAnimaciones();
+    
+    // Iniciar temporizador de inactividad
+    iniciarTemporizadorInactividad();
 }
 
 // Función para cerrar el modal de zoom
@@ -32,16 +60,31 @@ function cerrarZoomImagen() {
     
     // Restaurar scroll del body
     document.body.style.overflow = 'auto';
+    
+    // Reanudar animaciones después de cerrar el modal
+    iniciarTemporizadorInactividad();
 }
 
 // Inicializar eventos del modal de zoom
 function inicializarModalZoom() {
     const modal = document.getElementById('modal-zoom');
     const btnCerrar = document.getElementById('btn-cerrar-zoom');
+    const btnAnterior = document.getElementById('btn-anterior-zoom');
+    const btnSiguiente = document.getElementById('btn-siguiente-zoom');
     
     // Cerrar modal al hacer clic en el botón de cerrar
     if (btnCerrar) {
         btnCerrar.addEventListener('click', cerrarZoomImagen);
+    }
+    
+    // Navegación anterior
+    if (btnAnterior) {
+        btnAnterior.addEventListener('click', navegarImagenAnterior);
+    }
+    
+    // Navegación siguiente
+    if (btnSiguiente) {
+        btnSiguiente.addEventListener('click', navegarImagenSiguiente);
     }
     
     // Cerrar modal al hacer clic fuera de la imagen
@@ -53,12 +96,147 @@ function inicializarModalZoom() {
         });
     }
     
-    // Cerrar modal con la tecla Escape
+    // Navegación con teclado
     document.addEventListener('keydown', function(e) {
-        if (e.key === 'Escape') {
-            cerrarZoomImagen();
+        if (modal.style.display === 'flex') {
+            switch(e.key) {
+                case 'Escape':
+                    cerrarZoomImagen();
+                    break;
+                case 'ArrowLeft':
+                    navegarImagenAnterior();
+                    break;
+                case 'ArrowRight':
+                    navegarImagenSiguiente();
+                    break;
+            }
         }
     });
+}
+
+// Función para navegar a la imagen anterior
+function navegarImagenAnterior() {
+    if (imagenesZoom.length > 1) {
+        indiceZoomActual = (indiceZoomActual - 1 + imagenesZoom.length) % imagenesZoom.length;
+        actualizarImagenZoom();
+    }
+}
+
+// Función para navegar a la imagen siguiente
+function navegarImagenSiguiente() {
+    if (imagenesZoom.length > 1) {
+        indiceZoomActual = (indiceZoomActual + 1) % imagenesZoom.length;
+        actualizarImagenZoom();
+    }
+}
+
+// Función para actualizar la imagen en el zoom
+function actualizarImagenZoom() {
+    const imagenZoom = document.getElementById('imagen-zoom');
+    const nuevaImagen = imagenesZoom[indiceZoomActual];
+    
+    // Animación suave de cambio
+    imagenZoom.style.opacity = '0.5';
+    
+    setTimeout(() => {
+        imagenZoom.src = nuevaImagen.src;
+        imagenZoom.alt = nuevaImagen.alt;
+        imagenZoom.style.opacity = '1';
+    }, 200);
+}
+
+// Inicializar carrusel automático de amenidades
+function inicializarCarruselAmenidades() {
+    const amenidadCards = document.querySelectorAll('.amenidad-card');
+    
+    amenidadCards.forEach((card, index) => {
+        const imagenPrincipal = card.querySelector('.imagen-principal');
+        const thumbnails = card.querySelectorAll('.thumbnail');
+        
+        if (imagenPrincipal && thumbnails.length > 1) {
+            let indiceActual = 0;
+            const cardId = `amenidad-${index}`;
+            
+            // Función para cambiar imagen
+            const cambiarImagen = () => {
+                indiceActual = (indiceActual + 1) % thumbnails.length;
+                const nuevaImagen = thumbnails[indiceActual];
+                
+                // Animación de slider suave con aparición de 1 segundo
+                imagenPrincipal.style.opacity = '0';
+                imagenPrincipal.style.transform = 'translateX(-100%)';
+                
+                setTimeout(() => {
+                    imagenPrincipal.src = nuevaImagen.src;
+                    imagenPrincipal.alt = nuevaImagen.alt;
+                    imagenPrincipal.style.transform = 'translateX(0)';
+                    imagenPrincipal.style.opacity = '1';
+                }, 500);
+            };
+            
+            // Iniciar intervalo de cambio automático cada 5 segundos
+            intervalosCarrusel[cardId] = setInterval(cambiarImagen, 5000);
+            
+            // Pausar animación al hacer hover sobre la carta
+            card.addEventListener('mouseenter', () => {
+                pausarAnimacionCarta(cardId);
+            });
+            
+            // Reanudar animación de una carta específica (después de 2 segundos)
+            card.addEventListener('mouseleave', () => {
+                setTimeout(() => {
+                    if (!tiemposInactividad.global) {
+                        reanudarAnimacionCarta(cardId, cambiarImagen);
+                    }
+                }, 2000);
+            });
+        }
+    });
+}
+
+// Pausar animación de una carta específica
+function pausarAnimacionCarta(cardId) {
+    if (intervalosCarrusel[cardId]) {
+        clearInterval(intervalosCarrusel[cardId]);
+        intervalosCarrusel[cardId] = null;
+    }
+}
+
+// Reanudar animación de una carta específica
+function reanudarAnimacionCarta(cardId, funcionCambio) {
+    if (!intervalosCarrusel[cardId]) {
+        intervalosCarrusel[cardId] = setInterval(funcionCambio, 5000);
+    }
+}
+
+// Pausar todas las animaciones
+function pausarTodasLasAnimaciones() {
+    Object.keys(intervalosCarrusel).forEach(cardId => {
+        pausarAnimacionCarta(cardId);
+    });
+}
+
+// Reanudar todas las animaciones
+function reanudarTodasLasAnimaciones() {
+    // Reinicializar el carrusel completo
+    pausarTodasLasAnimaciones();
+    setTimeout(() => {
+        inicializarCarruselAmenidades();
+    }, 500);
+}
+
+// Iniciar temporizador de inactividad (15 segundos)
+function iniciarTemporizadorInactividad() {
+    // Limpiar temporizador anterior si existe
+    if (tiemposInactividad.global) {
+        clearTimeout(tiemposInactividad.global);
+    }
+    
+    // Iniciar nuevo temporizador de 15 segundos
+    tiemposInactividad.global = setTimeout(() => {
+        reanudarTodasLasAnimaciones();
+        tiemposInactividad.global = null;
+    }, 15000);
 }
 
     // Menú hamburguesa con overlay
