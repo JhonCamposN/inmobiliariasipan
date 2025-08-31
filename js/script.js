@@ -8,9 +8,59 @@ document.addEventListener('DOMContentLoaded', function () {
     
     // Inicializar galerías de amenidades
     inicializarGaleriasAmenidades();
-    // Inicializar animaciones de amenidades
     inicializarAnimacionesAmenidades();
+    inicializarModalZoom();
+});
+
+// Función para abrir imagen en zoom
+function abrirZoomImagen(imagen) {
+    const modal = document.getElementById('modal-zoom');
+    const imagenZoom = document.getElementById('imagen-zoom');
     
+    imagenZoom.src = imagen.src;
+    imagenZoom.alt = imagen.alt;
+    modal.style.display = 'flex';
+    
+    // Prevenir scroll del body cuando el modal está abierto
+    document.body.style.overflow = 'hidden';
+}
+
+// Función para cerrar el modal de zoom
+function cerrarZoomImagen() {
+    const modal = document.getElementById('modal-zoom');
+    modal.style.display = 'none';
+    
+    // Restaurar scroll del body
+    document.body.style.overflow = 'auto';
+}
+
+// Inicializar eventos del modal de zoom
+function inicializarModalZoom() {
+    const modal = document.getElementById('modal-zoom');
+    const btnCerrar = document.getElementById('btn-cerrar-zoom');
+    
+    // Cerrar modal al hacer clic en el botón de cerrar
+    if (btnCerrar) {
+        btnCerrar.addEventListener('click', cerrarZoomImagen);
+    }
+    
+    // Cerrar modal al hacer clic fuera de la imagen
+    if (modal) {
+        modal.addEventListener('click', function(e) {
+            if (e.target === modal) {
+                cerrarZoomImagen();
+            }
+        });
+    }
+    
+    // Cerrar modal con la tecla Escape
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') {
+            cerrarZoomImagen();
+        }
+    });
+}
+
     // Menú hamburguesa con overlay
     const menuToggle = document.querySelector('.menu-toggle');
     const menu = document.querySelector('.menu-superior');
@@ -1061,7 +1111,6 @@ document.addEventListener('DOMContentLoaded', function () {
             animarElementos();
         });
     }
-});
 
 // Funciones para Modal de Video Exterior (fuera del DOMContentLoaded para acceso global)
 function abrirModalVideo(tipo) {
