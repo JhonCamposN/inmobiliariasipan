@@ -6,6 +6,11 @@ document.addEventListener('DOMContentLoaded', function () {
     // Cargar estadísticas para la sección de testimonios
     cargarEstadisticasTestimonios();
     
+    // Inicializar galerías de amenidades
+    inicializarGaleriasAmenidades();
+    // Inicializar animaciones de amenidades
+    inicializarAnimacionesAmenidades();
+    
     // Menú hamburguesa con overlay
     const menuToggle = document.querySelector('.menu-toggle');
     const menu = document.querySelector('.menu-superior');
@@ -1396,8 +1401,66 @@ async function cargarEstadisticasTestimonios() {
     }
 }
 
+// Función para inicializar galerías de amenidades
+function inicializarGaleriasAmenidades() {
+    const amenidadCards = document.querySelectorAll('.amenidad-card');
+    
+    amenidadCards.forEach(card => {
+        const imagenPrincipal = card.querySelector('.imagen-principal');
+        const thumbnails = card.querySelectorAll('.thumbnail');
+        
+        if (imagenPrincipal && thumbnails.length > 0) {
+            // Marcar el primer thumbnail como activo
+            thumbnails[0].classList.add('active');
+            
+            // Agregar event listeners a los thumbnails
+            thumbnails.forEach((thumbnail, index) => {
+                thumbnail.addEventListener('click', function() {
+                    // Remover clase active de todos los thumbnails
+                    thumbnails.forEach(t => t.classList.remove('active'));
+                    // Agregar clase active al thumbnail clickeado
+                    this.classList.add('active');
+                    
+                    // Cambiar imagen principal con efecto de transición
+                    imagenPrincipal.style.opacity = '0';
+                    setTimeout(() => {
+                        imagenPrincipal.src = this.src;
+                        imagenPrincipal.alt = this.alt;
+                        imagenPrincipal.style.opacity = '1';
+                    }, 150);
+                });
+            });
+        }
+    });
+}
+
+// Función para inicializar animaciones de amenidades
+function inicializarAnimacionesAmenidades() {
+    const amenidadCards = document.querySelectorAll('.amenidad-card');
+    
+    const amenidadObserver = new IntersectionObserver((entries) => {
+        entries.forEach((entry, index) => {
+            if (entry.isIntersecting) {
+                setTimeout(() => {
+                    entry.target.classList.add('animate');
+                }, index * 200); // Delay escalonado de 200ms entre cartas
+                amenidadObserver.unobserve(entry.target);
+            }
+        });
+    }, {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+    });
+    
+    amenidadCards.forEach(card => {
+        amenidadObserver.observe(card);
+    });
+}
+
 // Hacer las funciones globales para poder ser llamadas desde otros lugares
 window.cargarEstadisticasCalificaciones = cargarEstadisticasCalificaciones;
 window.cargarTestimoniosRecientes = cargarTestimoniosRecientes;
 window.mostrarPopupCalificacion = mostrarPopupCalificacion;
 window.cargarEstadisticasTestimonios = cargarEstadisticasTestimonios;
+window.inicializarGaleriasAmenidades = inicializarGaleriasAmenidades;
+window.inicializarAnimacionesAmenidades = inicializarAnimacionesAmenidades;
