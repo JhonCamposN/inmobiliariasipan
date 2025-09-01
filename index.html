@@ -51,16 +51,17 @@
     <!-- Overlay para menú móvil -->
     <div class="menu-overlay" id="menuOverlay"></div>
 
-    <!-- Hero principal -->
+    <!-- Hero principal - Estilo Jade Mills -->
     <section class="hero" id="inicio">
         <video class="hero-video" id="heroVideo" autoplay loop muted playsinline>
-            <source src="video/gruas_construccion.mp4" type="video/mp4">
+            <source src="video/R New York.mp4" type="video/mp4">
         </video>
         <div class="hero-overlay"></div>
-        <div class="hero-content">
-            <h1 class="hero-title">Tu nuevo hogar, tu mejor inversión</h1>
-            <p class="hero-subtitle">Expertos en bienes raíces, desarrollos y asesoría inmobiliaria</p>
-            <a href="#proyecto" class="btn-principal">Conoce el proyecto</a>
+        <div class="hero-content-jade">
+            <div class="hero-badge-jade">DESARROLLOS INMOBILIARIOS</div>
+            <h1 class="hero-title-jade">Corporación Sipán Inmobiliaria</h1>
+            <p class="hero-subtitle-jade">Especialistas en proyectos residenciales</p>
+            <a href="#proyecto-destacado" class="btn-jade">CONOCE NUESTRO PROYECTO <i class="fas fa-arrow-down"></i></a>
         </div>
     </section>
     <script src="js/hero-reverse.js"></script>
@@ -504,35 +505,144 @@
         </div>
     </section>
 
-    <!-- Ubicación -->
-    <section class="ubicacion-section" id="ubicacion">
-        <div class="ubicacion-container">
-            <div class="ubicacion-info">
-                <h2>Ubicación Estratégica</h2>
-                <p>
-                    Nos encontramos en el corazón de la ciudad, cerca de centros comerciales, escuelas y vías principales. ¡Visítanos y descubre por qué Corporación Inmobiliaria Sipán es tu mejor opción!
-                </p>
-                <ul>
-                    <li>C.C Boulevard - Oficina J3 (2d piso - Patio principal)</li>
-                    <li>Celular: +51 932 359 551</li>
-                </ul>
-            </div>
-            <div class="ubicacion-media-container">
-                <div class="ubicacion-mapa">
-                    <div class="mapa-wrapper">
-                        <iframe 
-                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d784.0371774205454!2d-79.83037712657676!3d-6.775011237891499!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x904cef2b49eac405%3A0x73fd1693d93e2115!2sCentro%20Comercial%20Boulevard%2C%20Mariscal%20Nieto%20480%2C%20Chiclayo%2014001!5e1!3m2!1ses-419!2spe!4v1752460977058!5m2!1ses-419!2spe" 
-                            width="100%" height="100%" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
-                        </iframe>
+    <!-- Ubicación Estratégica Premium -->
+    <section class="ubicacion-premium-section" id="ubicacion">
+        <div class="ubicacion-premium-container">
+            <!-- Header Premium con Badge -->
+            <div class="ubicacion-header-premium">
+                <div class="ubicacion-badge-container">
+                    <div class="ubicacion-badge">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span class="badge-text">UBICACIÓN PRIVILEGIADA</span>
+                        <div class="badge-shine"></div>
                     </div>
                 </div>
-                <div class="ubicacion-video">
-                    <div class="video-wrapper">
-                        <video controls width="100%" muted id="ubicacionVideo">
-                            <source src="video/ubicacion/ubicacionruta_video.mp4" type="video/mp4">
-                            Tu navegador no soporta video HTML5.
-                        </video>
+                <h2 class="ubicacion-titulo-principal">
+                    <span class="titulo-destacado">Ubicación</span> 
+                    <span class="titulo-secundario">Estratégica</span>
+                </h2>
+                <p class="ubicacion-subtitulo-profesional">
+                    En el corazón comercial de Chiclayo, donde la accesibilidad y el prestigio se encuentran para ofrecerte la mejor experiencia inmobiliaria.
+                </p>
+            </div>
+
+            <!-- Grid de Información y Medios -->
+            <div class="ubicacion-content-grid">
+                <!-- Panel de Información Destacada -->
+                <div class="ubicacion-info-panel">
+                    <div class="info-card-premium">
+                        <div class="info-header">
+                            <div class="info-icon-container">
+                                <i class="fas fa-building"></i>
+                            </div>
+                            <h3>Nuestra Oficina</h3>
+                        </div>
+                        <div class="info-details">
+                            <div class="detail-item">
+                                <i class="fas fa-map-pin"></i>
+                                <div class="detail-content">
+                                    <span class="detail-label">Dirección</span>
+                                    <span class="detail-value">C.C Boulevard - Oficina J3</span>
+                                    <span class="detail-extra">2do piso - Patio principal</span>
+                                </div>
+                            </div>
+                            <div class="detail-item">
+                                <i class="fas fa-phone"></i>
+                                <div class="detail-content">
+                                    <span class="detail-label">Contacto Directo</span>
+                                    <span class="detail-value">+51 932 359 551</span>
+                                    <span class="detail-extra">Atención personalizada</span>
+                                </div>
+                            </div>
+                            <div class="detail-item">
+                                <i class="fas fa-clock"></i>
+                                <div class="detail-content">
+                                    <span class="detail-label">Horarios</span>
+                                    <span class="detail-value">Lun - Vie: 9:00 AM - 6:00 PM</span>
+                                    <span class="detail-extra">Sáb: 9:00 AM - 2:00 PM</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="info-actions">
+                            <a href="https://wa.me/51932359551?text=Hola,%20me%20interesa%20obtener%20más%20información%20sobre%20sus%20servicios%20inmobiliarios" 
+                               class="btn-contacto-premium" target="_blank">
+                                <i class="fab fa-whatsapp"></i>
+                                <span>Contactar Ahora</span>
+                            </a>
+                        </div>
                     </div>
+
+                    <!-- Mapa Interactivo Premium (Movido desde panel de medios) -->
+                    <div class="mapa-premium-container">
+                        <div class="mapa-header">
+                            <h4>
+                                <i class="fas fa-map"></i>
+                                Encuéntranos Fácilmente
+                            </h4>
+                            <div class="mapa-controls">
+                                <button class="mapa-btn active" data-view="satellite">
+                                    <i class="fas fa-satellite"></i>
+                                    Satélite
+                                </button>
+                                <button class="mapa-btn" data-view="street">
+                                    <i class="fas fa-road"></i>
+                                    Calles
+                                </button>
+                            </div>
+                        </div>
+                        <div class="mapa-wrapper-premium">
+                            <iframe 
+                                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d784.0371774205454!2d-79.83037712657676!3d-6.775011237891499!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x904cef2b49eac405%3A0x73fd1693d93e2115!2sCentro%20Comercial%20Boulevard%2C%20Mariscal%20Nieto%20480%2C%20Chiclayo%2014001!5e1!3m2!1ses-419!2spe!4v1752460977058!5m2!1ses-419!2spe" 
+                                width="100%" height="100%" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+                            </iframe>
+                            <div class="mapa-overlay">
+                                <div class="ubicacion-marker">
+                                    <i class="fas fa-map-marker-alt"></i>
+                                    <span>Estamos Aquí</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Panel de Medios Interactivos -->
+                <div class="ubicacion-media-panel">
+                    <!-- Video Tour Premium -->
+                    <div class="video-tour-premium">
+                        <div class="video-header">
+                            <h4>
+                                <i class="fas fa-video"></i>
+                                Tour Virtual de la Zona
+                            </h4>
+                        </div>
+                        <div class="video-wrapper-premium">
+                            <video controls width="100%" muted id="ubicacionVideo" poster="img/ubicacion_chiclayo.png">
+                                <source src="video/ubicacion/ubicacionruta_video.mp4" type="video/mp4">
+                                Tu navegador no soporta video HTML5.
+                            </video>
+                        </div>
+                        <div class="video-description">
+                            <p>Descubre la ubicación estratégica de nuestra oficina y los beneficios de estar en el centro comercial más importante de Chiclayo.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Call to Action Premium -->
+            <div class="ubicacion-cta-premium">
+                <div class="cta-content">
+                    <h3>¿Listo para Visitarnos?</h3>
+                    <p>Agenda una cita personalizada y descubre cómo podemos ayudarte a encontrar tu hogar ideal.</p>
+                </div>
+                <div class="cta-actions">
+                    <a href="html/contacto.html" class="btn-cita-premium">
+                        <i class="fas fa-calendar-alt"></i>
+                        <span>Agendar Cita</span>
+                    </a>
+                    <a href="https://goo.gl/maps/tuenlace" class="btn-direcciones" target="_blank">
+                        <i class="fas fa-directions"></i>
+                        <span>Cómo Llegar</span>
+                    </a>
                 </div>
             </div>
         </div>

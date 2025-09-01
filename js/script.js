@@ -1,3 +1,26 @@
+// Control del menú fijo con scroll
+let menuScrollTop = 0;
+const menuHeader = document.querySelector('.header');
+
+window.addEventListener('scroll', function() {
+    let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+    
+    if (scrollTop > 100) {
+        if (scrollTop > menuScrollTop) {
+            // Scrolling down - hide header
+            menuHeader.classList.add('hidden');
+        } else {
+            // Scrolling up - show header
+            menuHeader.classList.remove('hidden');
+        }
+    } else {
+        // At top - show header
+        menuHeader.classList.remove('hidden');
+    }
+    
+    menuScrollTop = scrollTop;
+});
+
 document.addEventListener('DOMContentLoaded', function () {
     // Cargar estadísticas de calificaciones al iniciar
     cargarEstadisticasCalificaciones();
@@ -11,6 +34,9 @@ document.addEventListener('DOMContentLoaded', function () {
     inicializarAnimacionesAmenidades();
     inicializarModalZoom();
     inicializarCarruselAmenidades();
+    
+    // Inicializar controles del mapa
+    inicializarControlesMapa();
 });
 
 // Variables globales para el carrusel de amenidades
@@ -742,6 +768,43 @@ function iniciarTemporizadorInactividad() {
         }
     }
     
+    // Función para controles del mapa
+    function inicializarControlesMapa() {
+        const botonesMapa = document.querySelectorAll('.mapa-btn');
+        const iframe = document.querySelector('.mapa-wrapper-premium iframe');
+        
+        if (!botonesMapa.length || !iframe) return;
+        
+        // URLs base para diferentes vistas
+        const urlBase = 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d784.0371774205454!2d-79.83037712657676!3d-6.775011237891499!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x904cef2b49eac405%3A0x73fd1693d93e2115!2sCentro%20Comercial%20Boulevard%2C%20Mariscal%20Nieto%20480%2C%20Chiclayo%2014001';
+        const urlSatelite = urlBase + '!5e1!3m2!1ses-419!2spe!4v1752460977058!5m2!1ses-419!2spe';
+        const urlCalles = urlBase + '!5e0!3m2!1ses-419!2spe!4v1752460977058!5m2!1ses-419!2spe';
+        
+        botonesMapa.forEach(boton => {
+            boton.addEventListener('click', function() {
+                // Remover clase active de todos los botones
+                botonesMapa.forEach(btn => btn.classList.remove('active'));
+                
+                // Agregar clase active al botón clickeado
+                this.classList.add('active');
+                
+                // Cambiar la vista del mapa
+                const vista = this.getAttribute('data-view');
+                if (vista === 'satellite') {
+                    iframe.src = urlSatelite;
+                } else if (vista === 'street') {
+                    iframe.src = urlCalles;
+                }
+                
+                // Efecto visual de carga
+                iframe.style.opacity = '0.7';
+                setTimeout(() => {
+                    iframe.style.opacity = '1';
+                }, 500);
+            });
+        });
+    }
+
     // Función para cargar calificaciones desde la base de datos
     function cargarCalificaciones() {
         fetch('php/calificaciones-api.php')
