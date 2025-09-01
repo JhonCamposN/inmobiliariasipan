@@ -15,6 +15,12 @@ body {
     background: #f5f8fa;
     color: rgb(12, 60, 97);
     line-height: 1.6;
+    padding-top: 80px; /* Compensar el menú fijo */
+}
+
+/* Excepción para la página principal */
+body.index-page {
+    padding-top: 0;
 }
 a { color: inherit; text-decoration: none; }
 ul { list-style: none; }
@@ -417,7 +423,6 @@ img {
 
 .hero-badge-jade {
     background: transparent;
-    border: none;
     color: #fff;
     padding: 12px 30px;
     border-radius: 50px;
