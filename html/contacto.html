@@ -73,17 +73,8 @@
             width: 50%;
             position: relative;
             overflow: hidden;
-            opacity: 0;
-            transform: translateX(-50px);
-            animation: deslizarDesdeIzquierda 1s ease-out 0.3s forwards;
         }
         
-        @keyframes deslizarDesdeIzquierda {
-            to {
-                opacity: 1;
-                transform: translateX(0);
-            }
-        }
         
         .contacto-bg-image {
             width: 100%;
@@ -105,21 +96,32 @@
             position: absolute;
             top: 50%;
             left: 50px;
-            transform: translateY(-50%);
+            transform: translateY(-50%) translateX(-50px);
             color: white;
             z-index: 10;
             opacity: 0;
-            animation: fadeInUp 1s ease-out 0.9s forwards;
+            animation: slideInFromLeft 1s ease-out 0.3s forwards;
         }
         
-        @keyframes fadeInUp {
+        @keyframes slideInFromLeft {
             from {
                 opacity: 0;
-                transform: translateY(-50%) translateY(30px);
+                transform: translateY(-50%) translateX(-50px);
             }
             to {
                 opacity: 1;
-                transform: translateY(-50%) translateY(0);
+                transform: translateY(-50%) translateX(0);
+            }
+        }
+        
+        @keyframes slideInFromRight {
+            from {
+                opacity: 0;
+                transform: translateX(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
             }
         }
         
@@ -202,6 +204,13 @@
             color: #000;
         }
         
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
         .contacto-form-section {
             flex: 1;
             width: 50%;
@@ -210,17 +219,8 @@
             flex-direction: column;
             justify-content: center;
             padding: 60px 50px;
-            opacity: 0;
-            transform: translateX(50px);
-            animation: deslizarDesdeDerecha 1s ease-out 0.6s forwards;
         }
         
-        @keyframes deslizarDesdeDerecha {
-            to {
-                opacity: 1;
-                transform: translateX(0);
-            }
-        }
         
         .contacto-form-header {
             margin-bottom: 40px;
@@ -1240,10 +1240,8 @@
 
     <!-- Contacto Estilo Altman Brothers -->
     <section class="contacto-altman-section" id="contacto">
-        <!-- Imagen de fondo con overlay -->
-        <div class="contacto-hero-background">
-            <img src="../img/contacto/casa_fondo.jpg" alt="Luxury Property Background" class="contacto-bg-image">
-            <div class="contacto-overlay"></div>
+        <!-- Fondo sólido negro -->
+        <div class="contacto-hero-background" style="background-color: #000000;">
             
             <!-- Logo y información de contacto sobre la imagen -->
             <div class="contacto-left-content">
@@ -1288,7 +1286,7 @@
         <!-- Formulario de contacto -->
         <div class="contacto-form-section">
             <div class="contacto-form-container">
-                <div class="contacto-form-header">
+                <div class="contacto-form-header" style="opacity: 0; transform: translateX(50px); animation: slideInFromRight 1s ease-out 0.3s forwards;">
                     <span class="contacto-form-badge">PONTE EN CONTACTO</span>
                     <h2 class="contacto-form-title">CONTACTO</h2>
                     <p class="contacto-form-subtitle">¡NOS ENCANTARÍA SABER DE TI!</p>
@@ -1300,7 +1298,7 @@
                     <span>¡Mensaje enviado exitosamente! Nos pondremos en contacto contigo pronto.</span>
                 </div>
 
-                <form class="contacto-form-altman" id="formContactoElegante">
+                <form class="contacto-form-altman" id="formContactoElegante" style="opacity: 0; transform: translateX(50px); animation: slideInFromRight 1s ease-out 0.6s forwards;">
                     <div class="contacto-form-grid">
                         <div class="contacto-form-field">
                             <label for="nombre">Nombre</label>
