@@ -5237,6 +5237,227 @@ color: #b2d4ee;
     background: #c82333;
 }
 
+/* Botón de cambio de tema */
+.btn-theme-toggle {
+    background: linear-gradient(135deg, #1e7bbf 0%, #0c3c61 100%);
+    color: white;
+    border: none;
+    padding: 0.8rem 1.2rem;
+    border-radius: 10px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: all 0.3s ease;
+    font-weight: 600;
+    font-size: 0.9rem;
+    margin-right: 1rem;
+    box-shadow: 0 4px 15px rgba(30, 123, 191, 0.3);
+}
+
+.btn-theme-toggle:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(30, 123, 191, 0.4);
+    background: linear-gradient(135deg, #0c3c61 0%, #1e7bbf 100%);
+}
+
+/* Tema oscuro para el dashboard */
+body.dark-theme {
+    background: #1a1a1a;
+    color: #e0e0e0;
+}
+
+body.dark-theme .dashboard-container {
+    background: #1a1a1a;
+}
+
+body.dark-theme .dashboard-header {
+    background: #2d2d2d;
+    border-bottom: 1px solid #404040;
+}
+
+body.dark-theme .logo-dashboard h1 {
+    color: #ffffff;
+}
+
+body.dark-theme .dashboard-title {
+    color: #b0b0b0;
+}
+
+body.dark-theme .user-info {
+    color: #e0e0e0;
+}
+
+body.dark-theme .dashboard-nav {
+    background: #2d2d2d;
+    border-bottom: 1px solid #404040;
+}
+
+body.dark-theme .nav-btn {
+    background: #3a3a3a;
+    color: #e0e0e0;
+    border-color: #555;
+}
+
+body.dark-theme .nav-btn:hover,
+body.dark-theme .nav-btn.active {
+    background: #1e7bbf;
+    border-color: #1e7bbf;
+    color: white;
+}
+
+body.dark-theme .dashboard-main {
+    background: #1a1a1a;
+}
+
+body.dark-theme .section-header h2 {
+    color: #ffffff;
+}
+
+body.dark-theme .stats-summary {
+    background: #2d2d2d;
+}
+
+body.dark-theme .stat-card {
+    background: #3a3a3a;
+    border: 1px solid #555;
+}
+
+body.dark-theme .stat-number {
+    color: #1e7bbf;
+}
+
+body.dark-theme .stat-label {
+    color: #b0b0b0;
+}
+
+body.dark-theme .filters-section {
+    background: #2d2d2d;
+    border: 1px solid #404040;
+}
+
+body.dark-theme .filter-group label {
+    color: #e0e0e0;
+}
+
+body.dark-theme .filter-group select {
+    background: #3a3a3a;
+    color: #e0e0e0;
+    border-color: #555;
+}
+
+body.dark-theme .btn-reset-filters {
+    background: #555;
+    color: #e0e0e0;
+}
+
+body.dark-theme .btn-reset-filters:hover {
+    background: #666;
+}
+
+body.dark-theme .data-table {
+    background: #2d2d2d;
+    border: 1px solid #404040;
+}
+
+body.dark-theme .data-table table {
+    background: #2d2d2d;
+}
+
+body.dark-theme .data-table th {
+    background: #3a3a3a;
+    color: #ffffff;
+    border-bottom: 2px solid #555;
+}
+
+body.dark-theme .data-table td {
+    background: #2d2d2d;
+    color: #e0e0e0;
+    border-bottom: 1px solid #404040;
+}
+
+body.dark-theme .data-table tr:hover td {
+    background: #3a3a3a;
+}
+
+body.dark-theme .registro-oculto {
+    background: #2a2a2a !important;
+    opacity: 0.6;
+}
+
+body.dark-theme .btn-action {
+    border: 1px solid #555;
+}
+
+body.dark-theme .btn-action.view {
+    background: #1e7bbf;
+}
+
+body.dark-theme .btn-action.complete {
+    background: #28a745;
+}
+
+body.dark-theme .btn-action.delete {
+    background: #dc3545;
+}
+
+body.dark-theme .btn-action.restore {
+    background: #ffc107;
+}
+
+body.dark-theme .pagination-controls {
+    background: #2d2d2d;
+}
+
+body.dark-theme .btn-pagination,
+body.dark-theme .btn-pagination-number {
+    background: #3a3a3a;
+    color: #e0e0e0;
+    border-color: #555;
+}
+
+body.dark-theme .btn-pagination:hover,
+body.dark-theme .btn-pagination-number:hover {
+    background: #1e7bbf;
+    color: white;
+}
+
+body.dark-theme .btn-pagination.active {
+    background: #1e7bbf;
+    color: white;
+}
+
+body.dark-theme .modal-overlay {
+    background: rgba(0, 0, 0, 0.8);
+}
+
+body.dark-theme .modal-container,
+body.dark-theme .modal-content {
+    background: #2d2d2d;
+    border: 1px solid #404040;
+}
+
+body.dark-theme .modal-header h3 {
+    color: #ffffff;
+}
+
+body.dark-theme .modal-body {
+    color: #e0e0e0;
+}
+
+body.dark-theme .btn-export {
+    background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
+}
+
+body.dark-theme .btn-theme-toggle {
+    background: linear-gradient(135deg, #ffc107 0%, #fd7e14 100%);
+    color: #000;
+}
+
+body.dark-theme .btn-theme-toggle:hover {
+    background: linear-gradient(135deg, #fd7e14 0%, #ffc107 100%);
+}
+
 .dashboard-nav {
     background: white;
     padding: 1rem 0;

@@ -18,6 +18,10 @@
                     <span class="dashboard-title">Panel Administrativo</span>
                 </div>
                 <div class="header-actions">
+                    <button class="btn-theme-toggle" onclick="toggleTheme()" id="themeToggle">
+                        <i class="fas fa-moon" id="themeIcon"></i>
+                        <span id="themeText">Modo Oscuro</span>
+                    </button>
                     <div class="user-info">
                         <i class="fas fa-user-circle"></i>
                         <span>Administrador</span>
@@ -435,8 +439,44 @@
             window.location.href = 'login.html';
         }
 
+        // Función para cambiar tema
+        function toggleTheme() {
+            const body = document.body;
+            const themeIcon = document.getElementById('themeIcon');
+            const themeText = document.getElementById('themeText');
+            
+            if (body.classList.contains('dark-theme')) {
+                // Cambiar a tema claro
+                body.classList.remove('dark-theme');
+                themeIcon.className = 'fas fa-moon';
+                themeText.textContent = 'Modo Oscuro';
+                localStorage.setItem('dashboardTheme', 'light');
+            } else {
+                // Cambiar a tema oscuro
+                body.classList.add('dark-theme');
+                themeIcon.className = 'fas fa-sun';
+                themeText.textContent = 'Modo Claro';
+                localStorage.setItem('dashboardTheme', 'dark');
+            }
+        }
+
+        // Cargar tema guardado al iniciar
+        function loadSavedTheme() {
+            const savedTheme = localStorage.getItem('dashboardTheme');
+            const body = document.body;
+            const themeIcon = document.getElementById('themeIcon');
+            const themeText = document.getElementById('themeText');
+            
+            if (savedTheme === 'dark') {
+                body.classList.add('dark-theme');
+                themeIcon.className = 'fas fa-sun';
+                themeText.textContent = 'Modo Claro';
+            }
+        }
+
         // Cargar datos al iniciar la página
         document.addEventListener('DOMContentLoaded', function() {
+            loadSavedTheme(); // Cargar tema guardado
             cargarContactos();
             cargarEstadisticasContactos();
             cargarEstadisticasGenerales();

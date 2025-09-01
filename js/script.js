@@ -22,6 +22,25 @@ window.addEventListener('scroll', function() {
 });
 
 document.addEventListener('DOMContentLoaded', function () {
+    // Asegurar que el video del hero se reproduzca en bucle continuo
+    const heroVideo = document.getElementById('heroVideo');
+    if (heroVideo) {
+        heroVideo.loop = true;
+        heroVideo.muted = true;
+        heroVideo.autoplay = true;
+        
+        // Forzar reproducción si se pausa
+        heroVideo.addEventListener('pause', function() {
+            heroVideo.play();
+        });
+        
+        // Reiniciar si termina (backup del loop)
+        heroVideo.addEventListener('ended', function() {
+            heroVideo.currentTime = 0;
+            heroVideo.play();
+        });
+    }
+    
     // Cargar estadísticas de calificaciones al iniciar
     cargarEstadisticasCalificaciones();
     // Cargar testimonios dinámicos
