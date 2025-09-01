@@ -56,6 +56,9 @@ document.addEventListener('DOMContentLoaded', function () {
     
     // Inicializar controles del mapa
     inicializarControlesMapa();
+    
+    // Inicializar animaciones typewriter para parallax
+    initParallaxTypewriter();
 });
 
 // Variables globales para el carrusel de amenidades
@@ -752,6 +755,9 @@ function iniciarTemporizadorInactividad() {
         
         // Cargar datos iniciales desde la base de datos
         cargarCalificaciones();
+        
+        // Inicializar animaciones typewriter para parallax
+        initParallaxTypewriter();
         
         // Manejar envío del formulario de calificación
         if (formCalificacion) {
@@ -1766,6 +1772,64 @@ function inicializarAnimacionesAmenidades() {
     });
 }
 
+// ========================================
+// PARALLAX TYPEWRITER ANIMATIONS
+// ========================================
+
+function initParallaxTypewriter() {
+    const parallaxSections = document.querySelectorAll('.parallax-transition');
+    
+    const parallaxObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const h3 = entry.target.querySelector('.parallax-content h3');
+                const p = entry.target.querySelector('.parallax-content p');
+                
+                // Activar animación typewriter para h3
+                if (h3 && !h3.classList.contains('typewriter-active')) {
+                    typewriterEffect(h3, h3.textContent, 80); // 80ms por caracter
+                    h3.classList.add('typewriter-active');
+                }
+                
+                // Activar animación typewriter para p con delay
+                if (p && !p.classList.contains('typewriter-active')) {
+                    setTimeout(() => {
+                        typewriterEffect(p, p.textContent, 60); // 60ms por caracter, más rápido
+                        p.classList.add('typewriter-active');
+                    }, 800); // Delay para que h3 termine primero
+                }
+            }
+        });
+    }, {
+        threshold: 0.4, // Activar cuando el 40% de la sección sea visible
+        rootMargin: '0px 0px -30px 0px'
+    });
+    
+    parallaxSections.forEach(section => {
+        parallaxObserver.observe(section);
+    });
+}
+
+function typewriterEffect(element, text, speed) {
+    element.textContent = '';
+    element.style.opacity = '1';
+    element.classList.add('typewriter-cursor');
+    
+    let i = 0;
+    const timer = setInterval(() => {
+        element.textContent += text.charAt(i);
+        i++;
+        
+        if (i >= text.length) {
+            clearInterval(timer);
+            // Remover cursor después de un momento
+            setTimeout(() => {
+                element.classList.remove('typewriter-cursor');
+            }, 1000);
+        }
+    }, speed);
+}
+
 // Hacer las funciones globales para poder ser llamadas desde otros lugares
 window.cargarEstadisticasCalificaciones = cargarEstadisticasCalificaciones;
 window.cargarTestimoniosRecientes = cargarTestimoniosRecientes;
@@ -1773,3 +1837,4 @@ window.mostrarPopupCalificacion = mostrarPopupCalificacion;
 window.cargarEstadisticasTestimonios = cargarEstadisticasTestimonios;
 window.inicializarGaleriasAmenidades = inicializarGaleriasAmenidades;
 window.inicializarAnimacionesAmenidades = inicializarAnimacionesAmenidades;
+window.initParallaxTypewriter = initParallaxTypewriter;

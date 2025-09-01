@@ -5458,6 +5458,143 @@ body.dark-theme .btn-theme-toggle:hover {
     background: linear-gradient(135deg, #fd7e14 0%, #ffc107 100%);
 }
 
+/* ========================================
+   FIXED BACKGROUND PARALLAX TRANSITIONS
+   ======================================== */
+
+.parallax-transition {
+    height: 350px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.parallax-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.parallax-content {
+    text-align: center;
+    color: white;
+    z-index: 2;
+    max-width: 600px;
+    padding: 0 2rem;
+}
+
+.parallax-content h3 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+}
+
+.parallax-content p {
+    font-size: 1.2rem;
+    font-weight: 300;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
+    opacity: 0.95;
+}
+
+/* Animaciones Typewriter para Parallax */
+.parallax-content h3,
+.parallax-content p {
+    opacity: 0;
+    margin: 0.5rem auto;
+}
+
+.parallax-content h3.typewriter-active,
+.parallax-content p.typewriter-active {
+    opacity: 1;
+}
+
+.typewriter-cursor::after {
+    content: '|';
+    animation: blink-cursor 1s step-end infinite;
+    color: white;
+}
+
+@keyframes blink-cursor {
+    0%, 50% { 
+        opacity: 1; 
+    }
+    51%, 100% { 
+        opacity: 0; 
+    }
+}
+
+/* Transición 1: Hero a Proyecto - Casa moderna */
+#parallax-hero-proyecto {
+    background-image: url('../img/paralax/fondo2.jpg');
+}
+
+/* Transición 2: Proyecto a Amenidades - Áreas verdes */
+#parallax-proyecto-amenidades {
+    background-image: url('../img/emenidades/areas_verdes/parque1.jpg');
+}
+
+/* Transición 3: Amenidades a Testimonios - Casa club */
+#parallax-amenidades-testimonios {
+    background-image: url('../img/emenidades/casa_club/piscina.png');
+}
+
+/* Transición 4: Testimonios a Ubicación - Vista de Chiclayo */
+#parallax-testimonios-ubicacion {
+    background-image: url('../img/contacto/casa_fondo.jpg');
+}
+
+/* Transición 5: Ubicación a Experiencias - Infraestructura */
+#parallax-ubicacion-experiencias {
+    background-image: url('../img/paralax/fondo1.jpg');
+}
+
+/* Responsive para parallax */
+@media (max-width: 768px) {
+    .parallax-transition {
+        height: 200px;
+        background-attachment: scroll; /* En móviles usar scroll para mejor rendimiento */
+    }
+    
+    .parallax-content h3 {
+        font-size: 1.8rem;
+    }
+    
+    .parallax-content p {
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .parallax-transition {
+        height: 150px;
+    }
+    
+    .parallax-content h3 {
+        font-size: 1.5rem;
+    }
+    
+    .parallax-content p {
+        font-size: 0.9rem;
+    }
+    
+    .parallax-content {
+        padding: 0 1rem;
+    }
+}
+
 .dashboard-nav {
     background: white;
     padding: 1rem 0;
