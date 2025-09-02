@@ -210,34 +210,18 @@ function inicializarCarruselAmenidades() {
                 indiceActual = (indiceActual + 1) % thumbnails.length;
                 const nuevaImagen = thumbnails[indiceActual];
                 
-                // Animación de slider suave con aparición de 1 segundo
+                // Transición suave con fade
                 imagenPrincipal.style.opacity = '0';
-                imagenPrincipal.style.transform = 'translateX(-100%)';
                 
                 setTimeout(() => {
                     imagenPrincipal.src = nuevaImagen.src;
                     imagenPrincipal.alt = nuevaImagen.alt;
-                    imagenPrincipal.style.transform = 'translateX(0)';
                     imagenPrincipal.style.opacity = '1';
-                }, 500);
+                }, 300);
             };
             
             // Iniciar intervalo de cambio automático cada 5 segundos
             intervalosCarrusel[cardId] = setInterval(cambiarImagen, 5000);
-            
-            // Pausar animación al hacer hover sobre la carta
-            card.addEventListener('mouseenter', () => {
-                pausarAnimacionCarta(cardId);
-            });
-            
-            // Reanudar animación de una carta específica (después de 2 segundos)
-            card.addEventListener('mouseleave', () => {
-                setTimeout(() => {
-                    if (!tiemposInactividad.global) {
-                        reanudarAnimacionCarta(cardId, cambiarImagen);
-                    }
-                }, 2000);
-            });
         }
     });
 }
@@ -1113,7 +1097,7 @@ function iniciarTemporizadorInactividad() {
 
         // Seleccionar todas las secciones que necesitan animación
         const sectionsToAnimate = document.querySelectorAll(
-            '.proyecto-section, .servicios-section, .proyecto-destacado-section, .testimonios-section, .calificaciones-section, .oportunidades-section, .ubicacion-section, .experiencia-testimonios-section'
+            '.proyecto-section, .servicios-section, .proyecto-destacado-section, .testimonios-section, .calificaciones-section, .oportunidades-section, .ubicacion-section, .experiencia-testimonios-section, .experiencia-testimonios-section-premium'
         );
 
         // Observar cada sección
