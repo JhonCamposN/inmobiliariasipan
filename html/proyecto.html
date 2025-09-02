@@ -20,13 +20,37 @@
             padding: 0 2em;
         }
 
-        /* Header de Presentación Animado */
+        /* Header de Presentación con Parallax */
         .presentation-header {
-            background: linear-gradient(to right, #0d4068, #1c76b8);
-            padding: 2rem 0;
-            text-align: center;
+            height: 60vh;
             position: relative;
             overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .parallax-bg {
+            position: absolute;
+            top: -20%;
+            left: 0;
+            width: 100%;
+            height: 120%;
+            background: url('../img/paralax/beneficios_fondo2.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            will-change: transform;
+        }
+
+        .parallax-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.2);
+            z-index: 1;
         }
 
         .presentation-content {
@@ -35,6 +59,7 @@
             max-width: 800px;
             margin: 0 auto;
             padding: 0 2rem;
+            text-align: center;
         }
 
         .animated-title {
@@ -478,8 +503,10 @@
     <div class="menu-overlay" id="menuOverlay"></div>
 
 
-    <!-- Header de Presentación -->
-    <section class="presentation-header">
+    <!-- Header de Presentación con Parallax -->
+    <section class="presentation-header parallax-header">
+        <div class="parallax-bg" data-speed="0.5"></div>
+        <div class="parallax-overlay"></div>
         <div class="presentation-content">
             <h1 class="animated-title">
                 <i class="fas fa-building"></i> Beneficios de Alrededores
@@ -829,6 +856,19 @@
             }
         });
 
+        // Efecto Parallax para el header
+        function initParallax() {
+            const parallaxBg = document.querySelector('.parallax-bg');
+            
+            if (parallaxBg) {
+                window.addEventListener('scroll', () => {
+                    const scrolled = window.pageYOffset;
+                    const speed = scrolled * 0.5;
+                    parallaxBg.style.transform = `translateY(${speed}px)`;
+                });
+            }
+        }
+
         // Animaciones de entrada para las tarjetas
         function animateCards() {
             const cards = document.querySelectorAll('.beneficio-card');
@@ -870,8 +910,11 @@
             });
         }
 
-        // Inicializar animaciones cuando se carga la página
-        document.addEventListener('DOMContentLoaded', animateCards);
+        // Inicializar todo cuando la p&aacute;gina carga
+        document.addEventListener('DOMContentLoaded', function() {
+            initParallax();
+            animateCards();
+        });
     </script>
 </body>
 </html>

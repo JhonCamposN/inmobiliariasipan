@@ -1108,6 +1108,118 @@ function iniciarTemporizadorInactividad() {
 
     // Inicializar animaciones de secciones
     initSectionAnimations();
+    
+    // Inicializar animaciones individuales para experiencias
+    initExperienciaAnimations();
+    
+    // Inicializar animaciones individuales para proyecto destacado
+    initProyectoAnimations();
+    
+    // Inicializar animaciones individuales para ubicación
+    initUbicacionAnimations();
+    
+    // Función para animaciones individuales de elementos de experiencia
+    function initExperienciaAnimations() {
+        // Configuración del observer para elementos individuales
+        const observerOptions = {
+            threshold: 0.2,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        // Observer para elementos individuales
+        const elementObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    // Agregar clase animate al elemento específico
+                    entry.target.classList.add('animate-element');
+                    // Dejar de observar este elemento una vez animado
+                    elementObserver.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        // Seleccionar elementos individuales de la sección experiencia
+        const experienciaElements = document.querySelectorAll(
+            '.experiencia-testimonios-section-premium .experiencia-header-corporativo, ' +
+            '.experiencia-testimonios-section-premium .stats-panel-premium, ' +
+            '.experiencia-testimonios-section-premium .testimonios-corporativos, ' +
+            '.experiencia-testimonios-section-premium .formulario-experiencia-corporativo'
+        );
+
+        // Observar cada elemento individual
+        experienciaElements.forEach(element => {
+            elementObserver.observe(element);
+        });
+    }
+    
+    // Función para animaciones individuales de elementos del proyecto destacado
+    function initProyectoAnimations() {
+        // Configuración del observer para elementos individuales
+        const observerOptions = {
+            threshold: 0.15,
+            rootMargin: '0px 0px -30px 0px'
+        };
+
+        // Observer para elementos individuales del proyecto
+        const proyectoObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    // Agregar clase animate al elemento específico
+                    entry.target.classList.add('animate-element');
+                    // Dejar de observar este elemento una vez animado
+                    proyectoObserver.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        // Seleccionar elementos individuales de la sección proyecto
+        const proyectoElements = document.querySelectorAll(
+            '.proyecto-section .proyecto-header-premium, ' +
+            '.proyecto-section .proyecto-visual-panel, ' +
+            '.proyecto-section .stats-proyecto-premium, ' +
+            '.proyecto-section .programa-info-premium, ' +
+            '.proyecto-section .vivienda-tipos-premium'
+        );
+
+        // Observar cada elemento individual
+        proyectoElements.forEach(element => {
+            proyectoObserver.observe(element);
+        });
+    }
+    
+    // Función para animaciones individuales de elementos de ubicación
+    function initUbicacionAnimations() {
+        // Configuración del observer para elementos individuales
+        const observerOptions = {
+            threshold: 0.15,
+            rootMargin: '0px 0px -30px 0px'
+        };
+
+        // Observer para elementos individuales de ubicación
+        const ubicacionObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    // Agregar clase animate al elemento específico
+                    entry.target.classList.add('animate-element');
+                    // Dejar de observar este elemento una vez animado
+                    ubicacionObserver.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        // Seleccionar elementos individuales de la sección ubicación
+        const ubicacionElements = document.querySelectorAll(
+            '.ubicacion-premium-section .ubicacion-header-premium, ' +
+            '.ubicacion-premium-section .ubicacion-info-panel, ' +
+            '.ubicacion-premium-section .mapa-premium-container, ' +
+            '.ubicacion-premium-section .ubicacion-media-panel'
+        );
+
+        // Observar cada elemento individual
+        ubicacionElements.forEach(element => {
+            ubicacionObserver.observe(element);
+        });
+    }
 
     // Funcionalidad para estrellas interactivas del formulario de experiencia
     const estrellasInteractivas = document.querySelectorAll('.estrellas-interactivas i');

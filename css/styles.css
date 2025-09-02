@@ -2535,22 +2535,123 @@ color: #b2d4ee;
 
 /* Sección Principal Premium */
 .experiencia-testimonios-section-premium {
-    position: relative;
-    background: linear-gradient(135deg, #f8fafc 0%, #ffffff 50%, #f1f5f9 100%);
-    padding: 120px 0;
-    overflow: hidden;
+position: relative;
+background: linear-gradient(135deg, #f8fafc 0%, #ffffff 50%, #f1f5f9 100%);
+padding: 120px 0;
+overflow: hidden;
 }
 
-/* Animación de entrada - aplicar a elementos internos */
-.experiencia-testimonios-section-premium .experiencia-container-premium {
+/* Sección Proyecto Destacado - DISEÑO PREMIUM PROFESIONAL */
+.proyecto-section {
+background: linear-gradient(135deg, #f8fafc 0%, #ffffff 50%, #f1f5f9 100%);
+padding: 5em 0;
+position: relative;
+overflow: hidden;
+}
+
+/* Animaciones individuales para elementos del proyecto */
+.proyecto-section .proyecto-header-premium {
+opacity: 0;
+transform: translateY(40px);
+transition: all 0.8s ease-out;
+}
+
+.proyecto-section .proyecto-visual-panel {
+opacity: 0;
+transform: translateX(-60px);
+transition: all 0.9s ease-out 0.2s;
+}
+
+.proyecto-section .stats-proyecto-premium {
+opacity: 0;
+transform: translateY(30px);
+transition: all 0.7s ease-out 0.4s;
+}
+
+.proyecto-section .programa-info-premium {
+opacity: 0;
+transform: translateX(60px);
+transition: all 0.8s ease-out 0.6s;
+}
+
+.proyecto-section .vivienda-tipos-premium {
+opacity: 0;
+transform: translateY(40px);
+transition: all 0.7s ease-out 0.8s;
+}
+
+/* Estados animados individuales */
+.proyecto-header-premium.animate-element {
+opacity: 1;
+transform: translateY(0);
+}
+
+.proyecto-visual-panel.animate-element {
+opacity: 1;
+transform: translateX(0);
+}
+
+.stats-proyecto-premium.animate-element {
+opacity: 1;
+transform: translateY(0);
+}
+
+.programa-info-premium.animate-element {
+opacity: 1;
+transform: translateX(0);
+}
+
+.vivienda-tipos-premium.animate-element {
+opacity: 1;
+transform: translateY(0);
+}
+
+/* Animaciones de entrada individuales para cada elemento */
+.experiencia-testimonios-section-premium .experiencia-header-corporativo {
+opacity: 0;
+transform: translateY(30px);
+transition: all 0.6s ease-out;
+    transform: translateY(30px);
+    transition: all 0.6s ease-out;
+}
+
+.experiencia-testimonios-section-premium .stats-panel-premium {
     opacity: 0;
-    transform: translateY(50px);
-    transition: all 0.8s ease-out;
+    transform: translateY(40px);
+    transition: all 0.8s ease-out 0.2s;
 }
 
-.experiencia-testimonios-section-premium.animate .experiencia-container-premium {
+.experiencia-testimonios-section-premium .testimonios-corporativos {
+    opacity: 0;
+    transform: translateX(-50px);
+    transition: all 0.7s ease-out 0.4s;
+}
+
+.experiencia-testimonios-section-premium .formulario-experiencia-corporativo {
+    opacity: 0;
+    transform: translateX(50px);
+    transition: all 0.7s ease-out 0.6s;
+}
+
+/* Estados animados individuales */
+.experiencia-header-corporativo.animate-element {
     opacity: 1;
     transform: translateY(0);
+}
+
+.stats-panel-premium.animate-element {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.testimonios-corporativos.animate-element {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.formulario-experiencia-corporativo.animate-element {
+    opacity: 1;
+    transform: translateX(0);
 }
 
 /* Patrón de Fondo Geométrico */
@@ -8085,6 +8186,52 @@ body.dark-theme .btn-theme-toggle:hover {
     background: #ffffff;
     position: relative;
     overflow: hidden;
+}
+
+/* Animaciones individuales para elementos de ubicación */
+.ubicacion-premium-section .ubicacion-header-premium {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: all 0.8s ease-out;
+}
+
+.ubicacion-premium-section .ubicacion-info-panel {
+    opacity: 0;
+    transform: translateX(-50px);
+    transition: all 0.9s ease-out 0.2s;
+}
+
+.ubicacion-premium-section .mapa-premium-container {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.7s ease-out 0.4s;
+}
+
+.ubicacion-premium-section .ubicacion-media-panel {
+    opacity: 0;
+    transform: translateX(50px);
+    transition: all 0.8s ease-out 0.6s;
+}
+
+/* Estados animados individuales */
+.ubicacion-header-premium.animate-element {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.ubicacion-info-panel.animate-element {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.mapa-premium-container.animate-element {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.ubicacion-media-panel.animate-element {
+    opacity: 1;
+    transform: translateX(0);
 }
 
 .ubicacion-premium-section::before {
