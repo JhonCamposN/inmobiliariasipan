@@ -271,50 +271,58 @@ function iniciarTemporizadorInactividad() {
     }, 15000);
 }
 
-    // Menú hamburguesa con overlay
+    // Menú móvil compacto
     const menuToggle = document.querySelector('.menu-toggle');
-    const menu = document.querySelector('.menu-superior');
-    const menuOverlay = document.querySelector('.menu-overlay');
+    const mobileMenu = document.querySelector('.mobile-menu');
     
-    if (menuToggle && menu) {
-        menuToggle.addEventListener('click', function () {
-            menu.classList.toggle('open');
-            document.body.classList.toggle('menu-open');
+    if (menuToggle && mobileMenu) {
+        menuToggle.addEventListener('click', function (e) {
+            e.stopPropagation();
             
-            // Manejar overlay
-            if (menuOverlay) {
-                menuOverlay.classList.toggle('active');
+            // Toggle del menú
+            mobileMenu.classList.toggle('active');
+            menuToggle.classList.toggle('active');
+        });
+        
+        // Cerrar menú al hacer click fuera
+        document.addEventListener('click', function (e) {
+            if (!mobileMenu.contains(e.target) && !menuToggle.contains(e.target)) {
+                mobileMenu.classList.remove('active');
+                menuToggle.classList.remove('active');
             }
         });
         
-        // Cerrar menú al hacer click en el overlay
-        if (menuOverlay) {
-            menuOverlay.addEventListener('click', function () {
-                menu.classList.remove('open');
-                document.body.classList.remove('menu-open');
-                menuOverlay.classList.remove('active');
+        // Funcionalidad del submenu móvil
+        const mobileDropdownToggle = document.querySelector('.mobile-dropdown-toggle');
+        const mobileDropdown = document.querySelector('.mobile-dropdown');
+        
+        if (mobileDropdownToggle && mobileDropdown) {
+            mobileDropdownToggle.addEventListener('click', function (e) {
+                e.preventDefault();
+                e.stopPropagation();
+                
+                // Toggle del submenu
+                mobileDropdown.classList.toggle('active');
             });
         }
         
-        // Cerrar menú al hacer click en un enlace
-        menu.querySelectorAll('a').forEach(link => {
+        // Cerrar menú al hacer click en un enlace (excepto el toggle del submenu)
+        mobileMenu.querySelectorAll('a:not(.mobile-dropdown-toggle)').forEach(link => {
             link.addEventListener('click', function () {
-                menu.classList.remove('open');
-                document.body.classList.remove('menu-open');
-                if (menuOverlay) {
-                    menuOverlay.classList.remove('active');
+                mobileMenu.classList.remove('active');
+                menuToggle.classList.remove('active');
+                // También cerrar submenu si está abierto
+                if (mobileDropdown) {
+                    mobileDropdown.classList.remove('active');
                 }
             });
         });
         
         // Cerrar menú con tecla Escape
         document.addEventListener('keydown', function(e) {
-            if (e.key === 'Escape' && menu.classList.contains('open')) {
-                menu.classList.remove('open');
-                document.body.classList.remove('menu-open');
-                if (menuOverlay) {
-                    menuOverlay.classList.remove('active');
-                }
+            if (e.key === 'Escape' && mobileMenu.classList.contains('active')) {
+                mobileMenu.classList.remove('active');
+                menuToggle.classList.remove('active');
             }
         });
     }
@@ -1018,13 +1026,6 @@ function iniciarTemporizadorInactividad() {
         });
     });
 
-    // Mejora de accesibilidad - Navegación por teclado
-    document.addEventListener('keydown', function(e) {
-        if (e.key === 'Escape' && menu.classList.contains('open')) {
-            menu.classList.remove('open');
-            document.body.classList.remove('menu-open');
-        }
-    });
 
     // Optimización de videos
     const videos = document.querySelectorAll('video');

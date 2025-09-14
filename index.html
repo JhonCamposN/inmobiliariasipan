@@ -45,11 +45,29 @@
             <button class="menu-toggle" aria-label="Abrir menú">
                 <i class="fas fa-bars"></i>
             </button>
+            
+            <!-- Menú móvil compacto -->
+            <div class="mobile-menu" id="mobileMenu">
+                <ul>
+                    <li class="mobile-dropdown">
+                        <a href="#inicio" class="mobile-dropdown-toggle">
+                            <i class="fas fa-home"></i> Inicio 
+                            <i class="fas fa-chevron-down mobile-dropdown-arrow"></i>
+                        </a>
+                        <ul class="mobile-submenu">
+                            <li><a href="html/sobre-nosotros.html"><i class="fas fa-users"></i> Sobre Nosotros</a></li>
+                            <li><a href="html/trabaja-con-nosotros.html"><i class="fas fa-briefcase"></i> Trabaja con Nosotros</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="html/proyecto.html"><i class="fas fa-building"></i> Beneficios</a></li>
+                    <li><a href="html/servicios.html"><i class="fas fa-cogs"></i> Servicios</a></li>
+                    <li><a href="#ubicacion"><i class="fas fa-map-marker-alt"></i> Ubicación</a></li>
+                    <li><a href="html/contacto.html"><i class="fas fa-envelope"></i> Contacto</a></li>
+                </ul>
+            </div>
         </div>
     </header>
 
-    <!-- Overlay para menú móvil -->
-    <div class="menu-overlay" id="menuOverlay"></div>
 
     <!-- Hero principal - Estilo Jade Mills -->
     <section class="hero" id="inicio">
