@@ -881,59 +881,294 @@
             outline: none;
             box-shadow: 0 0 0 2px rgba(30, 123, 191, 0.25);
         }
-        /* Responsive Design */
+        /* Enhanced Responsive Design */
         @media (max-width: 1200px) {
             .contacto-altman-section {
                 flex-direction: column;
+                min-height: auto;
+                overflow-x: hidden;
             }
             
             .contacto-hero-background {
-                height: 50vh;
+                height: 60vh;
+                width: 100%;
+                min-height: 500px;
+                overflow: hidden;
+                position: relative;
             }
             
             .contacto-bg-image {
-                height: 50vh;
+                height: 60vh;
             }
             
             .contacto-form-section {
                 flex: none;
-                padding: 40px 30px;
+                padding: 50px 40px;
+                width: 100%;
+                box-sizing: border-box;
             }
             
             .contacto-left-content {
-                left: 30px;
+                left: 20%;
+                top: 50%;
+                transform: translate(-50%, -50%);
+                text-align: left;
+                width: 70%;
+                max-width: 400px;
+                position: absolute;
+                z-index: 10;
+            }
+            
+            .contacto-header-section {
+                height: 350px;
+                overflow: hidden;
             }
         }
         
         @media (max-width: 768px) {
-            .contacto-form-grid {
-                grid-template-columns: 1fr;
+            .contacto-header-section {
+                height: 280px;
+                overflow: hidden;
             }
             
-            .contacto-form-section {
-                padding: 30px 20px;
+            .contacto-header-logo {
+                max-height: 120px;
+                max-width: 300px;
+            }
+            
+            .contacto-altman-section {
+                flex-direction: column;
+                background: linear-gradient(135deg, #0c3c61 0%, #1e7bbf 100%);
+                overflow-x: hidden;
+                width: 100%;
+            }
+            
+            .contacto-hero-background {
+                height: auto;
+                min-height: 500px;
+                width: 100%;
+                display: flex;
+                align-items: center;
+                justify-content: flex-start;
+                padding: 40px 0;
+                overflow: hidden;
+                position: relative;
+            }
+            
+            .contacto-left-content {
+                left: 15%;
+                top: 50%;
+                transform: translate(0, -50%);
+                text-align: left;
+                width: 80%;
+                max-width: 350px;
+                position: absolute;
+                z-index: 10;
+                padding-left: 20px;
+                box-sizing: border-box;
             }
             
             .contacto-brand-title {
-                font-size: 2em;
+                font-size: 2.2em;
+                margin-bottom: 5px;
             }
             
             .contacto-brand-subtitle {
-                font-size: 2.5em;
+                font-size: 2.8em;
+                margin-bottom: 20px;
+            }
+            
+            .contacto-info-items {
+                display: grid;
+                grid-template-columns: 1fr;
+                gap: 15px;
+                margin: 25px 0;
+            }
+            
+            .contacto-info-item {
+                display: flex;
+                align-items: center;
+                text-align: left;
+                padding: 12px 15px;
+                background: rgba(255, 255, 255, 0.1);
+                border-radius: 10px;
+                backdrop-filter: blur(10px);
+                border: 1px solid rgba(255, 255, 255, 0.2);
+            }
+            
+            .contacto-info-item i {
+                margin-right: 12px;
+                margin-bottom: 0;
+                font-size: 1.1em;
+                min-width: 20px;
+            }
+            
+            .contacto-social-links {
+                justify-content: flex-start;
+                margin-top: 20px;
+            }
+            
+            .contacto-form-section {
+                padding: 40px 25px;
+                width: 100%;
+                box-sizing: border-box;
+                overflow-x: hidden;
+            }
+            
+            .contacto-form-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
             }
             
             .contacto-form-title {
                 font-size: 2.5em;
             }
+            
+            .contacto-form-subtitle {
+                font-size: 1.1em;
+            }
+            
+            .contacto-form-description {
+                font-size: 0.95em;
+                margin-bottom: 30px;
+            }
         }
         
         @media (max-width: 480px) {
+            .contacto-header-section {
+                height: 220px;
+                overflow: hidden;
+            }
+            
+            .contacto-header-logo {
+                max-height: 90px;
+                max-width: 220px;
+            }
+            
+            .contacto-hero-background {
+                min-height: 450px;
+                padding: 30px 0;
+                overflow: hidden;
+                width: 100%;
+            }
+            
             .contacto-left-content {
-                left: 20px;
+                left: 10%;
+                top: 50%;
+                transform: translate(0, -50%);
+                width: 85%;
+                max-width: 320px;
+                padding-left: 15px;
+                position: absolute;
+                z-index: 10;
+                box-sizing: border-box;
+            }
+            
+            .contacto-brand-title {
+                font-size: 1.8em;
+                margin-bottom: 3px;
+            }
+            
+            .contacto-brand-subtitle {
+                font-size: 2.2em;
+                margin-bottom: 15px;
+            }
+            
+            .contacto-brand-line {
+                width: 60px;
+                margin: 15px 0;
+            }
+            
+            .contacto-info-items {
+                gap: 12px;
+                margin: 20px 0;
+            }
+            
+            .contacto-info-item {
+                padding: 10px 12px;
+                font-size: 0.85em;
+            }
+            
+            .contacto-info-item i {
+                font-size: 1em;
+                margin-right: 10px;
+                min-width: 18px;
+            }
+            
+            .contacto-address span,
+            .contacto-hours span {
+                font-size: 0.8em;
+                line-height: 1.3;
             }
             
             .contacto-form-section {
-                padding: 20px 15px;
+                padding: 30px 20px;
+                width: 100%;
+                box-sizing: border-box;
+                overflow-x: hidden;
+            }
+            
+            .contacto-form-title {
+                font-size: 2em;
+            }
+            
+            .contacto-form-subtitle {
+                font-size: 1em;
+            }
+            
+            .contacto-form-description {
+                font-size: 0.9em;
+                margin-bottom: 25px;
+            }
+            
+            .contacto-form-field input,
+            .contacto-form-field select,
+            .contacto-form-field textarea {
+                padding: 12px 15px;
+                font-size: 16px; /* Prevents zoom on iOS */
+            }
+            
+            .contacto-form-field label {
+                font-size: 0.9em;
+                margin-bottom: 6px;
+            }
+            
+            .contacto-form-submit {
+                padding: 15px 30px;
+                font-size: 1em;
+                margin-top: 20px;
+            }
+        }
+        
+        /* Extra small devices */
+        @media (max-width: 360px) {
+            .contacto-header-section {
+                height: 180px;
+                overflow: hidden;
+            }
+            
+            .contacto-header-logo {
+                max-height: 70px;
+                max-width: 180px;
+            }
+            
+            .contacto-hero-background {
+                min-height: 400px;
+                padding: 25px 0;
+                overflow: hidden;
+                width: 100%;
+            }
+            
+            .contacto-left-content {
+                left: 5%;
+                top: 50%;
+                transform: translate(0, -50%);
+                width: 90%;
+                max-width: 300px;
+                padding-left: 10px;
+                position: absolute;
+                z-index: 10;
+                box-sizing: border-box;
             }
             
             .contacto-brand-title {
@@ -941,11 +1176,29 @@
             }
             
             .contacto-brand-subtitle {
-                font-size: 2em;
+                font-size: 1.8em;
+            }
+            
+            .contacto-info-item {
+                padding: 8px 10px;
+                font-size: 0.8em;
+            }
+            
+            .contacto-info-item i {
+                font-size: 0.9em;
+                margin-right: 8px;
+                min-width: 16px;
+            }
+            
+            .contacto-form-section {
+                padding: 25px 15px;
+                width: 100%;
+                box-sizing: border-box;
+                overflow-x: hidden;
             }
             
             .contacto-form-title {
-                font-size: 2em;
+                font-size: 1.8em;
             }
         }
     </style>
@@ -1258,10 +1511,14 @@
             <div class="mobile-menu" id="mobileMenu">
                 <ul>
                     <li class="mobile-dropdown">
-                        <a href="../index.html" class="mobile-dropdown-toggle">
-                            <i class="fas fa-home"></i> Inicio 
-                            <i class="fas fa-chevron-down mobile-dropdown-arrow"></i>
-                        </a>
+                        <div class="mobile-dropdown-container">
+                            <a href="../index.html" class="mobile-main-link">
+                                <i class="fas fa-home"></i> Inicio
+                            </a>
+                            <button class="mobile-dropdown-arrow" type="button">
+                                <i class="fas fa-chevron-down"></i>
+                            </button>
+                        </div>
                         <ul class="mobile-submenu">
                             <li><a href="sobre-nosotros.html"><i class="fas fa-users"></i> Sobre Nosotros</a></li>
                             <li><a href="trabaja-con-nosotros.html"><i class="fas fa-briefcase"></i> Trabaja con Nosotros</a></li>

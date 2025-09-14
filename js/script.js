@@ -293,11 +293,11 @@ function iniciarTemporizadorInactividad() {
         });
         
         // Funcionalidad del submenu móvil
-        const mobileDropdownToggle = document.querySelector('.mobile-dropdown-toggle');
+        const mobileDropdownArrow = document.querySelector('.mobile-dropdown-arrow');
         const mobileDropdown = document.querySelector('.mobile-dropdown');
         
-        if (mobileDropdownToggle && mobileDropdown) {
-            mobileDropdownToggle.addEventListener('click', function (e) {
+        if (mobileDropdownArrow && mobileDropdown) {
+            mobileDropdownArrow.addEventListener('click', function (e) {
                 e.preventDefault();
                 e.stopPropagation();
                 
@@ -306,8 +306,8 @@ function iniciarTemporizadorInactividad() {
             });
         }
         
-        // Cerrar menú al hacer click en un enlace (excepto el toggle del submenu)
-        mobileMenu.querySelectorAll('a:not(.mobile-dropdown-toggle)').forEach(link => {
+        // Cerrar menú al hacer click en un enlace (incluyendo el enlace principal de Inicio)
+        mobileMenu.querySelectorAll('a').forEach(link => {
             link.addEventListener('click', function () {
                 mobileMenu.classList.remove('active');
                 menuToggle.classList.remove('active');

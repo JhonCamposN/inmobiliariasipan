@@ -444,7 +444,51 @@
             }
 
             .gallery-nav {
-                display: none;
+                width: 55px;
+                height: 55px;
+                font-size: 1.5em;
+                background: rgba(0, 0, 0, 0.8);
+                border: 2px solid rgba(255, 255, 255, 0.4);
+                backdrop-filter: blur(10px);
+                box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+                transition: all 0.3s ease;
+            }
+
+            .gallery-nav:hover,
+            .gallery-nav:active {
+                background: rgba(30, 123, 191, 0.9);
+                border-color: rgba(255, 255, 255, 0.6);
+                transform: translateY(-50%) scale(1.1);
+                box-shadow: 0 6px 20px rgba(30, 123, 191, 0.4);
+            }
+
+            .gallery-prev {
+                left: 15px;
+            }
+
+            .gallery-next {
+                right: 15px;
+            }
+
+            /* Indicador de swipe para móviles */
+            .swipe-indicator {
+                position: absolute;
+                bottom: 60px;
+                left: 50%;
+                transform: translateX(-50%);
+                color: rgba(255, 255, 255, 0.8);
+                font-size: 0.9em;
+                text-align: center;
+                background: rgba(0, 0, 0, 0.6);
+                padding: 8px 16px;
+                border-radius: 20px;
+                backdrop-filter: blur(10px);
+                animation: fadeInOut 3s ease-in-out infinite;
+            }
+
+            @keyframes fadeInOut {
+                0%, 100% { opacity: 0.6; }
+                50% { opacity: 1; }
             }
 
             .gallery-close {
@@ -501,10 +545,14 @@
             <div class="mobile-menu" id="mobileMenu">
                 <ul>
                     <li class="mobile-dropdown">
-                        <a href="../index.html" class="mobile-dropdown-toggle">
-                            <i class="fas fa-home"></i> Inicio 
-                            <i class="fas fa-chevron-down mobile-dropdown-arrow"></i>
-                        </a>
+                        <div class="mobile-dropdown-container">
+                            <a href="../index.html" class="mobile-main-link">
+                                <i class="fas fa-home"></i> Inicio
+                            </a>
+                            <button class="mobile-dropdown-arrow" type="button">
+                                <i class="fas fa-chevron-down"></i>
+                            </button>
+                        </div>
                         <ul class="mobile-submenu">
                             <li><a href="sobre-nosotros.html"><i class="fas fa-users"></i> Sobre Nosotros</a></li>
                             <li><a href="trabaja-con-nosotros.html"><i class="fas fa-briefcase"></i> Trabaja con Nosotros</a></li>
@@ -639,6 +687,9 @@
             <div id="galleryItem"></div>
             <div class="gallery-counter">
                 <span id="currentIndex">1</span> / <span id="totalItems">1</span>
+            </div>
+            <div class="swipe-indicator" id="swipeIndicator">
+                <i class="fas fa-hand-pointer"></i> Desliza para navegar
             </div>
         </div>
     </div>
@@ -794,9 +845,20 @@
             modal.classList.add('active');
             
             updateGalleryItem();
-            updateCounter();
             
-            // Prevenir scroll del body
+            // Mostrar indicador de swipe en móviles
+            const swipeIndicator = document.getElementById('swipeIndicator');
+            if (window.innerWidth <= 768 && currentGallery.items.length > 1) {
+                swipeIndicator.style.display = 'block';
+                // Ocultar después de 4 segundos
+                setTimeout(() => {
+                    swipeIndicator.style.display = 'none';
+                }, 4000);
+            } else {
+                swipeIndicator.style.display = 'none';
+            }
+            
+            // Prevenir scroll del body cuando el modal está abierto
             document.body.style.overflow = 'hidden';
         }
 
@@ -868,6 +930,41 @@
                         break;
                 }
             }
+        });
+
+        // Soporte para gestos táctiles (swipe) en móviles
+        let touchStartX = 0;
+        let touchEndX = 0;
+        
+        function handleTouchStart(e) {
+            touchStartX = e.changedTouches[0].screenX;
+        }
+        
+        function handleTouchEnd(e) {
+            touchEndX = e.changedTouches[0].screenX;
+            handleSwipe();
+        }
+        
+        function handleSwipe() {
+            const swipeThreshold = 50; // Mínima distancia para considerar swipe
+            const swipeDistance = touchEndX - touchStartX;
+            
+            if (Math.abs(swipeDistance) > swipeThreshold) {
+                if (swipeDistance > 0) {
+                    // Swipe derecha = imagen anterior
+                    prevImage();
+                } else {
+                    // Swipe izquierda = imagen siguiente
+                    nextImage();
+                }
+            }
+        }
+        
+        // Agregar eventos táctiles al modal
+        document.addEventListener('DOMContentLoaded', function() {
+            const modal = document.getElementById('galleryModal');
+            modal.addEventListener('touchstart', handleTouchStart, false);
+            modal.addEventListener('touchend', handleTouchEnd, false);
         });
 
         // Cerrar modal al hacer clic fuera del contenido
