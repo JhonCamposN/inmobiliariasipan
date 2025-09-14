@@ -6,6 +6,291 @@
     <title>Trabaja con Nosotros - Corporación Inmobiliaria Sipán</title>
     <link rel="stylesheet" href="../css/styles.css">
     <link rel="stylesheet" href="../css/trabaja.css">
+    <style>
+        /* Estilos del Header Parallax */
+        .presentation-header {
+            height: 60vh;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .parallax-bg {
+            position: absolute;
+            top: -20%;
+            left: 0;
+            width: 100%;
+            height: 120%;
+            background: url('../img/trabaja_con_nosotros.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            will-change: transform;
+        }
+
+        .parallax-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.2);
+            z-index: 1;
+        }
+
+        .presentation-content {
+            position: relative;
+            z-index: 2;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            text-align: center;
+        }
+
+        .animated-title {
+            font-size: 3.5rem;
+            font-weight: 800;
+            color: #fff;
+            margin-bottom: 1rem;
+            text-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+            letter-spacing: -0.02em;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: slideInUp 1s ease-out 0.3s forwards;
+        }
+
+        .animated-title i {
+            color: #fff;
+            margin-right: 1rem;
+            text-shadow: 0 2px 10px rgba(255, 255, 255, 0.3);
+            animation: iconBounce 1.5s ease-out 0.8s forwards;
+        }
+
+        .animated-subtitle {
+            font-size: 1.8rem;
+            font-weight: 600;
+            color: #fff;
+            margin-bottom: 1rem;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+            opacity: 0;
+            transform: translateY(20px);
+            animation: slideInUp 1s ease-out 0.6s forwards;
+        }
+
+        .animated-description {
+            font-size: 1.2rem;
+            color: rgba(255, 255, 255, 0.9);
+            line-height: 1.6;
+            text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+            opacity: 0;
+            transform: translateY(20px);
+            animation: slideInUp 1s ease-out 0.9s forwards;
+        }
+
+        @keyframes slideInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes iconBounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateY(0);
+            }
+            40% {
+                transform: translateY(-10px);
+            }
+            60% {
+                transform: translateY(-5px);
+            }
+        }
+
+        /* Estilos CTA Extendido */
+        .cta-postulacion-extended {
+            width: 100%;
+            margin: 4rem 0;
+            padding: 0;
+        }
+
+        .cta-content-extended {
+            background: linear-gradient(135deg, #1e7bbf 0%, #0c3c61 100%);
+            margin: 0 250px;
+            padding: 3rem 4rem;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(30, 123, 191, 0.3);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 3rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-content-extended::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
+            animation: shimmer 3s ease-in-out infinite;
+        }
+
+        .cta-text {
+            flex: 1;
+            color: white;
+            z-index: 2;
+            position: relative;
+        }
+
+        .cta-text h3 {
+            font-size: 2.2rem;
+            font-weight: 700;
+            margin-bottom: 0.8rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .cta-text h3 i {
+            font-size: 2.5rem;
+            color: #25d366;
+            animation: pulse 2s infinite;
+        }
+
+        .cta-text p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            line-height: 1.5;
+            margin: 0;
+        }
+
+        .cta-actions {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1.5rem;
+            z-index: 2;
+            position: relative;
+        }
+
+        .btn-whatsapp-principal {
+            background: #25d366;
+            color: white;
+            padding: 1rem 2.5rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 20px rgba(37, 211, 102, 0.3);
+        }
+
+        .btn-whatsapp-principal:hover {
+            background: #20b954;
+            transform: translateY(-3px);
+            box-shadow: 0 12px 25px rgba(37, 211, 102, 0.4);
+        }
+
+        .btn-whatsapp-principal i {
+            font-size: 1.3rem;
+        }
+
+        .contacto-info {
+            display: flex;
+            gap: 2rem;
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 0.9rem;
+        }
+
+        .telefono, .horario {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .telefono i, .horario i {
+            color: #25d366;
+        }
+
+        @keyframes shimmer {
+            0%, 100% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
+            50% { transform: translateX(100%) translateY(100%) rotate(45deg); }
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+
+        /* Responsive */
+        @media (max-width: 1200px) {
+            .cta-content-extended {
+                margin: 0 150px;
+                padding: 2.5rem 3rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .presentation-header {
+                height: 50vh;
+            }
+            
+            .animated-title {
+                font-size: 2.5rem;
+            }
+            
+            .animated-subtitle {
+                font-size: 1.4rem;
+            }
+            
+            .animated-description {
+                font-size: 1rem;
+            }
+
+            .cta-content-extended {
+                margin: 0 50px;
+                padding: 2rem;
+                flex-direction: column;
+                text-align: center;
+                gap: 2rem;
+            }
+
+            .cta-text h3 {
+                font-size: 1.8rem;
+                justify-content: center;
+            }
+
+            .contacto-info {
+                flex-direction: column;
+                gap: 1rem;
+                align-items: center;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .cta-content-extended {
+                margin: 0 20px;
+                padding: 1.5rem;
+            }
+
+            .cta-text h3 {
+                font-size: 1.5rem;
+            }
+
+            .btn-whatsapp-principal {
+                padding: 0.8rem 2rem;
+                font-size: 1rem;
+            }
+        }
+    </style>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
@@ -45,23 +330,28 @@
     </header>
 
 
+    <!-- Header Parallax -->
+    <section class="presentation-header">
+        <div class="parallax-bg"></div>
+        <div class="parallax-overlay"></div>
+        <div class="presentation-content">
+            <h1 class="animated-title">
+                <i class="fas fa-briefcase"></i>
+                Trabaja con Nosotros
+            </h1>
+            <p class="animated-subtitle">Únete al Equipo de Sipán Inmobiliaria</p>
+            <p class="animated-description">Forma parte del equipo de profesionales más exitoso en el sector inmobiliario de Chiclayo</p>
+        </div>
+    </section>
+
     <!-- Oportunidades Laborales -->
     <section class="oportunidades-trabajo-section">
         <div class="oportunidades-container">
-            <div class="oportunidades-header">
-                <h1>Trabaja con Nosotros</h1>
-                <h2>Únete al Equipo de Sipán Inmobiliaria</h2>
-                <p class="oportunidades-subtitle">Forma parte del equipo de profesionales más exitoso en el sector inmobiliario de Chiclayo</p>
-            </div>
 
             <div class="oportunidades-content">
                 <!-- Posición Principal -->
                 <div class="posicion-destacada">
                     <div class="posicion-info">
-                        <div class="posicion-badge">
-                            <i class="fas fa-star"></i>
-                            <span>Oportunidad Única</span>
-                        </div>
                         <h3>Asesor Comercial Inmobiliario</h3>
                         <p class="posicion-descripcion">
                             Buscamos profesionales apasionados por las ventas y el sector inmobiliario para unirse 
@@ -138,30 +428,31 @@
                     </div>
                 </div>
 
-                <!-- CTA Principal -->
-                <div class="cta-postulacion">
-                    <div class="cta-content">
-                        <div class="cta-text">
-                            <h3><i class="fab fa-whatsapp"></i> ¡Postula Ahora!</h3>
-                            <p>No dejes pasar esta oportunidad única de crecer profesionalmente con nosotros</p>
-                        </div>
-                        <div class="cta-actions">
-                            <a href="https://wa.me/51932359551?text=Hola,%20estoy%20interesado%20en%20trabajar%20con%20ustedes" 
-                               class="btn-whatsapp-principal" target="_blank">
-                                <i class="fab fa-whatsapp"></i> 
-                                <span>Contactar por WhatsApp</span>
-                            </a>
-                            <div class="contacto-info">
-                                <div class="telefono">
-                                    <i class="fas fa-phone"></i>
-                                    <span>+51 932 359 551</span>
-                                </div>
-                                <div class="horario">
-                                    <i class="fas fa-clock"></i>
-                                    <span>Lun - Sáb: 9:30 AM - 7:00 PM</span>
-                                </div>
-                            </div>
-                        </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Principal Extendido -->
+    <section class="cta-postulacion-extended">
+        <div class="cta-content-extended">
+            <div class="cta-text">
+                <h3><i class="fab fa-whatsapp"></i> ¡Postula Ahora!</h3>
+                <p>No dejes pasar esta oportunidad única de crecer profesionalmente con nosotros</p>
+            </div>
+            <div class="cta-actions">
+                <a href="https://wa.me/51932359551?text=Hola,%20estoy%20interesado%20en%20trabajar%20con%20ustedes" 
+                   class="btn-whatsapp-principal" target="_blank">
+                    <i class="fab fa-whatsapp"></i> 
+                    <span>Contactar por WhatsApp</span>
+                </a>
+                <div class="contacto-info">
+                    <div class="telefono">
+                        <i class="fas fa-phone"></i>
+                        <span>+51 932 359 551</span>
+                    </div>
+                    <div class="horario">
+                        <i class="fas fa-clock"></i>
+                        <span>Lun - Sáb: 9:30 AM - 7:00 PM</span>
                     </div>
                 </div>
             </div>
@@ -336,5 +627,23 @@
     <!-- JavaScript -->
     <script src="../js/script.js"></script>
     <script src="../js/trabaja.js"></script>
+    <script>
+        // Efecto Parallax
+        function initParallax() {
+            const parallaxBg = document.querySelector('.parallax-bg');
+            if (parallaxBg) {
+                window.addEventListener('scroll', () => {
+                    const scrolled = window.pageYOffset;
+                    const speed = scrolled * 0.5;
+                    parallaxBg.style.transform = `translateY(${speed}px)`;
+                });
+            }
+        }
+
+        // Inicializar cuando el DOM esté listo
+        document.addEventListener('DOMContentLoaded', function() {
+            initParallax();
+        });
+    </script>
 </body>
 </html>
