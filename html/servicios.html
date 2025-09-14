@@ -572,45 +572,147 @@
             }
         }
 
-        /* Responsive */
+        /* Enhanced Responsive */
+        @media (max-width: 1200px) {
+            .hero-title {
+                font-size: 2.8rem;
+                padding: 0 1em;
+            }
+            
+            .servicios-grid {
+                grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+                gap: 2rem;
+                padding: 0 2em;
+                width: 100%;
+                box-sizing: border-box;
+            }
+            
+            .gallery-grid {
+                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+                padding: 0 1em;
+                width: 100%;
+                box-sizing: border-box;
+            }
+            
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+                padding: 0 1em;
+                width: 100%;
+                box-sizing: border-box;
+            }
+        }
+
         @media (max-width: 768px) {
             .hero-title {
                 font-size: 2.5rem;
+                padding: 0 1em;
             }
             
             .servicios-grid {
                 grid-template-columns: 1fr;
                 gap: 2rem;
+                padding: 0 1em;
+                width: 100%;
+                box-sizing: border-box;
             }
             
             .gallery-grid {
-                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+                grid-template-columns: 1fr;
+                padding: 0 1em;
+                width: 100%;
+                box-sizing: border-box;
             }
             
             .stats-grid {
                 grid-template-columns: repeat(2, 1fr);
+                padding: 0 1em;
+                width: 100%;
+                box-sizing: border-box;
             }
 
             .animated-title {
                 font-size: 2rem;
+                padding: 0 1em;
             }
 
             .animated-subtitle {
                 font-size: 1rem;
+                padding: 0 1em;
             }
         }
 
         @media (max-width: 480px) {
             .hero-title {
                 font-size: 2rem;
+                padding: 0 0.8em;
             }
             
             .section-title {
                 font-size: 2rem;
+                padding: 0 0.8em;
+            }
+            
+            .servicios-grid {
+                padding: 0 0.8em;
+                width: 100%;
+                box-sizing: border-box;
+            }
+            
+            .gallery-grid {
+                padding: 0 0.8em;
+                width: 100%;
+                box-sizing: border-box;
             }
             
             .stats-grid {
                 grid-template-columns: 1fr;
+                padding: 0 0.8em;
+                width: 100%;
+                box-sizing: border-box;
+            }
+
+            .animated-title {
+                font-size: 1.8rem;
+                padding: 0 0.8em;
+            }
+
+            .animated-subtitle {
+                font-size: 0.9rem;
+                padding: 0 0.8em;
+            }
+        }
+        
+        @media (max-width: 360px) {
+            .hero-title {
+                font-size: 1.8rem;
+                padding: 0 0.5em;
+            }
+            
+            .section-title {
+                font-size: 1.8rem;
+                padding: 0 0.5em;
+            }
+            
+            .servicios-grid {
+                padding: 0 0.5em;
+            }
+            
+            .gallery-grid {
+                padding: 0 0.5em;
+            }
+            
+            .stats-grid {
+                padding: 0 0.5em;
+            }
+
+            .animated-title {
+                font-size: 1.6rem;
+                padding: 0 0.5em;
+            }
+
+            .animated-subtitle {
+                font-size: 0.85rem;
+                padding: 0 0.5em;
             }
         }
 
@@ -754,33 +856,80 @@
             color: #666;
         }
 
-        /* Responsive Design */
-        @media (max-width: 768px) {
+        /* Enhanced Responsive Design */
+        @media (max-width: 1200px) {
             .servicios-hero {
-                padding: 3em 0 1.5em 0;
+                padding: 3em 0 2em 0;
+                overflow: hidden;
             }
             
-            .servicios-hero h1 {
-                font-size: 2.2em;
-            }
-            
-            .servicios-hero p {
-                font-size: 1.1em;
+            .servicios-container {
+                width: 100%;
+                max-width: 100%;
+                overflow-x: hidden;
+                box-sizing: border-box;
             }
             
             .servicios-main {
                 padding: 3em 0;
+                overflow-x: hidden;
+            }
+            
+            .servicios-grid {
+                grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+                gap: 2em;
+                margin-top: 2em;
+                padding: 0 2em;
+                width: 100%;
+                box-sizing: border-box;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .servicios-hero {
+                padding: 3em 0 1.5em 0;
+                overflow: hidden;
+                width: 100%;
+            }
+            
+            .servicios-hero h1 {
+                font-size: 2.2em;
+                padding: 0 1em;
+            }
+            
+            .servicios-hero p {
+                font-size: 1.1em;
+                padding: 0 1em;
+            }
+            
+            .servicios-container {
+                width: 100%;
+                max-width: 100%;
+                overflow-x: hidden;
+                padding: 0;
+                box-sizing: border-box;
+            }
+            
+            .servicios-main {
+                padding: 3em 0;
+                overflow-x: hidden;
+                width: 100%;
             }
             
             .servicios-grid {
                 grid-template-columns: 1fr;
                 gap: 1.5em;
                 margin-top: 1.5em;
-                padding: 0 0.5em;
+                padding: 0 1em;
+                width: 100%;
+                box-sizing: border-box;
             }
             
             .servicio-card {
                 min-height: 380px;
+                width: 100%;
+                box-sizing: border-box;
+                margin: 0;
             }
             
             .servicio-icon {
@@ -792,6 +941,8 @@
             
             .servicio-content {
                 padding: 0 1.2em 1.2em;
+                width: 100%;
+                box-sizing: border-box;
             }
             
             .servicio-title {
@@ -809,31 +960,93 @@
         }
 
         @media (max-width: 480px) {
+            .servicios-hero {
+                overflow: hidden;
+                width: 100%;
+                padding: 2.5em 0 1.5em 0;
+            }
+            
             .servicios-container {
-                padding: 0 1em;
+                padding: 0;
+                width: 100%;
+                max-width: 100%;
+                overflow-x: hidden;
+                box-sizing: border-box;
             }
             
             .servicios-hero h1 {
                 font-size: 1.8em;
+                padding: 0 0.8em;
             }
             
             .servicios-hero p {
                 font-size: 1em;
+                padding: 0 0.8em;
+            }
+            
+            .servicios-main {
+                padding: 2.5em 0;
+                overflow-x: hidden;
+                width: 100%;
             }
             
             .servicios-grid {
                 grid-template-columns: 1fr;
                 gap: 1.2em;
-                padding: 0;
+                padding: 0 0.8em;
+                width: 100%;
+                box-sizing: border-box;
             }
             
             .servicio-card {
                 min-height: 350px;
-                margin: 0 0.5em;
+                margin: 0;
+                width: 100%;
+                box-sizing: border-box;
             }
             
             .servicio-content {
                 padding: 0 1em 1em;
+                width: 100%;
+                box-sizing: border-box;
+            }
+        }
+        
+        /* Extra small devices */
+        @media (max-width: 360px) {
+            .servicios-hero {
+                padding: 2em 0 1em 0;
+            }
+            
+            .servicios-hero h1 {
+                font-size: 1.6em;
+                padding: 0 0.5em;
+            }
+            
+            .servicios-hero p {
+                font-size: 0.9em;
+                padding: 0 0.5em;
+            }
+            
+            .servicios-grid {
+                padding: 0 0.5em;
+                gap: 1em;
+            }
+            
+            .servicio-card {
+                min-height: 320px;
+            }
+            
+            .servicio-content {
+                padding: 0 0.8em 0.8em;
+            }
+            
+            .servicio-title {
+                font-size: 1.1em;
+            }
+            
+            .servicio-description {
+                font-size: 0.85em;
             }
         }
 
@@ -1007,10 +1220,69 @@
             .footer-grid {
                 grid-template-columns: 1fr;
                 gap: 2em;
+                text-align: center;
+                padding: 0 1em;
+                width: 100%;
+                box-sizing: border-box;
             }
             
-            .footer-container {
-                padding: 0 1em;
+            .footer-section h4 {
+                font-size: 1.2em;
+                margin-bottom: 1em;
+            }
+            
+            .footer-section p,
+            .footer-section a {
+                font-size: 0.9em;
+            }
+            
+            .footer-social {
+                justify-content: center;
+            }
+            
+            .footer-waves {
+                overflow-x: hidden;
+                width: 100%;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .footer-grid {
+                padding: 0 0.8em;
+            }
+            
+            .footer-section h4 {
+                font-size: 1.1em;
+            }
+            
+            .footer-waves {
+                overflow-x: hidden;
+                width: 100%;
+            }
+        }
+        
+        @media (max-width: 360px) {
+            .footer-grid {
+                padding: 0 0.5em;
+            }
+            
+            .footer-section h4 {
+                font-size: 1em;
+            }
+            
+            .footer-section p,
+            .footer-section a {
+                font-size: 0.85em;
+            }
+        }
+            
+            .footer-logo img {
+                max-width: 120px;
+            }
+        
+        @media (max-width: 768px) {
+            .footer-logo img {
+                max-width: 120px;
             }
             
             .social-links {
