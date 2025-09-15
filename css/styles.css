@@ -1399,25 +1399,19 @@ color: #b2d4ee;
     font-size: 0.8em !important;
 }
 
-.mobile-dropdown.active .mobile-dropdown-arrow i {
-    transform: rotate(180deg);
-}
-
 .mobile-submenu {
-    max-height: 0;
-    overflow: hidden;
-    transition: max-height 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-    background: linear-gradient(135deg, 
-        rgba(12, 60, 97, 0.03) 0%, 
-        rgba(30, 123, 191, 0.05) 100%);
-    margin: 5px 15px 0 15px;
-    border-radius: 10px;
+    display: none;
+    background: rgba(255,255,255,0.95);
+    backdrop-filter: blur(10px);
+    margin: 0 15px;
+    border-radius: 8px;
+    margin-top: 5px;
     border-left: 3px solid rgba(30, 123, 191, 0.2);
+    padding: 10px 0;
 }
 
 .mobile-dropdown.active .mobile-submenu {
-    max-height: 200px;
-    padding: 10px 0;
+    display: block;
 }
 
 .mobile-submenu li {
