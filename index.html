@@ -67,6 +67,7 @@
                     <li><a href="html/servicios.html"><i class="fas fa-cogs"></i> Servicios</a></li>
                     <li><a href="#ubicacion"><i class="fas fa-map-marker-alt"></i> Ubicación</a></li>
                     <li><a href="html/contacto.html"><i class="fas fa-envelope"></i> Contacto</a></li>
+                    <li><a href="html/login.html"><i class="fas fa-user-circle"></i> Iniciar Sesión</a></li>
                 </ul>
             </div>
         </div>
@@ -649,10 +650,15 @@
                             </h4>
                         </div>
                         <div class="video-wrapper-premium">
-                            <video controls width="100%" muted id="ubicacionVideo" poster="img/ubicacion_chiclayo.png">
+                            <video controls width="100%" id="ubicacionVideo" poster="img/ubicacion_chiclayo.png" preload="metadata" playsinline muted>
                                 <source src="video/ubicacion/ubicacionruta_video.mp4" type="video/mp4">
                                 Tu navegador no soporta video HTML5.
                             </video>
+                            <div class="video-mobile-controls">
+                                <button class="mobile-unmute-btn" onclick="toggleVideoAudio('ubicacionVideo')">
+                                    <i class="fas fa-volume-mute" id="ubicacionVideoAudioIcon"></i>
+                                </button>
+                            </div>
                         </div>
                         <div class="video-description">
                             <p>Descubre la ubicación estratégica de nuestra oficina y los beneficios de estar en el centro comercial más importante de Chiclayo.</p>

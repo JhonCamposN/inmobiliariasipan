@@ -5684,7 +5684,7 @@ transition: all 0.6s ease-out;
     }
 }
 
-/* Estilos para Modal de Video */
+/* Estilos para Modal de Video - Mejorado y Responsive */
 .modal-video {
     display: none;
     position: fixed;
@@ -5693,31 +5693,153 @@ transition: all 0.6s ease-out;
     top: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.8);
-    backdrop-filter: blur(5px);
+    background-color: rgba(0, 0, 0, 0.85);
+    backdrop-filter: blur(8px);
+    overflow-y: auto;
 }
 
 .modal-video-content {
     position: relative;
     background-color: #fff;
-    margin: 5% auto;
-    padding: 20px;
-    border-radius: 15px;
-    width: 90%;
-    max-width: 800px;
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
-    animation: modalFadeIn 0.3s ease-out;
+    margin: 1% auto;
+    padding: 40px;
+    border-radius: 20px;
+    width: 98%;
+    max-width: 2200px;
+    min-height: 700px;
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.4);
+    animation: modalFadeIn 0.4s ease-out;
+    box-sizing: border-box;
+    aspect-ratio: 16/9;
 }
 
 .modal-close {
     position: absolute;
-    top: 10px;
-    right: 20px;
+    top: 15px;
+    right: 25px;
     color: #666;
-    font-size: 30px;
+    font-size: 35px;
     font-weight: bold;
     cursor: pointer;
-    transition: color 0.3s ease;
+    transition: all 0.3s ease;
+    z-index: 10;
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 50%;
+    width: 45px;
+    height: 45px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 1;
+}
+
+.modal-close:hover {
+    color: #ff4444;
+    background: rgba(255, 255, 255, 1);
+    transform: scale(1.1);
+}
+
+/* Video dentro del modal */
+.modal-video-content video {
+    width: 100%;
+    height: 100%;
+    min-height: 650px;
+    max-height: 90vh;
+    border-radius: 12px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+    object-fit: cover;
+    display: block;
+}
+
+/* Responsive para modales de video */
+@media (max-width: 1200px) {
+    .modal-video-content {
+        width: 95%;
+        max-width: 1900px;
+        margin: 2% auto;
+        padding: 35px;
+        min-height: 600px;
+    }
+    
+    .modal-video-content video {
+        height: 100%;
+        min-height: 550px;
+        max-height: 85vh;
+        object-fit: cover;
+    }
+}
+
+@media (max-width: 768px) {
+    .modal-video-content {
+        width: 98%;
+        max-width: 98%;
+        margin: 1% auto;
+        padding: 30px;
+        border-radius: 15px;
+        min-height: 500px;
+        aspect-ratio: 16/9;
+    }
+    
+    .modal-close {
+        top: 15px;
+        right: 20px;
+        font-size: 32px;
+        width: 45px;
+        height: 45px;
+    }
+    
+    .modal-video-content video {
+        height: 100%;
+        min-height: 450px;
+        max-height: 80vh;
+        border-radius: 10px;
+        object-fit: cover;
+    }
+}
+
+@media (max-width: 480px) {
+    .modal-video-content {
+        width: 100%;
+        margin: 1% auto;
+        padding: 25px;
+        border-radius: 12px;
+        min-height: 450px;
+        aspect-ratio: 16/9;
+    }
+    
+    .modal-close {
+        top: 12px;
+        right: 18px;
+        font-size: 28px;
+        width: 40px;
+        height: 40px;
+    }
+    
+    .modal-video-content video {
+        height: 100%;
+        min-height: 400px;
+        max-height: 75vh;
+        border-radius: 8px;
+        object-fit: cover;
+    }
+}
+
+@media (max-width: 360px) {
+    .modal-video-content {
+        width: 100%;
+        margin: 2% auto;
+        padding: 20px;
+        border-radius: 10px;
+        min-height: 400px;
+        aspect-ratio: 16/9;
+    }
+    
+    .modal-video-content video {
+        height: 100%;
+        min-height: 350px;
+        max-height: 70vh;
+        object-fit: cover;
+    }
 }
 
 .modal-close:hover {
@@ -5748,17 +5870,6 @@ transition: all 0.6s ease-out;
     transform: scale(1.02);
 }
 
-.modal-video-content {
-    position: relative;
-    background-color: #fff;
-    margin: 5% auto;
-    padding: 20px;
-    border-radius: 15px;
-    width: 45%;
-    max-width: 400px;
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
-    animation: modalFadeIn 0.3s ease-out;
-}
 
 /* Estilos para sección ubicación con video */
 .ubicacion-media-container {
@@ -9197,6 +9308,48 @@ body.dark-theme .btn-theme-toggle:hover {
     width: 100%;
     height: 100%;
     object-fit: cover;
+}
+
+.video-mobile-controls {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    z-index: 20;
+    display: none;
+}
+
+.mobile-unmute-btn {
+    background: rgba(0, 0, 0, 0.7);
+    border: none;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+}
+
+.mobile-unmute-btn:hover {
+    background: rgba(0, 0, 0, 0.9);
+    transform: scale(1.1);
+}
+
+@media (max-width: 768px) {
+    .video-mobile-controls {
+        display: block;
+    }
+    
+    .video-wrapper-premium video::-webkit-media-controls-volume-slider {
+        display: none;
+    }
+    
+    .video-wrapper-premium video::-webkit-media-controls-mute-button {
+        display: none;
+    }
 }
 
 .video-overlay-controls {

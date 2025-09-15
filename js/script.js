@@ -691,6 +691,21 @@ function iniciarTemporizadorInactividad() {
     initTestimonioVideo();
     initUbicacionVideo();
 
+// Función para toggle de audio en móviles
+function toggleVideoAudio(videoId) {
+    const video = document.getElementById(videoId);
+    const icon = document.getElementById(videoId + 'AudioIcon');
+    
+    if (video.muted) {
+        video.muted = false;
+        video.volume = 0.8;
+        icon.className = 'fas fa-volume-up';
+    } else {
+        video.muted = true;
+        icon.className = 'fas fa-volume-mute';
+    }
+}
+
     // Service Worker (comentado temporalmente)
     // if ('serviceWorker' in navigator) {
     //     navigator.serviceWorker.register('/sw.js')
